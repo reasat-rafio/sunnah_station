@@ -10,10 +10,20 @@ module.exports = {
             nevyBlue: "#011325",
             lightBlue: "#00c0fa",
             optional: "#016cec",
+            lightest_gray: "#edf2f7",
+            light_gray: "#e2e8f0",
+         },
+         textColor: {
+            nevyBlue: "#011325",
+            title: "#ffed4a",
+            sub_title: "#ffed4a",
+            text: "#a0aec0",
+            light_gray: "#e2e8f0",
+            lightest_gray: "#edf2f7",
          },
          fontFamily: {
-            nav: ["Roboto", " sans-serif"],
-            text: ["Nunito", " sans-serif"],
+            text: ["Roboto", " sans-serif"],
+            title: ["Cabin", " sans-serif"],
          },
          height: {
             lgCard: "350px",

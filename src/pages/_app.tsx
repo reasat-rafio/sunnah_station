@@ -1,9 +1,9 @@
 import Head from "next/head";
-import "../styles/globals.scss";
-import { getStrapiMedia } from "../libs/media";
+import "../styles/tailwind.scss";
 import { createContext } from "react";
-import { fetchAPI } from "../libs/api";
 import App from "next/app";
+import { GlobalState } from "../store";
+import { GlobalLayout } from "../Components/Layouts/GlobalLayout";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -32,7 +32,12 @@ function MyApp({ Component, pageProps }) {
             <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
          </Head>
          {/* <GlobalContext.Provider value={global}> */}
-         <Component {...pageProps} />
+         <GlobalState>
+            <GlobalLayout>
+               <Component {...pageProps} />
+            </GlobalLayout>
+         </GlobalState>
+
          {/* </GlobalContext.Provider> */}
       </>
    );
