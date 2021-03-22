@@ -5,7 +5,7 @@ import { useCtx } from "../../../store";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
-import { categories } from "./_data";
+import { categories, GoLeft, GoRight } from "./_data";
 
 interface BrowseByCategoryProps {}
 
@@ -51,17 +51,21 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
 
    return (
       <section className="container  mx-auto px-2 font-title">
-         <div className="my-4 ">
+         <div className="my-10 flex md:block justify-center items-center flex-col">
             <h3 className="italic font-semibold text-blue-600 py-1 text-xl">
                - The Categories
             </h3>
             <div className="flex">
-               <h4 className="text-5xl font-extrabold flex-1 text-nevyBlue font-title">
+               <h4 className="text-smTitle md:text-lgTitle font-extrabold flex-1 text-nevyBlue font-title">
                   Browse by Category
                </h4>
-               <div className="">
-                  <span>{"<"}</span>
-                  <span>{">"}</span>
+               <div className="flex justify-center items-center gap-5">
+                  <span className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200">
+                     <GoLeft />
+                  </span>
+                  <span className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200">
+                     <GoRight />
+                  </span>
                </div>
             </div>
          </div>
@@ -77,7 +81,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                <SwiperSlide key={id}>
                   <motion.div
                      whileHover={{ y: -10 }}
-                     className={`cursor-pointer  text-center hover:shadow-md rounded-lg flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
+                     className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
                         pgWidth == "sm" && ""
                      } ${pgWidth == "xs" && ""}`}
                      // onClick={() => router.push(`/items/${slug}`)}
