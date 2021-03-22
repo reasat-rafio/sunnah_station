@@ -84,7 +84,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                      className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
                         pgWidth == "sm" && ""
                      } ${pgWidth == "xs" && ""}`}
-                     // onClick={() => router.push(`/items/${slug}`)}
+             
                   >
                      <span className="text-lightBlue py-3">{icon}</span>
                      <p className="font-bold text-xl"> {name}</p>

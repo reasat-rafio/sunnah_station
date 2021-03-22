@@ -50,7 +50,9 @@ export default function Home({ coverImg }) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const { data } = await axios.get(`${process.env.URL}/main-cover-images`);
+   const { data } = await axios.get(
+      `https://sunnah-station.herokuapp.com/main-cover-images`
+   );
    return {
       props: { coverImg: data[0].img },
    };
