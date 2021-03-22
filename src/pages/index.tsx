@@ -14,8 +14,8 @@ export default function Home({ coverImg }) {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <main className="w-full">
-            <HomePoster coverImg={coverImg} />
-            <BrowseByCategory />
+            {/* <HomePoster coverImg={coverImg} /> */}
+            {/* <BrowseByCategory /> */}
          </main>
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero,
          sapiente ducimus soluta suscipit sint quis molestias voluptates at
