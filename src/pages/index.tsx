@@ -6,7 +6,6 @@ import axios from "axios";
 import Image from "next/image";
 
 export default function Home({ data }) {
-   console.log(data.url);
    return (
       <InitialLayout>
          <Head>
@@ -37,8 +36,8 @@ export default function Home({ data }) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const { data } = await axios.get("http://localhost:1337/main-cover-images");
+   // const { data } = await axios.get("http://localhost:1337/main-cover-images");
    return {
-      props: { data: data[0].img[0] },
+      props: { data: "data[0].img[0]" },
    };
 };
