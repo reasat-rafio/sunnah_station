@@ -14,8 +14,8 @@ export default function Home({ coverImg }) {
             <link rel="icon" href="/favicon.ico" />
          </Head>
          <main className="w-full">
-            {/* <HomePoster coverImg={coverImg} /> */}
-            {/* <BrowseByCategory /> */}
+            <HomePoster coverImg={coverImg} />
+            <BrowseByCategory />
          </main>
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero,
          sapiente ducimus soluta suscipit sint quis molestias voluptates at
@@ -50,9 +50,7 @@ export default function Home({ coverImg }) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const { data } = await axios.get(
-      `https://sunnah-station.herokuapp.com/main-cover-images`
-   );
+   const { data } = await axios.get(`${process.env.URL}/main-cover-images`);
    return {
       props: { coverImg: data[0].img },
    };
