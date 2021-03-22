@@ -178,7 +178,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                                     {name == "Deals" && (
                                        <motion.li variants={linkVariants}>
                                           <div
-                                             className="flex items-center "
+                                             className="flex items-center justify-center "
                                              onClick={() =>
                                                 setShowMoreDeals(
                                                    (prevState) => !prevState
@@ -210,7 +210,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                                                       sideBarMoreVarients
                                                    }
                                                    exit="exit"
-                                                   className="flex flex-col justify-center items-center py-2"
+                                                   className="flex flex-col justify-center items-center"
                                                 >
                                                    {subNavs.map(
                                                       (
