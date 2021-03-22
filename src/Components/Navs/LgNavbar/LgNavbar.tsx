@@ -71,15 +71,13 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
          >
             <div className="flex items-center">
                <div className="flex-1">
-                  <li
-                     className="flex cursor-pointer"
-                     onClick={() => router.push("/")}
-                  >
+                  <li className="flex ">
                      <Image
-                        className="m-auto "
-                        src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616298950/sunnah%20statoin/sunnah_station_rzv7ld.png"
+                        onClick={() => router.push("/")}
+                        className="m-auto  cursor-pointer"
+                        src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
                         layout="intrinsic"
-                        width={50}
+                        width={110}
                         height={50}
                         alt="logo"
                      />
