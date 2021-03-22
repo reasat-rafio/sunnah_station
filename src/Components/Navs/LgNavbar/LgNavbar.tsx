@@ -60,13 +60,13 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
    return (
       <nav
          className={`fixed w-full transition-all duration-300 z-40  ${
-            Pageheight != 0 ? "top-0" : "top-8"
+            Pageheight != 0 ? "top-0" : " top-4 md:top-8"
          } `}
          ref={navRef}
       >
          <ul
             className={`container mx-auto  px-4 rounded-md bg-white ${
-               Pageheight != 0 ? "py-2 shadow-lg" : "py-3 md:py-4"
+               Pageheight != 0 ? "py-1  md:py-2 shadow-lg" : "py-2 md:py-4"
             }`}
          >
             <div className="flex items-center relative">

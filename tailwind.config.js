@@ -6,11 +6,12 @@ module.exports = {
    darkMode: false,
    theme: {
       extend: {
+         fontSize: {},
          colors: {
             nevyBlue: "#011325",
             lightBlue: "#00c0fa",
             optional: "#016cec",
-            lightest_gray: "#edf2f7",
+            lightest_gray: "#F9FAFB",
             light_gray: "#e2e8f0",
          },
          textColor: {
@@ -19,7 +20,7 @@ module.exports = {
             sub_title: "#ffed4a",
             text: "#a0aec0",
             light_gray: "#e2e8f0",
-            lightest_gray: "#edf2f7",
+            lightest_gray: "#f3f3f8",
          },
          fontFamily: {
             text: ["Roboto", " sans-serif"],

@@ -27,26 +27,310 @@ export const Mail = () => {
    );
 };
 
-// export const Menu = (props) => {
-//    return (
-//       <svg
-//          width="30"
-//          height="30"
-//          className="cursor-pointer transition-all duration-300 motion-safe:animate-spin"
-//          xmlns="http://www.w3.org/2000/svg"
-//          fill="none"
-//          viewBox="0 0 24 24"
-//          stroke="currentColor"
-//       >
-//          <path
-//             strokeLinecap="round"
-//             strokeWidth={2}
-//             strokeLinejoin="round"
-//             d={props.strokes}
-//          />
-//       </svg>
-//    );
-// };
+export const ShoppingBag = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Retail Bag</title>
+         <path
+            data-name="layer2"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            d="M4 14h56v48H4zm2 0V2h52v12"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer2"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            d="M6.2 2.1L16 8 6 14M57.8 2.1L48 8l10 6"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer1"
+            d="M42 24a10 10 0 0 1-20 0"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const Best_seelings = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Diploma</title>
+         <path
+            data-name="layer2"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            d="M17.6 37.7L10 56.4l8.8-1.1 5.5 6.8 6.4-18.6m15.7-5.8L54 56.4l-8.8-1.1-5.4 6.8-6.5-18.6"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <circle
+            data-name="layer1"
+            cx="32"
+            cy="22.9"
+            r="12"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></circle>
+         <path
+            data-name="layer1"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            d="M32 4.5l4.5-2.6 3.1 4.2 5.1-.5 1.1 5 4.9 1.7-1 5 3.8 3.5-3 4.2 2.1 4.8-4.5 2.6v5.1l-5.2.6-2.1 4.7-4.9-1.5-3.9 3.4-3.9-3.4-4.9 1.5-2.1-4.7-5.2-.6v-5.1l-4.5-2.6 2.1-4.8-3-4.2 3.8-3.5-1-5 4.9-1.7 1.1-5 5.1.5 3.1-4.2L32 4.5z"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const Others = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Purchase Order</title>
+
+         <path
+            data-name="layer2"
+            d="M16 48V8a6 6 0 0 1 6-6h34"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer2"
+            d="M50 12h12V8a6 6 0 0 0-6-6 6 6 0 0 0-6 6v44a10 10 0 0 1-10 10 10 10 0 0 1-10-10v-4H2v4a10 10 0 0 0 10 10h28"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer1"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            d="M24 12h16M24 28h16m-16-8h12M24 36h12"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const Women = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Women</title>
+
+         <path
+            data-name="layer1"
+            d="M49 17c0 17.2 2.9 18.9 7 23a70.8 70.8 0 0 1-16 2v2c0 2 0 6 10 8s10 10 10 10H4s0-8 10.2-10 9.8-6 9.8-8v-2a71 71 0 0 1-16-2c4.1-4.1 8-5.8 8-23 0 0 0-14 12-14 0 0 21-6.5 21 14z"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const Men = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         viewBox="0 0 64 64"
+         xmlns="http://www.w3.org/2000/svg"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Man</title>
+
+         <path
+            strokeWidth="4"
+            stroke-miterlimit="10"
+            stroke="#00c0fa"
+            fill="none"
+            d="M41.713 48.744c-1.968-1.476-1.71-3.069-1.71-4.244v-4m-16 1v3c0 1.285.425 3.083-2.194 4.67"
+            data-name="layer2"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            strokeWidth="4"
+            stroke-miterlimit="10"
+            stroke="#00c0fa"
+            fill="none"
+            d="M37.601 42.5a16.786 16.786 0 0 0 7.168-10.135c3.026-.037 4.234-2.931 4.234-6.937 0-1.994 0-4.928-3-4.928v-2m-29 0v2.006c-2-.006-3 2.994-3 4.988 0 4.006 1.391 7.006 4.436 7.006h.002a15.21 15.21 0 0 0 7.17 10m20.392-24v-2c0-10.4-7.373-14-14-14s-15 3.517-15 13.916V18.5c12 0 13-8 21-8 7.459 0 8 8 8 8z"
+            data-name="layer2"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            strokeWidth="4"
+            stroke-miterlimit="10"
+            stroke="#00c0fa"
+            fill="none"
+            d="M14.003 51.5c-12.61 2-12.001 11-12.001 11h30L21.809 49.17c-1.458.885-3.856 1.703-7.806 2.33zm36 0c-4.436-.74-6.91-1.72-8.29-2.756L32.002 62.5h30s0-9-12-11z"
+            data-name="layer1"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const Art = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Brush</title>
+         <path
+            data-name="layer2"
+            d="M61.5 3.2a1.8 1.8 0 0 0-2.3-.2h-.1C37.9 18.8 27.9 28.1 20.6 35.4l8.6 8.7c7.3-7.3 16.6-17.3 32.4-38.5h.1a1.8 1.8 0 0 0-.2-2.4z"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer2"
+            d="M18 38a6.1 6.1 0 0 0 8.7 8.7l2.6-2.6-8.6-8.7z"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer1"
+            d="M18.3 55.5A6 6 0 0 0 9.8 47C5.5 51.2 7 59.9 2 61.4c4.7-.3 11.5-1.1 16.3-5.9z"
+            fill="none"
+            stroke="#00c0fa"
+            stroke-miterlimit="10"
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
+   );
+};
+
+export const FoodSvg = () => {
+   return (
+      <svg
+         width="37"
+         height="37"
+         viewBox="0 0 64 64"
+         xmlns="http://www.w3.org/2000/svg"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Roast Chicken</title>
+
+         <path
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+            stroke="#00c0fa"
+            fill="none"
+            d="M54.867 24.717l2.326-2.326a2.94 2.94 0 0 0 3.939-4.355c-1.523-1.523-2.088-1.047-2.6-1.562-.709-.709-.3-1.344-1.564-2.6a2.947 2.947 0 0 0-4.168 4.161c.072.072.16.115.238.18l-2.818 2.814M62 51a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 2 2 0 0 1 2-2h56a2 2 0 0 1 2 2z"
+            data-name="layer2"
+         ></path>
+         <path
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+            stroke="#00c0fa"
+            fill="none"
+            d="M34.291 42.082a10.058 10.058 0 0 0 14.979-.824c.049-.062.092-.129.139-.191.16-.207.316-.416.457-.633 2.972-4.459 3.234-11.059 4.434-12.256l.34-.34a2.4 2.4 0 0 0 0-3.391l-2.713-2.713a2.4 2.4 0 0 0-3.393 0l-.34.34c-1.283 1.283-8.416 1.144-13.115 5.059-.271.221-.533.455-.787.707a10.069 10.069 0 0 0-.001 14.242z"
+            data-name="layer1"
+         ></path>
+         <path
+            strokeWidth="4"
+            stroke-linejoin="round"
+            strokeLinecap="round"
+            stroke="#00c0fa"
+            fill="none"
+            d="M49.748 21.031C44 11 16 3 3.379 30.154c-3.592 8 2.627 14.877 10.627 14.877h27.826"
+            data-name="layer1"
+         ></path>
+      </svg>
+   );
+};
 
 export const Search = () => {
    return (
