@@ -66,24 +66,21 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
       >
          <ul
             className={`container mx-auto  px-4 rounded-md bg-white ${
-               Pageheight != 0 ? "py-2 shadow-lg" : "py-4"
+               Pageheight != 0 ? "py-2 shadow-lg" : "py-3 md:py-4"
             }`}
          >
-            <div className="flex items-center">
+            <div className="flex items-center relative">
                <div className="flex-1">
-                  <li className="flex ">
-                     <Image
+                  <li className="flex   ">
+                     <img
+                        className="min-w-24 w-28"
                         onClick={() => router.push("/")}
-                        className="m-auto  cursor-pointer"
                         src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
-                        layout="intrinsic"
-                        width={110}
-                        height={50}
                         alt="logo"
                      />
                   </li>
                </div>
-               <div className=" gap-5 flex  items-center">
+               <div className=" gap-5 flex  items-center ">
                   <li className=" hidden md:block">
                      <div
                         className={`flex items-center ${
