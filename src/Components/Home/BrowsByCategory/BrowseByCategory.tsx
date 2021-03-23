@@ -23,6 +23,13 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
    // swiper slidesPerView
    const [cardsPerView, setCardsPerView] = useState<number>(5);
 
+   // custome navigation button ref
+   const navigationPrevRef = useRef<HTMLDivElement>(null);
+   const navigationNextRef = useRef<HTMLDivElement>(null);
+
+   const smNavigationPrevRef = useRef<HTMLDivElement>(null);
+   const smNavigationNextRef = useRef<HTMLDivElement>(null);
+
    // router
    const router = useRouter();
 
@@ -52,18 +59,24 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
    return (
       <section className="container  mx-auto px-2 font-title">
          <div className="my-10 flex md:block justify-center items-center flex-col">
-            <h3 className="italic font-semibold text-blue-600 py-1 text-xl">
+            <h3 className="italic font-semibold text-blue-600 py-1 text-xl ">
                - The Categories
             </h3>
-            <div className="flex">
+            <div className="flex  flex-col md:flex-row">
                <h4 className="text-smTitle md:text-lgTitle font-extrabold flex-1 text-nevyBlue font-title">
                   Browse by Category
                </h4>
-               <div className="flex justify-center items-center gap-5">
-                  <span className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200">
+               <div className="flex justify-center items-center gap-3 md:gap-5 mt-6 md:mt-0">
+                  <span
+                     className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
+                     ref={navigationPrevRef}
+                  >
                      <GoLeft />
                   </span>
-                  <span className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200">
+                  <span
+                     className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
+                     ref={navigationNextRef}
+                  >
                      <GoRight />
                   </span>
                </div>
@@ -73,9 +86,30 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
          <Swiper
             className="my-4"
             slidesPerView={cardsPerView}
-            id="main"
             autoplay={{ disableOnInteraction: false }}
-            spaceBetween={40}
+            spaceBetween={pageWidth < 550 && pageWidth > 0 ? 15 : 40}
+            //use Full
+            // breakpoints={{
+            //    320: {
+            //      slidesPerView: 1.5,
+            //    },
+            //    991: {
+            //      slidesPerView: 3,
+            //    },
+            //  }}
+            navigation={{
+               prevEl: navigationPrevRef.current
+                  ? navigationPrevRef.current
+                  : undefined,
+               nextEl: navigationNextRef.current
+                  ? navigationNextRef.current
+                  : undefined,
+            }}
+            onInit={(swiper: any) => {
+               swiper.params.navigation.prevEl = navigationPrevRef.current;
+               swiper.params.navigation.nextEl = navigationNextRef.current;
+               swiper.navigation.update();
+            }}
          >
             {categories.map(({ name, icon }, id: number) => (
                <SwiperSlide key={id}>
@@ -84,7 +118,6 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                      className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
                         pgWidth == "sm" && ""
                      } ${pgWidth == "xs" && ""}`}
-             
                   >
                      <span className="text-lightBlue py-3">{icon}</span>
                      <p className="font-bold text-xl"> {name}</p>
@@ -92,6 +125,20 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                </SwiperSlide>
             ))}
          </Swiper>
+         {/* <div className="flex justify-center items-center gap-1 md:gap-5 md:hidden mx-auto">
+            <span
+               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
+               ref={smNavigationPrevRef}
+            >
+               <GoLeft />
+            </span>
+            <span
+               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
+               ref={smNavigationNextRef}
+            >
+               <GoRight />
+            </span>
+         </div> */}
       </section>
    );
 };

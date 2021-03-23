@@ -46,7 +46,7 @@ export const ShoppingBag = () => {
             stroke-miterlimit="10"
             strokeWidth="4"
             d="M4 14h56v48H4zm2 0V2h52v12"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -56,7 +56,7 @@ export const ShoppingBag = () => {
             stroke-miterlimit="10"
             strokeWidth="4"
             d="M6.2 2.1L16 8 6 14M57.8 2.1L48 8l10 6"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -66,7 +66,7 @@ export const ShoppingBag = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -92,7 +92,7 @@ export const Best_seelings = () => {
             stroke-miterlimit="10"
             strokeWidth="4"
             d="M17.6 37.7L10 56.4l8.8-1.1 5.5 6.8 6.4-18.6m15.7-5.8L54 56.4l-8.8-1.1-5.4 6.8-6.5-18.6"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <circle
@@ -104,7 +104,7 @@ export const Best_seelings = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></circle>
          <path
@@ -114,7 +114,7 @@ export const Best_seelings = () => {
             stroke-miterlimit="10"
             strokeWidth="4"
             d="M32 4.5l4.5-2.6 3.1 4.2 5.1-.5 1.1 5 4.9 1.7-1 5 3.8 3.5-3 4.2 2.1 4.8-4.5 2.6v5.1l-5.2.6-2.1 4.7-4.9-1.5-3.9 3.4-3.9-3.4-4.9 1.5-2.1-4.7-5.2-.6v-5.1l-4.5-2.6 2.1-4.8-3-4.2 3.8-3.5-1-5 4.9-1.7 1.1-5 5.1.5 3.1-4.2L32 4.5z"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -141,7 +141,7 @@ export const Others = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -151,7 +151,7 @@ export const Others = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -161,7 +161,7 @@ export const Others = () => {
             stroke-miterlimit="10"
             strokeWidth="4"
             d="M24 12h16M24 28h16m-16-8h12M24 36h12"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -188,7 +188,7 @@ export const Women = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -215,7 +215,7 @@ export const Men = () => {
             fill="none"
             d="M41.713 48.744c-1.968-1.476-1.71-3.069-1.71-4.244v-4m-16 1v3c0 1.285.425 3.083-2.194 4.67"
             data-name="layer2"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -225,7 +225,7 @@ export const Men = () => {
             fill="none"
             d="M37.601 42.5a16.786 16.786 0 0 0 7.168-10.135c3.026-.037 4.234-2.931 4.234-6.937 0-1.994 0-4.928-3-4.928v-2m-29 0v2.006c-2-.006-3 2.994-3 4.988 0 4.006 1.391 7.006 4.436 7.006h.002a15.21 15.21 0 0 0 7.17 10m20.392-24v-2c0-10.4-7.373-14-14-14s-15 3.517-15 13.916V18.5c12 0 13-8 21-8 7.459 0 8 8 8 8z"
             data-name="layer2"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -235,7 +235,7 @@ export const Men = () => {
             fill="none"
             d="M14.003 51.5c-12.61 2-12.001 11-12.001 11h30L21.809 49.17c-1.458.885-3.856 1.703-7.806 2.33zm36 0c-4.436-.74-6.91-1.72-8.29-2.756L32.002 62.5h30s0-9-12-11z"
             data-name="layer1"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -261,7 +261,7 @@ export const Art = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -271,7 +271,7 @@ export const Art = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
          <path
@@ -281,7 +281,7 @@ export const Art = () => {
             stroke="#00c0fa"
             stroke-miterlimit="10"
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
          ></path>
       </svg>
@@ -303,7 +303,7 @@ export const FoodSvg = () => {
 
          <path
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
             stroke="#00c0fa"
             fill="none"
@@ -312,7 +312,7 @@ export const FoodSvg = () => {
          ></path>
          <path
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
             stroke="#00c0fa"
             fill="none"
@@ -321,7 +321,7 @@ export const FoodSvg = () => {
          ></path>
          <path
             strokeWidth="4"
-            stroke-linejoin="round"
+            strokeLinejoin="round"
             strokeLinecap="round"
             stroke="#00c0fa"
             fill="none"
