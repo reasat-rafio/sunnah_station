@@ -16,6 +16,7 @@ import {
    linkVariants,
    sideBarMoreVarients,
    arrowVariants,
+   sideBarMoreVarientsLi,
 } from "../../../utils/animation";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
 import {
@@ -155,7 +156,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                   {showSmMenu && (
                      <motion.ul
                         variants={menuVariants}
-                        className="font-title flex gap-2 flex-col justify-center items-center text-xl shadow-sm"
+                        className="font-title flex gap-2 flex-col justify-center items-center text-xl shadow-sm "
                         initial="initial"
                         animate="animate"
                         exit="exit"
@@ -182,7 +183,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                                                 )
                                              }
                                           >
-                                             <p className="flex-1 smNavBarCtg  hover:text-lightBlue cursor-pointer">
+                                             <p className="flex-1 smNavBarCtg  cursor-pointer hover:text-lightBlue">
                                                 {name}
                                              </p>
 

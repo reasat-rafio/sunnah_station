@@ -40,18 +40,37 @@ export const sideBarCategoriesVarients = {
 
 export const sideBarMoreVarients = {
    initial: {
+      y: -20,
       opacity: 0,
       height: 0,
    },
    animate: {
       opacity: 1,
       height: "auto",
-
+      y: 0,
       transition: {
          type: "tween",
       },
    },
-   exit: { opacity: 0, height: 0 },
+   exit: { height: 0, y: 15, opacity: 0 },
+};
+
+export const sideBarMoreVarientsLi = {
+   initial: {
+      opacity: 0,
+      y: -5,
+   },
+   show: {
+      opacity: 1,
+      y: 0,
+   },
+   hide: {
+      y: -5,
+      opacity: 1,
+      transition: {
+         duration: 0.1,
+      },
+   },
 };
 
 export const searchPageVarients = {
