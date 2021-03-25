@@ -96,23 +96,23 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
             className="flex flex-col gap-3 my-4 
          "
          >
-            {/* <Link href="/api/auth/signin"> */}
-            <button
-               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
-               onClick={(e) => {
-                  signIn("google");
-               }}
-            >
-               <Image
-                  className=""
-                  src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616603353/sunnah%20statoin/google-icon_zaw3zq.png"
-                  layout="intrinsic"
-                  height="30"
-                  width="30"
-               />
-               <span> Sign Up With Google</span>
-            </button>
-            {/* </Link> */}
+            <Link href="/api/auth/signin">
+               <button
+                  className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
+                  onClick={(e) => {
+                     signIn("google");
+                  }}
+               >
+                  <Image
+                     className=""
+                     src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616603353/sunnah%20statoin/google-icon_zaw3zq.png"
+                     layout="intrinsic"
+                     height="30"
+                     width="30"
+                  />
+                  <span> Sign Up With Google</span>
+               </button>
+            </Link>
 
             <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
                <FacebookSvg /> <span className="">Sign Up with Facebook</span>
