@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { FacebookSvg, LoginSvg } from "./_helper";
+import { FacebookSvg, SignInSvg } from "../Register/_helper";
+// import { FacebookSvg, LoginSvg } from "./_helper";
 
-interface RegisterActionProps {}
+interface SignInActionProps {}
 
-export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
+export const SignInAction: React.FC<SignInActionProps> = ({}) => {
    return (
       <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 px-14  py-5">
          <div className="w-20 mx-auto">
@@ -19,7 +20,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
          </div>
 
          <h2 className="text-center text-smTitle md:text-3xl font-bold font-title py-5">
-            Sign Up To Sunnah Station
+            Sign In To Sunnah Station
          </h2>
          <div
             className="flex flex-col gap-3 my-4 
@@ -33,56 +34,23 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                   height="30"
                   width="30"
                />
-               <span> Sign Up With Google</span>
+               <span> Sign In With Google</span>
             </button>
             <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
-               <FacebookSvg /> <span className="">Sign Up with Facebook</span>
+               <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
          </div>
 
          <div className="divide-solid flex justify-center items-center gap-2 my-12">
             <span className="bg-gray-200 flex-1  h-0.5"></span>
             <h2 className="flex-3 font-text  text-gray-500 text-sm">
-               Or Sign Up With your e-mail
+               Or Sign in With your e-mail
             </h2>
             <span className="bg-gray-200 flex-1  h-0.5"></span>
          </div>
 
-         <form className="flex flex-col gap-2 ">
-            <div className="flex flex-col mb-1">
-               <div className="flex relative ">
-                  <span className="rounded-l-md inline-flex  items-center p-4 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                     <svg
-                        height="15"
-                        width="15"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 64 64"
-                        aria-labelledby="title"
-                        aria-describedby="desc"
-                        role="img"
-                     >
-                        <path
-                           data-name="layer2"
-                           d="M20.6 43c6.3-1.1 5.4-3.2 5.4-4.4v-.8c-1.5-1.3-1.7-3.3-2.3-5.6-1.9 0-2.4-4-2.4-4.6s-.1-3 1.9-3c-1.3-5.1-1-10.1 2.5-10.1 8.4-5.8 19.5-1.3 15.3 10.1 1.9 0 1.9 2.4 1.9 3s-.4 4.6-2.4 4.6c-.6 2.3-.9 4.2-2.4 5.6v.7c0 1.3-.9 3.2 5.4 4.4A9.1 9.1 0 0 1 50 48h8V2H6v46h8a8.9 8.9 0 0 1 6.6-5z"
-                           fill="#202020"
-                        ></path>
-                        <path
-                           data-name="layer1"
-                           fill="#202020"
-                           d="M6 52h52v10H6z"
-                        ></path>
-                     </svg>
-                  </span>
-                  <input
-                     type="text"
-                     id="sign-in-email"
-                     className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                     placeholder="User Name"
-                  />
-               </div>
-            </div>
-
-            <div className="flex flex-col mb-1 ">
+         <form className="flex flex-col gap-3 ">
+            <div className="flex flex-col mb-2 ">
                <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center p-4 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                      <svg
@@ -103,7 +71,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                   />
                </div>
             </div>
-            <div className="flex flex-col mb-1">
+            <div className="flex flex-col mb-6">
                <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center  border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm p-4">
                      <svg
@@ -125,30 +93,8 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                </div>
             </div>
 
-            <div className="flex flex-col mb-6">
-               <div className="flex relative ">
-                  <span className="rounded-l-md inline-flex  items-center  border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm p-4">
-                     <svg
-                        width="15"
-                        height="15"
-                        fill="currentColor"
-                        viewBox="0 0 1792 1792"
-                        xmlns="http://www.w3.org/2000/svg"
-                     >
-                        <path d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z"></path>
-                     </svg>
-                  </span>
-                  <input
-                     type="password"
-                     id="sign-in-email"
-                     className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2  p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                     placeholder="Confirm password"
-                  />
-               </div>
-            </div>
-
             <button className="bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2">
-               <LoginSvg /> <span> Sign Up</span>
+               <SignInSvg /> <span> Sign in</span>
             </button>
          </form>
 
@@ -161,19 +107,26 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
             />
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}
-               <a href="#" className="text-lightBlue hover:text-indigo-500 ">
+               <a href="#" className="text-indigo-600 hover:text-indigo-500 ">
                   Terms
                </a>{" "}
                and{" "}
-               <a href="#" className="text-lightBlue hover:text-indigo-500 ">
+               <a href="#" className="text-indigo-600 hover:text-indigo-500 ">
                   Privecy policy
                </a>
             </label>
          </div>
+         <div className="text-sm  text-center my-4">
+            <Link href="/">
+               <a> Forget Password?</a>
+            </Link>
+         </div>
 
          <div className="text-sm text-center">
-            Already have an account?{" "}
-            <a href="/authentication/signin">Sign in</a>
+            Dont have an account?
+            <Link href="/authentication/register">
+               <a>Sign Up</a>
+            </Link>
          </div>
       </div>
    );

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <svg xmlns="http://www.w3.org/2000/svg" id="Vector" viewBox="0 0 1200 1200" fill="#fff">
   <defs>
-    <style>.cls-1{fill:#dfdfdf;}.cls-2{fill:#f3f3f3;}.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8{fill:none;}.cls-3{stroke:#dfdfdf;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-3,.cls-4,.cls-7{stroke-width:4px;}.cls-4,.cls-5,.cls-6{stroke:white;}.cls-4,.cls-5,.cls-7,.cls-8{stroke-linecap:round;stroke-linejoin:round;}.cls-5,.cls-6{stroke-width:2.5px;}.cls-7,.cls-8{stroke:#f3f3f3;}.cls-8{stroke-width:2px;}</style>
+    <style>.cls-1{fill:#dfdfdf;}.cls-2{fill:#f3f3f3;}.cls-3,.cls-4,.cls-5,.cls-6,.cls-7,.cls-8{fill:none;}.cls-3{stroke:#dfdfdf;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-3,.cls-4,.cls-7{strokeWidth:4px;}.cls-4,.cls-5,.cls-6{stroke:white;}.cls-4,.cls-5,.cls-7,.cls-8{stroke-linecap:round;strokeLinejoin:round;}.cls-5,.cls-6{strokeWidth:2.5px;}.cls-7,.cls-8{stroke:#f3f3f3;}.cls-8{strokeWidth:2px;}</style>
   </defs>
   <title>Artboard 1</title>
   <path class="cls-1" d="M262,808V453.49H201v273.4C226.44,743.56,247.06,775.91,262,808Z"/>

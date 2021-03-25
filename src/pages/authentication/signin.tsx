@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { RegisterAction } from "../../Components/Authentication/Register/RegisterAction";
+import { SignInAction } from "../../Components/Authentication/Signin/SignInAction";
 import { RegisterSvg } from "../../Components/Authentication/Register/RegisterSvg";
 
 const register = () => {
@@ -10,7 +10,7 @@ const register = () => {
             animate={{ x: 0 }}
             className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
          >
-            <RegisterAction />
+            <SignInAction />
             <RegisterSvg />
          </motion.div>
       </div>
