@@ -1,9 +1,10 @@
 import Head from "next/head";
 import "../styles/tailwind.scss";
 import { createContext } from "react";
-import App from "next/app";
+
 import { GlobalState } from "../store";
 import { GlobalLayout } from "../Components/Layouts/GlobalLayout";
+import { Provider } from "next-auth/client";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -31,25 +32,18 @@ function MyApp({ Component, pageProps }) {
             <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.3/dist/js/uikit-icons.min.js" />
             <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.2.0/js/uikit.js" />
          </Head>
-         {/* <GlobalContext.Provider value={global}> */}
-         <GlobalState>
-            <GlobalLayout>
-               <Component {...pageProps} />
-            </GlobalLayout>
-         </GlobalState>
+
+         <Provider session={pageProps.session}>
+            <GlobalState>
+               <GlobalLayout>
+                  <Component {...pageProps} />
+               </GlobalLayout>
+            </GlobalState>
+         </Provider>
 
          {/* </GlobalContext.Provider> */}
       </>
    );
 }
-
-// MyApp.getInitialProps = async (ctx) => {
-//    // Calls page's `getInitialProps` and fills `appProps.pageProps`
-//    const appProps = await App.getInitialProps(ctx);
-//    // Fetch global site settings from Strapi
-//    const global = await fetchAPI("/global");
-//    // Pass the data to our page via props
-//    return { ...appProps, pageProps: { global } };
-// };
 
 export default MyApp;

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { SignInAction } from "../../Components/Authentication/Signin/SignInAction";
 import { SigninSvg } from "../../Components/Authentication/Signin/SignInSvg";
+import { getSession } from "next-auth/client";
 
-const register = () => {
+const signin = ({ session }) => {
    return (
       <div className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
          <motion.div
@@ -17,4 +18,13 @@ const register = () => {
    );
 };
 
-export default register;
+export default signin;
+
+export const getServerSideProps = async ({ req }) => {
+   const session = await getSession({ req });
+   return {
+      props: {
+         session,
+      },
+   };
+};

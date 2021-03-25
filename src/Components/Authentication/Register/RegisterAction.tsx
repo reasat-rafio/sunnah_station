@@ -1,11 +1,82 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacebookSvg, LoginSvg } from "./_helper";
+import { signIn, signOut } from "next-auth/client";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegisterSchema } from "../../../utils/yupSchema";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { useCtx } from "../../../store";
+import { loginUserAction } from "../../../store/actions/userAction";
 
-interface RegisterActionProps {}
+interface RegisterActionProps {
+   session: any;
+}
 
-export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
+interface onSubmitInterface {
+   username: string;
+   email: string;
+   password: string;
+   con_password: string;
+}
+
+export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
+   // router
+   const router = useRouter();
+
+   // Setting up Yup as useFrom resolver
+   const { handleSubmit, register, errors } = useForm({
+      mode: "onBlur",
+      resolver: yupResolver(RegisterSchema),
+   });
+
+   const URL = `${process.env.NEXT_PUBLIC_API_URL}/auth/local/register`;
+
+   // Global state
+   const { userDispatch } = useCtx();
+
+   // Form on submit
+   const onSubmitAction = async ({
+      username,
+      email,
+      password,
+      con_password,
+   }: onSubmitInterface) => {
+      try {
+         const { data } = await axios.post(URL, {
+            username,
+            email,
+            password,
+         });
+         userDispatch(loginUserAction(data));
+         router.push("/");
+         // Notify("success", "registration done!");
+      } catch (error) {
+         // Notify(
+         //    "error",
+         //    `${error.response.data.message[0].messages[0].message}`
+         // );
+         console.log(error.response.data.message);
+      }
+      console.log(username, email, password, con_password);
+   };
+
+   // state for agring with the terms and policy
+   const [agree, setAgree] = useState<boolean>(false);
+
+   // this will change the button Disable for signup
+   const buttonRef = useRef<HTMLButtonElement>(null);
+
+   useEffect(() => {
+      if (agree) {
+         buttonRef.current.disabled = false;
+      } else {
+         buttonRef.current.disabled = true;
+      }
+   }, [agree]);
+
    return (
       <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
          <div className="w-20 mx-auto">
@@ -25,7 +96,13 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
             className="flex flex-col gap-3 my-4 
          "
          >
-            <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold">
+            {/* <Link href="/api/auth/signin"> */}
+            <button
+               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
+               onClick={(e) => {
+                  signIn("google");
+               }}
+            >
                <Image
                   className=""
                   src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616603353/sunnah%20statoin/google-icon_zaw3zq.png"
@@ -35,6 +112,8 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                />
                <span> Sign Up With Google</span>
             </button>
+            {/* </Link> */}
+
             <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
                <FacebookSvg /> <span className="">Sign Up with Facebook</span>
             </button>
@@ -48,7 +127,10 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
             <span className="bg-gray-200 flex-1  h-0.5"></span>
          </div>
 
-         <form className="flex flex-col gap-2 ">
+         <form
+            className="flex flex-col gap-2 "
+            onSubmit={handleSubmit(onSubmitAction)}
+         >
             <div className="flex flex-col mb-1">
                <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center p-4 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -78,8 +160,15 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="User Name"
+                     ref={register}
+                     name="username"
                   />
                </div>
+               {errors.username && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.username.message}
+                  </span>
+               )}
             </div>
 
             <div className="flex flex-col mb-1 ">
@@ -100,9 +189,17 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="Your email"
+                     ref={register}
+                     name="email"
                   />
                </div>
+               {errors.email && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.email.message}
+                  </span>
+               )}
             </div>
+
             <div className="flex flex-col mb-1">
                <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center  border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm p-4">
@@ -121,8 +218,16 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2  p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="Your password"
+                     ref={register}
+                     name="password"
                   />
                </div>
+
+               {errors.password && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.password.message}
+                  </span>
+               )}
             </div>
 
             <div className="flex flex-col mb-6">
@@ -143,11 +248,25 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2  p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="Confirm password"
+                     ref={register}
+                     name="con_password"
                   />
                </div>
+
+               {errors.con_password && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.con_password.message}
+                  </span>
+               )}
             </div>
 
-            <button className="bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2">
+            <button
+               type="submit"
+               ref={buttonRef}
+               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2 ${
+                  !agree && "cursor-not-allowed"
+               }`}
+            >
                <LoginSvg /> <span> Sign Up</span>
             </button>
          </form>
@@ -158,6 +277,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
                name="name-terms-and-privacy"
                id=""
                className="rounded"
+               onChange={() => setAgree((prev) => !prev)}
             />
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}
@@ -172,8 +292,10 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
          </div>
 
          <div className="text-sm text-center">
-            Already have an account?{" "}
-            <a href="/authentication/signin">Sign in</a>
+            Already have an account?
+            <Link href="/authentication/signin">
+               <a>Sign in</a>
+            </Link>
          </div>
       </div>
    );

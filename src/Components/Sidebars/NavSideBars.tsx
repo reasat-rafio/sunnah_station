@@ -16,6 +16,8 @@ import { useRef, useState } from "react";
 import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { HIDE_SIDE_BAR } from "../../store/types";
 import { navs, MoreSubNavs } from "./_helper";
+import { getSession, signIn, signOut } from "next-auth/client";
+import { logOutAaction } from "../../store/actions/userAction";
 
 interface SideMenuBarProps {}
 interface Navs {
@@ -49,7 +51,10 @@ export const NavSideBars: React.FC<SideMenuBarProps> = ({}) => {
    //cookies
 
    // // Logout action
-   const logOut = () => {};
+   const logOut = () => {
+      userDispatch(logOutAaction());
+      signOut();
+   };
 
    // Chaning nav action
    const navAction = () => {

@@ -256,15 +256,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="624.782"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint1_linear"
@@ -274,15 +274,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="623.179"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint2_linear"
@@ -292,15 +292,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="609.811"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint3_linear"
@@ -310,15 +310,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="563.275"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint4_linear"
@@ -328,15 +328,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="591.432"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint5_linear"
@@ -346,15 +346,15 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="190.025"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#6AD0FB" />
-                  <stop offset="0.2275" stop-color="#6ACDFA" />
-                  <stop offset="0.3874" stop-color="#69C4F5" />
-                  <stop offset="0.5266" stop-color="#69B4EE" />
-                  <stop offset="0.654" stop-color="#689EE4" />
-                  <stop offset="0.7733" stop-color="#6682D6" />
-                  <stop offset="0.8849" stop-color="#6560C6" />
-                  <stop offset="0.9917" stop-color="#6337B3" />
-                  <stop offset="0.9947" stop-color="#6336B2" />
+                  <stop stopColor="#6AD0FB" />
+                  <stop offset="0.2275" stopColor="#6ACDFA" />
+                  <stop offset="0.3874" stopColor="#69C4F5" />
+                  <stop offset="0.5266" stopColor="#69B4EE" />
+                  <stop offset="0.654" stopColor="#689EE4" />
+                  <stop offset="0.7733" stopColor="#6682D6" />
+                  <stop offset="0.8849" stopColor="#6560C6" />
+                  <stop offset="0.9917" stopColor="#6337B3" />
+                  <stop offset="0.9947" stopColor="#6336B2" />
                </linearGradient>
                <linearGradient
                   id="paint6_linear"
@@ -364,8 +364,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="150.298"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint7_linear"
@@ -375,8 +375,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="818.78"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#965BF1" />
-                  <stop offset="0.9947" stop-color="#BB68FA" />
+                  <stop stopColor="#965BF1" />
+                  <stop offset="0.9947" stopColor="#BB68FA" />
                </linearGradient>
                <linearGradient
                   id="paint8_linear"
@@ -386,8 +386,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="814.471"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#965BF1" />
-                  <stop offset="0.9947" stop-color="#BB68FA" />
+                  <stop stopColor="#965BF1" />
+                  <stop offset="0.9947" stopColor="#BB68FA" />
                </linearGradient>
                <linearGradient
                   id="paint9_linear"
@@ -397,8 +397,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="932.301"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint10_linear"
@@ -408,8 +408,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="953.432"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint11_linear"
@@ -419,8 +419,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="905.09"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint12_linear"
@@ -430,8 +430,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="635.454"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#9A72F6" />
-                  <stop offset="1" stop-color="#724CE4" />
+                  <stop stopColor="#9A72F6" />
+                  <stop offset="1" stopColor="#724CE4" />
                </linearGradient>
                <linearGradient
                   id="paint13_linear"
@@ -441,8 +441,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="532.556"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#9A72F6" />
-                  <stop offset="1" stop-color="#724CE4" />
+                  <stop stopColor="#9A72F6" />
+                  <stop offset="1" stopColor="#724CE4" />
                </linearGradient>
                <linearGradient
                   id="paint14_linear"
@@ -452,8 +452,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="710.724"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#9A72F6" />
-                  <stop offset="1" stop-color="#724CE4" />
+                  <stop stopColor="#9A72F6" />
+                  <stop offset="1" stopColor="#724CE4" />
                </linearGradient>
                <linearGradient
                   id="paint15_linear"
@@ -463,8 +463,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="1047.39"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#9A72F6" />
-                  <stop offset="1" stop-color="#724CE4" />
+                  <stop stopColor="#9A72F6" />
+                  <stop offset="1" stopColor="#724CE4" />
                </linearGradient>
                <linearGradient
                   id="paint16_linear"
@@ -474,8 +474,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="772.46"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#533AA9" />
-                  <stop offset="1" stop-color="#2F2070" />
+                  <stop stopColor="#533AA9" />
+                  <stop offset="1" stopColor="#2F2070" />
                </linearGradient>
                <linearGradient
                   id="paint17_linear"
@@ -485,8 +485,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="860.169"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint18_linear"
@@ -496,8 +496,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="286.717"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
                <linearGradient
                   id="paint19_linear"
@@ -507,8 +507,8 @@ export const RegisterSvg: React.FC<RegisterSvgProps> = ({}) => {
                   y2="298.729"
                   gradientUnits="userSpaceOnUse"
                >
-                  <stop stop-color="#43295D" />
-                  <stop offset="1" stop-color="#774B88" />
+                  <stop stopColor="#43295D" />
+                  <stop offset="1" stopColor="#774B88" />
                </linearGradient>
             </defs>
          </svg>

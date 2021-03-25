@@ -2,22 +2,77 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacebookSvg, SignInSvg } from "../Register/_helper";
-// import { FacebookSvg, LoginSvg } from "./_helper";
+import { signIn, signOut } from "next-auth/client";
+import { useRouter } from "next/router";
+import { useCtx } from "../../../store";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";
+import { LoginSchema } from "../../../utils/yupSchema";
+import axios from "axios";
+import { loginUserAction } from "../../../store/actions/userAction";
 
-interface SignInActionProps {}
+interface SignInActionProps {
+   session: any;
+}
 
-export const SignInAction: React.FC<SignInActionProps> = ({}) => {
+interface onSubmitInterface {
+   identifier: string;
+   password: string;
+}
+
+export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
+   // router
+   const router = useRouter();
+   // store
+   const { userState, userDispatch } = useCtx();
+
+   //   setting up yup as useForm resolver
+   const { handleSubmit, register, errors } = useForm({
+      mode: "onBlur",
+      resolver: yupResolver(LoginSchema),
+   });
+
+   const URL = `${process.env.NEXT_PUBLIC_API_URL}/auth/local`;
+
+   // form on submit
+   const onSubmitAction = async ({
+      identifier,
+      password,
+   }: onSubmitInterface) => {
+      try {
+         const { data } = await axios.post(URL, {
+            identifier,
+            password,
+         });
+
+         // Setting the jwt to cookies
+         // setCookie("userjwt", data.jwt, { path: "/" });
+         //  User Global Dispatch
+         userDispatch(loginUserAction(data));
+         // toast
+         // Notify("success", `welcome back ${data.user.username}  !`);
+      } catch (error) {
+         // Notify(
+         //    "error",
+         //    `${error.response.data.message[0].messages[0].message}`
+         // );
+         console.log(error.response.data.message);
+      }
+   };
+
    return (
-      <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 px-14  py-5">
-         <div className="w-20 mx-auto">
-            <Image
-               src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616298950/sunnah%20statoin/sunnah_station_rzv7ld.png"
-               layout="responsive"
-               height="1"
-               width="1"
-               alt="sunnah station logo"
-            />
-         </div>
+      <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
+         <Link href="/">
+            <div className="w-20 mx-auto cursor-pointer">
+               <Image
+                  src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616298950/sunnah%20statoin/sunnah_station_rzv7ld.png"
+                  layout="responsive"
+                  height="1"
+                  width="1"
+                  alt="sunnah station logo"
+               />
+            </div>
+         </Link>
 
          <h2 className="text-center text-smTitle md:text-3xl font-bold font-title py-5">
             Sign In To Sunnah Station
@@ -26,7 +81,13 @@ export const SignInAction: React.FC<SignInActionProps> = ({}) => {
             className="flex flex-col gap-3 my-4 
          "
          >
-            <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold">
+            {/* <Link href="/api/auth/signin/google"> */}
+            <button
+               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
+               onClick={(e) => {
+                  signIn("google");
+               }}
+            >
                <Image
                   className=""
                   src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616603353/sunnah%20statoin/google-icon_zaw3zq.png"
@@ -36,6 +97,8 @@ export const SignInAction: React.FC<SignInActionProps> = ({}) => {
                />
                <span> Sign In With Google</span>
             </button>
+            {/* </Link> */}
+
             <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
                <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
@@ -49,7 +112,10 @@ export const SignInAction: React.FC<SignInActionProps> = ({}) => {
             <span className="bg-gray-200 flex-1  h-0.5"></span>
          </div>
 
-         <form className="flex flex-col gap-3 ">
+         <form
+            className="flex flex-col gap-3 "
+            onSubmit={handleSubmit(onSubmitAction)}
+         >
             <div className="flex flex-col mb-2 ">
                <div className="flex relative ">
                   <span className="rounded-l-md inline-flex  items-center p-4 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -68,8 +134,15 @@ export const SignInAction: React.FC<SignInActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="Your email"
+                     name="identifier"
+                     ref={register}
                   />
                </div>
+               {errors.identifier && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.identifier.message}
+                  </span>
+               )}
             </div>
             <div className="flex flex-col mb-6">
                <div className="flex relative ">
@@ -89,11 +162,21 @@ export const SignInAction: React.FC<SignInActionProps> = ({}) => {
                      id="sign-in-email"
                      className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2  p-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                      placeholder="Your password"
+                     name="password"
+                     ref={register}
                   />
                </div>
+               {errors.password && (
+                  <span className="text-xs text-red-600 my-0">
+                     {errors.password.message}
+                  </span>
+               )}
             </div>
 
-            <button className="bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2">
+            <button
+               type="submit"
+               className="bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2"
+            >
                <SignInSvg /> <span> Sign in</span>
             </button>
          </form>
