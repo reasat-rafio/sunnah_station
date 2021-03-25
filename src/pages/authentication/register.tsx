@@ -4,7 +4,7 @@ import { RegisterSvg } from "../../Components/Authentication/Register/RegisterSv
 
 const register = () => {
    return (
-      <div className="w-full bg-nevyBlue h-screen py-20 flex justify-center items-center">
+      <div className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
          <motion.div
             initial={{ x: "-100vw" }}
             animate={{ x: 0 }}

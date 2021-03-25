@@ -7,7 +7,7 @@ interface RegisterActionProps {}
 
 export const RegisterAction: React.FC<RegisterActionProps> = ({}) => {
    return (
-      <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 px-14  py-5">
+      <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
          <div className="w-20 mx-auto">
             <Image
                src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616298950/sunnah%20statoin/sunnah_station_rzv7ld.png"
