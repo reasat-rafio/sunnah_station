@@ -22,6 +22,7 @@ interface onSubmitInterface {
 
 export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
    // router
+
    const router = useRouter();
    // store
    const { userState, userDispatch } = useCtx();
