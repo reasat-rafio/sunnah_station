@@ -97,6 +97,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
          "
          >
             {/* <Link href="/api/auth/signin"> */}
+
             <button
                className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
                onClick={(e) => {
