@@ -31,7 +31,7 @@ module.exports = {
          },
          height: {
             lgCard: "350px",
-            smCard: "400px",
+            smCard: "320px",
             // xsCard:
          },
          maxHeight: {

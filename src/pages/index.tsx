@@ -5,8 +5,9 @@ import { InitialLayout } from "../Components/Layouts/InitialLayout";
 import axios from "axios";
 import { HomePoster } from "../Components/Home/HomePoster";
 import { BrowseByCategory } from "../Components/Home/BrowsByCategory/BrowseByCategory";
+import { SpeicalDeals } from "../Components/Home/OurProducts/SpeicalDeals";
 
-export default function Home({ coverImg }) {
+export default function Home({ coverImg, speicalDeals }) {
    return (
       <InitialLayout>
          <Head>
@@ -16,6 +17,7 @@ export default function Home({ coverImg }) {
          <main className="w-full">
             <HomePoster coverImg={coverImg} />
             <BrowseByCategory />
+            <SpeicalDeals speicalDeals={speicalDeals} />
          </main>
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero,
          sapiente ducimus soluta suscipit sint quis molestias voluptates at
@@ -50,10 +52,16 @@ export default function Home({ coverImg }) {
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const { data } = await axios.get(
+   const cover_images = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/main-cover-images`
    );
+   const speical_deals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/special-deals`
+   );
    return {
-      props: { coverImg: data[0].img },
+      props: {
+         coverImg: cover_images.data[0].img,
+         speicalDeals: speical_deals.data,
+      },
    };
 };

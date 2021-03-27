@@ -8,6 +8,8 @@ import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { SmCross, Cross, EmptyCart } from "../../utils/svgs/Svg";
 import { useRouter } from "next/router";
 import { removeFromCart } from "../../store/actions/CartAction";
+import Image from "next/image";
+
 interface ShoppingCartSideBarProps {}
 
 export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
@@ -95,37 +97,49 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                   <div className="flex-1 border-b  ">
                      {inCartProducts && inCartProducts.length > 0 ? (
                         inCartProducts.map(
-                           ({ name, img, price, quantity, id, subtotal }) => (
-                              <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer">
-                                 <img
-                                    className="w-4/12"
-                                    src={img}
-                                    alt={name}
-                                    onClick={() => ItemOnCLickAction(id)}
-                                 />
+                           ({ name, img, price, quantity, id, subtotal }) => {
+                              return (
+                                 <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer">
+                                    <Image
+                                       src={img[0].url}
+                                       alt={name}
+                                       layout="intrinsic"
+                                       height={"100%"}
+                                       width={"100%"}
+                                    />
 
-                                 <div
-                                    className="flex-1 "
-                                    onClick={() => ItemOnCLickAction(id)}
-                                 >
-                                    <h2 className="font-bold">{name}</h2>
-                                    <div className="py-3">
-                                       <span className="text-gray-400">
-                                          {quantity} x
-                                       </span>
-                                       <span className="text-lightBlue ml-2 font-bold">
-                                          ৳{price}
-                                       </span>
+                                    {/* <img
+                                       src={img[0]}
+                                       alt={name}
+                                       className="w-4/12"
+                                       onClick={() => ItemOnCLickAction(id)}
+                                    /> */}
+
+                                    <div
+                                       className="flex-1 "
+                                       onClick={() => ItemOnCLickAction(id)}
+                                    >
+                                       <h2 className="font-bold">{name}</h2>
+                                       <div className="py-3">
+                                          <span className="text-gray-400">
+                                             {quantity} x
+                                          </span>
+                                          <span className="text-lightBlue ml-2 font-bold">
+                                             ৳{price}
+                                          </span>
+                                       </div>
                                     </div>
+                                    <span
+                                       className="px-4 "
+                                       onClick={() =>
+                                          removeFromTheCartAction(id)
+                                       }
+                                    >
+                                       <SmCross />
+                                    </span>
                                  </div>
-                                 <span
-                                    className="px-4 "
-                                    onClick={() => removeFromTheCartAction(id)}
-                                 >
-                                    <SmCross />
-                                 </span>
-                              </div>
-                           )
+                              );
+                           }
                         )
                      ) : (
                         <div className="flex flex-col items-center my-10 gap-5">
