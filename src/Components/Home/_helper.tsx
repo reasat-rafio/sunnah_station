@@ -94,6 +94,10 @@ export const LgCardActionBtns = ({
    showActions,
    i,
    pageWidth,
+   setShowModal,
+   slug,
+   description,
+   setModalContent,
 }) => {
    return (
       <>
@@ -130,7 +134,24 @@ export const LgCardActionBtns = ({
                {showActions[i] && <Love pageWidth={pageWidth} />}
             </AnimatePresence>
          </motion.span>
-         <motion.span className="text-white" whileHover={{ scale: 1.1 }}>
+         <motion.span
+            className="text-white"
+            whileHover={{ scale: 1.1 }}
+            onClick={(e) => {
+               e.stopPropagation();
+               setShowModal(true);
+               setModalContent({
+                  name,
+                  offer_price,
+                  productQuantity,
+                  image,
+                  id,
+                  slug,
+                  regular_price,
+                  description,
+               });
+            }}
+         >
             <AnimatePresence exitBeforeEnter>
                {showActions[i] && <View pageWidth={pageWidth} />}
             </AnimatePresence>
@@ -149,7 +170,11 @@ export const SmCardActionBtns = ({
    regular_price,
    showActions,
    i,
+   setShowModal,
    pageWidth,
+   setModalContent,
+   description,
+   slug,
 }) => {
    return (
       <>
@@ -181,7 +206,23 @@ export const SmCardActionBtns = ({
          <span className="text-white">
             <Love pageWidth={pageWidth} />
          </span>
-         <span className="text-white">
+         <span
+            className="text-white"
+            onClick={(e) => {
+               e.stopPropagation();
+               setShowModal(true);
+               setModalContent({
+                  name,
+                  offer_price,
+                  productQuantity,
+                  image,
+                  id,
+                  regular_price,
+                  slug,
+                  description,
+               });
+            }}
+         >
             <View pageWidth={pageWidth} />
          </span>
       </>

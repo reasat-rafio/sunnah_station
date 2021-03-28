@@ -25,6 +25,9 @@ module.exports = {
             light_gray: "#e2e8f0",
             lightest_gray: "#F6F7FB",
          },
+         borderColor: {
+            nevyBlue: "#011325",
+         },
          fontFamily: {
             text: ["Roboto", " sans-serif"],
             title: ["Cabin", " sans-serif"],

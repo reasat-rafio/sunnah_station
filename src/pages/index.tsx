@@ -42,11 +42,6 @@ export default function Home({ coverImg, speicalDeals }) {
          deleniti nostrum. Quibusdam eaque maiores vel enim. Placeat ut qui
          sequi nemo enim dolorum voluptate facere, labore cumque veritatis
          perferendis dolor magnam! Minima, suscipit dicta?
-         {/* <ReactMarkdown
-            className="markdown"
-            source={data[0].details}
-            escapeHtml={false}
-         /> */}
       </InitialLayout>
    );
 }

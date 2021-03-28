@@ -14,6 +14,7 @@ import {
    plusTheQuantityOfTheExistingItem,
 } from "../../store/actions/CartAction";
 import { showCart } from "../../store/actions/domActions";
+import { ModalContent } from "../../utils/_components/ModalContent";
 
 interface DealsProps {
    deals: any;
@@ -24,8 +25,9 @@ interface DealsProps {
 export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
    // configring swiper
    SwiperCore.use([Autoplay, EffectFade]);
+   // router
+   const router = useRouter();
    // global state
-
    const {
       domState: { pageWidth },
       domDispatch,
@@ -38,35 +40,28 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
    // swiper slidesPerView
    const [cardsPerView, setCardsPerView] = useState<number>(6);
 
-   // router
-   const router = useRouter();
+   // Modal state
+   const [showModal, setShowModal] = useState<boolean>(false);
+   const [modalContent, setModalContent] = useState({});
 
    // show more action
    const [showActions, setShowMoreActions] = useState<any>([]);
-   const [allDeals, setAllDeals] = useState(deals);
 
+   // adding a new value to every object to add the cart hover action
    useEffect(() => {
       deals.forEach((deal) => (deal.showAction = false));
       const initalState = deals.map((deal) => deal.showAction);
       setShowMoreActions(initalState);
    }, [deals]);
 
-   useEffect(() => {}, [pageWidth]);
-
+   // Mouse Enter event on Card
    const handleMouseEnter = (i) => {
       const newArr = [...deals.map((deal) => deal.showAction)];
       newArr[i] = true;
       setShowMoreActions(newArr);
    };
 
-   // useEffect(() => {
-   //    if (pageWidth < 720) {
-   //       deals.forEach((deal) => (deal.showAction = true));
-   //       const initalState = deals.map((deal) => deal.showAction);
-   //       setShowMoreActions(initalState);
-   //    }
-   // }, [pageWidth]);
-
+   // Mouse Leave event on Card
    const handleMouseleave = (i) => {
       const newArr = [...deals.map((deal) => deal.showAction)];
       newArr[i] = false;
@@ -167,7 +162,8 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                               regular_price,
                               id,
                               slug,
-                              review,
+                              description,
+                              short_description,
                            },
                            i
                         ) => {
@@ -206,6 +202,10 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                                              showActions={showActions}
                                              i={i}
                                              pageWidth={pageWidth}
+                                             setShowModal={setShowModal}
+                                             setModalContent={setModalContent}
+                                             slug={slug}
+                                             description={short_description}
                                           />
                                        ) : (
                                           <LgCardActionBtns
@@ -221,6 +221,10 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                                              showActions={showActions}
                                              i={i}
                                              pageWidth={pageWidth}
+                                             setShowModal={setShowModal}
+                                             setModalContent={setModalContent}
+                                             slug={slug}
+                                             description={short_description}
                                           />
                                        )}
                                     </div>
@@ -292,6 +296,17 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
             <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" /> */}
             </section>
          )}
+         <>
+            <ModalContent
+               showModal={showModal}
+               setShowModal={setShowModal}
+               setModalContent={setModalContent}
+               modalContent={modalContent}
+               setProductQuantity={setProductQuantity}
+               addToTheCartAction={addToTheCartAction}
+               productQuantity={productQuantity}
+            />
+         </>
       </div>
    );
 };
