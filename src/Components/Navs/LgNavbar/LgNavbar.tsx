@@ -71,11 +71,13 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
             }`}
          >
             <div className="flex items-center relative">
-               <div className="flex-1">
+               <div
+                  className="flex-1 cursor-pointer"
+                  onClick={() => router.push("/")}
+               >
                   <li className="flex   ">
                      <img
-                        className="min-w-24 w-28"
-                        onClick={() => router.push("/")}
+                        className="min-w-24 w-28 "
                         src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
                         alt="logo"
                      />

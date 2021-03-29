@@ -6,7 +6,7 @@ import "swiper/swiper-bundle.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Cross } from "../svgs/Svg";
-import Link from "next/link";
+import { SocialShare } from "./SocialShare";
 import TextTruncate from "react-text-truncate";
 
 interface ModalContentProps {
@@ -68,16 +68,15 @@ export const ModalContent: React.FC<ModalContentProps> = ({
             }`}
             style={{ background: "rgba(0, 0, 0, 0.7)" }}
          ></div>
-         <div
-            className={`main-modal fixed w-full h-100 inset-0 overflow-hidden flex justify-center items-center ${
-               showModal ? "  z-50  " : " z-0 bg-opacity-0"
-            }`}
-         >
-            <AnimatePresence>
-               {showModal && (
-                  <motion.section
+
+         <AnimatePresence>
+            {showModal && (
+               <section
+                  className={`main-modal fixed w-full h-100 inset-0 overflow-y-auto   justify-center items-center  z-50 flex `}
+               >
+                  <motion.div
                      ref={modalRef}
-                     className="border border-teal-500 smodal-container bg-white w-11/12 md:max-w-5xl mx-auto rounded shadow-lg z-50 overflow-y-auto p-5 "
+                     className="border border-teal-500 smodal-container bg-white w-11/12 md:max-w-5xl mx-auto rounded shadow-lg z-50 overflow-y-auto p-5 overflow-x-hidden"
                      initial={{ opacity: 0, y: 60, scale: 0.3 }}
                      animate={{
                         opacity: 1,
@@ -94,13 +93,12 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                      <motion.div
                         initial={{ y: -30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1, transition: { delay: 1 } }}
-                        className="grid grid-cols-12  h-full w-full relative "
+                        className="grid grid-cols-12  h-full w-full relative overflow-y-auto gap-2"
                      >
                         {/* CROSS */}
                         <motion.button
                            className="absolute top-0 right-0 z-40"
                            onClick={() => setShowModal(false)}
-                           whileHover={{ scale: 1.1 }}
                         >
                            <Cross />
                         </motion.button>
@@ -125,7 +123,10 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                                  </SwiperSlide>
                               ))}
                            </Swiper>
-                           <button className="text-white bg-nevyBlue text-sm font-text rounded-sm w-full py-2 my-3">
+                           <button
+                              className="text-white bg-nevyBlue text-sm font-text rounded-sm w-full py-2 my-3"
+                              onClick={() => router.push(`/items/${slug}`)}
+                           >
                               VIEW MORE DETAILS
                            </button>
                         </div>
@@ -157,10 +158,9 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                               )}
                               {description && (
                                  <TextTruncate
-                                    line={2}
+                                    line={10}
                                     element="span"
                                     truncateText="…"
-                                    // className="my-3"
                                     text={description}
                                  />
                               )}
@@ -193,9 +193,10 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                                        +
                                     </button>
                                  </div>
-                                 <button
+                                 <motion.button
                                     className=" flex-1 rounded-sm text-white border-2 bg-nevyBlue hover:bg-white hover:border-nevyBlue hover:text-black duration-150 transition-colors"
                                     onClick={() => {
+                                       setShowModal(false);
                                        offer_price
                                           ? // If offer avilable
                                             addToTheCartAction(
@@ -216,19 +217,21 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                                     }}
                                  >
                                     ADD TO CART
-                                 </button>
+                                 </motion.button>
                               </motion.div>
-
                               <div>
                                  <p> Add to Wishlist</p>
                               </div>
+
+                              {/* Social Icons */}
+                              <SocialShare slug={slug} />
                            </div>
                         </div>
                      </motion.div>
-                  </motion.section>
-               )}
-            </AnimatePresence>
-         </div>
+                  </motion.div>
+               </section>
+            )}
+         </AnimatePresence>
       </>
    );
 };

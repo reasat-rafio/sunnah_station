@@ -51,7 +51,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       `${process.env.NEXT_PUBLIC_API_URL}/main-cover-images`
    );
    const speical_deals = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/special-deals`
+      `${process.env.NEXT_PUBLIC_API_URL}/special-deals?_limit=10`
    );
    return {
       props: {
