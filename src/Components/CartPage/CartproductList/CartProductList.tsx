@@ -81,13 +81,16 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
                                           width="1"
                                        />
                                     </div>
-                                    <TextTruncate
+                                    <p className="text-sm text-gray-500 ml-1">
+                                       {name}
+                                    </p>
+                                    {/* <TextTruncate
                                        line={3}
                                        element="span"
                                        truncateText="…"
-                                       className="text-sm text-gray-500 ml-1"
+                                       // className="text-sm text-gray-500 ml-1"
                                        text={name}
-                                    />
+                                    /> */}
                                  </div>
                               </td>
                               <td className="px-1 py-4 whitespace-nowrap">
