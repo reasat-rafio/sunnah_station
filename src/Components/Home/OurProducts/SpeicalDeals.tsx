@@ -1,6 +1,6 @@
 import React from "react";
 import { Poster } from "../../../utils/_components/Poster";
-import { Deals } from "../Deals";
+import { Deals } from "../Deals/Deals";
 
 interface SpeicalDealsProps {
    speicalDeals: any[];

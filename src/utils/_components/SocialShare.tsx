@@ -18,6 +18,7 @@ interface SocialShareProps {
 }
 
 export const SocialShare: React.FC<SocialShareProps> = ({ slug }) => {
+   console.log(process.env);
    return (
       <>
          <FacebookShareButton url={`${process.env.NEXTAUTH_URL}/items/${slug}`}>

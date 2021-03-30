@@ -4,17 +4,18 @@ import "swiper/swiper-bundle.css";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import TextTruncate from "react-text-truncate";
-import { AnimatePresence, motion } from "framer-motion";
-import { useCtx } from "../../store";
+import { motion } from "framer-motion";
+import { useCtx } from "../../../store";
 import Image from "next/image";
-import { LgCardActionBtns, SmCardActionBtns } from "./_helper";
+import { LgCardActionBtns, SmCardActionBtns } from "../_helper";
 import {
    addFirstItemToTheCart,
    addNonExistingItemInTheCart,
    plusTheQuantityOfTheExistingItem,
-} from "../../store/actions/CartAction";
-import { showCart } from "../../store/actions/domActions";
-import { ModalContent } from "../../utils/_components/ModalContent";
+} from "../../../store/actions/CartAction";
+import { showCart } from "../../../store/actions/domActions";
+import { ModalContent } from "../../../utils/_components/ModalContent";
+import { CardImage } from "./CardImage";
 
 interface DealsProps {
    deals: any;
@@ -146,7 +147,9 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                <Swiper
                   className="my-1 "
                   slidesPerView={cardsPerView}
-                  autoplay={false}
+                  autoplay={{
+                     disableOnInteraction: false,
+                  }}
                   spaceBetween={10}
                >
                   {deals
@@ -231,36 +234,13 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
 
                                     {/* Image section */}
                                     <div className="flex-1">
-                                       <Swiper
-                                          slidesPerView={1}
-                                          autoplay={{
-                                             disableOnInteraction: false,
-                                          }}
-                                          style={{ maxWidth: "200px" }}
-                                       >
-                                          {image.map((a, i) => (
-                                             <SwiperSlide key={i}>
-                                                <Image
-                                                   src={a.url}
-                                                   alt={name}
-                                                   layout="responsive"
-                                                   height="1"
-                                                   width="1"
-                                                />
-                                             </SwiperSlide>
-                                          ))}
-                                       </Swiper>
+                                       <CardImage image={image} name={name} />
                                     </div>
                                     {/* Name and price section */}
-
                                     <div className="p-3 ">
-                                       <TextTruncate
-                                          line={3}
-                                          element="span"
-                                          truncateText="…"
-                                          className="text-sm font-medium text-center font-nav   "
-                                          text={name}
-                                       />
+                                       <p className="text-sm font-medium text-center font-nav">
+                                          {name}
+                                       </p>
                                        {offer_price ? (
                                           <div className="my-2 flex gap-2 items-center justify-center">
                                              <span className="line-through  text-sm text-gray-400 font-text">

@@ -1,38 +1,55 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { EffectFade, Navigation, Pagination, Thumbs } from "swiper";
+import SwiperCore, {
+   EffectFade,
+   Navigation,
+   Pagination,
+   Thumbs,
+   Zoom,
+} from "swiper";
 import "swiper/swiper-bundle.css";
 import { useState } from "react";
-import "react-inner-image-zoom/lib/InnerImageZoom/styles.min.css";
-import InnerImageZoom from "react-inner-image-zoom";
+
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface ProductImagesProps {
    img: any[];
 }
 
 // configring swiper
-SwiperCore.use([Navigation, Pagination, EffectFade, Thumbs]);
+SwiperCore.use([Navigation, Pagination, EffectFade, Thumbs, Zoom]);
 export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
    const [thumbsSwiper, setThumbsSwiper] = useState<any>();
    return (
-      <div>
+      <div className="">
          <Swiper
             thumbs={{ swiper: thumbsSwiper }}
             effect="fade"
             navigation
+            zoom={true}
             pagination={{ clickable: true }}
+            className="flex justify-center items-center "
+            // onMouseEnter={}
          >
-            {img.map(({ url }, i) => (
-               <SwiperSlide key={i}>
-                  <motion.div
-                     className={`m-auto`}
-                     initial={{ x: 200, opacity: 0 }}
-                     animate={{ x: 0, opacity: 1 }}
-                     transition={{ delay: 0.2 }}
-                  >
-                     <InnerImageZoom zoomType="hover" src={url} zoomSrc={url} />
-                  </motion.div>
-               </SwiperSlide>
+            {img.map(({ url, _id }, i: number) => (
+               <>
+                  <SwiperSlide key={_id}>
+                     <motion.div
+                        initial={{ x: 200, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="flex justify-center items-center"
+                     >
+                        <Image
+                           src={url}
+                           alt="prodcut image"
+                           layout="intrinsic"
+                           width="500%"
+                           height="500%"
+                        />
+                     </motion.div>
+                  </SwiperSlide>
+               </>
             ))}
          </Swiper>
 
@@ -45,8 +62,18 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             watchSlidesProgress
          >
             {img.map(({ formats: { thumbnail: { url } } }, i) => (
-               <SwiperSlide key={i}>
-                  <img className={`cursor-pointer`} src={url} alt="img" />
+               <SwiperSlide
+                  key={i}
+                  className="flex justify-center items-center "
+               >
+                  <Image
+                     className={`cursor-pointer flex justify-center items-center `}
+                     src={url}
+                     alt="thumb-image"
+                     layout="intrinsic"
+                     height="100%"
+                     width="100%"
+                  />
                </SwiperSlide>
             ))}
          </Swiper>

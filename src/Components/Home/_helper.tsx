@@ -1,11 +1,4 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useCtx } from "../../store";
-import {
-   addFirstItemToTheCart,
-   addNonExistingItemInTheCart,
-   plusTheQuantityOfTheExistingItem,
-} from "../../store/actions/CartAction";
-import { showCart } from "../../store/actions/domActions";
 
 export const CardCart = ({ pageWidth }) => {
    return (

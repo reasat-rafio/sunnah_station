@@ -162,6 +162,9 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                                     element="span"
                                     truncateText="…"
                                     text={description}
+                                    textTruncateChild={
+                                       <a href={`/items/${slug}`}>Show more</a>
+                                    }
                                  />
                               )}
                               {/* item plus minus section */}
