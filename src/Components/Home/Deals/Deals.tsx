@@ -147,6 +147,20 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                <Swiper
                   className="my-1 "
                   slidesPerView={cardsPerView}
+                  // breakpoints={{
+                  //    0: {
+                  //       width: 0,
+                  //       slidesPerView: 2,
+                  //    },
+                  //    720: {
+                  //       width: 720,
+                  //       slidesPerView: 4,
+                  //    },
+                  //    1200: {
+                  //       width: 1200,
+                  //       slidesPerView: 5,
+                  //    },
+                  // }}
                   autoplay={{
                      disableOnInteraction: false,
                   }}

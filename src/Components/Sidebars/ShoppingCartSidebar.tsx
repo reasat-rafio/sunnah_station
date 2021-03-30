@@ -101,19 +101,12 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                               return (
                                  <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer">
                                     <Image
-                                       src={img[0].url}
+                                       src={img[0].url || img}
                                        alt={name}
                                        layout="intrinsic"
                                        height={"100%"}
                                        width={"100%"}
                                     />
-
-                                    {/* <img
-                                       src={img[0]}
-                                       alt={name}
-                                       className="w-4/12"
-                                       onClick={() => ItemOnCLickAction(id)}
-                                    /> */}
 
                                     <div
                                        className="flex-1 "

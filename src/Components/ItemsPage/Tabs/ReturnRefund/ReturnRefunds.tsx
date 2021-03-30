@@ -14,11 +14,11 @@ export const ReturnRefunds: React.FC<ReturnRefundsProps> = ({}) => {
          className="grid grid-cols-2 gap-3"
       >
          <section className="md:col-span-1 col-span-2">
-            <h2 className="text-2xl font-bold text-gray-600 my-4">
+            <h2 className="text-2xl font-bold text-gray-800 my-4">
                RETURN/REPLACEMENT WARRANTY
             </h2>
             {Warranty.map((w, i) => (
-               <p className="my-3 flex items-center" key={i}>
+               <p className="my-3 flex items-center text-gray-700" key={i}>
                   <span className="">
                      <RightArrowPointer />
                   </span>
@@ -27,15 +27,15 @@ export const ReturnRefunds: React.FC<ReturnRefundsProps> = ({}) => {
             ))}
          </section>
          <section className="md:col-span-1 col-span-2">
-            <h2 className="text-2xl font-bold text-gray-600 my-4">
+            <h2 className="text-2xl font-bold text-gray-800 my-4">
                REFUND PROCESS
             </h2>
             {Process.map((p, i) => (
-               <p className="my-3 flex items-center" key={i}>
+               <p className="my-3 flex items-center text-gray-700" key={i}>
                   <span className="">
                      <RightArrowPointer />
                   </span>
-                  <span className="ml-3">{p}</span>
+                  <span className="ml-3 ">{p}</span>
                </p>
             ))}
          </section>

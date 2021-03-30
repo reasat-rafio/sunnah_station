@@ -6,14 +6,12 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 
 interface DescriptionProps {
-   short_description: string;
    name: string;
    description: any;
 }
 
 export const Description: React.FC<DescriptionProps> = ({
    name,
-   short_description,
    description,
 }) => {
    return (
@@ -24,14 +22,13 @@ export const Description: React.FC<DescriptionProps> = ({
          exit="exit"
          className=""
       >
-         <h2 className="text-gray-600 my-3 font-bold">{name}</h2>
-         {short_description && (
-            <p className="my-3 text-gray-800">{short_description}</p>
-         )}
+         <h2 className="text-gray-600 my-3 font-bold  md:text-lgTitle text-smTitle ">
+            {name}
+         </h2>
 
          {description && (
             <ReactMarkdown
-               className="markdown"
+               className="prose max-w-none"
                plugins={[gfm]}
                children={description}
                escapeHtml={false}

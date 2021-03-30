@@ -9,13 +9,13 @@ import { Details, Process, Return, Star } from "../../../utils/svgs/Svg";
 
 interface TabsProps {
    name: string;
-   short_description: string;
+
    description: any;
 }
 
 export const Tabs: React.FC<TabsProps> = ({
    name,
-   short_description,
+
    description,
 }) => {
    const [tab, setTab] = useState<string>("description");
@@ -41,7 +41,7 @@ export const Tabs: React.FC<TabsProps> = ({
                            initial="inital"
                            animate="animate"
                            exit="exit"
-                           className="absolute top-0 left-0 h-1 w-full bg-darkBlue"
+                           className="absolute top-0 left-0 h-1 w-full bg-nevyBlue "
                         ></motion.span>
                      )}
                   </AnimatePresence>
@@ -67,7 +67,7 @@ export const Tabs: React.FC<TabsProps> = ({
                            initial="inital"
                            animate="animate"
                            exit="exit"
-                           className="absolute top-0 left-0 h-1 w-full bg-darkBlue"
+                           className="absolute top-0 left-0 h-1 w-full bg-nevyBlue"
                         ></motion.span>
                      )}
                   </AnimatePresence>
@@ -91,7 +91,7 @@ export const Tabs: React.FC<TabsProps> = ({
                            initial="inital"
                            animate="animate"
                            exit="exit"
-                           className="absolute top-0 left-0 h-1 w-full bg-darkBlue"
+                           className="absolute top-0 left-0 h-1 w-full bg-nevyBlue"
                         ></motion.span>
                      )}
                   </AnimatePresence>
@@ -113,7 +113,7 @@ export const Tabs: React.FC<TabsProps> = ({
                            initial="inital"
                            animate="animate"
                            exit="exit"
-                           className="absolute top-0 left-0 h-1 w-full bg-darkBlue"
+                           className="absolute top-0 left-0 h-1 w-full bg-nevyBlue"
                         ></motion.span>
                      )}
                   </AnimatePresence>
@@ -124,11 +124,7 @@ export const Tabs: React.FC<TabsProps> = ({
             <div className=" container mx-auto border-b py-3 font-text text-gray-400">
                <AnimatePresence exitBeforeEnter>
                   {tab === "description" && (
-                     <Description
-                        name={name}
-                        short_description={short_description}
-                        description={description}
-                     />
+                     <Description name={name} description={description} />
                   )}
                </AnimatePresence>
                <AnimatePresence exitBeforeEnter>

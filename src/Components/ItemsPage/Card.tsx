@@ -19,6 +19,7 @@ interface CardProps {
    id: string;
    img: any;
    in_stock: boolean;
+   short_description: string;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -47,7 +48,7 @@ const stagger = {
 };
 
 export const Card: React.FC<CardProps> = ({
-   brand,
+   short_description,
    categories,
    name,
    offer_price,
@@ -59,6 +60,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
+   console.log(short_description);
 
    // Time countdown states
    const [timerDays, setTimerDays] = useState<string | number>("00");
@@ -167,12 +169,6 @@ export const Card: React.FC<CardProps> = ({
                {name}
             </motion.p>
             <div className="py-3 border-b">
-               {brand && (
-                  <motion.p variants={fadeIn}>
-                     Brand: <span className="text-darkBlue">{brand}</span>
-                  </motion.p>
-               )}
-
                {!in_stock && <p className="text-red-600">out of stock</p>}
 
                <motion.div variants={fadeIn} className="text-xl flex gap-4">
@@ -191,6 +187,14 @@ export const Card: React.FC<CardProps> = ({
                      </span>
                   )}
                </motion.div>
+               {short_description && (
+                  <motion.p
+                     variants={fadeIn}
+                     className="font-text text-sm py-3"
+                  >
+                     {short_description}
+                  </motion.p>
+               )}
             </div>
          </div>
          {/* Timer section */}

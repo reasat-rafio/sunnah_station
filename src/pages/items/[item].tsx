@@ -84,13 +84,10 @@ const item: React.FC<itemProps> = ({
                               id={id}
                               img={image[0].url}
                               in_stock={in_stock}
+                              short_description={short_description}
                            />
                         </section>
-                        <Tabs
-                           name={name}
-                           short_description={short_description}
-                           description={description}
-                        />
+                        <Tabs name={name} description={description} />
                      </React.Fragment>
                   )
                )}

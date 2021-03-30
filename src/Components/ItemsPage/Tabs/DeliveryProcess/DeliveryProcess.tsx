@@ -19,7 +19,7 @@ export const DeliveryProcess: React.FC<DeliveryProcessProps> = ({}) => {
             <DeliveryGuySvg />
          </section>
          <section className="md:col-span-1 col-span-2">
-            <h2 className="text-2xl font-bold text-gray-600 my-4">
+            <h2 className="text-2xl font-bold text-gray-800 my-4">
                DELIVERY/SHIPPING PROCESS
             </h2>
             {ShippingProcess.map((process, i) => (
@@ -27,7 +27,7 @@ export const DeliveryProcess: React.FC<DeliveryProcessProps> = ({}) => {
                   <span className="">
                      <RightArrowPointer />
                   </span>
-                  <span className="ml-3">{process}</span>
+                  <span className="ml-3 text-gray-700">{process}</span>
                </p>
             ))}
          </section>
