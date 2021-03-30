@@ -177,12 +177,12 @@ export const Card: React.FC<CardProps> = ({
                         <span className="line-through text-gray-500">
                            ৳{regular_price}
                         </span>
-                        <span className="text-darkBlue text-xl font-semibold">
+                        <span className="text-lightBlue text-xl font-semibold">
                            ৳{offer_price}
                         </span>
                      </>
                   ) : (
-                     <span className="text-darkBlue text-xl font-semibold">
+                     <span className="text-lightBlue text-xl font-semibold">
                         ৳{regular_price}
                      </span>
                   )}
@@ -200,7 +200,7 @@ export const Card: React.FC<CardProps> = ({
          {/* Timer section */}
          <motion.div variants={fadeIn} className="py-4 text-xs border-b">
             {offer_time_till && (
-               <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-darkBlue rounded-full">
+               <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-nevyBlue rounded-full">
                   {/* <Image src={"/img/flash-sale-badge.png"} alt="" /> */}
                   <section>
                      <span className="font-bold text-sm pr-1">{timerDays}</span>
@@ -270,7 +270,7 @@ export const Card: React.FC<CardProps> = ({
                >
                   ADD TO CART
                </button>
-               <button className=" productBtn bg-lightBlue hover:bg-darkBlue ">
+               <button className=" productBtn bg-lightBlue hover:bg-nevyBlue ">
                   BUY NOW
                </button>
             </motion.div>

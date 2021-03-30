@@ -4,11 +4,13 @@ import { useCtx } from "../../store";
 import { usePageResizerGlobal } from "../../utils/hooks/usePageResize";
 import { useSession } from "next-auth/client";
 import { loginUserAction, logOutAaction } from "../../store/actions/userAction";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface GlobalLayoutsProps {
    children: React.ReactNode;
 }
-
+toast.configure();
 export const GlobalLayout: React.FC<GlobalLayoutsProps> = ({ children }) => {
    const router = useRouter();
    const [session, loading] = useSession();

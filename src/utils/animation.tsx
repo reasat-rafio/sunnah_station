@@ -135,21 +135,21 @@ export const TabPageChangeVariants = {
 
 export const ChangeAddressVariants = {
    initial: {
-      y: "-50px",
+      height: 0,
       opacity: 0,
    },
    animate: {
-      y: 0,
+      height: "auto",
       transition: {
          duration: 0.5,
       },
       opacity: 1,
    },
    exit: {
-      transition: {
-         duration: 0.3,
-      },
-      y: "-50px",
+      // transition: {
+      //    duration: 0.3,
+      // },
+      height: 0,
       opacity: 0,
    },
 };

@@ -471,7 +471,7 @@ export const EmptyCart = () => {
 export const Cross = () => {
    return (
       <svg
-         className=" cursor-pointer hover:text-darkBlue"
+         className=" cursor-pointer hover:text-nevyBlue"
          width="30"
          height="30"
          xmlns="http://www.w3.org/2000/svg"
@@ -492,7 +492,7 @@ export const Cross = () => {
 export const SmCross = () => {
    return (
       <svg
-         className="text-gray-500 cursor-pointer hover:text-darkBlue"
+         className="text-gray-500 cursor-pointer hover:text-nevyBlue"
          width="15"
          height="15"
          xmlns="http://www.w3.org/2000/svg"
@@ -513,7 +513,7 @@ export const SmCross = () => {
 export const MdCross = () => {
    return (
       <svg
-         className="text-gray-500 cursor-pointer hover:text-darkBlue"
+         className="text-gray-500 cursor-pointer hover:text-nevyBlue"
          width="20"
          height="20"
          xmlns="http://www.w3.org/2000/svg"
@@ -554,7 +554,7 @@ export const Box = () => {
 export const Plus = () => {
    return (
       <svg
-         className="cursor-pointer hover:text-darkBlue"
+         className="cursor-pointer hover:text-nevyBlue"
          width="30"
          height="30"
          xmlns="http://www.w3.org/2000/svg"
@@ -575,7 +575,7 @@ export const Plus = () => {
 export const Minus = () => {
    return (
       <svg
-         className="cursor-pointer hover:text-darkBlue"
+         className="cursor-pointer hover:text-nevyBlue"
          width="30"
          height="30"
          xmlns="http://www.w3.org/2000/svg"

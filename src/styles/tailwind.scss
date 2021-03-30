@@ -51,6 +51,17 @@
 // navbar stylings
 @import "../Components/Navs/_navStyle";
 
+// input
+.input {
+   @apply border rounded-sm py-3 px-2 outline-none;
+}
+.inputBtn {
+   @apply py-3 outline-none bg-nevyBlue text-white;
+}
+.socialIcons {
+   @apply border rounded-md p-1 hover:bg-gray-100 transition-all duration-150;
+}
+
 // Home page offers posters stylings
 .posterImg {
    backface-visibility: hidden;

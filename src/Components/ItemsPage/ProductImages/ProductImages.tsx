@@ -28,12 +28,11 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             navigation
             zoom={true}
             pagination={{ clickable: true }}
-            className="flex justify-center items-center "
-            // onMouseEnter={}
+            className="flex justify-center items-center mb-2"
          >
             {img.map(({ url, _id }, i: number) => (
-               <>
-                  <SwiperSlide key={_id}>
+               <div key={_id}>
+                  <SwiperSlide>
                      <motion.div
                         initial={{ x: 200, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
@@ -49,7 +48,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
                         />
                      </motion.div>
                   </SwiperSlide>
-               </>
+               </div>
             ))}
          </Swiper>
 

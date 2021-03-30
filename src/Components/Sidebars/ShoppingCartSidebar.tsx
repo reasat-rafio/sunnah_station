@@ -97,9 +97,9 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                   <div className="flex-1 border-b  ">
                      {inCartProducts && inCartProducts.length > 0 ? (
                         inCartProducts.map(
-                           ({ name, img, price, quantity, id, subtotal }) => {
+                           ({ name, img, price, quantity, id, subtotal }, i: number) => {
                               return (
-                                 <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer">
+                                 <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer" key={i}>
                                     <Image
                                        src={img[0].url || img}
                                        alt={name}
