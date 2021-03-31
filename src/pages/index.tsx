@@ -6,6 +6,7 @@ import axios from "axios";
 import { HomePoster } from "../Components/Home/HomePoster";
 import { BrowseByCategory } from "../Components/Home/BrowsByCategory/BrowseByCategory";
 import { SpeicalDeals } from "../Components/Home/OurProducts/SpeicalDeals";
+import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
 
 export default function Home({ coverImg, speicalDeals }) {
    return (
@@ -18,6 +19,7 @@ export default function Home({ coverImg, speicalDeals }) {
             <HomePoster coverImg={coverImg} />
             <BrowseByCategory />
             <SpeicalDeals speicalDeals={speicalDeals} />
+            <Newsletter />
          </main>
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero,
          sapiente ducimus soluta suscipit sint quis molestias voluptates at
