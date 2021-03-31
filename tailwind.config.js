@@ -55,7 +55,15 @@ module.exports = {
          minHeight: {
             smCard: "350px",
          },
+         gridTemplateColumns: {
+            20: "repeat(20, minmax(0, 1fr))",
+
+            // Complex site-specific column configuration
+
+            // footer: "200px minmax(900px, 1fr) 100px",
+         },
       },
+
       screens: {
          sm: "600px",
          md: "720px",

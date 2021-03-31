@@ -11,7 +11,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
       <section className="container  mx-auto px-2 font-title">
          <div className="my-10 flex md:block justify-center items-center flex-col">
             <h3 className="italic font-semibold text-blue-600 py-1 text-xl ">
-               - The Categories
+               - Our Products
             </h3>
             <div className="flex  flex-col md:flex-row">
                <h4 className="text-smTitle md:text-lgTitle font-extrabold flex-1 text-nevyBlue font-title">

@@ -8,15 +8,15 @@ import { Tabs } from "../../Components/ItemsPage/Tabs/Tabs";
 
 interface itemProps {
    //    flash_deals: any;
-   //    new_arrivals: any;
-   //    gaming_accessories: any;
+   new_arrivals: any;
+
    speical_deals: any;
 }
 
 const item: React.FC<itemProps> = ({
    //    flash_deals,
-   //    new_arrivals,
-   //    gaming_accessories,
+   new_arrivals,
+
    speical_deals,
 }) => {
    // product state
@@ -24,12 +24,10 @@ const item: React.FC<itemProps> = ({
       //   if (flash_deals && flash_deals[0]) {
       //      return flash_deals;
       //   }
-      //   if (new_arrivals && new_arrivals[0]) {
-      //      return new_arrivals;
-      //   }
-      //   if (gaming_accessories && gaming_accessories[0]) {
-      //      return gaming_accessories;
-      //   }
+      if (new_arrivals && new_arrivals[0]) {
+         return new_arrivals;
+      }
+
       if (speical_deals && speical_deals[0]) {
          return speical_deals;
       }
@@ -39,12 +37,10 @@ const item: React.FC<itemProps> = ({
       //   if (flash_deals && flash_deals[0]) {
       //      setProduct(flash_deals);
       //   }
-      //   if (new_arrivals && new_arrivals[0]) {
-      //      setProduct(new_arrivals);
-      //   }
-      //   if (gaming_accessories && gaming_accessories[0]) {
-      //      setProduct(gaming_accessories);
-      //   }
+      if (new_arrivals && new_arrivals[0]) {
+         setProduct(new_arrivals);
+      }
+
       if (speical_deals && speical_deals[0]) {
          return speical_deals;
       }
@@ -74,18 +70,20 @@ const item: React.FC<itemProps> = ({
                               <ProductImages img={image} />
                            </div>
                            {/* product discription */}
-                           <Card
-                              brand={brand}
-                              categories={sub_categories}
-                              name={name}
-                              offer_price={offer_price}
-                              offer_time_till={offer_till}
-                              regular_price={regular_price}
-                              id={id}
-                              img={image[0].url}
-                              in_stock={in_stock}
-                              short_description={short_description}
-                           />
+                           <div className="lg:shadow-lg col-span-6 lg:col-span-4   lg:p-8 p-2">
+                              <Card
+                                 brand={brand}
+                                 categories={sub_categories}
+                                 name={name}
+                                 offer_price={offer_price}
+                                 offer_time_till={offer_till}
+                                 regular_price={regular_price}
+                                 id={id}
+                                 img={image[0].url}
+                                 in_stock={in_stock}
+                                 short_description={short_description}
+                              />
+                           </div>
                         </section>
                         <Tabs name={name} description={description} />
                      </React.Fragment>
@@ -100,15 +98,19 @@ export default item;
 
 export const getStaticPaths: GetStaticPaths = async () => {
    //    const flash_deals = await axios.get(`${process.env.URL}/products`);
-   //    const new_arrivals = await axios.get(`${process.env.URL}/new-arrivals`);
+   const new_arrivals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals`
+   );
    //    const gaming_accessories = await axios.get(
    //       `${process.env.URL}/gaming-accessories`
    //    );
-   const speical_deals = await axios.get(`${process.env.URL}/special-deals`);
+   const speical_deals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/special-deals`
+   );
 
    const data = [
       //   ...flash_deals.data,
-      //   ...new_arrivals.data,
+      ...new_arrivals.data,
       //   ...gaming_accessories.data,
       ...speical_deals.data,
    ];
@@ -131,13 +133,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
    //    const flash_deals = await axios.get(
    //       `${process.env.URL}/products?slug=${slug}`
    //    );
-   //    const new_arrivals = await axios.get(
-   //       `${process.env.URL}/new-arrivals?slug=${slug}`
-   //    );
+   const new_arrivals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals?slug=${slug}`
+   );
 
-   //    const gaming_accessories = await axios.get(
-   //       `${process.env.URL}/gaming-accessories?slug=${slug}`
-   //    );
+   // const new_arrivals = await axios.get(
+   //    `${process.env.URL}/gaming-accessories?slug=${slug}`
+   // );
    const speical_deals = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/special-deals?slug=${slug}`
    );
@@ -146,7 +148,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       props: {
          speical_deals: speical_deals.data,
          //  flash_deals: flash_deals.data,
-         //  new_arrivals: new_arrivals.data,
+         new_arrivals: new_arrivals.data,
          //  gaming_accessories: gaming_accessories.data,
       },
    };

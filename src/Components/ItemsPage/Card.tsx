@@ -155,12 +155,7 @@ export const Card: React.FC<CardProps> = ({
    };
 
    return (
-      <motion.div
-         initial="inital"
-         animate="animate"
-         className="lg:shadow-lg col-span-6 lg:col-span-4   lg:p-8 p-2"
-         variants={stagger}
-      >
+      <motion.div initial="inital" animate="animate" variants={stagger}>
          <div>
             <motion.p
                variants={fadeIn}

@@ -7,8 +7,11 @@ import { HomePoster } from "../Components/Home/HomePoster";
 import { BrowseByCategory } from "../Components/Home/BrowsByCategory/BrowseByCategory";
 import { SpeicalDeals } from "../Components/Home/OurProducts/SpeicalDeals";
 import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
+import { NewArrivals } from "../Components/Home/NewArrivals/NewArrivals";
 
-export default function Home({ coverImg, speicalDeals }) {
+export default function Home({ coverImg, speicalDeals, newArrivals }) {
+   console.log(newArrivals);
+
    return (
       <InitialLayout>
          <Head>
@@ -19,6 +22,7 @@ export default function Home({ coverImg, speicalDeals }) {
             <HomePoster coverImg={coverImg} />
             <BrowseByCategory />
             <SpeicalDeals speicalDeals={speicalDeals} />
+            <NewArrivals newArrivals={newArrivals} />
             <Newsletter />
          </main>
          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero,
@@ -55,10 +59,16 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    const speical_deals = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/special-deals?_limit=10`
    );
+
+   const new_arrivals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals?_limit=10`
+   );
+
    return {
       props: {
          coverImg: cover_images.data[0].img,
          speicalDeals: speical_deals.data,
+         newArrivals: new_arrivals.data,
       },
    };
 };
