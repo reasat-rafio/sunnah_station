@@ -1,4 +1,5 @@
 import React from "react";
+import { Footer } from "../Footer/Footer";
 import { Navs } from "../Navs/Navs";
 import { SmSearchPage } from "../overLayComponents/SmSearchPage";
 import { NavSideBars } from "../Sidebars/NavSideBars";
@@ -16,6 +17,7 @@ export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
          <ShoppingCartSideBar />
          <SmSearchPage />
          {children}
+         <Footer />
       </>
    );
 };
