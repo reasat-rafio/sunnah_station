@@ -13,6 +13,7 @@ import {
    plusTheQuantityOfTheExistingItem,
 } from "../../../store/actions/CartAction";
 import { CardImage } from "../Deals/CardImage";
+import { ModalContent } from "../../../utils/_components/ModalContent";
 
 interface NewArrivalsProps {
    newArrivals: any[];
@@ -266,6 +267,16 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                SHOW ALL PRODUCTS
             </button>
          )}
+
+         <ModalContent
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setModalContent={setModalContent}
+            modalContent={modalContent}
+            setProductQuantity={setProductQuantity}
+            addToTheCartAction={addToTheCartAction}
+            productQuantity={productQuantity}
+         />
       </section>
    );
 };
