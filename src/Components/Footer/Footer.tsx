@@ -248,7 +248,7 @@ export const Footer = () => {
                            strokeMiterlimit="10"
                            strokeWidth="2"
                            d="M2 12l30 29 30-29M42 31.6L62 52M2 52l20-20.4"
-                           stroke-linejoin="round"
+                           strokeLinejoin="round"
                         ></path>
                         <path
                            data-name="stroke"

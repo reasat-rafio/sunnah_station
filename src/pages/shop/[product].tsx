@@ -1,0 +1,103 @@
+import axios from "axios";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { InitialLayout } from "../../Components/Layouts/InitialLayout";
+import { ShopLayout } from "../../Components/Layouts/ShopLayout";
+import { FilterProductSection } from "../../Components/ShopPage/FilterProductSection";
+import { ShopProducts } from "../../Components/ShopPage/ShopProducts";
+import { InPageToast } from "../../utils/_components/InPageToast";
+
+const product = ({ products }) => {
+   const router = useRouter();
+   console.log(products);
+
+   const { product } = router.query;
+   const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
+      return products;
+   });
+   // sort items state
+   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
+   const [selectedFilter, setSelectedFilter] = useState<string>(
+      "Sort by popularity"
+   );
+
+   // Products grid
+   const [gridCount, setGridCount] = useState(3);
+
+   useEffect(() => {
+      setAllFiltredProducts(products);
+   }, [products]);
+
+   return (
+      <InitialLayout>
+         <div className="pt-28 md:pt-32">
+            <ShopLayout>
+               <div className="min-h-screen">
+                  {allFilteredProdtucts && allFilteredProdtucts.length > 0 ? (
+                     <ShopProducts
+                        products={allFilteredProdtucts}
+                        gridCount={gridCount}
+                        setGridCount={setGridCount}
+                        showMoreFilter={showMoreFilter}
+                        setShowMoreFilter={setShowMoreFilter}
+                        selectedFilter={selectedFilter}
+                        setSelectedFilter={setSelectedFilter}
+                     />
+                  ) : (
+                     <>
+                        <FilterProductSection
+                           gridCount={gridCount}
+                           setGridCount={setGridCount}
+                           showMoreFilter={showMoreFilter}
+                           setShowMoreFilter={setShowMoreFilter}
+                           selectedFilter={selectedFilter}
+                           setSelectedFilter={setSelectedFilter}
+                        />
+                        <InPageToast text="No products were found matching your selection." />
+                     </>
+                  )}
+               </div>
+            </ShopLayout>
+         </div>
+      </InitialLayout>
+   );
+};
+export default product;
+
+export const getStaticPaths: GetStaticPaths = async () => {
+   const { data } = await axios.get(`${process.env.URL}/sub-categories`);
+
+   const paths = [...data].map(({ name }) => ({
+      params: { product: name },
+   }));
+
+   return {
+      paths,
+      fallback: true,
+   };
+};
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+   const ctg = ctx.params.product;
+   const speical_deals = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/special-deals`
+   );
+   const new_arrivals_all = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals`
+   );
+
+   const allProducts = [...speical_deals.data, ...new_arrivals_all.data];
+
+   const products = allProducts.filter((pd) => {
+      if (pd.sub_categories[0].name === `${ctg}`) {
+         return pd;
+      }
+   });
+
+   return {
+      props: {
+         products,
+      },
+   };
+};

@@ -10,8 +10,6 @@ import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
 import { NewArrivals } from "../Components/Home/NewArrivals/NewArrivals";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
-   console.log(newArrivals);
-
    return (
       <InitialLayout>
          <Head>

@@ -118,7 +118,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
       setLoading(true);
       setTimeout(() => {
          setLoading(false);
-         router.push("/");
+         router.push("/new-arrivals");
       }, 1000);
    };
 
@@ -160,6 +160,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                      i
                   ) => (
                      <motion.div
+                        key={id}
                         whileHover={{ scale: 1.1 }}
                         className={`rounded-xl md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative col-span-10 md:col-span-5 xl:col-span-4 ${
                            pgWidth == "sm" && "h-smCard"
