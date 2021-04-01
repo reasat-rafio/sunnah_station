@@ -61,8 +61,8 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                         <Link href={`/shop/${sub_c.sub_link}`} key={i}>
                            <li
                               key={i}
-                              className={`hover:text-darkBlue cursor-pointer my-2 ${
-                                 product == sub_c.sub_link && "text-darkBlue"
+                              className={`hover:text-lightBlue cursor-pointer my-2 ${
+                                 product == sub_c.sub_link && "text-lightBlue"
                               }`}
                               onClick={closeSideMenubarAction}
                            >
@@ -123,12 +123,12 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
             {Categories.map(({ category_name, sub_category, link }, i) => (
                <li key={i} className="my-4 text-gray-600">
                   <div
-                     className="flex justify-end items-center hover:text-darkBlue cursor-pointer"
+                     className="flex justify-end items-center hover:text-lightBlue cursor-pointer"
                      onClick={() => showSubCategoryAction(link)}
                   >
                      <p
                         className={`flex-1 ${
-                           product == link && "text-darkBlue"
+                           product == link && "text-lightBlue"
                         }`}
                         onClick={() =>
                            itemsWithOutAnySubCategoriesClickACtion(

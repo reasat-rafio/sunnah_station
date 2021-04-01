@@ -89,7 +89,7 @@ export const NavSideBars: React.FC<SideMenuBarProps> = ({}) => {
                      {navs.map(({ name, link, subNavs }: Navs, i: number) => (
                         <div key={i}>
                            {!subNavs ? (
-                              <li>
+                              <li onClick={navAction}>
                                  <Link href={link}>
                                     <a className="flex sideBarMainNav">
                                        {name}

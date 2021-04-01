@@ -140,11 +140,11 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
          />
          {/* ----- PRODUCTS OUTPUT SECTION ----- */}
 
-         <>
-            <section className="grid grid-cols-12 my-5 gap-2 ">
+         <div className="flex flex-col ">
+            <section className="grid grid-cols-12 my-5 gap-2 flex-1">
                {displayProrducts()}
             </section>
-            <span className="mx-auto flex">
+            <span className="mx-auto flex ">
                <ReactPaginate
                   previousLabel={"← Prev"}
                   nextLabel={"Next →"}
@@ -161,7 +161,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
                   activeClassName={"pagination__link--active"}
                />
             </span>
-         </>
+         </div>
       </>
    );
 };
