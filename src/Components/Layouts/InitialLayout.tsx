@@ -11,13 +11,13 @@ interface InitialLayoutProps {
 
 export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
    return (
-      <>
+      <div id="top">
          <Navs />
          <NavSideBars />
          <ShoppingCartSideBar />
          <SmSearchPage />
          {children}
          <Footer />
-      </>
+      </div>
    );
 };

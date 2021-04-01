@@ -8,6 +8,8 @@ import { BrowseByCategory } from "../Components/Home/BrowsByCategory/BrowseByCat
 import { SpeicalDeals } from "../Components/Home/OurProducts/SpeicalDeals";
 import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
 import { NewArrivals } from "../Components/Home/NewArrivals/NewArrivals";
+import { Back_To_Top } from "../utils/svgs/Svg";
+import { BackToTheTop } from "../Components/BackToTop/BackToTop";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
    return (
@@ -22,6 +24,7 @@ export default function Home({ coverImg, speicalDeals, newArrivals }) {
             <SpeicalDeals speicalDeals={speicalDeals} />
             <NewArrivals newArrivals={newArrivals} />
             <Newsletter />
+            <BackToTheTop />
          </main>
       </InitialLayout>
    );
