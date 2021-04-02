@@ -15,6 +15,7 @@ import {
 } from "../../store/actions/CartAction";
 import { LgCardActionBtns, SmCardActionBtns } from "../Home/_helper";
 import { CardImage } from "../Home/Deals/CardImage";
+import { ModalContent } from "../../utils/_components/ModalContent";
 
 interface N_Deals_PageProps {
    products: any[];
@@ -274,6 +275,15 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
                />
             </span>
          </div>
+         <ModalContent
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setModalContent={setModalContent}
+            modalContent={modalContent}
+            setProductQuantity={setProductQuantity}
+            addToTheCartAction={addToTheCartAction}
+            productQuantity={productQuantity}
+         />
       </div>
    );
 };

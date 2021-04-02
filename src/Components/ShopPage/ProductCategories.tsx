@@ -129,6 +129,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                   <div className="flex justify-end items-center  cursor-pointer">
                      <Link href={`/shop/${link}`}>
                         <a
+                           onClick={closeSideMenubarAction}
                            className={`flex-1 hover:text-lightBlue  ${
                               main_categories == link && "text-lightBlue"
                            }`}
