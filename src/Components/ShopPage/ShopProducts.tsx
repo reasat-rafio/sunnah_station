@@ -211,6 +211,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
                            pgWidth == "sm" && "h-smCard"
                         } ${pgWidth == "xs" && "h-smCard"}`}
                         key={id}
+                        onClick={() => router.push(`/items/${slug}`)}
                         // onMouseEnter={(e) => handleMouseEnter(i)}
                         // onMouseLeave={(e) => handleMouseleave(i)}
                      >
@@ -314,7 +315,6 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
             className="flex flex-col "
             initial="inital"
             animate="animate"
-            variants={stagger}
          >
             <motion.div
                className="grid grid-cols-12 my-5 gap-2 flex-1"

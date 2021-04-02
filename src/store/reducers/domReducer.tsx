@@ -10,6 +10,8 @@ import {
    HIDE_BACK_TO_THE_TOP,
    SHOW_CATEGORIES_SIDEBAR,
    HIDE_CATEGORIES_SIDEBAR,
+   LOADING_START,
+   LOADING_END,
 } from "../types";
 
 type Action = {
@@ -25,6 +27,7 @@ interface stateInterFace {
    pageWidth: number;
    showBackToTheTop: boolean;
    showCategorySidebar: boolean;
+   isLoading: boolean;
 }
 
 export const initialDomState = {
@@ -36,6 +39,7 @@ export const initialDomState = {
    pageWidth: 0,
    showBackToTheTop: false,
    showCategorySidebar: false,
+   isLoading: false,
 };
 
 export const domReducer = (state: stateInterFace, action: Action) => {
@@ -97,6 +101,18 @@ export const domReducer = (state: stateInterFace, action: Action) => {
          return {
             ...state,
             showCategorySidebar: false,
+         };
+
+      case LOADING_START:
+         return {
+            ...state,
+            isLoading: true,
+         };
+
+      case LOADING_END:
+         return {
+            ...state,
+            isLoading: false,
          };
 
       default:

@@ -30,8 +30,8 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             pagination={{ clickable: true }}
             className="flex justify-center items-center mb-2"
          >
-            {img.map(({ url, _id }, i: number) => (
-               <div key={_id}>
+            {img.map(({ url, id }, i: number) => (
+               <div key={id}>
                   <SwiperSlide>
                      <motion.div
                         initial={{ x: 200, opacity: 0 }}
@@ -60,7 +60,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             watchSlidesVisibility
             watchSlidesProgress
          >
-            {img.map(({ formats: { thumbnail: { url } } }, i) => (
+            {img.map(({ formats: { thumbnail: { url } }, id }, i) => (
                <SwiperSlide
                   key={i}
                   className="flex justify-center items-center "

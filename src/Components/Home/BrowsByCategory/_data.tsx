@@ -17,32 +17,32 @@ export const categories = [
    {
       name: "Food",
       icon: <FoodSvg />,
-      to: "",
+      to: "/shop/food",
    },
    {
       name: "Art & Aesthetic",
       icon: <Art />,
-      to: "",
+      to: "/shop/art-aesthetic",
    },
    {
       name: "Best Sellings",
       icon: <Best_seelings />,
-      to: "",
+      to: "/best-seelings",
    },
    {
       name: "Mens Wearing",
       icon: <Men />,
-      to: "",
+      to: "/shop/mens-wearings",
    },
    {
       name: "Womens Wearning",
       icon: <Women />,
-      to: "",
+      to: "/shop/womens-wearings",
    },
    {
       name: "Others",
       icon: <Others />,
-      to: "",
+      to: "/shop/others",
    },
 ];
 

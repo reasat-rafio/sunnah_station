@@ -60,7 +60,6 @@ export const Card: React.FC<CardProps> = ({
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
-   console.log(short_description);
 
    // Time countdown states
    const [timerDays, setTimerDays] = useState<string | number>("00");

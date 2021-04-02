@@ -13,7 +13,9 @@ interface ProductCategoriesProps {}
 export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
    // router
    const router = useRouter();
-   const { product } = router.query;
+   const { main_categories, sub_categories } = router.query;
+   console.log(router.query);
+
    const [showMoreFood, setShowMoreFood] = useState<boolean>(false);
    const [ShowMoreMensWearings, SetShowMoreMensWearings] = useState<boolean>(
       false
@@ -45,7 +47,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
       domDispatch(hideCategorySidebar());
    };
 
-   const sub_ctg = (sub_category, state) => {
+   const sub_ctg = (main_category, sub_category, state) => {
       return (
          <>
             <AnimatePresence exitBeforeEnter>
@@ -58,11 +60,15 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                      exit="exit"
                   >
                      {sub_category.map((sub_c, i) => (
-                        <Link href={`/shop/${sub_c.sub_link}`} key={i}>
+                        <Link
+                           href={`/shop/${main_category}/${sub_c.sub_link}`}
+                           key={i}
+                        >
                            <li
                               key={i}
                               className={`hover:text-lightBlue cursor-pointer my-2 ${
-                                 product == sub_c.sub_link && "text-lightBlue"
+                                 sub_categories == sub_c.sub_link &&
+                                 "text-lightBlue"
                               }`}
                               onClick={closeSideMenubarAction}
                            >
@@ -77,38 +83,41 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
       );
    };
 
-   const itemsWithOutAnySubCategoriesClickACtion = (
-      sub_category,
-      to: string
-   ) => {
-      if (!sub_category) {
-         router.push(`/shop/${to}`);
-      }
+   const mainCategoriesAction = (sub_category, to: string) => {
+      router.push(`/shop/${to}`);
    };
 
    const outputFood = (name: string, state: any, sub_category) => {
-      return name === "food" && sub_ctg(sub_category, state);
+      return name === "food" && sub_ctg(name, sub_category, state);
    };
 
    const outputMesnWearings = (name: string, state: any, sub_category) => {
-      return name === "mens-wearings" && sub_ctg(sub_category, state);
+      return name === "mens-wearings" && sub_ctg(name, sub_category, state);
    };
    const outputWomensWearings = (name: string, state: any, sub_category) => {
-      return name === "womens-wearings" && sub_ctg(sub_category, state);
+      return name === "womens-wearings" && sub_ctg(name, sub_category, state);
    };
    const outPutHomeAppliances = (name: string, state: any, sub_category) => {
       return (
-         name === "home-appliances" && state && sub_ctg(sub_category, state)
+         name === "home-appliances" &&
+         state &&
+         sub_ctg(name, sub_category, state)
       );
    };
 
-   const UpOrDownArrowAction = (state) => {
+   const UpOrDownArrowAction = (state, link) => {
       return state ? (
-         <span className={`transform rotate-180 transition-all`}>
+         <span
+            className={`transform rotate-180 transition-all p-1 rounded-full bg-gray-200 hover:text-lightBlue`}
+            onClick={() => showSubCategoryAction(link)}
+         >
             <MoreCtg />
          </span>
       ) : (
-         <span className={`transition-all `}>
+         <span
+            className={`transition-all p-1 rounded-full bg-gray-200  hover:text-lightBlue`}
+            onClick={() => showSubCategoryAction(link)}
+         >
             <MoreCtg />
          </span>
       );
@@ -122,41 +131,32 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
          <ul className=" ">
             {Categories.map(({ category_name, sub_category, link }, i) => (
                <li key={i} className="my-4 text-gray-600">
-                  <div
-                     className="flex justify-end items-center hover:text-lightBlue cursor-pointer"
-                     onClick={() => showSubCategoryAction(link)}
-                  >
+                  <div className="flex justify-end items-center  cursor-pointer">
                      <p
-                        className={`flex-1 ${
-                           product == link && "text-lightBlue"
+                        className={`flex-1 hover:text-lightBlue  ${
+                           main_categories == link && "text-lightBlue"
                         }`}
-                        onClick={() =>
-                           itemsWithOutAnySubCategoriesClickACtion(
-                              sub_category,
-                              link
-                           )
-                        }
+                        onClick={() => mainCategoriesAction(sub_category, link)}
                      >
-                        {" "}
                         {category_name}
                      </p>
 
                      {/*   icon up/down */}
                      {sub_category &&
                         link === "food" &&
-                        UpOrDownArrowAction(showMoreFood)}
+                        UpOrDownArrowAction(showMoreFood, link)}
 
                      {sub_category &&
                         link === "mens-wearings" &&
-                        UpOrDownArrowAction(ShowMoreMensWearings)}
+                        UpOrDownArrowAction(ShowMoreMensWearings, link)}
 
                      {sub_category &&
                         link === "womens-wearings" &&
-                        UpOrDownArrowAction(SowMoreWomensWearings)}
+                        UpOrDownArrowAction(SowMoreWomensWearings, link)}
 
                      {sub_category &&
                         link === "home-appliances" &&
-                        UpOrDownArrowAction(showMoreHomeAppliances)}
+                        UpOrDownArrowAction(showMoreHomeAppliances, link)}
                   </div>
 
                   {/* sub ctg */}

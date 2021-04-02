@@ -10,6 +10,8 @@ import {
    HIDE_BACK_TO_THE_TOP,
    SHOW_CATEGORIES_SIDEBAR,
    HIDE_CATEGORIES_SIDEBAR,
+   LOADING_START,
+   LOADING_END,
 } from "../types";
 
 export const showSideNavBar = () => {
@@ -76,5 +78,17 @@ export const showCategorySidebar = () => {
 export const hideCategorySidebar = () => {
    return {
       type: HIDE_CATEGORIES_SIDEBAR,
+   };
+};
+
+export const loadingstart = () => {
+   return {
+      type: LOADING_START,
+   };
+};
+
+export const loadingEnd = () => {
+   return {
+      type: LOADING_END,
    };
 };

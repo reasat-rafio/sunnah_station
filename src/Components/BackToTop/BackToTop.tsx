@@ -39,7 +39,7 @@ export const BackToTheTop: React.FC<BackToTheTopProps> = ({}) => {
                   exit="exit"
                   whileHover={{ y: -4 }}
                   href="#top"
-                  className="flex justify-center items-center fixed right-10 bottom-10 z-50 bg-lightBlue text-white font-bold text-sm p-2 lg:p-3 hover:no-underline hover:text-white"
+                  className="flex justify-center items-center fixed right-10 bottom-10 z-40 bg-lightBlue text-white font-bold text-sm p-2 lg:p-3 hover:no-underline hover:text-white"
                >
                   <span className="mx-2">
                      <Back_To_Top />

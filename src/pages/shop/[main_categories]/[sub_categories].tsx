@@ -2,17 +2,30 @@ import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { InitialLayout } from "../../Components/Layouts/InitialLayout";
-import { ShopLayout } from "../../Components/Layouts/ShopLayout";
-import { FilterProductSection } from "../../Components/ShopPage/FilterProductSection";
-import { ShopProducts } from "../../Components/ShopPage/ShopProducts";
-import { InPageToast } from "../../utils/_components/InPageToast";
+import { InitialLayout } from "../../../Components/Layouts/InitialLayout";
+import { ShopLayout } from "../../../Components/Layouts/ShopLayout";
+import { FilterProductSection } from "../../../Components/ShopPage/FilterProductSection";
+import { ShopProducts } from "../../../Components/ShopPage/ShopProducts";
+import { useCtx } from "../../../store";
+import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
+import { InPageToast } from "../../../utils/_components/InPageToast";
 
 const product = ({ products }) => {
    const router = useRouter();
-   console.log(products);
+   const {
+      domDispatch,
+      domState: { isLoading },
+   } = useCtx();
 
-   const { product } = router.query;
+   useEffect(() => {
+      if (router.isFallback) {
+         domDispatch(loadingstart());
+      } else {
+         domDispatch(loadingEnd());
+      }
+   }, [router.isFallback]);
+
+   // const { product } = router.query;
    const [allFilteredProdtucts, setAllFiltredProducts] = useState(() => {
       return products;
    });
@@ -73,13 +86,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
    }));
 
    return {
-      paths,
+      paths: [],
       fallback: true,
    };
 };
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const ctg = ctx.params.product;
+   const ctg = ctx.params.sub_categories;
+
    const speical_deals = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/special-deals`
    );
