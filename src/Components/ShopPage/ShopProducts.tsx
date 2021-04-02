@@ -8,13 +8,11 @@ import {
    addNonExistingItemInTheCart,
    plusTheQuantityOfTheExistingItem,
 } from "../../store/actions/CartAction";
-import { showCart, showCategorySidebar } from "../../store/actions/domActions";
-import { FourGrid, SmMenu, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
-import { InPageToast } from "../../utils/_components/InPageToast";
+import { showCart } from "../../store/actions/domActions";
+import { fadeIn, stagger } from "../../utils/animation";
 import { CardImage } from "../Home/Deals/CardImage";
-import { LgCardActionBtns, SmCardActionBtns } from "../Home/_helper";
 import { FilterProductSection } from "./FilterProductSection";
-import { ShopShortDropDown } from "./ShopShortDropDown";
+
 interface ShopProductsProps {
    products: any;
    gridCount: number;
@@ -312,10 +310,18 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
          />
          {/* ----- PRODUCTS OUTPUT SECTION ----- */}
 
-         <div className="flex flex-col ">
-            <section className="grid grid-cols-12 my-5 gap-2 flex-1">
+         <motion.div
+            className="flex flex-col "
+            initial="inital"
+            animate="animate"
+            variants={stagger}
+         >
+            <motion.div
+               className="grid grid-cols-12 my-5 gap-2 flex-1"
+               variants={fadeIn}
+            >
                {displayProrducts()}
-            </section>
+            </motion.div>
             <span className="mx-auto flex ">
                <ReactPaginate
                   previousLabel={"← Prev"}
@@ -333,7 +339,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
                   activeClassName={"pagination__link--active"}
                />
             </span>
-         </div>
+         </motion.div>
       </>
    );
 };
