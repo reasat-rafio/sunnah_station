@@ -13,6 +13,9 @@ interface BrowseByCategoryProps {}
 SwiperCore.use([Autoplay, EffectFade]);
 
 export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
+   // router
+   const router = useRouter();
+
    // global state
    const {
       domState: { pageWidth },
@@ -29,9 +32,6 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
 
    const smNavigationPrevRef = useRef<HTMLDivElement>(null);
    const smNavigationNextRef = useRef<HTMLDivElement>(null);
-
-   // router
-   const router = useRouter();
 
    useEffect(() => {
       if (pageWidth > 1180) {
@@ -88,7 +88,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
             slidesPerView={cardsPerView}
             autoplay={{ disableOnInteraction: false }}
             spaceBetween={pageWidth < 550 && pageWidth > 0 ? 15 : 40}
-            //use Full
+            //useFull
             // breakpoints={{
             //    320: {
             //      slidesPerView: 1.5,
@@ -111,13 +111,14 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                swiper.navigation.update();
             }}
          >
-            {categories.map(({ name, icon }, id: number) => (
+            {categories.map(({ name, icon, to }, id: number) => (
                <SwiperSlide key={id}>
                   <motion.div
                      whileHover={{ y: -10 }}
                      className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
                         pgWidth == "sm" && ""
                      } ${pgWidth == "xs" && ""}`}
+                     onClick={() => router.push(to)}
                   >
                      <span className="text-lightBlue py-3">{icon}</span>
                      <p className="font-bold text-xl"> {name}</p>

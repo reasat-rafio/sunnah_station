@@ -38,6 +38,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
 
    const [loading, setLoading] = useState(false);
    const [pgWidth, setPgWidth] = useState<string>("");
+
    // swiper slidesPerView
    const [cardsPerView, setCardsPerView] = useState<number>(6);
 
@@ -143,7 +144,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
          </section>
          {/* card section */}
          {showActions && !loading && cardsPerView != 0 && (
-            <section className="">
+            <div className="">
                <Swiper
                   className="my-1 "
                   slidesPerView={cardsPerView}
@@ -288,7 +289,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                {/* <div className="grid  md:grid-cols-3 grid-cols-1 md:gap-4"></div>
             <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
             <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" /> */}
-            </section>
+            </div>
          )}
          <>
             <ModalContent

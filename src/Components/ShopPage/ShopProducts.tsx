@@ -3,9 +3,16 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useCtx } from "../../store";
-import { showCategorySidebar } from "../../store/actions/domActions";
+import {
+   addFirstItemToTheCart,
+   addNonExistingItemInTheCart,
+   plusTheQuantityOfTheExistingItem,
+} from "../../store/actions/CartAction";
+import { showCart, showCategorySidebar } from "../../store/actions/domActions";
 import { FourGrid, SmMenu, ThreeGrid, TwoGrid } from "../../utils/svgs/Svg";
 import { InPageToast } from "../../utils/_components/InPageToast";
+import { CardImage } from "../Home/Deals/CardImage";
+import { LgCardActionBtns, SmCardActionBtns } from "../Home/_helper";
 import { FilterProductSection } from "./FilterProductSection";
 import { ShopShortDropDown } from "./ShopShortDropDown";
 interface ShopProductsProps {
@@ -31,6 +38,53 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
 
    const [allProducts, setAllProducts] = useState<any>([...products]);
 
+   // GLOBAL STATE
+   const {
+      domState: { pageWidth },
+      domDispatch,
+      cartState: { inCartProducts },
+      cartDispatch,
+   } = useCtx();
+
+   const [loading, setLoading] = useState(false);
+   const [pgWidth, setPgWidth] = useState<string>("");
+
+   // swiper slidesPerView
+   const [cardsPerView, setCardsPerView] = useState<number>(6);
+
+   // selected  product qunatity
+   const [productQuantity, setProductQuantity] = useState<number>(1);
+
+   // Modal state
+   const [showModal, setShowModal] = useState<boolean>(false);
+   const [modalContent, setModalContent] = useState({});
+
+   // show more action
+   const [showActions, setShowMoreActions] = useState<any>([]);
+
+   useEffect(() => {
+      if (pageWidth > 1180) {
+         setPgWidth("lg");
+         setCardsPerView(5);
+         setLoading(false);
+      } else if (pageWidth < 1180 && pageWidth > 720) {
+         setCardsPerView(4);
+         setPgWidth("md");
+         setLoading(false);
+      } else if (pageWidth < 720 && pageWidth > 550) {
+         setCardsPerView(2);
+         setPgWidth("sm");
+         setLoading(false);
+      } else if (pageWidth < 550 && pageWidth > 0) {
+         setCardsPerView(2);
+         setPgWidth("xs");
+         setLoading(false);
+      } else if (pageWidth == 0) {
+         setLoading(true);
+         setCardsPerView(5);
+      }
+   }, [pageWidth]);
+
    useEffect(() => {
       setAllProducts(products);
    }, [products]);
@@ -38,6 +92,66 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
    const [pageNumber, setPageNumber] = useState<number>(0);
    const productPerPage = 12;
    const PagesVisited = pageNumber * productPerPage;
+
+   // adding a new value to every object to add the cart hover action
+   useEffect(() => {
+      allProducts.forEach((deal) => (deal.showAction = false));
+      const initalState = allProducts.map((deal) => deal.showAction);
+      setShowMoreActions(initalState);
+   }, [products]);
+
+   // Mouse Enter event on Card
+   const handleMouseEnter = (i) => {
+      const newArr = [...allProducts.map((deal) => deal.showAction)];
+      newArr[i] = true;
+      setShowMoreActions(newArr);
+   };
+
+   // Mouse Leave event on Card
+   const handleMouseleave = (i) => {
+      const newArr = [...allProducts.map((deal) => deal.showAction)];
+      newArr[i] = false;
+      setShowMoreActions(newArr);
+   };
+
+   // Adding product to the cart
+   const addToTheCartAction = (name, price, quantity, id, img) => {
+      const item = {
+         name,
+         price,
+         quantity,
+         id,
+         img,
+         subtotal: parseInt(price.replace(/,/g, ""), 10),
+      };
+
+      const _itemToTheCart = {
+         name,
+         price,
+         quantity,
+         id,
+         img,
+         subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
+      };
+
+      domDispatch(showCart());
+
+      if (inCartProducts && inCartProducts.length > 0) {
+         let itemExistInTheCart = inCartProducts.some((i) => i.id === id);
+
+         if (itemExistInTheCart) {
+            // If that item exist in the cart
+            cartDispatch(plusTheQuantityOfTheExistingItem({ id, quantity }));
+         } else {
+            // If that item dont exist in the cart
+            cartDispatch(addNonExistingItemInTheCart(item));
+         }
+      } else {
+         // If there is no item in the cart
+         cartDispatch(addFirstItemToTheCart(_itemToTheCart));
+      }
+      setProductQuantity(1);
+   };
 
    // SHORTING THE PRODUCTS. PS:ALL THE SORTING AND FILTERING HAPPENING HERE
    const displayProrducts = () => {
@@ -80,41 +194,102 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
                }
             })
             .slice(PagesVisited, PagesVisited + productPerPage)
-            .map(({ name, image, offer_price, regular_price, id, slug }) => {
-               return (
-                  <div
-                     className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer flex flex-col `}
-                     key={id}
-                  >
-                     <div
-                        className="flex-1 overflow-hidden"
-                        onClick={() => router.push(`/items/${slug}`)}
+            .map(
+               (
+                  {
+                     name,
+                     image,
+                     offer_price,
+                     regular_price,
+                     id,
+                     slug,
+                     short_description,
+                  },
+                  i: number
+               ) => {
+                  return (
+                     <motion.div
+                        className={`col-span-6 lg:col-span-4 xl:col-span-${gridCount} border cursor-pointer    rounded-xl md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative  ${
+                           pgWidth == "sm" && "h-smCard"
+                        } ${pgWidth == "xs" && "h-smCard"}`}
+                        key={id}
+                        // onMouseEnter={(e) => handleMouseEnter(i)}
+                        // onMouseLeave={(e) => handleMouseleave(i)}
                      >
-                        <motion.img
-                           whileHover={{ scale: 1.1 }}
-                           src={image[0].url}
-                           alt={name}
-                        />
-                     </div>
+                        {/* Card action section */}
+                        {/* <div
+                           className={`absolute ${
+                              pageWidth < 720
+                                 ? "top-1/2 right-5 flex-row"
+                                 : "top-1/2  right-4 flex-col"
+                           } z-50  flex  gap-1`}
+                        >
+                           {pageWidth < 720 ? (
+                              <SmCardActionBtns
+                                 offer_price={offer_price}
+                                 addToTheCartAction={addToTheCartAction}
+                                 name={name}
+                                 productQuantity={productQuantity}
+                                 id={id}
+                                 image={image}
+                                 regular_price={regular_price}
+                                 showActions={showActions}
+                                 i={i}
+                                 pageWidth={pageWidth}
+                                 setShowModal={setShowModal}
+                                 setModalContent={setModalContent}
+                                 slug={slug}
+                                 description={short_description}
+                              />
+                           ) : (
+                              <LgCardActionBtns
+                                 offer_price={offer_price}
+                                 addToTheCartAction={addToTheCartAction}
+                                 name={name}
+                                 productQuantity={productQuantity}
+                                 id={id}
+                                 image={image}
+                                 regular_price={regular_price}
+                                 showActions={showActions}
+                                 i={i}
+                                 pageWidth={pageWidth}
+                                 setShowModal={setShowModal}
+                                 setModalContent={setModalContent}
+                                 slug={slug}
+                                 description={short_description}
+                              />
+                           )}
+                        </div> */}
 
-                     <div className="">
-                        <p className="text-sm font-medium text-center font-nav   ">
-                           {name}
-                        </p>
-                        {offer_price && (
-                           <div className="my-2 flex gap-2 items-center justify-center">
-                              <span className="line-through  text-sm text-gray-400 font-text">
-                                 ৳{regular_price}
-                              </span>
-                              <span className="text-darkBlue font-semibold font-text">
-                                 ৳{offer_price}
-                              </span>
-                           </div>
-                        )}
-                     </div>
-                  </div>
-               );
-            })
+                        <div className="flex-1">
+                           <CardImage image={image} name={name} />
+                        </div>
+
+                        <div className="p-3 ">
+                           <p className="text-sm font-medium text-center font-nav">
+                              {name}
+                           </p>
+                           {offer_price ? (
+                              <div className="my-2 flex gap-2 items-center justify-center">
+                                 <span className="line-through  text-sm text-gray-400 font-text">
+                                    ৳{regular_price}
+                                 </span>
+                                 <span className="text-lightBlue font-semibold font-text">
+                                    ৳{offer_price}
+                                 </span>
+                              </div>
+                           ) : (
+                              <div className="my-2 flex gap-2 items-center justify-center">
+                                 <span className="text-lightBlue font-semibold font-text">
+                                    ৳{regular_price}
+                                 </span>
+                              </div>
+                           )}
+                        </div>
+                     </motion.div>
+                  );
+               }
+            )
       );
    };
 
@@ -123,9 +298,6 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
    const chnagePage = ({ selected }) => {
       setPageNumber(selected);
    };
-
-   // GLOBAL STATE
-   const { domDispatch } = useCtx();
 
    return (
       <>

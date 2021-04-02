@@ -12,30 +12,37 @@ export const categories = [
    {
       name: "Special Deal",
       icon: <ShoppingBag />,
+      to: "/special-deals",
    },
    {
       name: "Food",
       icon: <FoodSvg />,
+      to: "",
    },
    {
       name: "Art & Aesthetic",
       icon: <Art />,
+      to: "",
    },
    {
       name: "Best Sellings",
       icon: <Best_seelings />,
+      to: "",
    },
    {
       name: "Mens Wearing",
       icon: <Men />,
+      to: "",
    },
    {
       name: "Womens Wearning",
       icon: <Women />,
+      to: "",
    },
    {
       name: "Others",
       icon: <Others />,
+      to: "",
    },
 ];
 
