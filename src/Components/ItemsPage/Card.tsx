@@ -112,7 +112,6 @@ export const Card: React.FC<CardProps> = ({
       cartState: { inCartProducts },
       cartDispatch,
    } = useCtx();
-   // console.log(inCartProducts);
 
    // Adding product to the cart
    const addToTheCartAction = (name, price, quantity, id, img) => {

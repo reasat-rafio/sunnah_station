@@ -14,7 +14,6 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
    // router
    const router = useRouter();
    const { main_categories, sub_categories } = router.query;
-   console.log(router.query);
 
    const [showMoreFood, setShowMoreFood] = useState<boolean>(false);
    const [ShowMoreMensWearings, SetShowMoreMensWearings] = useState<boolean>(

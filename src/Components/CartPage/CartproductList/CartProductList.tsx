@@ -17,7 +17,6 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
       cartDispatch,
       cartState: { inCartProducts },
    } = useCtx();
-   console.log(inCartProducts);
 
    return (
       <div className="col-span-12 lg:col-span-8 flex flex-col">
