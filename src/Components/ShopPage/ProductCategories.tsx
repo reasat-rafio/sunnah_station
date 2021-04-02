@@ -83,10 +83,6 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
       );
    };
 
-   const mainCategoriesAction = (sub_category, to: string) => {
-      router.push(`/shop/${to}`);
-   };
-
    const outputFood = (name: string, state: any, sub_category) => {
       return name === "food" && sub_ctg(name, sub_category, state);
    };
@@ -132,14 +128,15 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
             {Categories.map(({ category_name, sub_category, link }, i) => (
                <li key={i} className="my-4 text-gray-600">
                   <div className="flex justify-end items-center  cursor-pointer">
-                     <p
-                        className={`flex-1 hover:text-lightBlue  ${
-                           main_categories == link && "text-lightBlue"
-                        }`}
-                        onClick={() => mainCategoriesAction(sub_category, link)}
-                     >
-                        {category_name}
-                     </p>
+                     <Link href={`/shop/${link}`}>
+                        <a
+                           className={`flex-1 hover:text-lightBlue  ${
+                              main_categories == link && "text-lightBlue"
+                           }`}
+                        >
+                           {category_name}
+                        </a>
+                     </Link>
 
                      {/*   icon up/down */}
                      {sub_category &&

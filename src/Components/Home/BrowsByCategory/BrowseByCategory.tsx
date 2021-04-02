@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import { categories, GoLeft, GoRight } from "./_data";
+import Link from "next/link";
 
 interface BrowseByCategoryProps {}
 
@@ -113,16 +114,17 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
          >
             {categories.map(({ name, icon, to }, id: number) => (
                <SwiperSlide key={id}>
-                  <motion.div
-                     whileHover={{ y: -10 }}
-                     className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
-                        pgWidth == "sm" && ""
-                     } ${pgWidth == "xs" && ""}`}
-                     onClick={() => router.push(to)}
-                  >
-                     <span className="text-lightBlue py-3">{icon}</span>
-                     <p className="font-bold text-xl"> {name}</p>
-                  </motion.div>
+                  <Link href={to}>
+                     <motion.div
+                        whileHover={{ y: -10 }}
+                        className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue ${
+                           pgWidth == "sm" && ""
+                        } ${pgWidth == "xs" && ""}`}
+                     >
+                        <span className="text-lightBlue py-3">{icon}</span>
+                        <p className="font-bold text-xl"> {name}</p>
+                     </motion.div>
+                  </Link>
                </SwiperSlide>
             ))}
          </Swiper>
