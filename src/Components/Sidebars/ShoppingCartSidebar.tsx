@@ -98,7 +98,15 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                      {inCartProducts && inCartProducts.length > 0 ? (
                         inCartProducts.map(
                            (
-                              { name, img, price, quantity, slug, subtotal },
+                              {
+                                 name,
+                                 img,
+                                 price,
+                                 quantity,
+                                 slug,
+                                 id,
+                                 subtotal,
+                              },
                               i: number
                            ) => {
                               return (
