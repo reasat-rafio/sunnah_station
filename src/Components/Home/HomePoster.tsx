@@ -37,6 +37,7 @@ export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
                         height="3"
                         width="6"
                         layout="responsive"
+                        alt="poster"
                      />
                   </SwiperSlide>
                ))}

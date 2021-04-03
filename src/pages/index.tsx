@@ -13,6 +13,7 @@ import { Loading } from "../Components/Loading/Loading";
 import { useEffect } from "react";
 import { useCtx } from "../store";
 import { getAllTheProducts } from "../store/actions/ProductsAction";
+import { Seo } from "../Components/SEO/SEO";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
    const { productsDispatch } = useCtx();
@@ -23,10 +24,16 @@ export default function Home({ coverImg, speicalDeals, newArrivals }) {
 
    return (
       <InitialLayout>
-         <Head>
-            <title>Home - Sunnah Station</title>
-            <link rel="icon" href="/favicon.ico" />
-         </Head>
+         <Seo
+            title="Home - Sunnah Station"
+            description={
+               "Online grocery shop in Bangladesh - Sunnah Station. Order groceries online with cash on delivery in Dhaka, Chittagong. Order food online in BD, get home delivery"
+            }
+            url={`${process.env.NEXTAUTH_URL}`}
+            shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
+            preventIndexing={false}
+         />
+
          <main className="w-full">
             <HomePoster coverImg={coverImg} />
             <BrowseByCategory />

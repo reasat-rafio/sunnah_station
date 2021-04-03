@@ -8,7 +8,6 @@ import { useSearchFilter } from "../../utils/hooks/useFilterByInput";
 import { SearchResult } from "../SearchResult/SearchResult";
 import Image from "next/image";
 import Link from "next/link";
-// import { SearchbarResult } from "../SearchbarResult/SearchbarResult";
 
 interface SmSearchPageProps {}
 

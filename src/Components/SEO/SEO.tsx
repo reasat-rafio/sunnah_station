@@ -5,7 +5,7 @@ export const Seo = ({
    description,
    url,
    shareImage,
-   keywords,
+   // keywords,
    preventIndexing,
 }) => {
    //    const {
@@ -29,6 +29,7 @@ export const Seo = ({
             content={description}
             key="og:description"
          />
+         <link rel="icon" href="/favicon.ico" />
          <meta property="og:image" content={shareImage} key="og:image" />
          <meta
             property="og:image:alt"

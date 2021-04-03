@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
+
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useCtx } from "../../../store";
@@ -97,23 +96,23 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
          } `}
          ref={navRef}
       >
-         <ul
+         <div
             className={`container mx-auto  px-4 rounded-md bg-white ${
                Pageheight != 0 ? "py-1  md:py-2 shadow-lg" : "py-2 md:py-4"
             }`}
          >
-            <div className="flex items-center relative">
-               <div className="flex-1 " onClick={() => router.push("/")}>
-                  <li className="flex   ">
+            <ul className="flex items-center relative">
+               <li className="flex-1 " onClick={() => router.push("/")}>
+                  <div className="flex   ">
                      <img
                         className="min-w-24 w-28 cursor-pointer"
                         src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
                         alt="logo"
                      />
-                  </li>
-               </div>
-               <div className=" gap-5 flex  items-center relative">
-                  <li className=" hidden md:block">
+                  </div>
+               </li>
+               <li className=" gap-5 flex  items-center relative">
+                  <div className=" hidden md:block">
                      <form
                         onSubmit={(e) => {
                            if (searFilteredItems.length > 0) {
@@ -152,7 +151,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                            )}
                         </AnimatePresence>
                      </form>
-                  </li>
+                  </div>
 
                   <motion.li
                      whileHover={{ scale: 1.2 }}
@@ -188,8 +187,8 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                   >
                      <SmMenuToggle />
                   </motion.li>
-               </div>
-            </div>
+               </li>
+            </ul>
 
             {/* navs in sm screen */}
 
@@ -199,7 +198,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                setShowMoreDeals={setShowMoreDeals}
                showMoreDeals={showMoreDeals}
             />
-         </ul>
+         </div>
 
          {/* Search result */}
          <AnimatePresence>
