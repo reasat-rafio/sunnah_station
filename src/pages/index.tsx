@@ -10,8 +10,17 @@ import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
 import { NewArrivals } from "../Components/Home/NewArrivals/NewArrivals";
 import { BackToTheTop } from "../Components/BackToTop/BackToTop";
 import { Loading } from "../Components/Loading/Loading";
+import { useEffect } from "react";
+import { useCtx } from "../store";
+import { getAllTheProducts } from "../store/actions/ProductsAction";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
+   const { productsDispatch } = useCtx();
+   useEffect(() => {
+      const allProducts = [...speicalDeals, ...newArrivals];
+      productsDispatch(getAllTheProducts(allProducts));
+   }, []);
+
    return (
       <InitialLayout>
          <Head>

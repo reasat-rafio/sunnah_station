@@ -25,14 +25,14 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       initialUserState,
       () => {
          if (typeof window !== "undefined") {
-            const localData = localStorage.getItem("TxBDuserState");
+            const localData = localStorage.getItem("sunnahStationuserState");
             return localData ? JSON.parse(localData) : initialUserState;
          }
          return initialUserState;
       }
    );
    useEffect(() => {
-      localStorage.setItem("TxBDuserState", JSON.stringify(userState));
+      localStorage.setItem("sunnahStationuserState", JSON.stringify(userState));
    }, [userState]);
 
    // CART STATE
@@ -41,14 +41,14 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       initialCartState,
       () => {
          if (typeof window !== "undefined") {
-            const localData = localStorage.getItem("TxBDCartState");
+            const localData = localStorage.getItem("sunnahStationCartState");
             return localData ? JSON.parse(localData) : initialCartState;
          }
          return initialCartState;
       }
    );
    useEffect(() => {
-      localStorage.setItem("TxBDCartState", JSON.stringify(cartState));
+      localStorage.setItem("sunnahStationCartState", JSON.stringify(cartState));
    }, [cartState]);
 
    // PRODUCTS STATE
@@ -57,14 +57,17 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       initialProductState,
       () => {
          if (typeof window !== "undefined") {
-            const localData = localStorage.getItem("TxBDProductState");
+            const localData = localStorage.getItem("sunnahStationProductState");
             return localData ? JSON.parse(localData) : initialProductState;
          }
          return initialProductState;
       }
    );
    useEffect(() => {
-      localStorage.setItem("TxBDProductState", JSON.stringify(productsState));
+      localStorage.setItem(
+         "sunnahStationProductState",
+         JSON.stringify(productsState)
+      );
    }, [productsState]);
 
    // DOM STATE

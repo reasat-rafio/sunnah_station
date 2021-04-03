@@ -72,11 +72,11 @@ export const ModalContent: React.FC<ModalContentProps> = ({
          <AnimatePresence>
             {showModal && (
                <section
-                  className={`main-modal fixed w-full h-100 inset-0 overflow-y-auto   justify-center items-center  z-50 flex `}
+                  className={`main-modal fixed w-full h-100 inset-0 overflow-y-auto   justify-center items-center   z-50 flex `}
                >
                   <motion.div
                      ref={modalRef}
-                     className="border border-teal-500 smodal-container bg-white w-11/12 md:max-w-5xl mx-auto rounded shadow-lg z-50 overflow-y-auto p-5 overflow-x-hidden"
+                     className="border border-teal-500 smodal-container max-h-screen  bg-white w-11/12 md:max-w-5xl mx-auto rounded shadow-lg z-50 overflow-y-auto p-5 overflow-x-hidden"
                      initial={{ opacity: 0, y: 60, scale: 0.3 }}
                      animate={{
                         opacity: 1,

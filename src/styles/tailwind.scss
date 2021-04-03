@@ -105,3 +105,12 @@ html {
    cursor: not-allowed;
    color: rgb(198, 197, 202);
 }
+
+hiding the search scrollbar .disable-scrollbars::-webkit-scrollbar {
+   display: none;
+}
+
+.disable-scrollbars {
+   -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+}

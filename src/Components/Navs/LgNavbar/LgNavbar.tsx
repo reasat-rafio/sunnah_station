@@ -11,14 +11,11 @@ import {
 } from "../../../store/actions/domActions";
 import {
    iconVariants,
-   menuVariants,
    searchbarVariants,
-   linkVariants,
-   sideBarMoreVarients,
-   arrowVariants,
-   sideBarMoreVarientsLi,
+   searchBarAnimation,
 } from "../../../utils/animation";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
+import { useSearchFilter } from "../../../utils/hooks/useFilterByInput";
 import {
    Search,
    Cart,
@@ -26,15 +23,21 @@ import {
    SmMenuToggle,
    DownArrowSm,
 } from "../../../utils/svgs/Svg";
+import { SearchResult } from "../../SearchResult/SearchResult";
+import { SmNav } from "../SmNav/SmNav";
 import { navs } from "./_helper";
 
 interface LgNavbarProps {}
 
 export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
+   // router
+   const router = useRouter();
+
    const {
       domDispatch,
       domState: { showSidebar, pageWidth },
       cartState: { inCartProducts },
+      productsState: { products },
       cartState,
    } = useCtx();
 
@@ -49,14 +52,43 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
    const [showMoreDeals, setShowMoreDeals] = useState<boolean>(false);
    const [showMoreCategories, setShowMoreCategories] = useState<boolean>(false);
 
+   // Search result state
+   const [searFilteredItems, setSearchFilterItems] = useState<any>([]);
+   const [searchInput, setSearchInput] = useState<string>("");
+
+   console.log("searchInput", searchInput);
+
+   const searchInputOnChangeAction = (e) => {
+      setSearchInput(e.target.value);
+      const all_products = products.map(
+         ({
+            name,
+            image,
+            offer_price,
+            regular_price,
+            slug,
+            short_description,
+         }) => {
+            return {
+               name,
+               image,
+               offer_price,
+               regular_price,
+               slug,
+               short_description,
+            };
+         }
+      );
+
+      const { filteredItme } = useSearchFilter(all_products, e.target.value);
+      setSearchFilterItems(filteredItme);
+   };
+
    useEffect(() => {
       if (pageWidth > 710) {
          setShowSmMenu(false);
       }
    }, [pageWidth]);
-
-   // router
-   const router = useRouter();
 
    return (
       <nav
@@ -71,34 +103,40 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
             }`}
          >
             <div className="flex items-center relative">
-               <div
-                  className="flex-1 cursor-pointer"
-                  onClick={() => router.push("/")}
-               >
+               <div className="flex-1 " onClick={() => router.push("/")}>
                   <li className="flex   ">
                      <img
-                        className="min-w-24 w-28 "
+                        className="min-w-24 w-28 cursor-pointer"
                         src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
                         alt="logo"
                      />
                   </li>
                </div>
-               <div className=" gap-5 flex  items-center ">
+               <div className=" gap-5 flex  items-center relative">
                   <li className=" hidden md:block">
-                     <div
+                     <form
+                        onSubmit={(e) => {
+                           if (searFilteredItems.length > 0) {
+                              router.push(
+                                 `/items/${searFilteredItems[0].slug}`
+                              );
+                           } else {
+                              e.preventDefault();
+                           }
+                        }}
                         className={`flex items-center ${
                            showSearchBar && " border rounded-full"
                         } p-2 `}
                      >
-                        <motion.button
+                        <motion.div
                            whileHover={{ scale: 1.2, originX: 0 }}
-                           className={`hover:text-nevyBlue outline-none  focus:outline-none ${
+                           className={`hover:text-nevyBlue outline-none focus:outline-none cursor-pointer ${
                               showSearchBar && " mx-3"
                            }`}
                            onClick={() => setShowSearchBar((prev) => !prev)}
                         >
                            <Search />
-                        </motion.button>
+                        </motion.div>
                         <AnimatePresence exitBeforeEnter>
                            {showSearchBar && (
                               <motion.input
@@ -109,10 +147,11 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                                  className={`outline-none bg-transparent`}
                                  type="text"
                                  placeholder="What are you looking for?"
+                                 onChange={(e) => searchInputOnChangeAction(e)}
                               />
                            )}
                         </AnimatePresence>
-                     </div>
+                     </form>
                   </li>
 
                   <motion.li
@@ -153,158 +192,24 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
             </div>
 
             {/* navs in sm screen */}
-            <div className=" ">
-               <AnimatePresence exitBeforeEnter>
-                  {showSmMenu && (
-                     <motion.ul
-                        variants={menuVariants}
-                        className="font-title flex gap-2 flex-col justify-center items-center text-xl shadow-sm "
-                        initial="initial"
-                        animate="animate"
-                        exit="exit"
-                     >
-                        {navs.map(({ name, link, subNavs }, i: number) => (
-                           <div key={i}>
-                              {!subNavs ? (
-                                 <motion.li variants={linkVariants}>
-                                    <Link href={link}>
-                                       <a className="flex smNavBarCtg hover:text-lightBlue ">
-                                          {name}
-                                       </a>
-                                    </Link>
-                                 </motion.li>
-                              ) : (
-                                 <>
-                                    {name == "Deals" && (
-                                       <motion.li variants={linkVariants}>
-                                          <div
-                                             className="flex items-center justify-center "
-                                             onClick={() =>
-                                                setShowMoreDeals(
-                                                   (prevState) => !prevState
-                                                )
-                                             }
-                                          >
-                                             <p className="flex-1 smNavBarCtg  cursor-pointer hover:text-lightBlue">
-                                                {name}
-                                             </p>
 
-                                             <motion.span
-                                                variants={arrowVariants}
-                                                animate={
-                                                   showMoreDeals
-                                                      ? "opened"
-                                                      : "closed"
-                                                }
-                                             >
-                                                <DownArrowSm />
-                                             </motion.span>
-                                          </div>
-
-                                          <AnimatePresence exitBeforeEnter>
-                                             {showMoreDeals && (
-                                                <motion.ul
-                                                   initial="initial"
-                                                   animate="animate"
-                                                   variants={
-                                                      sideBarMoreVarients
-                                                   }
-                                                   exit="exit"
-                                                   className="flex flex-col justify-center items-center"
-                                                >
-                                                   {subNavs.map(
-                                                      (
-                                                         { link, name },
-                                                         i: number
-                                                      ) => (
-                                                         <motion.li key={i}>
-                                                            <Link href={link}>
-                                                               <a className="smSubNavCtg">
-                                                                  {name}
-                                                               </a>
-                                                            </Link>
-                                                         </motion.li>
-                                                      )
-                                                   )}
-                                                </motion.ul>
-                                             )}
-                                          </AnimatePresence>
-                                       </motion.li>
-                                    )}
-
-                                    {name == "Categories" && (
-                                       <motion.li variants={linkVariants}>
-                                          <div
-                                             className="flex items-center justify-center "
-                                             onClick={() =>
-                                                setShowMoreCategories(
-                                                   (prevState) => !prevState
-                                                )
-                                             }
-                                          >
-                                             <p className="flex-1 smNavBarCtg  cursor-pointer hover:text-lightBlue">
-                                                {name}
-                                             </p>
-
-                                             <motion.span
-                                                variants={arrowVariants}
-                                                animate={
-                                                   showMoreCategories
-                                                      ? "opened"
-                                                      : "closed"
-                                                }
-                                             >
-                                                <DownArrowSm />
-                                             </motion.span>
-                                          </div>
-
-                                          <AnimatePresence exitBeforeEnter>
-                                             {showMoreCategories && (
-                                                <motion.ul
-                                                   initial="initial"
-                                                   animate="animate"
-                                                   variants={
-                                                      sideBarMoreVarients
-                                                   }
-                                                   exit="exit"
-                                                   className="flex flex-col justify-center items-center"
-                                                >
-                                                   {subNavs.map(
-                                                      (
-                                                         { link, name },
-                                                         i: number
-                                                      ) => (
-                                                         <motion.li key={i}>
-                                                            <Link href={link}>
-                                                               <a className="smSubNavCtg">
-                                                                  {name}
-                                                               </a>
-                                                            </Link>
-                                                         </motion.li>
-                                                      )
-                                                   )}
-                                                </motion.ul>
-                                             )}
-                                          </AnimatePresence>
-                                       </motion.li>
-                                    )}
-                                 </>
-                              )}
-                           </div>
-                        ))}
-                        <motion.li
-                           className="flex my-3"
-                           variants={sideBarMoreVarients}
-                        >
-                           <button className="bg-lightBlue py-2 rounded-full text-white font-text font-bold  w-52 m-auto">
-                              Login
-                           </button>
-                        </motion.li>
-                     </motion.ul>
-                  )}
-               </AnimatePresence>
-            </div>
+            <SmNav
+               setShowMoreCategories={setShowMoreCategories}
+               showSmMenu={showSmMenu}
+               setShowMoreDeals={setShowMoreDeals}
+               showMoreDeals={showMoreDeals}
+            />
          </ul>
+
+         {/* Search result */}
+         <AnimatePresence>
+            {searchInput.length > 0 && (
+               <SearchResult
+                  searFilteredItems={searFilteredItems}
+                  searchInput={searchInput}
+               />
+            )}
+         </AnimatePresence>
       </nav>
    );
 };

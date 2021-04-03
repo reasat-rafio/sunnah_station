@@ -12,9 +12,23 @@ export const useFilterByInput = (products: any[], inputValue) => {
 
 export const useSearchFilter = (products: any[], inputValue) => {
    let filteredItme = products.filter(
-      ({ name, img, offer_price, regular_price, slug }) => {
+      ({
+         name,
+         image,
+         offer_price,
+         regular_price,
+         slug,
+         short_description,
+      }) => {
          if (name.toLowerCase().includes(inputValue.toLowerCase())) {
-            return { name, img, offer_price, regular_price, slug };
+            return {
+               name,
+               image,
+               offer_price,
+               regular_price,
+               slug,
+               short_description,
+            };
          }
       }
    );

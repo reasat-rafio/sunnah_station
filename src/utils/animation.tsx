@@ -6,6 +6,21 @@ export const stagger = {
    },
 };
 
+export const searchBarAnimation = {
+   initial: {
+      y: -30,
+      opacity: 0,
+   },
+   animate: {
+      y: 0,
+      opacity: 1,
+   },
+   exit: {
+      y: -30,
+      opacity: 0,
+   },
+};
+
 const easing = [0.6, -0.05, 0.01, 0.99];
 
 export const fadeIn = {

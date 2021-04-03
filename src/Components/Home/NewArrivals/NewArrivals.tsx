@@ -175,7 +175,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                               pageWidth < 720
                                  ? "top-1/2 right-5 flex-row"
                                  : "top-1/2  right-4 flex-col"
-                           } z-50  flex  gap-1`}
+                           } z-40  flex  gap-1`}
                         >
                            {pageWidth < 720 ? (
                               <SmCardActionBtns

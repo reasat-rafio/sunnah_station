@@ -24,10 +24,10 @@ export const Loading: React.FC<LoadingProps> = ({}) => {
    return (
       <div className="">
          <div
-            className={`fixed h-full w-full right-0 top-0 left-0 bottom-0  transition-all duration-300 ${
+            className={`fixed h-full w-full right-0 top-0 left-0 bottom-0  transition-all duration-300 bg-white opacity-60 ${
                isLoading ? " z-50  block " : " z-0 hidden "
             }`}
-            style={{ background: "rgba(0, 0, 0, 0.7)" }}
+            // style={{ background: "rgba(0, 0, 0, 0.7)" }}
          ></div>
 
          {isLoading && (
