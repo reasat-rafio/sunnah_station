@@ -14,6 +14,7 @@ interface SmNavProps {
    showSmMenu: any;
    setShowMoreDeals: any;
    showMoreDeals: any;
+   showMoreCategories: boolean;
 }
 
 export const SmNav: React.FC<SmNavProps> = ({
@@ -21,6 +22,7 @@ export const SmNav: React.FC<SmNavProps> = ({
    showSmMenu,
    setShowMoreDeals,
    showMoreDeals,
+   showMoreCategories,
 }) => {
    return (
       <div className=" ">
