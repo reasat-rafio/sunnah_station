@@ -197,6 +197,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                showSmMenu={showSmMenu}
                setShowMoreDeals={setShowMoreDeals}
                showMoreDeals={showMoreDeals}
+               showMoreCategories={showMoreCategories}
             />
          </div>
 
