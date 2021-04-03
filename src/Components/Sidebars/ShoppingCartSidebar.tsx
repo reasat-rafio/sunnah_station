@@ -41,8 +41,8 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
    const router = useRouter();
 
    // Item onClick Funtion
-   const ItemOnCLickAction = (id: string) => {
-      router.push(`/items/${id}`);
+   const ItemOnCLickAction = (slug: string) => {
+      router.push(`/items/${slug}`);
       domDispatch({
          type: HIDE_CART_SIDEBAR,
       });
@@ -97,9 +97,15 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
                   <div className="flex-1 border-b  ">
                      {inCartProducts && inCartProducts.length > 0 ? (
                         inCartProducts.map(
-                           ({ name, img, price, quantity, id, subtotal }, i: number) => {
+                           (
+                              { name, img, price, quantity, slug, subtotal },
+                              i: number
+                           ) => {
                               return (
-                                 <div className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer" key={i}>
+                                 <div
+                                    className=" text-sm font-title py-3 border-b hover:bg-gray-50  flex  justify-center items-center cursor-pointer"
+                                    key={i}
+                                 >
                                     <Image
                                        src={img[0].url || img}
                                        alt={name}
@@ -110,7 +116,7 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
 
                                     <div
                                        className="flex-1 "
-                                       onClick={() => ItemOnCLickAction(id)}
+                                       onClick={() => ItemOnCLickAction(slug)}
                                     >
                                        <h2 className="font-bold">{name}</h2>
                                        <div className="py-3">
