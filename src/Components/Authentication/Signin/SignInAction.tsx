@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacebookSvg, SignInSvg } from "../Register/_helper";
-import { signIn, signOut } from "next-auth/client";
+import { signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useCtx } from "../../../store";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,7 +11,6 @@ import { LoginSchema } from "../../../utils/yupSchema";
 import axios from "axios";
 import { loginUserAction } from "../../../store/actions/userAction";
 import { Notify } from "../../../utils/Toast";
-import { useSession } from "next-auth/client";
 
 interface SignInActionProps {}
 
@@ -23,6 +22,8 @@ interface onSubmitInterface {
 export const SignInAction: React.FC<SignInActionProps> = () => {
    // router
    const router = useRouter();
+
+   const [session, loading] = useSession();
 
    // store
    const { userState, userDispatch } = useCtx();
@@ -98,6 +99,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
                className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
                onClick={(e) => {
                   signIn("google");
+                  userDispatch(loginUserAction(session.user));
                }}
             >
                <Image
@@ -111,7 +113,13 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             </button>
             {/* </Link> */}
 
-            <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
+            <button
+               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold "
+               onClick={(e) => {
+                  signIn("facebook");
+                  userDispatch(loginUserAction(session.user));
+               }}
+            >
                <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
          </div>

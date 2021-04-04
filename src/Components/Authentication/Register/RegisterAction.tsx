@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacebookSvg, LoginSvg } from "./_helper";
-import { signIn, signOut } from "next-auth/client";
+import { signIn, signOut, useSession } from "next-auth/client";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { RegisterSchema } from "../../../utils/yupSchema";
@@ -12,9 +12,7 @@ import { useCtx } from "../../../store";
 import { loginUserAction } from "../../../store/actions/userAction";
 import { Notify } from "../../../utils/Toast";
 
-interface RegisterActionProps {
-   session: any;
-}
+interface RegisterActionProps {}
 
 interface onSubmitInterface {
    username: string;
@@ -23,9 +21,11 @@ interface onSubmitInterface {
    con_password: string;
 }
 
-export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
+export const RegisterAction: React.FC<RegisterActionProps> = () => {
    // router
    const router = useRouter();
+
+   const [session, loading] = useSession();
 
    // Setting up Yup as useFrom resolver
    const { handleSubmit, register, errors } = useForm({
@@ -104,6 +104,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
                className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
                onClick={(e) => {
                   signIn("google");
+                  userDispatch(loginUserAction(session.user));
                }}
             >
                <Image
@@ -117,8 +118,15 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
             </button>
             {/* </Link> */}
 
-            <button className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold ">
-               <FacebookSvg /> <span className="">Sign Up with Facebook</span>
+            <button
+               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold "
+               onClick={(e) => {
+                  signIn("google");
+                  userDispatch(loginUserAction(session.user));
+               }}
+            >
+               <FacebookSvg />
+               <span className="">Sign Up with Facebook</span>
             </button>
          </div>
 

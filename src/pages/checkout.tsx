@@ -16,7 +16,7 @@ const checkout = () => {
 
    if (!isLoggedIn) {
       Notify("info", "Please signin to access cheeckout");
-      return <Redirect to="/authentication/register" />;
+      return <Redirect to="/authentication/signin" />;
    }
    if (inCartProducts.length < 1) {
       Notify("info", "Your cart is empty");
