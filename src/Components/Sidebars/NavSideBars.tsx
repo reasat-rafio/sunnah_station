@@ -168,8 +168,10 @@ export const NavSideBars: React.FC<SideMenuBarProps> = ({}) => {
                         </div>
                      ) : (
                         <div className="sideBarMainNav flex justify-between">
-                           <Link href="/authentication/register">
-                              <a>Login / Register</a>
+                           <Link href="/authentication/signin">
+                              <a className="hover:no-underline">
+                                 Login / Register
+                              </a>
                            </Link>
                            <span className="my-auto">
                               <User />

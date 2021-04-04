@@ -10,6 +10,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useCtx } from "../../../store";
 import { loginUserAction } from "../../../store/actions/userAction";
+import { Notify } from "../../../utils/Toast";
 
 interface RegisterActionProps {
    session: any;
@@ -50,17 +51,15 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
             email,
             password,
          });
+
          userDispatch(loginUserAction(data));
          router.push("/");
-         // Notify("success", "registration done!");
       } catch (error) {
-         // Notify(
-         //    "error",
-         //    `${error.response.data.message[0].messages[0].message}`
-         // );
-         console.log(error.response.data.message);
+         Notify(
+            "error",
+            `${error.response.data.message[0].messages[0].message}`
+         );
       }
-      console.log(username, email, password, con_password);
    };
 
    // state for agring with the terms and policy
@@ -79,7 +78,10 @@ export const RegisterAction: React.FC<RegisterActionProps> = ({ session }) => {
 
    return (
       <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
-         <div className="w-20 mx-auto">
+         <div
+            className="w-20 mx-auto cursor-pointer"
+            onClick={() => router.push("/")}
+         >
             <Image
                src="https://res.cloudinary.com/dapjxqk64/image/upload/v1616298950/sunnah%20statoin/sunnah_station_rzv7ld.png"
                layout="responsive"

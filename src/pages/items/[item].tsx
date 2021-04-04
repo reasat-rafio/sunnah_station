@@ -62,6 +62,7 @@ const item: React.FC<itemProps> = ({
                      short_description,
                      description,
                      in_stock,
+                     slug,
                   }) => (
                      <React.Fragment key={id}>
                         <section className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
@@ -82,6 +83,7 @@ const item: React.FC<itemProps> = ({
                                  img={image[0].url}
                                  in_stock={in_stock}
                                  short_description={short_description}
+                                 slug={slug}
                               />
                            </div>
                         </section>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FacebookSvg, SignInSvg } from "../Register/_helper";
@@ -10,20 +10,20 @@ import { useForm } from "react-hook-form";
 import { LoginSchema } from "../../../utils/yupSchema";
 import axios from "axios";
 import { loginUserAction } from "../../../store/actions/userAction";
+import { Notify } from "../../../utils/Toast";
+import { useSession } from "next-auth/client";
 
-interface SignInActionProps {
-   session: any;
-}
+interface SignInActionProps {}
 
 interface onSubmitInterface {
    identifier: string;
    password: string;
 }
 
-export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
+export const SignInAction: React.FC<SignInActionProps> = () => {
    // router
-
    const router = useRouter();
+
    // store
    const { userState, userDispatch } = useCtx();
 
@@ -34,6 +34,20 @@ export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
    });
 
    const URL = `${process.env.NEXT_PUBLIC_API_URL}/auth/local`;
+
+   // state for agring with the terms and policy
+   const [agree, setAgree] = useState<boolean>(false);
+
+   // this will change the button Disable for signup
+   const buttonRef = useRef<HTMLButtonElement>(null);
+
+   useEffect(() => {
+      if (agree) {
+         buttonRef.current.disabled = false;
+      } else {
+         buttonRef.current.disabled = true;
+      }
+   }, [agree]);
 
    // form on submit
    const onSubmitAction = async ({
@@ -46,18 +60,15 @@ export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
             password,
          });
 
-         // Setting the jwt to cookies
-         // setCookie("userjwt", data.jwt, { path: "/" });
-         //  User Global Dispatch
+         Notify("success", `Welcome back ${data.user.username} 😀`);
+
          userDispatch(loginUserAction(data));
-         // toast
-         // Notify("success", `welcome back ${data.user.username}  !`);
+         router.push("/");
       } catch (error) {
-         // Notify(
-         //    "error",
-         //    `${error.response.data.message[0].messages[0].message}`
-         // );
-         console.log(error.response.data.message);
+         Notify(
+            "error",
+            `${error.response.data.message[0].messages[0].message}`
+         );
       }
    };
 
@@ -175,8 +186,11 @@ export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
             </div>
 
             <button
+               ref={buttonRef}
                type="submit"
-               className="bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2"
+               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2  ${
+                  !agree && "cursor-not-allowed"
+               }`}
             >
                <SignInSvg /> <span> Sign in</span>
             </button>
@@ -188,6 +202,7 @@ export const SignInAction: React.FC<SignInActionProps> = ({ session }) => {
                name="name-terms-and-privacy"
                id=""
                className="rounded"
+               onChange={() => setAgree((prev) => !prev)}
             />
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}

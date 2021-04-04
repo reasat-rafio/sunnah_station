@@ -55,8 +55,6 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
    const [searFilteredItems, setSearchFilterItems] = useState<any>([]);
    const [searchInput, setSearchInput] = useState<string>("");
 
-   console.log("searchInput", searchInput);
-
    const searchInputOnChangeAction = (e) => {
       setSearchInput(e.target.value);
       const all_products = products.map(

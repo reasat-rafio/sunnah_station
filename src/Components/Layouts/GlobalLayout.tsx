@@ -17,13 +17,13 @@ export const GlobalLayout: React.FC<GlobalLayoutsProps> = ({ children }) => {
 
    const { userDispatch } = useCtx();
 
-   useEffect(() => {
-      if (session) {
-         userDispatch(loginUserAction(session.user));
-      } else {
-         userDispatch(logOutAaction());
-      }
-   }, [session]);
+   // useEffect(() => {
+   //    if (session) {
+   //       userDispatch(loginUserAction(session.user));
+   //    } else {
+   //       userDispatch(logOutAaction());
+   //    }
+   // }, [session]);
 
    const {
       domDispatch,

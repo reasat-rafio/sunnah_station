@@ -20,6 +20,7 @@ interface CardProps {
    img: any;
    in_stock: boolean;
    short_description: string;
+   slug: string;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -57,6 +58,7 @@ export const Card: React.FC<CardProps> = ({
    id,
    img,
    in_stock,
+   slug,
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
@@ -114,13 +116,14 @@ export const Card: React.FC<CardProps> = ({
    } = useCtx();
 
    // Adding product to the cart
-   const addToTheCartAction = (name, price, quantity, id, img) => {
+   const addToTheCartAction = (name, price, quantity, id, img, slug) => {
       const item = {
          name,
          price,
          quantity,
          id,
          img,
+         slug,
          subtotal: parseInt(price.replace(/,/g, ""), 10),
       };
 
@@ -130,6 +133,7 @@ export const Card: React.FC<CardProps> = ({
          quantity,
          id,
          img,
+         slug,
          subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
       };
 
@@ -249,7 +253,8 @@ export const Card: React.FC<CardProps> = ({
                              offer_price,
                              productQuantity,
                              id,
-                             img
+                             img,
+                             slug
                           )
                         : // If no offer avilable
                           addToTheCartAction(
@@ -257,7 +262,8 @@ export const Card: React.FC<CardProps> = ({
                              regular_price,
                              productQuantity,
                              id,
-                             img
+                             img,
+                             slug
                           );
                   }}
                >

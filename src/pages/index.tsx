@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useCtx } from "../store";
 import { getAllTheProducts } from "../store/actions/ProductsAction";
 import { Seo } from "../Components/SEO/SEO";
+import { useSession } from "next-auth/client";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
    const { productsDispatch } = useCtx();

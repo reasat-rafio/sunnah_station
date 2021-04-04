@@ -4,14 +4,12 @@ import { createContext } from "react";
 
 import { GlobalState } from "../store";
 import { GlobalLayout } from "../Components/Layouts/GlobalLayout";
-import { Provider } from "next-auth/client";
+import { Provider, getSession } from "next-auth/client";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
 
 function MyApp({ Component, pageProps }) {
-   // const { global } = pageProps;
-
    return (
       <>
          <Head>
@@ -40,8 +38,6 @@ function MyApp({ Component, pageProps }) {
                </GlobalLayout>
             </GlobalState>
          </Provider>
-
-         {/* </GlobalContext.Provider> */}
       </>
    );
 }

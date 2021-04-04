@@ -1,9 +1,8 @@
 import { useContext, createContext, useReducer, useEffect } from "react";
 import { cartReducer, initialCartState } from "./reducers/cartReducer";
-
 import { domReducer, initialDomState } from "./reducers/domReducer";
 import { initialProductState, productReducer } from "./reducers/productReducer";
-import { initialUserState, userReducer } from "./reducers/userState";
+import { initialUserState, userReducer } from "./reducers/userReducer";
 
 const Store = createContext<any>(null);
 
@@ -25,14 +24,14 @@ export const GlobalState: React.FC<StoreProps> = ({ children }) => {
       initialUserState,
       () => {
          if (typeof window !== "undefined") {
-            const localData = localStorage.getItem("sunnahStationuserState");
+            const localData = localStorage.getItem("sunnahStationUserState");
             return localData ? JSON.parse(localData) : initialUserState;
          }
          return initialUserState;
       }
    );
    useEffect(() => {
-      localStorage.setItem("sunnahStationuserState", JSON.stringify(userState));
+      localStorage.setItem("sunnahStationUserState", JSON.stringify(userState));
    }, [userState]);
 
    // CART STATE

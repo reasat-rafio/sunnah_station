@@ -17,6 +17,7 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
       cartDispatch,
       cartState: { inCartProducts },
    } = useCtx();
+   console.log("inCartProducts", inCartProducts);
 
    return (
       <div className="col-span-12 lg:col-span-8 flex flex-col">
@@ -73,7 +74,7 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
                                     <div className="flex-shrink-0 h-10 w-10">
                                        <Image
                                           className="h-10 w-10 rounded-full"
-                                          src={img[0].url}
+                                          src={img[0].url || img}
                                           alt={name}
                                           layout="responsive"
                                           height="1"
@@ -152,5 +153,6 @@ export const CartProductList: React.FC<CartProductListProps> = ({}) => {
             </div>
          </div>
       </div>
+      // <div>asdasd</div>
    );
 };
