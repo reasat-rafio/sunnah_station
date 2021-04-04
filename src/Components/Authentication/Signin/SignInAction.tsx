@@ -122,6 +122,8 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             >
                <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
+            {session.user && <div>{session.user.name}</div>}
+            <div></div>
          </div>
 
          <div className="divide-solid flex justify-center items-center gap-2 my-12">

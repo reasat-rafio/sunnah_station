@@ -83,13 +83,38 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
             orderedProducts: inCartProducts,
          });
          console.log(orderInfo);
-         // const {
-         //    data,
-         // } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/confirm-order`, {
-         //    inCartProducts,
-         // });
+         const {
+            additional_info,
+            email_address,
+            first_name,
+            last_name,
+            phone,
+            street_address,
+            town_city,
+         } = orderInfo;
 
-         cartDispatch(resetCart());
+         const { data } = await axios.post(
+            `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+            {
+               name: `${first_name} ${last_name}`,
+               email_address,
+               phone_number: phone,
+               district: orderInfo.district,
+               street_address,
+               town_city,
+               total:
+                  orderInfo.district == "Dhaka"
+                     ? subTotal + 60
+                     : subTotal + 100,
+               additional_info,
+               ordered_products: inCartProducts,
+               peyment_methord: "",
+               transaction_id: "",
+            }
+         );
+         console.log(data);
+
+         // cartDispatch(resetCart());
       }
    };
 
