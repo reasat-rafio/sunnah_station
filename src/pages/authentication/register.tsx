@@ -13,7 +13,7 @@ const register = ({ session }) => {
             animate={{ x: 0 }}
             className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
          >
-            <RegisterAction session={session} />
+            <RegisterAction />
             <RegisterSvg />
          </motion.div>
       </div>
