@@ -86,7 +86,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
                />
             </div>
          </Link>
-
+         {session && <div>{session.user.name}</div>}
          <h2 className="text-center text-smTitle md:text-3xl font-bold font-title py-5">
             Sign In To Sunnah Station
          </h2>
@@ -122,8 +122,6 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             >
                <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
-            {session && <div>{session.user.name}</div>}
-            <div></div>
          </div>
 
          <div className="divide-solid flex justify-center items-center gap-2 my-12">
