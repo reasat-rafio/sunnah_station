@@ -122,7 +122,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             >
                <FacebookSvg /> <span className="">Sign In with Facebook</span>
             </button>
-            {session.user && <div>{session.user.name}</div>}
+            {session && <div>{session.user.name}</div>}
             <div></div>
          </div>
 
