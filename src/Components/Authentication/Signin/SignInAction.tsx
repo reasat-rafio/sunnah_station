@@ -73,6 +73,12 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
       }
    };
 
+   useEffect(() => {
+      if (session) {
+         userDispatch(loginUserAction(session.user));
+      }
+   }, [session]);
+
    return (
       <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
          <Link href="/">
@@ -99,7 +105,6 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
                className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
                onClick={(e) => {
                   signIn("google");
-                  userDispatch(loginUserAction(session.user));
                }}
             >
                <Image
@@ -117,7 +122,6 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
                className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold "
                onClick={(e) => {
                   signIn("facebook");
-                  userDispatch(loginUserAction(session.user));
                }}
             >
                <FacebookSvg /> <span className="">Sign In with Facebook</span>

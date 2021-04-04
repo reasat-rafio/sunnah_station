@@ -168,7 +168,7 @@ export const NavSideBars: React.FC<SideMenuBarProps> = ({}) => {
                         </div>
                      ) : (
                         <div
-                           className=" flex justify-between"
+                           className="sideBarMainNav flex justify-between"
                            onClick={navAction}
                         >
                            <Link href="/authentication/signin">
