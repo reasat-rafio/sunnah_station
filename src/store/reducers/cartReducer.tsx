@@ -5,6 +5,7 @@ import {
    ADD_ITEM,
    REMOVE_ITEM,
    MINUS_QUANTITY,
+   CONFIRM_ORDER,
 } from "../types";
 
 type Action = {
@@ -79,6 +80,13 @@ export const cartReducer = (state: any, action: Action) => {
                ...state.inCartProducts.filter((f) => f.id !== action.payload),
             ],
          };
+
+      case CONFIRM_ORDER:
+         return {
+            ...state,
+            inCartProducts: [],
+         };
+
       default:
          state;
    }

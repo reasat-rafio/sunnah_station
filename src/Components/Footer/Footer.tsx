@@ -54,20 +54,18 @@ export const Footer = () => {
                      </p>
                      <ul className="mt-2 space-y-2">
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              FAQ
-                           </a>
+                           <Link href="/faq">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 FAQ
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Creating Account
-                           </a>
+                           <Link href="/authentication/register">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Creating Account
+                              </a>
+                           </Link>
                         </li>
                         <li>
                            <a
@@ -101,12 +99,11 @@ export const Footer = () => {
                            </a>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Order List
-                           </a>
+                           <Link href="/cart">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Order List
+                              </a>
+                           </Link>
                         </li>
                         <li>
                            <a
@@ -132,36 +129,32 @@ export const Footer = () => {
                      </p>
                      <ul className="mt-2 space-y-2">
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Create an Account
-                           </a>
+                           <Link href="/authentication/register">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Create an Account
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              New Arrivals
-                           </a>
+                           <Link href="/new-arrivals">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 New Arrivals
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Best Selling
-                           </a>
+                           <Link href="/best-sellings">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Best Sellings
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Hot Deals
-                           </a>
+                           <Link href="/special-deals">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Special Deals
+                              </a>
+                           </Link>
                         </li>
                      </ul>
                   </div>

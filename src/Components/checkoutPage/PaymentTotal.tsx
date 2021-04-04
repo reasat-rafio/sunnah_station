@@ -1,9 +1,12 @@
+import axios from "axios";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useCtx } from "../../store";
+import { resetCart } from "../../store/actions/CartAction";
 import { ChangeAddressVariants } from "../../utils/animation";
 import { useFilterByInput } from "../../utils/hooks/useFilterByInput";
 import { DownArrowSm, Search, UpArrowSm } from "../../utils/svgs/Svg";
+import { Notify } from "../../utils/Toast";
 import { Country, subDistrict } from "../CartPage/CartTotal/_Data";
 
 interface CartTotalProps {
@@ -19,9 +22,12 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
    setOrderInfo,
    orderInfo,
 }) => {
+   console.log(orderInfo);
+
    //   GLOBAL STORE
    const {
       cartState: { inCartProducts },
+      cartDispatch,
       cartState,
    } = useCtx();
 
@@ -51,12 +57,12 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
    const [filtredCountry, setFiltedCountry] = useState(Country);
 
    // FILTERING DISTRICT STATE
-   const [district, setDistrict] = useState<string>("Dhaka");
+   const [district, setDistrict] = useState<string>(orderInfo.district);
    const [allDistricts, setAllDistricts] = useState(subDistrict);
    const [filtredDistrict, setFiltredDistrict] = useState(subDistrict);
 
    // CITY AND ZIP STATE
-   const [townOrCity, setTownORCity] = useState<string>("");
+   const [townOrCity, setTownORCity] = useState<string>(orderInfo.town_city);
    const [zip, setZip] = useState<string>("");
 
    // SETTING THE INPUT STATE ACTION
@@ -66,13 +72,25 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
    };
 
    //    confirm order onclick action
-   const confirmOrderAction = () => {
-      setOrderPaymentStepComplete(true);
-      setOrderInfo({
-         ...orderInfo,
-         total: district == "Dhaka" ? subTotal + 60 : subTotal + 100,
-         orderedProducts: inCartProducts,
-      });
+   const confirmOrderAction = async () => {
+      if (inCartProducts.length < 1) {
+         Notify("info", "Your cart is empty");
+      } else {
+         setOrderPaymentStepComplete(true);
+         setOrderInfo({
+            ...orderInfo,
+            total: district == "Dhaka" ? subTotal + 60 : subTotal + 100,
+            orderedProducts: inCartProducts,
+         });
+         console.log(orderInfo);
+         // const {
+         //    data,
+         // } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/confirm-order`, {
+         //    inCartProducts,
+         // });
+
+         cartDispatch(resetCart());
+      }
    };
 
    //  Input onChange Action

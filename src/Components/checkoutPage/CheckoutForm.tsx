@@ -6,8 +6,10 @@ import { useState } from "react";
 import { subDistrict } from "../CartPage/CartTotal/_Data";
 import { useFilterByInput } from "../../utils/hooks/useFilterByInput";
 import { UpArrowSm, DownArrowSm, Search } from "../../utils/svgs/Svg";
+import { useCtx } from "../../store";
 
 interface CheckoutFormProps {
+   orderInfo: any;
    setAdressStepComplete: any;
    setOrderInfo: any;
 }
@@ -15,6 +17,7 @@ interface CheckoutFormProps {
 export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    setAdressStepComplete,
    setOrderInfo,
+   orderInfo,
 }) => {
    // Setting up Yup as useFrom resolver
    const { handleSubmit, register, errors } = useForm({
@@ -38,7 +41,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    //  Input onChange Action
    const onChangeAction = (value, setState, state) => {
       const { filteredItme } = useFilterByInput(state, value);
-
       setState(filteredItme);
    };
 
@@ -49,7 +51,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    };
 
    return (
-      <section className="w-full">
+      <div className="w-full">
          <form
             className="flex gap-3 font-nav container mx-auto text-sm flex-col px-3 lg:px-0"
             onSubmit={handleSubmit(onSubmitAction)}
@@ -285,6 +287,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                </span>
             </div>
          </form>
-      </section>
+      </div>
    );
 };

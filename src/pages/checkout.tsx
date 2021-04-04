@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import { CheckoutForm } from "../Components/checkoutPage/CheckoutForm";
+import { OrederConfirmed } from "../Components/checkoutPage/OrederConfirmed";
 import { PaymentCheckout } from "../Components/checkoutPage/PaymentCheckout";
 import { StepBar } from "../Components/checkoutPage/StepBar";
 import { InitialLayout } from "../Components/Layouts/InitialLayout";
@@ -18,10 +19,10 @@ const checkout = () => {
       Notify("info", "Please signin to access cheeckout");
       return <Redirect to="/authentication/signin" />;
    }
-   if (inCartProducts.length < 1) {
-      Notify("info", "Your cart is empty");
-      return <Redirect to="/shop" />;
-   }
+   // if (inCartProducts.length < 1) {
+
+   //    return <Redirect to="/shop" />;
+   // }
 
    const [adressStepComplete, setAdressStepComplete] = useState<boolean>(false);
    const [
@@ -37,13 +38,14 @@ const checkout = () => {
             <title>Checkout | Sunnah Station</title>
          </Head>
 
-         <div className="pt-16 md:pt-32">
+         <section className="pt-16 md:pt-32">
             <StepBar
                adressStepComplete={adressStepComplete}
                orderPaymentStepComplete={orderPaymentStepComplete}
             />
             {!adressStepComplete && !orderPaymentStepComplete && (
                <CheckoutForm
+                  orderInfo={orderInfo}
                   setAdressStepComplete={setAdressStepComplete}
                   setOrderInfo={setOrderInfo}
                />
@@ -56,7 +58,11 @@ const checkout = () => {
                   setOrderPaymentStepComplete={setOrderPaymentStepComplete}
                />
             )}
-         </div>
+
+            {adressStepComplete && orderPaymentStepComplete && (
+               <OrederConfirmed />
+            )}
+         </section>
       </InitialLayout>
    );
 };

@@ -18,10 +18,6 @@ export const navs = [
             name: "Flash Deals",
             link: "/speal-deals",
          },
-         {
-            name: "undefind",
-            link: "/",
-         },
       ],
    },
    {
@@ -29,23 +25,23 @@ export const navs = [
       subNavs: [
          {
             name: "Food",
-            link: "#",
+            link: "/shop/food",
          },
          {
             name: "Men wearing",
-            link: "#",
+            link: "/shop/mens-wearings",
          },
          {
             name: "Womens wearing",
-            link: "#",
+            link: "/shop/womens-wearings",
          },
          {
             name: "Art and aesthetic",
-            link: "#",
+            link: "/shop/art-aesthetic",
          },
          {
             name: "others",
-            link: "#",
+            link: "/shop/others",
          },
       ],
    },

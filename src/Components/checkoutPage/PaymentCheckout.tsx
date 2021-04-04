@@ -19,7 +19,7 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
       cartState: { inCartProducts },
    } = useCtx();
    return (
-      <section className="w-full">
+      <div className="w-full">
          <div className="container mx-auto">
             {/* product table */}
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
@@ -38,6 +38,6 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
                )}
             </div>
          </div>
-      </section>
+      </div>
    );
 };

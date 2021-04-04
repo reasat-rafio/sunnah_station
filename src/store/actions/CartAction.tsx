@@ -5,6 +5,7 @@ import {
    ADD_ITEM,
    REMOVE_ITEM,
    MINUS_QUANTITY,
+   CONFIRM_ORDER,
 } from "../types";
 
 export const addToTheCart = (item) => {
@@ -46,5 +47,11 @@ export const removeFromCart = (id) => {
    return {
       type: REMOVE_ITEM,
       payload: id,
+   };
+};
+
+export const resetCart = () => {
+   return {
+      type: CONFIRM_ORDER,
    };
 };
