@@ -29,7 +29,11 @@ export const Checkoutschema = yup.object().shape({
    last_name: yup.string().required("Please fill out this field"),
    street_address: yup.string().required("Please fill out this field"),
    town_city: yup.string().required("Please fill out this field"),
-   phone: yup.string().required("Please fill out this field"),
+   phone: yup
+      .string()
+      .trim()
+      .matches(/^(?:\+88|88)?(01[3-9]\d{8})$/, "invalid phone number")
+      .required("Please fill out this field"),
    email_address: yup
       .string()
       .email("Invalid email address")

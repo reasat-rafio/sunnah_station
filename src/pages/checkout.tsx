@@ -30,7 +30,6 @@ const checkout = () => {
       setOrderPaymentStepComplete,
    ] = useState<boolean>(false);
    const [orderInfo, setOrderInfo] = useState({});
-   console.log(orderInfo);
 
    return (
       <InitialLayout>

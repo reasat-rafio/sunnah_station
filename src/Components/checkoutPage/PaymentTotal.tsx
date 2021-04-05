@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useCtx } from "../../store";
 import { resetCart } from "../../store/actions/CartAction";
+import { loadingEnd, loadingstart } from "../../store/actions/domAction";
 import { ChangeAddressVariants } from "../../utils/animation";
 import { useFilterByInput } from "../../utils/hooks/useFilterByInput";
 import { DownArrowSm, Search, UpArrowSm } from "../../utils/svgs/Svg";
@@ -28,6 +29,7 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
    const {
       cartState: { inCartProducts },
       cartDispatch,
+      domDispatch,
       cartState,
    } = useCtx();
 
@@ -57,13 +59,18 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
    const [filtredCountry, setFiltedCountry] = useState(Country);
 
    // FILTERING DISTRICT STATE
-   const [district, setDistrict] = useState<string>(orderInfo.district);
+   const [district, setDistrict] = useState<string>(() => orderInfo.district);
    const [allDistricts, setAllDistricts] = useState(subDistrict);
    const [filtredDistrict, setFiltredDistrict] = useState(subDistrict);
+   console.log(filtredDistrict);
 
    // CITY AND ZIP STATE
    const [townOrCity, setTownORCity] = useState<string>(orderInfo.town_city);
    const [zip, setZip] = useState<string>("");
+
+   useEffect(() => {
+      setDistrict(orderInfo.district);
+   }, []);
 
    // SETTING THE INPUT STATE ACTION
    const stateAction = (value: string, setState: any, hideState: any) => {
@@ -76,13 +83,14 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
       if (inCartProducts.length < 1) {
          Notify("info", "Your cart is empty");
       } else {
+         domDispatch(loadingstart());
          setOrderPaymentStepComplete(true);
          setOrderInfo({
             ...orderInfo,
             total: district == "Dhaka" ? subTotal + 60 : subTotal + 100,
             orderedProducts: inCartProducts,
          });
-         console.log(orderInfo);
+
          const {
             additional_info,
             email_address,
@@ -102,19 +110,23 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
                district: orderInfo.district,
                street_address,
                town_city,
-               total:
+               total_price:
                   orderInfo.district == "Dhaka"
                      ? subTotal + 60
                      : subTotal + 100,
                additional_info,
-               ordered_products: inCartProducts,
+               ordered_products: inCartProducts.map(
+                  ({ name, price, quantity, id, subtotal }) => [
+                     { name, price, quantity, id, subtotal },
+                  ]
+               ),
                peyment_methord: "",
                transaction_id: "",
             }
          );
          console.log(data);
-
-         // cartDispatch(resetCart());
+         cartDispatch(resetCart());
+         domDispatch(loadingEnd());
       }
    };
 
@@ -211,13 +223,13 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
                                  {filtredCountry.map((p, i) => (
                                     <li
                                        key={i}
-                                       onClick={() =>
+                                       onClick={() => {
                                           stateAction(
                                              p,
                                              setCountry,
                                              setShowMoreCountry
-                                          )
-                                       }
+                                          );
+                                       }}
                                        className=" p-3 cursor-pointer hover:bg-lightBlue hover:text-white hover:font-semibold"
                                     >
                                        {p}
@@ -253,13 +265,14 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
                                     <input
                                        type="text"
                                        className="flex-1 bg-transparent outline-none p-2"
-                                       onChange={(e) =>
+                                       onChange={(e) => {
                                           onChangeAction(
                                              e.target.value,
                                              setFiltredDistrict,
                                              allDistricts
-                                          )
-                                       }
+                                          );
+                                          setDistrict(e.target.value);
+                                       }}
                                     />
                                     <button className="bg-transparent px-3">
                                        <Search />
@@ -321,13 +334,13 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
                </div>
                <div className="grid grid-cols-12 gap-2 justify-center items-center">
                   <button
-                     className=" col-span-12 md:col-span-6 bg-gray-800 p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3"
+                     className=" col-span-12 xl:col-span-6 bg-gray-800 p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3"
                      onClick={() => setAdressStepComplete(false)}
                   >
                      PREVIOUS
                   </button>
                   <button
-                     className="col-span-12 md:col-span-6  bg-nevyBlue p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3"
+                     className="col-span-12 xl:col-span-6  bg-nevyBlue p-2 rounded-lg text-sm font-semibold text-white shadow-sm mt-3"
                      onClick={confirmOrderAction}
                   >
                      CONFIRM ORDER
