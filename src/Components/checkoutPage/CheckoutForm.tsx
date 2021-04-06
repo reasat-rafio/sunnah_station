@@ -51,9 +51,9 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    };
 
    return (
-      <div className="w-full">
+      <div className="w-full ">
          <form
-            className="flex gap-3 font-nav container mx-auto text-sm flex-col px-3 lg:px-0"
+            className="flex gap-3 font-nav container text-sm flex-col px-3 lg:px-40 mx-auto "
             onSubmit={handleSubmit(onSubmitAction)}
          >
             {/* First name && last name */}

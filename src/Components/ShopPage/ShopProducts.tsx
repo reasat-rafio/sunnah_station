@@ -162,7 +162,7 @@ export const ShopProducts: React.FC<ShopProductsProps> = ({
                   return a.highlight === b.highlight ? 0 : a.highlight ? -1 : 1;
                }
                if (selectedFilter === "Sort by latest") {
-                  return a.createdAt > b.createdAt ? 1 : -1;
+                  return a.createdAt > b.createdAt ? -1 : 1;
                }
                if (selectedFilter === "Sort by Price: low to high") {
                   if (a.offer_price && b.offer_price) {

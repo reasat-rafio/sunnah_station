@@ -23,20 +23,20 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
          <div className="container mx-auto">
             {/* product table */}
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
-               <div className="col-span-12 lg:col-span-8 flex flex-col">
+               <div className="col-span-12 flex flex-col">
                   {inCartProducts && inCartProducts.length > 0 && (
                      <>
-                        <ProductCheckoutList />
+                        <ProductCheckoutList orderInfo={orderInfo} />
                      </>
                   )}
                </div>
 
-               <PaymentTotal
+               {/* <PaymentTotal
                   setOrderPaymentStepComplete={setOrderPaymentStepComplete}
                   setOrderInfo={setOrderInfo}
                   orderInfo={orderInfo}
                   setAdressStepComplete={setAdressStepComplete}
-               />
+               /> */}
             </div>
          </div>
       </div>

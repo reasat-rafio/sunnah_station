@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import TextTruncate from "react-text-truncate";
 import { useCtx } from "../../store";
 import {
@@ -8,18 +9,38 @@ import {
 } from "../../store/actions/CartAction";
 import { MdCross } from "../../utils/svgs/Svg";
 
-interface CartProductListProps {}
+interface CartProductListProps {
+   orderInfo: any;
+}
 
-export const ProductCheckoutList: React.FC<CartProductListProps> = ({}) => {
+export const ProductCheckoutList: React.FC<CartProductListProps> = ({
+   orderInfo,
+}) => {
    const {
       cartDispatch,
+      cartState,
       cartState: { inCartProducts },
    } = useCtx();
 
+   const [___subTotal, setSubTotal] = useState<number>(0);
+
+   //  doing the sum of the items price
+   useEffect(() => {
+      if (inCartProducts && inCartProducts.length > 0) {
+         const _subtotal = inCartProducts.reduce(
+            (result: number, { subtotal }) => result + subtotal,
+            0
+         );
+         setSubTotal(_subtotal);
+      } else {
+         setSubTotal(0);
+      }
+   }, [cartState]);
+
    return (
       <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table className="divide-y divide-gray-200 table-fixed">
+         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg flex  justify-center items-center">
+            <table className="divide-y divide-gray-200 table-fixed w-full">
                <thead className="bg-gray-50">
                   <tr>
                      <th
@@ -132,6 +153,28 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({}) => {
                </tbody>
             </table>
          </div>
+         <ul className="flex flex-col">
+            <li className="flex">
+               <p className="flex-1">Subtotal</p>
+               <p>{___subTotal}</p>
+            </li>
+            <li className="flex">
+               <p className="flex-1">Shipping</p>
+               <p>{orderInfo.district == "Dhaka" ? 60 : 100}</p>
+            </li>
+            <li className="flex">
+               <p className="flex-1">bKash Cashout Charges</p>
+               <p>00 (Free)</p>
+            </li>
+            <li className="flex">
+               <p className="flex-1">Total</p>
+               <p>
+                  {orderInfo.district == "Dhaka"
+                     ? ___subTotal + 60
+                     : ___subTotal + 100}
+               </p>
+            </li>
+         </ul>
       </div>
    );
 };

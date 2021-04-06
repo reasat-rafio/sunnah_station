@@ -24,7 +24,7 @@ const checkout = () => {
    //    return <Redirect to="/shop" />;
    // }
 
-   const [adressStepComplete, setAdressStepComplete] = useState<boolean>(false);
+   const [adressStepComplete, setAdressStepComplete] = useState<boolean>(true);
    const [
       orderPaymentStepComplete,
       setOrderPaymentStepComplete,

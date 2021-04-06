@@ -1,4 +1,4 @@
 const FAQ = () => {
-   return <div>Faq</div>;
+   return <div>test</div>;
 };
 export default FAQ;
