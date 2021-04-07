@@ -24,11 +24,9 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
             {/* product table */}
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
                <div className="col-span-12 flex flex-col">
-                  {inCartProducts && inCartProducts.length > 0 && (
-                     <>
-                        <ProductCheckoutList orderInfo={orderInfo} />
-                     </>
-                  )}
+                  <>
+                     <ProductCheckoutList orderInfo={orderInfo} />
+                  </>
                </div>
 
                {/* <PaymentTotal

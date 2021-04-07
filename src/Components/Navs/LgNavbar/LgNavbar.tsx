@@ -141,7 +141,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                                  initial="initial"
                                  exit="exit"
                                  animate="animate"
-                                 className={`outline-none bg-transparent`}
+                                 className={`outline-none bg-transparent focus:outline-none border-none`}
                                  type="text"
                                  placeholder="What are you looking for?"
                                  onChange={(e) => searchInputOnChangeAction(e)}

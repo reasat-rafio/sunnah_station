@@ -124,7 +124,7 @@ export const PaymentTotal: React.FC<CartTotalProps> = ({
                transaction_id: "",
             }
          );
-         console.log(data);
+
          cartDispatch(resetCart());
          domDispatch(loadingEnd());
       }

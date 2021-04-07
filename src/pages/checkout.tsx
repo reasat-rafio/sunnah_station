@@ -19,12 +19,8 @@ const checkout = () => {
       Notify("info", "Please signin to access cheeckout");
       return <Redirect to="/authentication/signin" />;
    }
-   // if (inCartProducts.length < 1) {
 
-   //    return <Redirect to="/shop" />;
-   // }
-
-   const [adressStepComplete, setAdressStepComplete] = useState<boolean>(true);
+   const [adressStepComplete, setAdressStepComplete] = useState<boolean>(false);
    const [
       orderPaymentStepComplete,
       setOrderPaymentStepComplete,

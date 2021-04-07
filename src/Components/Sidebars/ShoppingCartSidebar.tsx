@@ -21,6 +21,7 @@ export const ShoppingCartSideBar: React.FC<ShoppingCartSideBarProps> = ({}) => {
       cartState: { inCartProducts },
       cartState,
    } = useCtx();
+   console.log(inCartProducts);
 
    // items subtotal
    const [subTotal, setSubTotal] = useState<number>(0);

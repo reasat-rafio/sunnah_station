@@ -97,13 +97,14 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
    const [productQuantity, setProductQuantity] = useState<number>(1);
 
    // Adding product to the cart
-   const addToTheCartAction = (name, price, quantity, id, img) => {
+   const addToTheCartAction = (name, price, quantity, id, img, slug) => {
       const item = {
          name,
          price,
          quantity,
          id,
          img,
+         slug,
          subtotal: parseInt(price.replace(/,/g, ""), 10),
       };
 
@@ -113,6 +114,7 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
          quantity,
          id,
          img,
+         slug,
          subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
       };
 
@@ -148,20 +150,6 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                <Swiper
                   className="my-1 "
                   slidesPerView={cardsPerView}
-                  // breakpoints={{
-                  //    0: {
-                  //       width: 0,
-                  //       slidesPerView: 2,
-                  //    },
-                  //    720: {
-                  //       width: 720,
-                  //       slidesPerView: 4,
-                  //    },
-                  //    1200: {
-                  //       width: 1200,
-                  //       slidesPerView: 5,
-                  //    },
-                  // }}
                   autoplay={{
                      disableOnInteraction: false,
                   }}

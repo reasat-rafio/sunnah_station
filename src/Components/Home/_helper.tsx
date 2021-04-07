@@ -106,7 +106,8 @@ export const LgCardActionBtns = ({
                        offer_price,
                        productQuantity,
                        id,
-                       image
+                       image,
+                       slug
                     )
                   : // If no offer avilable
                     addToTheCartAction(
@@ -114,7 +115,8 @@ export const LgCardActionBtns = ({
                        regular_price,
                        productQuantity,
                        id,
-                       image
+                       image,
+                       slug
                     );
             }}
          >
@@ -182,7 +184,8 @@ export const SmCardActionBtns = ({
                        offer_price,
                        productQuantity,
                        id,
-                       image
+                       image,
+                       slug
                     )
                   : // If no offer avilable
                     addToTheCartAction(
@@ -190,7 +193,8 @@ export const SmCardActionBtns = ({
                        regular_price,
                        productQuantity,
                        id,
-                       image
+                       image,
+                       slug
                     );
             }}
          >
