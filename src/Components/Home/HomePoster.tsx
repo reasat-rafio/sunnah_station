@@ -21,9 +21,10 @@ SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 
 export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
    return (
-      <section className="container mx-auto  px-2">
-         <div className="lg:min-h-screen h-auto pt-32 md:pt-64">
+      <section className="pt-36 md:pt-0">
+         <div className="h-5/6 ">
             <Swiper
+               className=""
                effect="fade"
                navigation
                autoplay={{ disableOnInteraction: false }}
@@ -32,7 +33,7 @@ export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
                {coverImg.map(({ _id, url }: singleImg) => (
                   <SwiperSlide key={_id}>
                      <Image
-                        className="rounded-3xl "
+                        // className="rounded-3xl "
                         src={url}
                         height="3"
                         width="6"
