@@ -6,6 +6,7 @@ import { PaymentCheckout } from "../Components/checkoutPage/PaymentCheckout";
 import { StepBar } from "../Components/checkoutPage/StepBar";
 import { InitialLayout } from "../Components/Layouts/InitialLayout";
 import { useCtx } from "../store";
+import { CheckOutPageSvg } from "../utils/svgs/CheckOutPageSvg";
 import { Notify } from "../utils/Toast";
 import { Redirect } from "../utils/_components/Redirect";
 
@@ -26,6 +27,7 @@ const checkout = () => {
       setOrderPaymentStepComplete,
    ] = useState<boolean>(false);
    const [orderInfo, setOrderInfo] = useState({});
+   const [orderConfrimComplete, setOrderConfirmComplete] = useState<any>({});
 
    return (
       <InitialLayout>
@@ -35,28 +37,33 @@ const checkout = () => {
 
          <section className="pt-16 md:pt-32">
             <StepBar
+               setAdressStepComplete={setAdressStepComplete}
+               setOrderPaymentStepComplete={setOrderPaymentStepComplete}
                adressStepComplete={adressStepComplete}
                orderPaymentStepComplete={orderPaymentStepComplete}
             />
-            {!adressStepComplete && !orderPaymentStepComplete && (
-               <CheckoutForm
-                  orderInfo={orderInfo}
-                  setAdressStepComplete={setAdressStepComplete}
-                  setOrderInfo={setOrderInfo}
-               />
-            )}
-            {adressStepComplete && !orderPaymentStepComplete && (
-               <PaymentCheckout
-                  orderInfo={orderInfo}
-                  setOrderInfo={setOrderInfo}
-                  setAdressStepComplete={setAdressStepComplete}
-                  setOrderPaymentStepComplete={setOrderPaymentStepComplete}
-               />
-            )}
-
-            {adressStepComplete && orderPaymentStepComplete && (
-               <OrederConfirmed />
-            )}
+            <div>
+               {!adressStepComplete && !orderPaymentStepComplete && (
+                  <CheckoutForm
+                     orderInfo={orderInfo}
+                     setAdressStepComplete={setAdressStepComplete}
+                     setOrderInfo={setOrderInfo}
+                  />
+               )}
+               {adressStepComplete && !orderPaymentStepComplete && (
+                  <PaymentCheckout
+                     setOrderConfirmComplete={setOrderConfirmComplete}
+                     setOrderPaymentStepComplete={setOrderPaymentStepComplete}
+                     orderConfrimComplete={orderConfrimComplete}
+                     orderInfo={orderInfo}
+                  />
+               )}
+               {adressStepComplete && orderPaymentStepComplete && (
+                  <OrederConfirmed
+                     orderConfrimComplete={orderConfrimComplete}
+                  />
+               )}
+            </div>
          </section>
       </InitialLayout>
    );

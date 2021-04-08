@@ -53,7 +53,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    return (
       <div className="w-full ">
          <form
-            className="flex gap-3 font-nav container text-sm flex-col px-3 lg:px-40 mx-auto "
+            className="flex gap-3 font-nav container text-sm flex-col  mx-auto px-2"
             onSubmit={handleSubmit(onSubmitAction)}
          >
             {/* First name && last name */}
@@ -101,50 +101,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                {/* ----- */}
             </div>
             {/* ----- */}
-            {/* Street address */}
-            <div>
-               <span className="flex gap-1 py-2">
-                  <p className="">Street address </p>
-                  <span className="text-red-600">*</span>
-               </span>
-
-               <input
-                  type="text"
-                  className={`input w-full ${
-                     errors.street_address && "border-red-600"
-                  }`}
-                  name="street_address"
-                  ref={register}
-               />
-               {errors.street_address && (
-                  <span className="text-xs text-red-600 my-0 flex py-2 items-center">
-                     <UpArrow /> {errors.street_address.message}
-                  </span>
-               )}
-            </div>
-
-            {/* Town / city */}
-
-            <div>
-               <span className="flex gap-1 py-2">
-                  <p className="">Town / City</p>
-                  <span className="text-red-600">*</span>
-               </span>
-
-               <input
-                  type="text"
-                  className={`input w-full  ${
-                     errors.town_city && "border-red-600 "
-                  }`}
-                  name="town_city"
-                  ref={register}
-               />
-               {errors.town_city && (
-                  <span className="text-xs text-red-600 my-0 flex py-2 items-center">
-                     <UpArrow /> {errors.town_city.message}
-                  </span>
-               )}
-            </div>
 
             {/* district */}
             <div>
@@ -204,6 +160,52 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
                   </>
                )}
             </div>
+
+            {/* Town / city */}
+
+            <div>
+               <span className="flex gap-1 py-2">
+                  <p className="">Town / City</p>
+                  <span className="text-red-600">*</span>
+               </span>
+
+               <input
+                  type="text"
+                  className={`input w-full  ${
+                     errors.town_city && "border-red-600 "
+                  }`}
+                  name="town_city"
+                  ref={register}
+               />
+               {errors.town_city && (
+                  <span className="text-xs text-red-600 my-0 flex py-2 items-center">
+                     <UpArrow /> {errors.town_city.message}
+                  </span>
+               )}
+            </div>
+
+            {/* Street address */}
+            <div>
+               <span className="flex gap-1 py-2">
+                  <p className="">Street address </p>
+                  <span className="text-red-600">*</span>
+               </span>
+
+               <input
+                  type="text"
+                  className={`input w-full ${
+                     errors.street_address && "border-red-600"
+                  }`}
+                  name="street_address"
+                  ref={register}
+               />
+               {errors.street_address && (
+                  <span className="text-xs text-red-600 my-0 flex py-2 items-center">
+                     <UpArrow /> {errors.street_address.message}
+                  </span>
+               )}
+            </div>
+
             {/* phone */}
             <div>
                <span className="flex gap-1 py-2">
@@ -230,7 +232,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             <div>
                <span className="flex gap-1 py-2">
                   <p className="">Email address</p>
-                  <span className="text-red-600">*</span>
                </span>
 
                <input

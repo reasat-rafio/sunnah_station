@@ -14,22 +14,31 @@ import { loadingEnd } from "../../store/actions/domAction";
 import { MdCross } from "../../utils/svgs/Svg";
 import { Notify } from "../../utils/Toast";
 import { BkashPeyment } from "./BkashPeyment";
+import moment from "moment";
 
 interface CartProductListProps {
    orderInfo: any;
+   setOrderConfirmComplete: any;
+   orderConfrimComplete: any;
+   setOrderPaymentStepComplete: any;
 }
 
 export const ProductCheckoutList: React.FC<CartProductListProps> = ({
    orderInfo,
+   setOrderConfirmComplete,
+   orderConfrimComplete,
+   setOrderPaymentStepComplete,
 }) => {
-   console.log("orderInfo", orderInfo);
-
    const {
+      userState: { user },
       cartDispatch,
       cartState,
       domDispatch,
       cartState: { inCartProducts },
    } = useCtx();
+
+   // getting the current date
+   const [time, setTime] = useState(new Date());
 
    // Total subtotal
    const [___subTotal, setSubTotal] = useState<number>(0);
@@ -59,6 +68,12 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
 
    // Order submit action
    const orderSubmitAction = async () => {
+      // Finding the user
+      const loggedInUser: any = await axios.get(
+         `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`
+      );
+      console.log("asdasd", loggedInUser);
+
       orderInfo.peyment_method = cashOnDelivery ? "cash on devivery" : "bkash";
       if (BikashPayment) {
          orderInfo.transaction_id = transactionId;
@@ -67,6 +82,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             return;
          }
       }
+
       const {
          additional_info,
          email_address,
@@ -79,6 +95,8 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
          peyment_method,
          transaction_id,
       } = orderInfo;
+      // Submitin the order
+
       const { data } = await axios.post(
          `${process.env.NEXT_PUBLIC_API_URL}/orders`,
          {
@@ -101,10 +119,30 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             peyment_method,
             transaction_id,
             delivery_complete: false,
+            order_placed_at: moment(time).format("MMMM Do YYYY, h:mm:ss a"),
          }
       );
 
-      console.log(data);
+      const userOrderHistory = [data];
+      console.log("asd", loggedInUser.data);
+
+      // updating the users
+      try {
+         const updatedUserOrderHistory = [
+            ...userOrderHistory,
+            loggedInUser.data.order_history[0],
+         ];
+
+         await axios.put(
+            `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`,
+            { order_history: updatedUserOrderHistory }
+         );
+      } catch (error) {
+         console.log(error);
+      }
+
+      setOrderPaymentStepComplete(true);
+      setOrderConfirmComplete(data);
       cartDispatch(resetCart());
       domDispatch(loadingEnd());
    };
@@ -353,7 +391,11 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   }`}
                   disabled={agree ? false : true}
                   onClick={() => {
-                     orderSubmitAction();
+                     if (inCartProducts.length > 0) {
+                        orderSubmitAction();
+                     } else {
+                        Notify("error", "Cart is empty");
+                     }
                   }}
                >
                   CONFIRM ORDER

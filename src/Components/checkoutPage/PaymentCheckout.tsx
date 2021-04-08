@@ -1,19 +1,19 @@
 import { useCtx } from "../../store";
-import { PaymentTotal } from "./PaymentTotal";
+
 import { ProductCheckoutList } from "./ProductCheckoutList";
 
 interface PaymentCheckoutProps {
-   setOrderPaymentStepComplete: any;
-   setAdressStepComplete: any;
-   setOrderInfo: any;
    orderInfo: any;
+   setOrderConfirmComplete: any;
+   orderConfrimComplete: any;
+   setOrderPaymentStepComplete: any;
 }
 
 export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
-   setOrderPaymentStepComplete,
-   setAdressStepComplete,
-   setOrderInfo,
    orderInfo,
+   setOrderConfirmComplete,
+   orderConfrimComplete,
+   setOrderPaymentStepComplete,
 }) => {
    const {
       cartState: { inCartProducts },
@@ -25,16 +25,16 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
                <div className="col-span-12 flex flex-col">
                   <>
-                     <ProductCheckoutList orderInfo={orderInfo} />
+                     <ProductCheckoutList
+                        orderInfo={orderInfo}
+                        setOrderConfirmComplete={setOrderConfirmComplete}
+                        orderConfrimComplete={orderConfrimComplete}
+                        setOrderPaymentStepComplete={
+                           setOrderPaymentStepComplete
+                        }
+                     />
                   </>
                </div>
-
-               {/* <PaymentTotal
-                  setOrderPaymentStepComplete={setOrderPaymentStepComplete}
-                  setOrderInfo={setOrderInfo}
-                  orderInfo={orderInfo}
-                  setAdressStepComplete={setAdressStepComplete}
-               /> */}
             </div>
          </div>
       </div>

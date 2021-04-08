@@ -4,18 +4,28 @@ import { PenPaperSvg, TakaSvg } from "../../utils/svgs/Svg";
 interface StepBarProps {
    adressStepComplete: boolean;
    orderPaymentStepComplete: boolean;
+   setAdressStepComplete: any;
+   setOrderPaymentStepComplete: any;
 }
 
 export const StepBar: React.FC<StepBarProps> = ({
    adressStepComplete,
    orderPaymentStepComplete,
+   setAdressStepComplete,
+   setOrderPaymentStepComplete,
 }) => {
    return (
       <>
          <div className="w-full py-6 shadow-md my-3">
             <div className="flex">
                <div className="w-1/3">
-                  <div className="relative mb-2">
+                  <div
+                     className="relative mb-2 cursor-pointer"
+                     onClick={() => {
+                        setAdressStepComplete(false);
+                        setOrderPaymentStepComplete(false);
+                     }}
+                  >
                      <div className="w-10 h-10 mx-auto bg-green-500 rounded-full text-lg text-white flex items-center">
                         <span className="text-center text-white w-full">
                            <PenPaperSvg />
@@ -42,14 +52,18 @@ export const StepBar: React.FC<StepBarProps> = ({
                            <div
                               className="w-0 bg-green-300 py-1 rounded"
                               style={{
-                                 width: `${adressStepComplete && "100%"}`,
+                                 width: `${adressStepComplete ? "100%" : "0%"}`,
                               }}
                            ></div>
                         </div>
                      </div>
-
                      <div
-                        className={`w-10 h-10 mx-auto ${
+                        onClick={() => {
+                           if (adressStepComplete && orderPaymentStepComplete) {
+                              setOrderPaymentStepComplete(false);
+                           }
+                        }}
+                        className={`w-10 h-10 mx-auto cursor-pointer  ${
                            adressStepComplete
                               ? "bg-green-500 text-white "
                               : "bg-white text-gray-600 border-gray-200  border-2 "
@@ -80,14 +94,16 @@ export const StepBar: React.FC<StepBarProps> = ({
                            <div
                               className="w-0 bg-green-300 py-1 rounded"
                               style={{
-                                 width: `${orderPaymentStepComplete && "100%"}`,
+                                 width: `${
+                                    orderPaymentStepComplete ? "100%" : "0%"
+                                 }`,
                               }}
                            ></div>
                         </div>
                      </div>
 
                      <div
-                        className={`w-10 h-10 mx-auto  rounded-full text-lg  flex items-center ${
+                        className={`w-10 h-10 mx-auto cursor-pointer  rounded-full text-lg  flex items-center ${
                            orderPaymentStepComplete
                               ? "bg-green-500 text-white "
                               : "bg-white text-gray-600 border-gray-200  border-2 "

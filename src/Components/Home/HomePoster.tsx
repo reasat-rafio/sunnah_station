@@ -22,8 +22,9 @@ SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
    return (
       <section className="pt-36 md:pt-0">
-         <div className="h-5/6 ">
+         <div>
             <Swiper
+               style={{ height: "90vh" }}
                className=""
                effect="fade"
                navigation
