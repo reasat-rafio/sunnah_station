@@ -7,6 +7,7 @@ interface PaymentCheckoutProps {
    setOrderConfirmComplete: any;
    orderConfrimComplete: any;
    setOrderPaymentStepComplete: any;
+   setAdressStepComplete: any;
 }
 
 export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
@@ -14,13 +15,14 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
    setOrderConfirmComplete,
    orderConfrimComplete,
    setOrderPaymentStepComplete,
+   setAdressStepComplete,
 }) => {
    const {
       cartState: { inCartProducts },
    } = useCtx();
    return (
       <div className="w-full">
-         <div className="container mx-auto">
+         <div className="container mx-auto px-2">
             {/* product table */}
             <div className="grid md:gap-5 gap-0  grid-cols-12 my-9">
                <div className="col-span-12 flex flex-col">
@@ -29,6 +31,7 @@ export const PaymentCheckout: React.FC<PaymentCheckoutProps> = ({
                         orderInfo={orderInfo}
                         setOrderConfirmComplete={setOrderConfirmComplete}
                         orderConfrimComplete={orderConfrimComplete}
+                        setAdressStepComplete={setAdressStepComplete}
                         setOrderPaymentStepComplete={
                            setOrderPaymentStepComplete
                         }

@@ -33,6 +33,8 @@ const item: React.FC<itemProps> = ({
       }
    });
 
+   console.log(product);
+
    useEffect(() => {
       //   if (flash_deals && flash_deals[0]) {
       //      setProduct(flash_deals);
@@ -63,6 +65,7 @@ const item: React.FC<itemProps> = ({
                      description,
                      in_stock,
                      slug,
+                     main_categories,
                   }) => (
                      <React.Fragment key={id}>
                         <section className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
@@ -71,7 +74,7 @@ const item: React.FC<itemProps> = ({
                               <ProductImages img={image} />
                            </div>
                            {/* product discription */}
-                           <div className="lg:shadow-lg col-span-6 lg:col-span-4   lg:p-8 p-2">
+                           <div className="lg:shadow-xl col-span-6 lg:col-span-4   lg:p-8 p-2">
                               <Card
                                  brand={brand}
                                  categories={sub_categories}
@@ -84,6 +87,7 @@ const item: React.FC<itemProps> = ({
                                  in_stock={in_stock}
                                  short_description={short_description}
                                  slug={slug}
+                                 main_categories={main_categories}
                               />
                            </div>
                         </section>

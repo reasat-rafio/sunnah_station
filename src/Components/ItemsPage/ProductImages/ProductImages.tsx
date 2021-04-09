@@ -31,7 +31,7 @@ export const ProductImages: React.FC<ProductImagesProps> = ({ img }) => {
             className="flex justify-center items-center mb-2"
          >
             {img.map(({ url, id }, i: number) => (
-               <div key={id}>
+               <div key={i}>
                   <SwiperSlide>
                      <motion.div
                         initial={{ x: 200, opacity: 0 }}

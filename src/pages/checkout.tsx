@@ -52,6 +52,7 @@ const checkout = () => {
                )}
                {adressStepComplete && !orderPaymentStepComplete && (
                   <PaymentCheckout
+                     setAdressStepComplete={setAdressStepComplete}
                      setOrderConfirmComplete={setOrderConfirmComplete}
                      setOrderPaymentStepComplete={setOrderPaymentStepComplete}
                      orderConfrimComplete={orderConfrimComplete}

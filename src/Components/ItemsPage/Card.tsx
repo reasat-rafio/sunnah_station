@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Router, useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
 import { useCtx } from "../../store";
 import {
@@ -21,6 +22,7 @@ interface CardProps {
    in_stock: boolean;
    short_description: string;
    slug: string;
+   main_categories: any[];
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -59,6 +61,7 @@ export const Card: React.FC<CardProps> = ({
    img,
    in_stock,
    slug,
+   main_categories,
 }) => {
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
@@ -71,6 +74,9 @@ export const Card: React.FC<CardProps> = ({
 
    // Ref for time
    let interval = useRef<any>();
+
+   // router
+   const router = useRouter();
 
    // Caculate and setting time action
    const startTimer = () => {
@@ -137,8 +143,6 @@ export const Card: React.FC<CardProps> = ({
          subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
       };
 
-      domDispatch(showCart());
-
       if (inCartProducts && inCartProducts.length > 0) {
          let itemExistInTheCart = inCartProducts.some((i) => i.id === id);
 
@@ -156,12 +160,15 @@ export const Card: React.FC<CardProps> = ({
       setProductQuantity(1);
    };
 
+   // Shop now action
+   // const shopNowAction = (name, price, quantity, id, img, slug) => {};
+
    return (
       <motion.div initial="inital" animate="animate" variants={stagger}>
          <div>
             <motion.p
                variants={fadeIn}
-               className="font-bold text-xl py-4 font-text"
+               className="font-bold text-xl py-4 font-text "
             >
                {name}
             </motion.p>
@@ -265,11 +272,36 @@ export const Card: React.FC<CardProps> = ({
                              img,
                              slug
                           );
+                     domDispatch(showCart());
                   }}
                >
                   ADD TO CART
                </button>
-               <button className=" productBtn bg-lightBlue hover:bg-nevyBlue ">
+               <button
+                  className=" productBtn bg-lightBlue"
+                  onClick={() => {
+                     offer_price
+                        ? // If offer avilable
+                          addToTheCartAction(
+                             name,
+                             offer_price,
+                             productQuantity,
+                             id,
+                             img,
+                             slug
+                          )
+                        : // If no offer avilable
+                          addToTheCartAction(
+                             name,
+                             regular_price,
+                             productQuantity,
+                             id,
+                             img,
+                             slug
+                          );
+                     router.push("/checkout");
+                  }}
+               >
                   BUY NOW
                </button>
             </motion.div>
@@ -281,12 +313,26 @@ export const Card: React.FC<CardProps> = ({
             </p>
             <div>
                Categories:
-               {categories.map(({ name }, i) => (
-                  <span className="text-xs text-gray-500" key={i}>
-                     {" "}
-                     {name}{" "}
-                  </span>
-               ))}
+               {main_categories &&
+                  categories &&
+                  main_categories.map(({ name }, i) => (
+                     <span className="text-sm text-gray-500" key={i}>
+                        {name} {"> "}
+                     </span>
+                  ))}
+               {main_categories &&
+                  categories &&
+                  categories.map(({ name }, i) => (
+                     <span className="text-sm text-gray-500" key={i}>
+                        {name}
+                     </span>
+                  ))}
+               {!main_categories &&
+                  categories.map(({ name }, i) => (
+                     <span className="text-sm text-gray-500" key={i}>
+                        {name}
+                     </span>
+                  ))}
             </div>
          </motion.div>
       </motion.div>

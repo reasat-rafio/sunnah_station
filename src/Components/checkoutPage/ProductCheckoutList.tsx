@@ -21,6 +21,7 @@ interface CartProductListProps {
    setOrderConfirmComplete: any;
    orderConfrimComplete: any;
    setOrderPaymentStepComplete: any;
+   setAdressStepComplete: any;
 }
 
 export const ProductCheckoutList: React.FC<CartProductListProps> = ({
@@ -28,6 +29,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
    setOrderConfirmComplete,
    orderConfrimComplete,
    setOrderPaymentStepComplete,
+   setAdressStepComplete,
 }) => {
    const {
       userState: { user },
@@ -124,7 +126,6 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
       );
 
       const userOrderHistory = [data];
-      console.log("asd", loggedInUser.data);
 
       // updating the users
       try {
@@ -268,7 +269,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             </div>
          )}
 
-         <ul className="flex flex-col divide-y-2">
+         <ul className="flex flex-col divide-y-2 text-black">
             <li className="flex p-3">
                <p className="flex-1">Subtotal</p>
                <p>{___subTotal}</p>
@@ -294,7 +295,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             </li>
          </ul>
 
-         <div className="flex flex-col justify-start">
+         <div className="flex flex-col justify-start ">
             {/* Cash on Delivery */}
             <label className="inline-flex items-center mt-3">
                <input
@@ -308,7 +309,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   }}
                   checked={cashOnDelivery ? true : false}
                />
-               <span className="ml-2 text-gray-700 flex  items-center gap-2">
+               <span className="ml-2  flex  items-center gap-2 text-black">
                   Cash On Delivery
                </span>
             </label>
@@ -326,7 +327,7 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   }}
                   checked={BikashPayment ? true : false}
                />
-               <span className="ml-2 text-gray-700 flex  items-center gap-2">
+               <span className="ml-2  flex  items-center gap-2 text-black">
                   bKash (Send Money)
                   <Image
                      src="https://res.cloudinary.com/dapjxqk64/image/upload/v1617776652/sunnah%20statoin/bkash-1-1_njtt3i.png"
@@ -344,8 +345,8 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             </AnimatePresence>
          </div>
 
-         <div className="flex my-5">
-            <label className="flex items-center">
+         <div className="flex my-5 ">
+            <label className="flex items-center text-black">
                <input
                   type="checkbox"
                   className="form-checkbox "
@@ -382,7 +383,10 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                </li>
             </ul>
             <div className="flex col-span-12 md:col-span-6 text-white font-title font-semibold items-center justify-end gap-3">
-               <button className="bg-gray-700 py-3 px-5 rounded">
+               <button
+                  className="bg-gray-700 py-3 px-5 rounded"
+                  onClick={() => setAdressStepComplete(false)}
+               >
                   PREVIOUS
                </button>
                <button
@@ -391,10 +395,12 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   }`}
                   disabled={agree ? false : true}
                   onClick={() => {
-                     if (inCartProducts.length > 0) {
-                        orderSubmitAction();
-                     } else {
+                     if (inCartProducts.length < 1) {
                         Notify("error", "Cart is empty");
+                     } else if (!cashOnDelivery && !BikashPayment) {
+                        Notify("error", "Please select a peyment method");
+                     } else {
+                        orderSubmitAction();
                      }
                   }}
                >

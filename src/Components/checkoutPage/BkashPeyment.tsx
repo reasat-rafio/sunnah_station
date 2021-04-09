@@ -44,7 +44,7 @@ export const BkashPeyment: React.FC<BkashPeymentProps> = ({
             </div>
             <div>
                <label className="block text-sm font-medium text-gray-700">
-                  Our Bkash Number <span className="text-red-500">*</span>
+                  Our Bkash Numbers
                </label>
             </div>
             {/* Bkash number */}
