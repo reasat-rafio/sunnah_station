@@ -11,7 +11,7 @@ export const Poster: React.FC<PosterProps> = ({ src, to, alt }) => {
       <div className="my-4 relative posterDiv ">
          <Link href={to}>
             <a className="">
-               <div className="posterImg" />
+               <div className="posterImg rounded-2xl" />
                <img className="w-full  rounded-2xl" src={src} alt={alt} />
             </a>
          </Link>

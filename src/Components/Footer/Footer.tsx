@@ -67,21 +67,23 @@ export const Footer = () => {
                               </a>
                            </Link>
                         </li>
+
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Payment Guides
-                           </a>
+                           <Link href="/faq">
+                              <a
+                                 href="/faq"
+                                 className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
+                              >
+                                 Payment Guides
+                              </a>
+                           </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Warranty Policy
-                           </a>
+                           <Link href="/privacy-policy">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Privacy Policy
+                              </a>
+                           </Link>
                         </li>
                      </ul>
                   </div>
@@ -172,12 +174,14 @@ export const Footer = () => {
                            </a>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Returns & Refund
-                           </a>
+                           <Link href="/returns-refunds">
+                              <a
+                                 href="/"
+                                 className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
+                              >
+                                 Returns & Refund
+                              </a>
+                           </Link>
                         </li>
                         <li>
                            <a
