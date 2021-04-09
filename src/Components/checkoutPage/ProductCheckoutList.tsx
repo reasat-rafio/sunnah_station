@@ -10,7 +10,7 @@ import {
    removeFromCart,
    resetCart,
 } from "../../store/actions/CartAction";
-import { loadingEnd } from "../../store/actions/domAction";
+import { loadingEnd, loadingstart } from "../../store/actions/domAction";
 import { MdCross } from "../../utils/svgs/Svg";
 import { Notify } from "../../utils/Toast";
 import { BkashPeyment } from "./BkashPeyment";
@@ -70,11 +70,11 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
 
    // Order submit action
    const orderSubmitAction = async () => {
+      domDispatch(loadingstart());
       // Finding the user
       const loggedInUser: any = await axios.get(
          `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`
       );
-      console.log("asdasd", loggedInUser);
 
       orderInfo.peyment_method = cashOnDelivery ? "cash on devivery" : "bkash";
       if (BikashPayment) {

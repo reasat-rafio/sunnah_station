@@ -14,6 +14,7 @@ import {
 } from "../../../store/actions/CartAction";
 import { CardImage } from "../Deals/CardImage";
 import { ModalContent } from "../../../utils/_components/ModalContent";
+import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 
 interface NewArrivalsProps {
    newArrivals: any[];
@@ -165,7 +166,11 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                         className={`rounded-xl md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative col-span-10 md:col-span-5 xl:col-span-4 ${
                            pgWidth == "sm" && "h-smCard"
                         } ${pgWidth == "xs" && "h-smCard"}`}
-                        onClick={() => router.push(`/items/${slug}`)}
+                        onClick={() => {
+                           domDispatch(loadingstart());
+                           router.push(`/items/${slug}`);
+                           domDispatch(loadingEnd());
+                        }}
                         onMouseEnter={(e) => handleMouseEnter(i)}
                         onMouseLeave={(e) => handleMouseleave(i)}
                      >

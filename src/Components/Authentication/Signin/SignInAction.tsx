@@ -11,6 +11,7 @@ import { LoginSchema } from "../../../utils/yupSchema";
 import axios from "axios";
 import { loginUserAction } from "../../../store/actions/userAction";
 import { Notify } from "../../../utils/Toast";
+import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 
 interface SignInActionProps {}
 
@@ -26,7 +27,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
    const [session, loading] = useSession();
 
    // store
-   const { userState, userDispatch } = useCtx();
+   const { userState, userDispatch, domDispatch } = useCtx();
 
    //   setting up yup as useForm resolver
    const { handleSubmit, register, errors } = useForm({
@@ -55,6 +56,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
       identifier,
       password,
    }: onSubmitInterface) => {
+      domDispatch(loadingstart());
       try {
          const { data } = await axios.post(URL, {
             identifier,
@@ -64,6 +66,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
          Notify("success", `Welcome back ${data.user.username} 😀`);
 
          userDispatch(loginUserAction(data));
+         domDispatch(loadingEnd());
          router.push("/");
       } catch (error) {
          Notify(
@@ -102,7 +105,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
          >
             {/* <Link href="/api/auth/signin/google"> */}
             <button
-               className="border bg-gray-100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
+               className="border bg-gray-Plo100 hover:bg-gray-200 transition-colors p-3 rounded-md  flex justify-center items-center gap-3 font-text font-semibold"
                onClick={(e) => {
                   signIn("google");
                }}
