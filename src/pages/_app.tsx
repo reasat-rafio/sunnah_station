@@ -12,7 +12,7 @@ export const GlobalContext = createContext({});
 
 function MyApp({ Component, pageProps }) {
    const router = useRouter();
-
+   // page route changing loading bar
    useEffect(() => {
       let routeChangeStart = () => NProgress.start();
       let routeChangeComplete = () => NProgress.done();

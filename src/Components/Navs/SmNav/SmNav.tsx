@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useCtx } from "../../../store";
+import { logOutAaction } from "../../../store/actions/userAction";
 import {
    arrowVariants,
    linkVariants,
@@ -8,6 +10,7 @@ import {
 } from "../../../utils/animation";
 import { DownArrowSm } from "../../../utils/svgs/Svg";
 import { navs } from "../LgNavbar/_helper";
+import { getSession, signIn, signOut } from "next-auth/client";
 
 interface SmNavProps {
    setShowMoreCategories: any;
@@ -24,13 +27,24 @@ export const SmNav: React.FC<SmNavProps> = ({
    showMoreDeals,
    showMoreCategories,
 }) => {
+   const {
+      userDispatch,
+      userState: { isLoggedIn },
+   } = useCtx();
+
+   // // Logout action
+   const logOut = () => {
+      userDispatch(logOutAaction());
+      signOut();
+   };
+
    return (
-      <div className=" ">
+      <div className="z-50">
          <AnimatePresence exitBeforeEnter>
             {showSmMenu && (
                <motion.ul
                   variants={menuVariants}
-                  className="font-title flex gap-2 flex-col justify-center items-center text-xl shadow-sm "
+                  className="font-title flex gap-2 flex-col justify-center items-center text-xl shadow-sm z-50"
                   initial="initial"
                   animate="animate"
                   exit="exit"
@@ -38,7 +52,7 @@ export const SmNav: React.FC<SmNavProps> = ({
                   {navs.map(({ name, link, subNavs }, i: number) => (
                      <div key={i}>
                         {!subNavs ? (
-                           <motion.li variants={linkVariants}>
+                           <motion.li variants={linkVariants} className="z-50">
                               <Link href={link}>
                                  <a className="flex smNavBarCtg hover:text-lightBlue ">
                                     {name}
@@ -152,14 +166,28 @@ export const SmNav: React.FC<SmNavProps> = ({
                         )}
                      </div>
                   ))}
-                  <motion.li
-                     className="flex my-3"
-                     variants={sideBarMoreVarients}
-                  >
-                     <button className="bg-lightBlue py-2 rounded-full text-white font-text font-bold  w-52 m-auto">
-                        Login
-                     </button>
-                  </motion.li>
+                  <div className="cursor-pointer">
+                     {isLoggedIn ? (
+                        <div className="sideBarMainNav " onClick={logOut}>
+                           <button className=" bg-lightBlue py-2 rounded-full text-white font-text font-bold  w-52 m-auto">
+                              Logout
+                           </button>
+                        </div>
+                     ) : (
+                        <motion.li
+                           className="sideBarMainNav "
+                           variants={sideBarMoreVarients}
+                        >
+                           <Link href="/authentication/signin">
+                              <button className=" bg-lightBlue py-2 rounded-full text-white font-text font-bold  w-52 m-auto">
+                                 Login
+                              </button>
+                           </Link>
+                        </motion.li>
+                     )}
+                  </div>
+
+                  <button className=""></button>
                </motion.ul>
             )}
          </AnimatePresence>

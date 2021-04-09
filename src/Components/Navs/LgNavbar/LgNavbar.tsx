@@ -8,11 +8,7 @@ import {
    showSearchPage,
    showSideNavBar,
 } from "../../../store/actions/domActions";
-import {
-   iconVariants,
-   searchbarVariants,
-   searchBarAnimation,
-} from "../../../utils/animation";
+import { iconVariants, searchbarVariants } from "../../../utils/animation";
 import { useClientSize } from "../../../utils/hooks/useClientSIze";
 import { useSearchFilter } from "../../../utils/hooks/useFilterByInput";
 import {

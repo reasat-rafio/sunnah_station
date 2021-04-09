@@ -167,9 +167,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                            pgWidth == "sm" && "h-smCard"
                         } ${pgWidth == "xs" && "h-smCard"}`}
                         onClick={() => {
-                           domDispatch(loadingstart());
                            router.push(`/items/${slug}`);
-                           domDispatch(loadingEnd());
                         }}
                         onMouseEnter={(e) => handleMouseEnter(i)}
                         onMouseLeave={(e) => handleMouseleave(i)}
@@ -180,7 +178,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                               pageWidth < 720
                                  ? "top-1/2 right-5 flex-row"
                                  : "top-1/2  right-4 flex-col"
-                           } z-40  flex  gap-1`}
+                           } z-30  flex  gap-1`}
                         >
                            {pageWidth < 720 ? (
                               <SmCardActionBtns
