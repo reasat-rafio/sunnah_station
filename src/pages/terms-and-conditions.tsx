@@ -3,11 +3,8 @@ import { GetStaticProps } from "next";
 import ReactMarkdown from "react-markdown";
 import { InitialLayout } from "../Components/Layouts/InitialLayout";
 import gfm from "remark-gfm";
-interface returnsRefundsProps {
-   data: any;
-}
 
-const ReturnsRefunds: React.FC<returnsRefundsProps> = ({ data }) => {
+const TermsAndConditions = ({ data }) => {
    return (
       <InitialLayout>
          <div className="w-full">
@@ -17,7 +14,7 @@ const ReturnsRefunds: React.FC<returnsRefundsProps> = ({ data }) => {
                      <ReactMarkdown
                         className="prose max-w-none"
                         plugins={[gfm]}
-                        children={data.return_refund}
+                        children={data.term_and_condition}
                         escapeHtml={false}
                      />
                   )}
@@ -28,12 +25,13 @@ const ReturnsRefunds: React.FC<returnsRefundsProps> = ({ data }) => {
    );
 };
 
-export default ReturnsRefunds;
+export default TermsAndConditions;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/return-refund`
+      `${process.env.NEXT_PUBLIC_API_URL}/term-and-condition`
    );
+
    return {
       props: {
          data,

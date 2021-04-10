@@ -166,19 +166,15 @@ export const Footer = () => {
                      </p>
                      <ul className="mt-2 space-y-2">
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Terms & Conditions
-                           </a>
+                           <Link href="/terms-and-conditions">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Terms & Conditions
+                              </a>
+                           </Link>
                         </li>
                         <li>
                            <Link href="/returns-refunds">
-                              <a
-                                 href="/"
-                                 className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                              >
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
                                  Returns & Refund
                               </a>
                            </Link>

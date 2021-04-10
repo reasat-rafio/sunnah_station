@@ -140,9 +140,7 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
    };
 
    const displayProrducts = allProducts
-      .sort((a, b) =>
-         a.highlight_item === b.highlight_item ? 0 : a.highlight_item ? -1 : 1
-      )
+      .sort((a, b) => (a.highlight === b.highlight ? 0 : a.highlight ? -1 : 1))
       .slice(PagesVisited, PagesVisited + productPerPage)
       .map(
          (

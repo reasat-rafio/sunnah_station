@@ -14,7 +14,7 @@ const PrivacyPolicy = ({ data }) => {
                      <ReactMarkdown
                         className="prose max-w-none"
                         plugins={[gfm]}
-                        children={data[0].privacy_policy}
+                        children={data.privacy_policy}
                         escapeHtml={false}
                      />
                   )}
@@ -29,7 +29,7 @@ export default PrivacyPolicy;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/privacy-policies`
+      `${process.env.NEXT_PUBLIC_API_URL}/privacy-policy`
    );
 
    return {

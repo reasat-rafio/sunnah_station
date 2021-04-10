@@ -221,13 +221,17 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             />
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}
-               <a href="#" className="text-indigo-600 hover:text-indigo-500 ">
-                  Terms
-               </a>{" "}
-               and{" "}
-               <a href="#" className="text-indigo-600 hover:text-indigo-500 ">
-                  Privecy policy
-               </a>
+               <Link href="/terms-and-conditions">
+                  <a className="text-indigo-600 hover:text-indigo-500 ">
+                     Terms
+                  </a>
+               </Link>
+               and
+               <Link href="/privacy-policy">
+                  <a className="text-indigo-600 hover:text-indigo-500 ">
+                     Privecy policy
+                  </a>
+               </Link>
             </label>
          </div>
          <div className="text-sm  text-center my-4">

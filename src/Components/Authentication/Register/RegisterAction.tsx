@@ -292,13 +292,16 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
             />
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}
-               <a href="#" className="text-lightBlue hover:text-indigo-500 ">
-                  Terms
-               </a>{" "}
+               <Link href="/terms-and-conditions">
+                  {" "}
+                  <a className="text-lightBlue hover:text-indigo-500 ">Terms</a>
+               </Link>
                and{" "}
-               <a href="#" className="text-lightBlue hover:text-indigo-500 ">
-                  Privecy policy
-               </a>
+               <Link href="/privacy-policy">
+                  <a className="text-lightBlue hover:text-indigo-500 ">
+                     Privecy policy
+                  </a>
+               </Link>
             </label>
          </div>
 
