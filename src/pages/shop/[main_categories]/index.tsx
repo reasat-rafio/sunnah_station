@@ -11,6 +11,8 @@ import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 import { InPageToast } from "../../../utils/_components/InPageToast";
 
 const main_categories = ({ products }) => {
+   console.log(products);
+
    const router = useRouter();
    const {
       domDispatch,
@@ -58,22 +60,12 @@ const main_categories = ({ products }) => {
 
    return (
       <InitialLayout>
-         <div className="pt-28 md:pt-32"></div>
-         <ShopLayout>
-            <div className="min-h-screen">
-               {products && products.length > 0 ? (
-                  <ShopProducts
-                     products={products}
-                     gridCount={gridCount}
-                     setGridCount={setGridCount}
-                     showMoreFilter={showMoreFilter}
-                     setShowMoreFilter={setShowMoreFilter}
-                     selectedFilter={selectedFilter}
-                     setSelectedFilter={setSelectedFilter}
-                  />
-               ) : (
-                  <>
-                     <FilterProductSection
+         <div className="pt-28 md:pt-32">
+            <ShopLayout>
+               <div className="min-h-screen">
+                  {products && products.length > 0 ? (
+                     <ShopProducts
+                        products={products}
                         gridCount={gridCount}
                         setGridCount={setGridCount}
                         showMoreFilter={showMoreFilter}
@@ -81,11 +73,22 @@ const main_categories = ({ products }) => {
                         selectedFilter={selectedFilter}
                         setSelectedFilter={setSelectedFilter}
                      />
-                     <InPageToast text="No products were found matching your selection." />
-                  </>
-               )}
-            </div>
-         </ShopLayout>
+                  ) : (
+                     <>
+                        <FilterProductSection
+                           gridCount={gridCount}
+                           setGridCount={setGridCount}
+                           showMoreFilter={showMoreFilter}
+                           setShowMoreFilter={setShowMoreFilter}
+                           selectedFilter={selectedFilter}
+                           setSelectedFilter={setSelectedFilter}
+                        />
+                        <InPageToast text="No products were found matching your selection." />
+                     </>
+                  )}
+               </div>
+            </ShopLayout>
+         </div>
       </InitialLayout>
    );
 };
@@ -118,14 +121,14 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    const allProducts = [...speical_deals.data, ...new_arrivals_all.data];
 
    const products = allProducts.filter((pd) => {
-      if (pd.main_categories[0].name === `${ctg}`) {
+      if (pd.main_categories && pd.main_categories[0].name === `${ctg}`) {
          return pd;
       }
    });
 
    return {
       props: {
-         products,
+         products: products,
       },
    };
 };

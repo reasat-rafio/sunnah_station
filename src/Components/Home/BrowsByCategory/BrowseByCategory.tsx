@@ -89,15 +89,6 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
             slidesPerView={cardsPerView}
             autoplay={{ disableOnInteraction: false }}
             spaceBetween={pageWidth < 550 && pageWidth > 0 ? 15 : 40}
-            //useFull
-            // breakpoints={{
-            //    320: {
-            //      slidesPerView: 1.5,
-            //    },
-            //    991: {
-            //      slidesPerView: 3,
-            //    },
-            //  }}
             navigation={{
                prevEl: navigationPrevRef.current
                   ? navigationPrevRef.current
@@ -128,20 +119,6 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({}) => {
                </SwiperSlide>
             ))}
          </Swiper>
-         {/* <div className="flex justify-center items-center gap-1 md:gap-5 md:hidden mx-auto">
-            <span
-               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
-               ref={smNavigationPrevRef}
-            >
-               <GoLeft />
-            </span>
-            <span
-               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
-               ref={smNavigationNextRef}
-            >
-               <GoRight />
-            </span>
-         </div> */}
       </section>
    );
 };
