@@ -34,13 +34,6 @@ const FAQ = ({ data }) => {
                               will help you with initial and frequently asked
                               questions.
                            </h2>
-                           {
-                              <p className="w-full mx-auto text-center mt-4 text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100 max-w-xl">
-                                 And we have got answers to all of them. Lorem
-                                 ipsum dolor sit amet, consectetur adipiscing
-                                 elit.
-                              </p>
-                           }
                         </div>
                         {/* FAQ SECTION */}
                         <div className="mt-12 max-w-4xl relative">
