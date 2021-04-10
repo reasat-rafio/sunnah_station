@@ -126,9 +126,16 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       }
    });
 
+   if (!products) {
+      return {
+         notFound: true,
+      };
+   }
+
    return {
       props: {
          products: products,
       },
+      revalidate: 1,
    };
 };

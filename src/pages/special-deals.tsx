@@ -22,5 +22,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       props: {
          flash_deals: data,
       },
+      revalidate: 1,
    };
 };

@@ -157,5 +157,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
          new_arrivals: new_arrivals.data,
          //  gaming_accessories: gaming_accessories.data,
       },
+      revalidate: 1,
    };
 };

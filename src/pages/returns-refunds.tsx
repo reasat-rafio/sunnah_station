@@ -34,9 +34,11 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    const { data } = await axios.get(
       `${process.env.NEXT_PUBLIC_API_URL}/return-refund`
    );
+
    return {
       props: {
          data,
       },
+      revalidate: 1,
    };
 };
