@@ -20,7 +20,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
             </div>
          </div>
          <Poster
-            src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png"
+            src="https://res.cloudinary.com/dapjxqk64/image/upload/v1618055534/sunnah%20statoin/bar1_qscutf.jpg"
             to="/"
             alt="special deals"
          />
