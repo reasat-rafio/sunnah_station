@@ -17,9 +17,11 @@ export default New_Arrival;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
    const { data } = await axios.get(`${process.env.URL}/new-arrivals`);
+
    return {
       props: {
          new_arrival: data,
       },
+      revalidate: 1,
    };
 };

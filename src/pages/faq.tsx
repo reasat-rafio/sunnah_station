@@ -4,7 +4,6 @@ import { GetStaticProps } from "next";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import { InitialLayout } from "../Components/Layouts/InitialLayout";
-import { Decorator_blob_7, Decorator_blob_8 } from "../utils/svgs/Decorator";
 import { DownArrowSm } from "../utils/svgs/Svg";
 import gfm from "remark-gfm";
 
@@ -28,7 +27,7 @@ const FAQ = ({ data }) => {
                            <h5 className="mb-4 text-center font-bold text-primary-500 font-title  text-xl sm:text-2xl text-lightBlue">
                               FAQS
                            </h5>
-                           )
+
                            <h2 className="w-full text-3xl sm:text-4xl font-black tracking-wide text-center font-title">
                               Have questions about Sunnahstation.com? Our FAQ
                               will help you with initial and frequently asked
