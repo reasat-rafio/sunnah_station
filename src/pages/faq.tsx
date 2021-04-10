@@ -9,8 +9,6 @@ import { DownArrowSm } from "../utils/svgs/Svg";
 import gfm from "remark-gfm";
 
 const FAQ = ({ data }) => {
-   console.log(data);
-
    const [activeQuestionIndex, setActiveQuestionIndex] = useState(null);
 
    const toggleQuestion = (questionIndex) => {
