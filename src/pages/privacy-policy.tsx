@@ -5,8 +5,6 @@ import { InitialLayout } from "../Components/Layouts/InitialLayout";
 import gfm from "remark-gfm";
 
 const PrivacyPolicy = ({ data }) => {
-   console.log(data);
-
    return (
       <InitialLayout>
          <div className="w-full">
