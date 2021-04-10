@@ -24,7 +24,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
             to="/"
             alt="special deals"
          />
-         {/* Poster */}
+         {/* Poster  */}
          <div>
             <Deals
                deals={speicalDeals}
