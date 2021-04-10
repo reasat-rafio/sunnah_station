@@ -26,6 +26,11 @@ html {
    @apply border rounded-md p-1 hover:bg-gray-100 transition-all duration-150;
 }
 
+// bottom sm nav
+.btmNavLi {
+   @apply cursor-pointer flex flex-col justify-center items-center text-xs;
+}
+
 // Home page offers posters stylings
 .posterImg {
    backface-visibility: hidden;
