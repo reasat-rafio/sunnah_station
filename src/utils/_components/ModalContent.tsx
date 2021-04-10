@@ -82,7 +82,6 @@ export const ModalContent: React.FC<ModalContentProps> = ({
                         opacity: 1,
                         y: 0,
                         scale: 1,
-                        transition: { type: "spring", stiffness: 300 },
                      }}
                      exit={{
                         opacity: 0,

@@ -127,7 +127,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
       <section className="container  mx-auto px-2 font-title">
          <Poster
             src="https://res.cloudinary.com/dapjxqk64/image/upload/v1618055663/sunnah%20statoin/bar2_acqzfv.jpg"
-            to="/new-arrivals"
+            to="/shop/food/khejur"
             alt="new arrivals"
          />
 

@@ -29,7 +29,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
             <Deals
                deals={speicalDeals}
                to="/special-deals"
-               name="SPECIAL DEALS"
+               name="RAMADAN SEAL"
             />
          </div>
       </section>

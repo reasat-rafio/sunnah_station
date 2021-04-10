@@ -1,11 +1,11 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-   Navigation,
-   Pagination,
-   Autoplay,
-   EffectFade,
-} from "swiper";
-import "swiper/swiper-bundle.css";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import SwiperCore, {
+//    Navigation,
+//    Pagination,
+//    Autoplay,
+//    EffectFade,
+// } from "swiper";
+// import "swiper/swiper-bundle.css";
 import Image from "next/image";
 
 interface HomePosterProps {
@@ -17,13 +17,23 @@ interface singleImg {
    url: string;
 }
 
-SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
+// SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 
 export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
    return (
       <section className="pt-36 md:pt-0">
-         <div>
-            <Swiper
+         <div className="img_container">
+            {/* <Image
+               src={"url"}
+               height="3"
+               width="6"
+               layout="responsive"
+               alt="poster"
+            /> */}
+
+            <img src="/img/ramadan-cover-website.jpg" alt="poster" />
+
+            {/* <Swiper
                style={{ height: "90vh" }}
                className=""
                effect="fade"
@@ -43,7 +53,7 @@ export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
                      />
                   </SwiperSlide>
                ))}
-            </Swiper>
+            </Swiper> */}
          </div>
       </section>
    );

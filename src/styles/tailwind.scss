@@ -119,3 +119,9 @@ hiding the search scrollbar .disable-scrollbars::-webkit-scrollbar {
    -ms-overflow-style: none; /* IE and Edge */
    scrollbar-width: none; /* Firefox */
 }
+
+.img_container {
+   // background: url("../img/ramadan-cover-website.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+}

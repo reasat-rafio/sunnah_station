@@ -73,7 +73,7 @@ export const SmBottomNav: React.FC<SmBottomNavProps> = ({}) => {
                </>
             </div>
 
-            <Link href="m.me/sunnahstation">
+            <Link href="https://www.facebook.com/sunnahstation">
                <a className="btmNavLi">
                   <span>
                      <Messenger />
