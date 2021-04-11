@@ -70,7 +70,6 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
 
    // Order submit action
    const orderSubmitAction = async () => {
-      domDispatch(loadingstart());
       // Finding the user
       const loggedInUser: any = await axios.get(
          `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`
@@ -80,72 +79,75 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
       if (BikashPayment) {
          orderInfo.transaction_id = transactionId;
          if (transactionId.length !== 10) {
-            Notify("error", "Invalid Transaction Id. Please check again!");
-         } else {
-            const {
-               additional_info,
-               email_address,
-               first_name,
-               last_name,
-               phone,
-               street_address,
-               town_city,
-               district,
-               peyment_method,
-               transaction_id,
-            } = orderInfo;
-            // Submitin the order
-
-            const { data } = await axios.post(
-               `${process.env.NEXT_PUBLIC_API_URL}/orders`,
-               {
-                  name: `${first_name} ${last_name}`,
-                  email_address,
-                  phone_number: phone,
-                  district,
-                  street_address,
-                  town_city,
-                  total_price:
-                     orderInfo.district == "Dhaka"
-                        ? ___subTotal + 60
-                        : ___subTotal + 100,
-                  additional_info,
-                  ordered_products: inCartProducts.map(
-                     ({ name, price, quantity, id, subtotal }) => [
-                        { name, price, quantity, id, subtotal },
-                     ]
-                  ),
-                  peyment_method,
-                  transaction_id,
-                  delivery_complete: false,
-                  order_placed_at: moment(time).format(
-                     "MMMM Do YYYY, h:mm:ss a"
-                  ),
-               }
+            return Notify(
+               "error",
+               "Invalid Transaction Id. Please check again!"
             );
-
-            const userOrderHistory = [data];
-
-            // updating the users
-            try {
-               const updatedUserOrderHistory = [
-                  ...userOrderHistory,
-                  loggedInUser.data.order_history[0],
-               ];
-
-               await axios.put(
-                  `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`,
-                  { order_history: updatedUserOrderHistory }
-               );
-            } catch (error) {
-               console.log(error);
-            }
-
-            setOrderPaymentStepComplete(true);
-            setOrderConfirmComplete(data);
-            cartDispatch(resetCart());
          }
       }
+
+      const {
+         additional_info,
+         email_address,
+         first_name,
+         last_name,
+         phone,
+         street_address,
+         town_city,
+         district,
+         peyment_method,
+         transaction_id,
+      } = orderInfo;
+      // Submitin the order
+      console.log("asd");
+
+      domDispatch(loadingstart());
+      const { data } = await axios.post(
+         `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+         {
+            name: `${first_name} ${last_name}`,
+            email_address,
+            phone_number: phone,
+            district,
+            street_address,
+            town_city,
+            total_price:
+               orderInfo.district == "Dhaka"
+                  ? ___subTotal + 60
+                  : ___subTotal + 100,
+            additional_info,
+            ordered_products: inCartProducts.map(
+               ({ name, price, quantity, id, subtotal }) => [
+                  { name, price, quantity, id, subtotal },
+               ]
+            ),
+            peyment_method,
+            transaction_id,
+            delivery_complete: false,
+            order_placed_at: moment(time).format("MMMM Do YYYY, h:mm:ss a"),
+         }
+      );
+
+      const userOrderHistory = [data];
+
+      // updating the users
+      try {
+         const updatedUserOrderHistory = [
+            ...userOrderHistory,
+            loggedInUser.data.order_history[0],
+         ];
+
+         await axios.put(
+            `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`,
+            { order_history: updatedUserOrderHistory }
+         );
+      } catch (error) {
+         console.log(error);
+      }
+
+      setOrderPaymentStepComplete(true);
+      setOrderConfirmComplete(data);
+      cartDispatch(resetCart());
       domDispatch(loadingEnd());
    };
 

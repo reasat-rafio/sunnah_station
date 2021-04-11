@@ -173,7 +173,7 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
                         pageWidth < 720
                            ? "top-1/2 right-5 flex-row"
                            : "top-1/2  right-4 flex-col"
-                     } z-40  flex  gap-1`}
+                     } z-20  flex  gap-1`}
                   >
                      {pageWidth < 720 ? (
                         <SmCardActionBtns

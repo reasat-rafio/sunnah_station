@@ -87,7 +87,14 @@ export const SmSearchPage: React.FC<SmSearchPageProps> = ({}) => {
                                           short_description,
                                        }) => (
                                           <Link href={`/items/${slug}`}>
-                                             <li className="py-2 grid grid-cols-12 hover:bg-gray-50 cursor-pointer gap-3 text-sm">
+                                             <li
+                                                onClick={() =>
+                                                   domDispatch(hideSearchPage())
+                                                }
+                                                className={
+                                                   "py-2 grid grid-cols-12 hover:bg-gray-50 cursor-pointer gap-3 text-sm"
+                                                }
+                                             >
                                                 <div className="col-span-1 my-auto">
                                                    <Image
                                                       className=""

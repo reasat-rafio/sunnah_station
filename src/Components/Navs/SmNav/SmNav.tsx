@@ -50,7 +50,7 @@ export const SmNav: React.FC<SmNavProps> = ({
                   exit="exit"
                >
                   {navs.map(({ name, link, subNavs }, i: number) => (
-                     <div key={i}>
+                     <div key={i} className=" z-50">
                         {!subNavs ? (
                            <motion.li variants={linkVariants} className="z-50">
                               <Link href={link}>
