@@ -181,7 +181,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                                  : "top-1/2  right-4 flex-col"
                            } z-30  flex  gap-1`}
                         >
-                           {pageWidth <div 720 ? (
+                           {pageWidth < 720 ? (
                               <SmCardActionBtns
                                  offer_price={offer_price}
                                  addToTheCartAction={addToTheCartAction}
