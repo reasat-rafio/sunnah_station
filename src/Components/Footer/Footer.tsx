@@ -175,12 +175,11 @@ export const Footer = () => {
                            </Link>
                         </li>
                         <li>
-                           <a
-                              href="/"
-                              className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400"
-                           >
-                              Contact Us
-                           </a>
+                           <Link href="https://www.facebook.com/sunnahstation">
+                              <a className="transition-colors duration-300 text-gray-400 hover:no-underline hover:text-lightBlue hover:text-teal-accent-400">
+                                 Contact Us
+                              </a>
+                           </Link>
                         </li>
                         <li>
                            <a
@@ -200,68 +199,67 @@ export const Footer = () => {
                   Reserved.
                </p>
                <div className="flex items-center mt-4 space-x-4 sm:mt-0">
-                  <a
-                     href="/"
-                     className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
-                  >
-                     <svg
-                        height="30"
-                        width="30"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 64 64"
-                        aria-labelledby="title"
-                        aria-describedby="desc"
-                        role="img"
-                     >
-                        <title>Mail</title>
-                        <desc>
-                           A color styled icon from Orion Icon Library.
-                        </desc>
-                        <path
-                           data-name="layer1"
-                           fill="#fff4e3"
-                           d="M2 12h60v40H2z"
-                        ></path>
-                        <path
-                           data-name="opacity"
-                           fill="#000064"
-                           opacity=".14"
-                           d="M2 12l30 27.4L62 12 29 47 5 18v34H2V12z"
-                        ></path>
-                        <path
-                           data-name="stroke"
-                           fill="none"
-                           stroke="#2e4369"
-                           strokeLinecap="round"
-                           strokeMiterlimit="10"
-                           strokeWidth="2"
-                           d="M2 12l30 29 30-29M42 31.6L62 52M2 52l20-20.4"
-                           strokeLinejoin="round"
-                        ></path>
-                        <path
-                           data-name="stroke"
-                           fill="none"
-                           stroke="#2e4369"
-                           strokeLinecap="round"
-                           strokeMiterlimit="10"
-                           strokeWidth="2"
-                           d="M2 12h60v40H2z"
-                           strokeLinejoin="round"
-                        ></path>
-                     </svg>
-                  </a>
-                  <a
-                     href="/"
-                     className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
-                  >
-                     <WhatsApp />
-                  </a>
-                  <a
-                     href="/"
-                     className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400"
-                  >
-                     <FacebookSvg />
-                  </a>
+                  <Link href="mailto:sunnah.station.bd@gmail.com">
+                     <a className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400">
+                        <svg
+                           height="30"
+                           width="30"
+                           xmlns="http://www.w3.org/2000/svg"
+                           viewBox="0 0 64 64"
+                           aria-labelledby="title"
+                           aria-describedby="desc"
+                           role="img"
+                        >
+                           <title>Mail</title>
+                           <desc>
+                              A color styled icon from Orion Icon Library.
+                           </desc>
+                           <path
+                              data-name="layer1"
+                              fill="#fff4e3"
+                              d="M2 12h60v40H2z"
+                           ></path>
+                           <path
+                              data-name="opacity"
+                              fill="#000064"
+                              opacity=".14"
+                              d="M2 12l30 27.4L62 12 29 47 5 18v34H2V12z"
+                           ></path>
+                           <path
+                              data-name="stroke"
+                              fill="none"
+                              stroke="#2e4369"
+                              strokeLinecap="round"
+                              strokeMiterlimit="10"
+                              strokeWidth="2"
+                              d="M2 12l30 29 30-29M42 31.6L62 52M2 52l20-20.4"
+                              strokeLinejoin="round"
+                           ></path>
+                           <path
+                              data-name="stroke"
+                              fill="none"
+                              stroke="#2e4369"
+                              strokeLinecap="round"
+                              strokeMiterlimit="10"
+                              strokeWidth="2"
+                              d="M2 12h60v40H2z"
+                              strokeLinejoin="round"
+                           ></path>
+                        </svg>
+                     </a>
+                  </Link>
+
+                  <Link href="https://wa.me/qr/PW6VALMCNMAMB1">
+                     <a className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400">
+                        <WhatsApp />
+                     </a>
+                  </Link>
+
+                  <Link href="https://www.facebook.com/sunnahstation">
+                     <a className="transition-colors duration-300 text-deep-purple-100 hover:text-teal-accent-400">
+                        <FacebookSvg />
+                     </a>
+                  </Link>
                </div>
             </div>
          </div>
