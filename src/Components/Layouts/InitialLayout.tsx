@@ -37,7 +37,7 @@ export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
          <SmSearchPage />
          <Loading />
          {children}
-         <SmBottomNav />
+         {/* <SmBottomNav /> */}
          <Footer />
       </div>
    );

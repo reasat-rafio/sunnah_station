@@ -145,8 +145,8 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             setOrderConfirmComplete(data);
             cartDispatch(resetCart());
          }
-         domDispatch(loadingEnd());
       }
+      domDispatch(loadingEnd());
    };
 
    return (
