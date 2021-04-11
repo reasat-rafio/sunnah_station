@@ -1,5 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
+import { useCtx } from "../../store";
+import { hideSideNavBar } from "../../store/actions/domAction";
 import { sideBarMoreVarients } from "../../utils/animation";
 import { Minus, Plus } from "../../utils/svgs/Svg";
 
@@ -16,12 +18,8 @@ export const navs = [
       name: "Deals",
       subNavs: [
          {
-            name: "Flash Deals",
+            name: "Ramadan Seal",
             link: "/speal-deals",
-         },
-         {
-            name: "undefind",
-            link: "/",
          },
       ],
    },
@@ -30,23 +28,23 @@ export const navs = [
       subNavs: [
          {
             name: "Food",
-            link: "#",
+            link: "/shop/food",
          },
          {
             name: "Men wearing",
-            link: "#",
+            link: "/shop/mens-wearings",
          },
          {
             name: "Womens wearing",
-            link: "#",
+            link: "/shop/womens-wearings",
          },
          {
             name: "Art and aesthetic",
-            link: "#",
+            link: "/shop/art-aesthetic",
          },
          {
             name: "others",
-            link: "#",
+            link: "/shop/others",
          },
       ],
    },
@@ -79,11 +77,19 @@ export const MoreSubNavs: React.FC<MoreSubDealsProps> = ({
    showMore,
    setShowMore,
 }) => {
+   const {
+      domDispatch,
+      userDispatch,
+      domState: { showSidebar },
+      userState: { isLoggedIn },
+   } = useCtx();
    return (
       <li>
          <div
             className="flex items-center "
-            onClick={() => setShowMore((prevState) => !prevState)}
+            onClick={() => {
+               setShowMore((prevState) => !prevState);
+            }}
          >
             <p className="flex-1 sideBarMainNav cursor-pointer">{nm}</p>
             {showMore ? <Minus /> : <Plus />}
@@ -98,7 +104,7 @@ export const MoreSubNavs: React.FC<MoreSubDealsProps> = ({
                   exit="exit"
                >
                   {subNavs.map(({ link, name }, i: number) => (
-                     <li key={i}>
+                     <li key={i} onClick={() => domDispatch(hideSideNavBar())}>
                         <Link href={link}>
                            <a className="sideBarMainNavMore">{name}</a>
                         </Link>

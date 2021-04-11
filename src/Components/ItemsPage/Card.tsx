@@ -205,7 +205,15 @@ export const Card: React.FC<CardProps> = ({
          <motion.div variants={fadeIn} className="py-4 text-xs border-b">
             {offer_time_till && (
                <div className=" my-4 flex lg:gap-5 gap-1 justify-start items-center p-1 border border-nevyBlue rounded-full">
-                  {/* <Image src={"/img/flash-sale-badge.png"} alt="" /> */}
+                  <Image
+                     src={
+                        "https://res.cloudinary.com/dapjxqk64/image/upload/v1618150465/sunnah%20statoin/flash_deal_hilxxg.png"
+                     }
+                     alt="flash-daeal-logo"
+                     layout="intrinsic"
+                     height="30"
+                     width="80"
+                  />
                   <section>
                      <span className="font-bold text-sm pr-1">{timerDays}</span>
                      <span className="text-gray-500">Day</span>

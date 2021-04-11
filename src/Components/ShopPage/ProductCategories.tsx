@@ -181,7 +181,24 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
          </ul>
 
          <div>
-            <p>asdada</p>
+            <h3 className="font-nav text-xl  my-4 font-semibold font-title text-optional">
+               DEALS & MORE
+            </h3>
+            <ul className="flex flex-col gap-3 ">
+               <li className="hover:no-underline">
+                  <Link href="/special-deals">
+                     <a className="hover:no-underline">Ramadan seals</a>
+                  </Link>
+               </li>
+
+               <li>
+                  <Link href="/new-arrivals">
+                     <li className="hover:no-underline">
+                        <a className="hover:no-underline">New arrivals</a>
+                     </li>
+                  </Link>
+               </li>
+            </ul>
          </div>
       </div>
    );

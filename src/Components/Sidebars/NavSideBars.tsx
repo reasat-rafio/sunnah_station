@@ -135,7 +135,9 @@ export const NavSideBars: React.FC<SideMenuBarProps> = ({}) => {
                            >
                               sunnah.station.bd@gmail.com
                            </a>
-                           <p className="sideBarUtilsChildren">016 8688 2085</p>
+                           <p className="sideBarUtilsChildren">
+                              +8801720333596
+                           </p>
                         </div>
                      </div>
                      {/* Delivery */}

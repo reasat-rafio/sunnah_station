@@ -57,7 +57,12 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
                email,
                password,
             });
-
+            Notify(
+               "info",
+               `Assalamu Alaikum, ${username}
+            
+            Welcome to Sunnah Station`
+            );
             userDispatch(loginUserAction(data));
             router.push("/");
          } catch (error) {

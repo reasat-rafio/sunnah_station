@@ -35,10 +35,6 @@ export const Categories = [
          { sub_category_name: "Comming soon", sub_link: "comming soon" },
       ],
    },
-   {
-      category_name: "Home Appliances",
-      link: "home-appliances",
-   },
 
    {
       category_name: "Jaynamaj",

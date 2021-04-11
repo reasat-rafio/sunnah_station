@@ -168,11 +168,15 @@ export const SmNav: React.FC<SmNavProps> = ({
                   ))}
                   <div className="cursor-pointer">
                      {isLoggedIn ? (
-                        <div className="sideBarMainNav " onClick={logOut}>
+                        <motion.div
+                           className="sideBarMainNav "
+                           onClick={logOut}
+                           variants={sideBarMoreVarients}
+                        >
                            <button className=" bg-lightBlue py-2 rounded-full text-white font-text font-bold  w-52 m-auto">
                               Logout
                            </button>
-                        </div>
+                        </motion.div>
                      ) : (
                         <motion.li
                            className="sideBarMainNav "

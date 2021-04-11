@@ -10,7 +10,7 @@ import {
 
 export const categories = [
    {
-      name: "Special Deal",
+      name: "Ramadan Seal",
       icon: <ShoppingBag />,
       to: "/special-deals",
    },
@@ -18,16 +18,6 @@ export const categories = [
       name: "Food",
       icon: <FoodSvg />,
       to: "/shop/food",
-   },
-   {
-      name: "Art & Aesthetic",
-      icon: <Art />,
-      to: "/shop/art-aesthetic",
-   },
-   {
-      name: "Best Sellings",
-      icon: <Best_seelings />,
-      to: "/best-seelings",
    },
    {
       name: "Mens Wearing",
@@ -39,6 +29,17 @@ export const categories = [
       icon: <Women />,
       to: "/shop/womens-wearings",
    },
+   {
+      name: "Art & Aesthetic",
+      icon: <Art />,
+      to: "/shop/art-aesthetic",
+   },
+   {
+      name: "Best Sellings",
+      icon: <Best_seelings />,
+      to: "/best-seelings",
+   },
+
    {
       name: "Others",
       icon: <Others />,

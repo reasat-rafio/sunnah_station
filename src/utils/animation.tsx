@@ -267,7 +267,7 @@ export const searchbarVariants = {
 
 export const iconVariants = {
    opened: {
-      rotate: 135,
+      rotate: 180,
    },
    closed: {
       rotate: 0,

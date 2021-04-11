@@ -24,11 +24,11 @@ export const BkashPeyment: React.FC<BkashPeymentProps> = ({
          className="my-9 "
       >
          <Image
-            src="https://res.cloudinary.com/dapjxqk64/image/upload/v1617778919/sunnah%20statoin/gadstyle-bKash-1_ukb0nk.png"
+            src="https://res.cloudinary.com/dapjxqk64/image/upload/v1618150455/sunnah%20statoin/01720333596_-_8_20_54_AM_Apr_11_2021_mjgi5f.png"
             alt="bkash barcode"
             layout="intrinsic"
-            height="250"
-            width="250"
+            height="800"
+            width="400"
          />
 
          <div className="flex flex-col gap-3">

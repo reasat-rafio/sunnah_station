@@ -17,6 +17,7 @@ import {
    Menu,
    SmMenuToggle,
    DownArrowSm,
+   SmMenu,
 } from "../../../utils/svgs/Svg";
 import { SearchResult } from "../../SearchResult/SearchResult";
 import { SmNav } from "../SmNav/SmNav";
@@ -179,7 +180,7 @@ export const LgNavbar: React.FC<LgNavbarProps> = ({}) => {
                      className="cursor-pointer block md:hidden "
                      onClick={() => setShowSmMenu((prev) => !prev)}
                   >
-                     <SmMenuToggle />
+                     <SmMenu />
                   </motion.li>
                </li>
             </ul>
