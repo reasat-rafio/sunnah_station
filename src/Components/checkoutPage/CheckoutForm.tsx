@@ -162,7 +162,6 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             </div>
 
             {/* Town / city */}
-
             <div>
                <span className="flex gap-1 py-2">
                   <p className="">Town / City</p>

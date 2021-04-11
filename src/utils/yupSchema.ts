@@ -38,3 +38,10 @@ export const Checkoutschema = yup.object().shape({
 
    additional_info: yup.string(),
 });
+
+export const NewsletterSchema = yup.object().shape({
+   email: yup
+      .string()
+      .email("Please enter a correct email")
+      .required("Email is required"),
+});
