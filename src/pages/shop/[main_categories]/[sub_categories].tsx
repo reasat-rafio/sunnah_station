@@ -4,13 +4,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { InitialLayout } from "../../../Components/Layouts/InitialLayout";
 import { ShopLayout } from "../../../Components/Layouts/ShopLayout";
+import { Loading } from "../../../Components/Loading/Loading";
 import { FilterProductSection } from "../../../Components/ShopPage/FilterProductSection";
 import { ShopProducts } from "../../../Components/ShopPage/ShopProducts";
 import { useCtx } from "../../../store";
 import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 import { InPageToast } from "../../../utils/_components/InPageToast";
 
-const product = ({ products }) => {
+const product = ({ products, ctg }) => {
    const router = useRouter();
    const {
       domDispatch,
@@ -79,10 +80,12 @@ const product = ({ products }) => {
 export default product;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-   const { data } = await axios.get(`${process.env.URL}/sub-categories`);
+   const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/sub-categories`
+   );
 
    const paths = [...data].map(({ name }) => ({
-      params: { product: name },
+      params: { sub_categories: name },
    }));
 
    return {
@@ -90,7 +93,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       fallback: true,
    };
 };
-
 export const getStaticProps: GetStaticProps = async (ctx) => {
    const ctg = ctx.params.sub_categories;
 
@@ -102,23 +104,18 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    );
 
    const allProducts = [...speical_deals.data, ...new_arrivals_all.data];
+   if (ctg) {
+      const products = allProducts.filter(
+         (pd) =>
+            pd.sub_categories &&
+            pd.sub_categories.length > 0 &&
+            pd.sub_categories[0].name === `${ctg}`
+      );
 
-   const products = allProducts.filter((pd) => {
-      if (pd.sub_categories[0].name === `${ctg}`) {
-         return pd;
-      }
-   });
-
-   if (!products) {
       return {
-         notFound: true,
+         props: {
+            products: products,
+         },
       };
    }
-
-   return {
-      props: {
-         products,
-      },
-      revalidate: 1,
-   };
 };

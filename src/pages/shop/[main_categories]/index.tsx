@@ -11,8 +11,6 @@ import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 import { InPageToast } from "../../../utils/_components/InPageToast";
 
 const main_categories = ({ products }) => {
-   console.log(products);
-
    const router = useRouter();
    const {
       domDispatch,
@@ -31,8 +29,10 @@ const main_categories = ({ products }) => {
       const filterSubCtg = (nam: string, setState: any) => {
          if (products) {
             const newState = products.filter(({ sub_categories }) => {
-               let { name } = sub_categories[0];
-               return name == nam;
+               if (sub_categories.length > 0) {
+                  let { name } = sub_categories[0];
+                  return name == nam;
+               }
             });
             setState(newState);
          }
@@ -96,14 +96,16 @@ const main_categories = ({ products }) => {
 export default main_categories;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-   // const { data } = await axios.get(`${process.env.URL}/sub-categories`);
+   const { data } = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/main-categories`
+   );
 
-   // const paths = [...data].map(({ name }) => ({
-   //    params: { product: name },
-   // }));
+   const paths = [...data].map(({ name }) => ({
+      params: { main_categories: name },
+   }));
 
    return {
-      paths: [],
+      paths: paths,
       fallback: true,
    };
 };
@@ -121,20 +123,17 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
    const allProducts = [...speical_deals.data, ...new_arrivals_all.data];
 
    const products = allProducts.filter((pd) => {
-      if (pd.main_categories && pd.main_categories[0].name === `${ctg}`) {
+      if (
+         pd.main_categories[0].name &&
+         pd.main_categories[0].name === `${ctg}`
+      ) {
          return pd;
       }
    });
 
-   if (!products) {
-      return {
-         notFound: true,
-      };
-   }
-
    return {
       props: {
-         products: products,
+         products,
       },
       revalidate: 1,
    };
