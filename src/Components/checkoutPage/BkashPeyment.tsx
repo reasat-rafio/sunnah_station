@@ -13,7 +13,7 @@ export const BkashPeyment: React.FC<BkashPeymentProps> = ({
    const [showNumber, setShowBikashNumber] = useState<boolean>(false);
    const [number, setNumber] = useState<string>("017000000");
 
-   const allNumner = ["017000000", "019000000"];
+   const allNumner = ["01720333596"];
 
    return (
       <motion.div
