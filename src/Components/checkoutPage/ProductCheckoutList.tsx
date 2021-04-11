@@ -79,73 +79,74 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
       orderInfo.peyment_method = cashOnDelivery ? "cash on devivery" : "bkash";
       if (BikashPayment) {
          orderInfo.transaction_id = transactionId;
-         if (transactionId.length < 1) {
-            Notify("error", "please fill the transaction id");
-            return;
+         if (transactionId.length !== 10) {
+            Notify("error", "Invalid Transaction Id. Please check again!");
+         } else {
+            const {
+               additional_info,
+               email_address,
+               first_name,
+               last_name,
+               phone,
+               street_address,
+               town_city,
+               district,
+               peyment_method,
+               transaction_id,
+            } = orderInfo;
+            // Submitin the order
+
+            const { data } = await axios.post(
+               `${process.env.NEXT_PUBLIC_API_URL}/orders`,
+               {
+                  name: `${first_name} ${last_name}`,
+                  email_address,
+                  phone_number: phone,
+                  district,
+                  street_address,
+                  town_city,
+                  total_price:
+                     orderInfo.district == "Dhaka"
+                        ? ___subTotal + 60
+                        : ___subTotal + 100,
+                  additional_info,
+                  ordered_products: inCartProducts.map(
+                     ({ name, price, quantity, id, subtotal }) => [
+                        { name, price, quantity, id, subtotal },
+                     ]
+                  ),
+                  peyment_method,
+                  transaction_id,
+                  delivery_complete: false,
+                  order_placed_at: moment(time).format(
+                     "MMMM Do YYYY, h:mm:ss a"
+                  ),
+               }
+            );
+
+            const userOrderHistory = [data];
+
+            // updating the users
+            try {
+               const updatedUserOrderHistory = [
+                  ...userOrderHistory,
+                  loggedInUser.data.order_history[0],
+               ];
+
+               await axios.put(
+                  `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`,
+                  { order_history: updatedUserOrderHistory }
+               );
+            } catch (error) {
+               console.log(error);
+            }
+
+            setOrderPaymentStepComplete(true);
+            setOrderConfirmComplete(data);
+            cartDispatch(resetCart());
          }
+         domDispatch(loadingEnd());
       }
-
-      const {
-         additional_info,
-         email_address,
-         first_name,
-         last_name,
-         phone,
-         street_address,
-         town_city,
-         district,
-         peyment_method,
-         transaction_id,
-      } = orderInfo;
-      // Submitin the order
-
-      const { data } = await axios.post(
-         `${process.env.NEXT_PUBLIC_API_URL}/orders`,
-         {
-            name: `${first_name} ${last_name}`,
-            email_address,
-            phone_number: phone,
-            district,
-            street_address,
-            town_city,
-            total_price:
-               orderInfo.district == "Dhaka"
-                  ? ___subTotal + 60
-                  : ___subTotal + 100,
-            additional_info,
-            ordered_products: inCartProducts.map(
-               ({ name, price, quantity, id, subtotal }) => [
-                  { name, price, quantity, id, subtotal },
-               ]
-            ),
-            peyment_method,
-            transaction_id,
-            delivery_complete: false,
-            order_placed_at: moment(time).format("MMMM Do YYYY, h:mm:ss a"),
-         }
-      );
-
-      const userOrderHistory = [data];
-
-      // updating the users
-      try {
-         const updatedUserOrderHistory = [
-            ...userOrderHistory,
-            loggedInUser.data.order_history[0],
-         ];
-
-         await axios.put(
-            `${process.env.NEXT_PUBLIC_API_URL}/users/${user[0].user.id}`,
-            { order_history: updatedUserOrderHistory }
-         );
-      } catch (error) {
-         console.log(error);
-      }
-
-      setOrderPaymentStepComplete(true);
-      setOrderConfirmComplete(data);
-      cartDispatch(resetCart());
-      domDispatch(loadingEnd());
    };
 
    return (
@@ -295,54 +296,60 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
             </li>
          </ul>
 
-         <div className="flex flex-col justify-start ">
-            {/* Cash on Delivery */}
-            <label className="inline-flex items-center mt-3">
-               <input
-                  type="checkbox"
-                  className="form-checkbox h-5 w-5 text-lightBlue"
-                  onChange={() => {
-                     setCashOnDelivery((prev) => !prev);
-                     if (BikashPayment) {
-                        setBikahsPeyment(false);
-                     }
-                  }}
-                  checked={cashOnDelivery ? true : false}
-               />
-               <span className="ml-2  flex  items-center gap-2 text-black">
-                  Cash On Delivery
-               </span>
-            </label>
+         <div className="flex flex-col justify-start my-10">
+            <h5 className="text-lg font-semibold underline ml-4">
+               Select peyment method
+            </h5>
 
-            {/* Bkash send money */}
-            <label className="inline-flex items-center mt-3  i">
-               <input
-                  type="checkbox"
-                  className="form-checkbox h-5 w-5 text-lightBlue"
-                  onChange={() => {
-                     setBikahsPeyment((prev) => !prev);
-                     if (cashOnDelivery) {
-                        setCashOnDelivery(false);
-                     }
-                  }}
-                  checked={BikashPayment ? true : false}
-               />
-               <span className="ml-2  flex  items-center gap-2 text-black">
-                  bKash (Send Money)
-                  <Image
-                     src="https://res.cloudinary.com/dapjxqk64/image/upload/v1617776652/sunnah%20statoin/bkash-1-1_njtt3i.png"
-                     alt="bikash logo"
-                     layout="intrinsic"
-                     height="20"
-                     width="20"
+            {/* Cash on Delivery */}
+            <div className="ml-4 flex flex-col">
+               <label className="inline-flex items-center mt-3">
+                  <input
+                     type="checkbox"
+                     className="form-checkbox h-5 w-5 text-lightBlue"
+                     onChange={() => {
+                        setCashOnDelivery((prev) => !prev);
+                        if (BikashPayment) {
+                           setBikahsPeyment(false);
+                        }
+                     }}
+                     checked={cashOnDelivery ? true : false}
                   />
-               </span>
-            </label>
-            <AnimatePresence>
-               {BikashPayment && (
-                  <BkashPeyment setTransactionId={setTransactionId} />
-               )}
-            </AnimatePresence>
+                  <span className="ml-2  flex  items-center gap-2 text-black">
+                     Cash On Delivery
+                  </span>
+               </label>
+
+               {/* Bkash send money */}
+               <label className="inline-flex items-center mt-3  i">
+                  <input
+                     type="checkbox"
+                     className="form-checkbox h-5 w-5 text-lightBlue"
+                     onChange={() => {
+                        setBikahsPeyment((prev) => !prev);
+                        if (cashOnDelivery) {
+                           setCashOnDelivery(false);
+                        }
+                     }}
+                     checked={BikashPayment ? true : false}
+                  />
+                  <span className="ml-2  flex  items-center gap-2 text-black">
+                     bKash (Send Money)
+                     <Image
+                        src="https://res.cloudinary.com/dapjxqk64/image/upload/v1617776652/sunnah%20statoin/bkash-1-1_njtt3i.png"
+                        alt="bikash logo"
+                        layout="intrinsic"
+                        height="20"
+                        width="20"
+                     />
+                  </span>
+               </label>
+               <AnimatePresence>
+                  {BikashPayment && (
+                     <BkashPeyment setTransactionId={setTransactionId} />
+                  )}
+               </AnimatePresence>
+            </div>
          </div>
 
          <div className="flex my-5 ">
@@ -352,17 +359,17 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   className="form-checkbox "
                   onChange={() => setAgree((prev) => !prev)}
                />
-               <span className="ml-2">
+               <span className="ml-2 text-optional">
                   I have read and agree to the website
-                  <Link href="/">
+                  <Link href="/terms-and-conditions">
                      <a> terms and conditions</a>
                   </Link>
                   ,
-                  <Link href="">
+                  <Link href="/privacy-policy">
                      <a> privacy policy</a>
                   </Link>
                   ,
-                  <Link href="/">
+                  <Link href="/returns-refunds">
                      <a> returns & refunds</a>
                   </Link>
                   <span className="text-red-500">*</span>
@@ -390,15 +397,17 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   PREVIOUS
                </button>
                <button
-                  className={`bg-lightBlue  py-3 px-5 rounded ${
-                     !agree && "cursor-not-allowed"
-                  }`}
-                  disabled={agree ? false : true}
+                  className={`bg-lightBlue  py-3 px-5 rounded`}
                   onClick={() => {
                      if (inCartProducts.length < 1) {
                         Notify("error", "Cart is empty");
                      } else if (!cashOnDelivery && !BikashPayment) {
                         Notify("error", "Please select a peyment method");
+                     } else if (!agree) {
+                        Notify(
+                           "info",
+                           "You have to agree with our terms, conditions,privacy policy, returns & refunds to place your order "
+                        );
                      } else {
                         orderSubmitAction();
                      }

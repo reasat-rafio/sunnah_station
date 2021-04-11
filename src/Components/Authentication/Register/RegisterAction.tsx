@@ -45,20 +45,27 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
       password,
       con_password,
    }: onSubmitInterface) => {
-      try {
-         const { data } = await axios.post(URL, {
-            username,
-            email,
-            password,
-         });
-
-         userDispatch(loginUserAction(data));
-         router.push("/");
-      } catch (error) {
+      if (!agree) {
          Notify(
             "error",
-            `${error.response.data.message[0].messages[0].message}`
+            "You have to agree with our Terms and policy to register."
          );
+      } else {
+         try {
+            const { data } = await axios.post(URL, {
+               username,
+               email,
+               password,
+            });
+
+            userDispatch(loginUserAction(data));
+            router.push("/");
+         } catch (error) {
+            Notify(
+               "error",
+               `${error.response.data.message[0].messages[0].message}`
+            );
+         }
       }
    };
 
@@ -66,15 +73,15 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
    const [agree, setAgree] = useState<boolean>(false);
 
    // this will change the button Disable for signup
-   const buttonRef = useRef<HTMLButtonElement>(null);
+   // const buttonRef = useRef<HTMLButtonElement>(null);
 
-   useEffect(() => {
-      if (agree) {
-         buttonRef.current.disabled = false;
-      } else {
-         buttonRef.current.disabled = true;
-      }
-   }, [agree]);
+   // useEffect(() => {
+   //    if (agree) {
+   //       buttonRef.current.disabled = false;
+   //    } else {
+   //       buttonRef.current.disabled = true;
+   //    }
+   // }, [agree]);
 
    return (
       <div className="lg:col-span-6 col-span-12 col-s xl:col-span-5 lg:px-14 px-4  py-5 ">
@@ -273,10 +280,8 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
 
             <button
                type="submit"
-               ref={buttonRef}
-               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2 ${
-                  !agree && "cursor-not-allowed"
-               }`}
+               // ref={buttonRef}
+               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2 `}
             >
                <LoginSvg /> <span> Sign Up</span>
             </button>
@@ -293,14 +298,11 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
             <label className="ml-2 block text-sm text-gray-900">
                I agree to the{" "}
                <Link href="/terms-and-conditions">
-                  {" "}
-                  <a className="text-lightBlue hover:text-indigo-500 ">Terms</a>
-               </Link>
+                  <a className=" hover:text-indigo-500 ">Terms</a>
+               </Link>{" "}
                and{" "}
                <Link href="/privacy-policy">
-                  <a className="text-lightBlue hover:text-indigo-500 ">
-                     Privecy policy
-                  </a>
+                  <a className="hover:text-indigo-500 ">Privecy policy</a>
                </Link>
             </label>
          </div>
@@ -308,7 +310,7 @@ export const RegisterAction: React.FC<RegisterActionProps> = () => {
          <div className="text-sm text-center">
             Already have an account?
             <Link href="/authentication/signin">
-               <a>Sign in</a>
+               <a className="font-bold text-md text-optional"> Sign in</a>
             </Link>
          </div>
       </div>

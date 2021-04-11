@@ -16,6 +16,7 @@ import {
 import { LgCardActionBtns, SmCardActionBtns } from "../Home/_helper";
 import { CardImage } from "../Home/Deals/CardImage";
 import { ModalContent } from "../../utils/_components/ModalContent";
+import { ShopLayout } from "../Layouts/ShopLayout";
 
 interface N_Deals_PageProps {
    products: any[];
@@ -249,39 +250,41 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
    };
 
    return (
-      <div className="w-full">
-         <div className="container mx-auto">
-            <div className="my-4 grid grid-cols-20 gap-2 ">
-               {displayProrducts}
-            </div>
+      <ShopLayout>
+         <div className="w-full">
+            <div className="container mx-auto">
+               <div className="my-4 grid grid-cols-20 gap-2 ">
+                  {displayProrducts}
+               </div>
 
-            <span className="mx-auto flex">
-               <ReactPaginate
-                  previousLabel={"← Prev"}
-                  nextLabel={"Next →"}
-                  breakLabel={"..."}
-                  breakClassName={"break-me"}
-                  onPageChange={chnagePage}
-                  pageCount={pageCount}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={5}
-                  containerClassName={"pagination"}
-                  previousLinkClassName={"pagination__link"}
-                  nextLinkClassName={"pagination__link"}
-                  disabledClassName={"pagination__link--disabled"}
-                  activeClassName={"pagination__link--active"}
-               />
-            </span>
+               <span className="mx-auto flex">
+                  <ReactPaginate
+                     previousLabel={"← Prev"}
+                     nextLabel={"Next →"}
+                     breakLabel={"..."}
+                     breakClassName={"break-me"}
+                     onPageChange={chnagePage}
+                     pageCount={pageCount}
+                     marginPagesDisplayed={2}
+                     pageRangeDisplayed={5}
+                     containerClassName={"pagination"}
+                     previousLinkClassName={"pagination__link"}
+                     nextLinkClassName={"pagination__link"}
+                     disabledClassName={"pagination__link--disabled"}
+                     activeClassName={"pagination__link--active"}
+                  />
+               </span>
+            </div>
+            <ModalContent
+               showModal={showModal}
+               setShowModal={setShowModal}
+               setModalContent={setModalContent}
+               modalContent={modalContent}
+               setProductQuantity={setProductQuantity}
+               addToTheCartAction={addToTheCartAction}
+               productQuantity={productQuantity}
+            />
          </div>
-         <ModalContent
-            showModal={showModal}
-            setShowModal={setShowModal}
-            setModalContent={setModalContent}
-            modalContent={modalContent}
-            setProductQuantity={setProductQuantity}
-            addToTheCartAction={addToTheCartAction}
-            productQuantity={productQuantity}
-         />
-      </div>
+      </ShopLayout>
    );
 };

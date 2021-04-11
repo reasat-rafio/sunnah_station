@@ -5,16 +5,18 @@ import { SigninSvg } from "../../Components/Authentication/Signin/SignInSvg";
 
 const signin = () => {
    return (
-      <div className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
-         <motion.div
-            initial={{ x: "-100vw" }}
-            animate={{ x: 0 }}
-            className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
-         >
-            <SignInAction />
-            <SigninSvg />
-         </motion.div>
-      </div>
+      <section className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
+         <>
+            <motion.div
+               initial={{ x: "-100vw" }}
+               animate={{ x: 0 }}
+               className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
+            >
+               <SignInAction />
+               <SigninSvg />
+            </motion.div>
+         </>
+      </section>
    );
 };
 

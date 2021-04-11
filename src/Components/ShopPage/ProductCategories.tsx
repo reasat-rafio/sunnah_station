@@ -120,7 +120,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
 
    return (
       <div className="my-5 px-5 font-text outline-none">
-         <h3 className="font-nav text-lg font-medium my-4">
+         <h3 className="font-nav text-xl  my-4 font-semibold font-title text-optional">
             PRODUCT CATEGORIES
          </h3>
          <ul className=" ">
@@ -130,7 +130,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                      <Link href={`/shop/${link}`}>
                         <a
                            onClick={closeSideMenubarAction}
-                           className={`flex-1 hover:text-lightBlue  ${
+                           className={`flex-1 hover:text-lightBlue hover:no-underline  ${
                               main_categories == link && "text-lightBlue"
                            }`}
                         >
@@ -179,6 +179,10 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                </li>
             ))}
          </ul>
+
+         <div>
+            <p>asdada</p>
+         </div>
       </div>
    );
 };

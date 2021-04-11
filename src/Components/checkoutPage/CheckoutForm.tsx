@@ -6,7 +6,7 @@ import { useState } from "react";
 import { subDistrict } from "../CartPage/CartTotal/_Data";
 import { useFilterByInput } from "../../utils/hooks/useFilterByInput";
 import { UpArrowSm, DownArrowSm, Search } from "../../utils/svgs/Svg";
-import { useCtx } from "../../store";
+import Link from "next/link";
 
 interface CheckoutFormProps {
    orderInfo: any;
@@ -53,7 +53,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
    return (
       <div className="w-full ">
          <form
-            className="flex gap-3 font-nav container text-sm flex-col  mx-auto px-2"
+            className="flex gap-3 font-nav container text-sm flex-col  mx-auto px-5"
             onSubmit={handleSubmit(onSubmitAction)}
          >
             {/* First name && last name */}
@@ -270,12 +270,18 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
             <div className="grid grid-cols-12 items-center gap-4 py-3">
                <span className="col-span-12 lg:col-span-6">
                   <p>
+                     ⚠ Read your information again and make sure its correct.{" "}
+                  </p>
+                  <p>
                      ⚠ Delivery time: 24-48 hours inside Dhaka, outside it takes
                      2-3 days depending on courier services.{" "}
                   </p>
                   <p>
-                     ⚠ Urgent, emergency delivery not available. Please do not
-                     submit that type of request.
+                     ⚠ If urgent delivery is needed then{" "}
+                     <Link href="/contact-us">
+                        <a>connect </a>
+                     </Link>{" "}
+                     with us.
                   </p>
                </span>
                <span className="col-span-12 lg:col-span-6 flex">

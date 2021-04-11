@@ -15,6 +15,7 @@ import {
 import { CardImage } from "../Deals/CardImage";
 import { ModalContent } from "../../../utils/_components/ModalContent";
 import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
+import { ShopLayout } from "../../Layouts/ShopLayout";
 
 interface NewArrivalsProps {
    newArrivals: any[];
@@ -180,7 +181,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                                  : "top-1/2  right-4 flex-col"
                            } z-30  flex  gap-1`}
                         >
-                           {pageWidth < 720 ? (
+                           {pageWidth <div 720 ? (
                               <SmCardActionBtns
                                  offer_price={offer_price}
                                  addToTheCartAction={addToTheCartAction}

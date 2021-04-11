@@ -11,7 +11,7 @@ const ReturnsRefunds: React.FC<returnsRefundsProps> = ({ data }) => {
    return (
       <InitialLayout>
          <div className="w-full">
-            <div className="container mx-auto">
+            <div className="container mx-auto min-h-screen">
                <div className="pt-16 md:pt-32">
                   {data && (
                      <ReactMarkdown

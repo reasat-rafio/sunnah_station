@@ -2,31 +2,27 @@ import { motion } from "framer-motion";
 import { RegisterAction } from "../../Components/Authentication/Register/RegisterAction";
 import { RegisterSvg } from "../../Components/Authentication/Register/RegisterSvg";
 import { getSession } from "next-auth/client";
-import { useCtx } from "../../store";
-const register = ({ session }) => {
-   const { userState } = useCtx();
 
+const register = () => {
    return (
-      <div className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
-         <motion.div
-            initial={{ x: "-100vw" }}
-            animate={{ x: 0 }}
-            className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
-         >
-            <RegisterAction />
-            <RegisterSvg />
-         </motion.div>
-      </div>
+      <section className=" w-full bg-nevyBlue min-h-screen flex justify-center items-center">
+         <>
+            <motion.div
+               initial={{ x: "-100vw" }}
+               animate={{ x: 0 }}
+               className="container w-full  bg-gray-50  rounded-lg grid grid-cols-12 "
+            >
+               <RegisterAction />
+               <RegisterSvg />
+            </motion.div>
+         </>
+      </section>
    );
 };
 
 export default register;
 
-export const getServerSideProps = async ({ req }) => {
-   const session = await getSession({ req });
-   return {
-      props: {
-         session,
-      },
-   };
-};
+export async function getServerSideProps(ctx) {
+   const session = await getSession(ctx);
+   return { props: { session } };
+}

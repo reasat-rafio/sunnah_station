@@ -33,7 +33,7 @@ export const OrederConfirmed: React.FC<OrederConfirmedProps> = ({
       <div className="w-full">
          <div className="container mx-auto font-text px-2 ">
             <div>
-               <h2 className="text-lightBlue font-semibold flex justify-center items-center py-6 border-dashed  border-4 mt-10 border-lightBlue text-xl font-title">
+               <h2 className="text-green-500 font-semibold flex justify-center items-center     mt-10 text-4xl font-title transform translate-y-10">
                   Thank you. Your order has been received
                </h2>
                <Lottie
@@ -45,8 +45,11 @@ export const OrederConfirmed: React.FC<OrederConfirmedProps> = ({
 
             <p className="text-sm my-2">
                Thank you for your order. We will check and give you update as
-               soon as possible. For any information call us at +019121212 or
-               email us at sunnah.station.bd@gmail.com
+               soon as possible. For any information call us at 01779011690 or
+               email us at{" "}
+               <Link href="mailto:sunnah.station.bd@gmail.com">
+                  <a>sunnah.station.bd@gmail.com</a>
+               </Link>
             </p>
 
             <div className="my-10 text-black">

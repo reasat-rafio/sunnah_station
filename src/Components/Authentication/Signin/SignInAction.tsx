@@ -41,38 +41,45 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
    const [agree, setAgree] = useState<boolean>(false);
 
    // this will change the button Disable for signup
-   const buttonRef = useRef<HTMLButtonElement>(null);
+   // const buttonRef = useRef<HTMLButtonElement>(null);
 
-   useEffect(() => {
-      if (agree) {
-         buttonRef.current.disabled = false;
-      } else {
-         buttonRef.current.disabled = true;
-      }
-   }, [agree]);
+   // useEffect(() => {
+   //    if (agree) {
+   //       buttonRef.current.disabled = false;
+   //    } else {
+   //       buttonRef.current.disabled = true;
+   //    }
+   // }, [agree]);
 
    // form on submit
    const onSubmitAction = async ({
       identifier,
       password,
    }: onSubmitInterface) => {
-      domDispatch(loadingstart());
-      try {
-         const { data } = await axios.post(URL, {
-            identifier,
-            password,
-         });
-
-         Notify("success", `Welcome back ${data.user.username} 😀`);
-
-         userDispatch(loginUserAction(data));
-         domDispatch(loadingEnd());
-         router.push("/");
-      } catch (error) {
+      if (!agree) {
          Notify(
             "error",
-            `${error.response.data.message[0].messages[0].message}`
+            "You have to agree with our Terms and policy to sign in"
          );
+      } else {
+         domDispatch(loadingstart());
+         try {
+            const { data } = await axios.post(URL, {
+               identifier,
+               password,
+            });
+
+            Notify("info", `Assalamu Alaikum ${data.user.username} `);
+
+            userDispatch(loginUserAction(data));
+            domDispatch(loadingEnd());
+            router.push("/");
+         } catch (error) {
+            Notify(
+               "error",
+               `${error.response.data.message[0].messages[0].message}`
+            );
+         }
       }
    };
 
@@ -201,11 +208,9 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
             </div>
 
             <button
-               ref={buttonRef}
+               // ref={buttonRef}
                type="submit"
-               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2  ${
-                  !agree && "cursor-not-allowed"
-               }`}
+               className={`bg-nevyBlue p-3 rounded-md text-gray-100  font-text font-semibold flex justify-center items-center gap-2 `}
             >
                <SignInSvg /> <span> Sign in</span>
             </button>
@@ -225,8 +230,8 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
                   <a className="text-indigo-600 hover:text-indigo-500 ">
                      Terms
                   </a>
-               </Link>
-               and
+               </Link>{" "}
+               and{" "}
                <Link href="/privacy-policy">
                   <a className="text-indigo-600 hover:text-indigo-500 ">
                      Privecy policy
@@ -243,7 +248,7 @@ export const SignInAction: React.FC<SignInActionProps> = () => {
          <div className="text-sm text-center">
             Dont have an account?
             <Link href="/authentication/register">
-               <a>Sign Up</a>
+               <a className="font-bold text-md text-optional"> Sign Up</a>
             </Link>
          </div>
       </div>

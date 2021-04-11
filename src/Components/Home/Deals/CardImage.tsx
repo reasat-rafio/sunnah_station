@@ -25,7 +25,7 @@ export const CardImage: React.FC<CardImageProps> = ({ image, name }) => {
             {image.map((a, i) => (
                <SwiperSlide key={i} className="flex flex-col  m-auto ">
                   <Image
-                     className="flex justify-center items-center mx-auto"
+                     className="flex justify-center items-center mx-auto "
                      src={a.url}
                      alt={name}
                      layout="responsive"

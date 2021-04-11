@@ -2,7 +2,7 @@ interface SignInSvgProps {}
 
 export const SigninSvg: React.FC<SignInSvgProps> = ({}) => {
    return (
-      <div className="lg:col-span-6 xl:col-span-7 bg-indigo-200  justify-center items-center hidden  lg:flex rounded">
+      <div className="lg:col-span-6 xl:col-span-7 bg-gray-Plo100  justify-center items-center hidden  lg:flex rounded">
          <svg
             className="p-20 "
             width="1569"
