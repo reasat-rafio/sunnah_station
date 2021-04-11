@@ -33,7 +33,7 @@ export const OrederConfirmed: React.FC<OrederConfirmedProps> = ({
       <div className="w-full">
          <div className="container mx-auto font-text px-2 ">
             <div>
-               <h2 className="text-green-500 font-semibold flex justify-center items-center     mt-10 text-4xl font-title transform translate-y-10">
+               <h2 className="text-green-500 font-semibold flex justify-center items-center mt-10 text-2xl lg:text-4xl font-title transform translate-y-10">
                   Thank you. Your order has been received
                </h2>
                <Lottie
