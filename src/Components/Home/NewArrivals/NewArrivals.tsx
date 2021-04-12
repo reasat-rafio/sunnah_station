@@ -273,10 +273,11 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                SHOW ALL PRODUCTS
             </button>
          )} */}
-         <Link href="/new-arrivals"></Link>
-         <button className="mx-auto flex my-2 rounded-sm  p-3 border-nevyBlue text-nevyBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16">
-            SHOW ALL PRODUCTS
-         </button>
+         <Link href="/new-arrivals">
+            <button className="mx-auto flex my-2 rounded-sm  p-3 border-nevyBlue text-nevyBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16">
+               SHOW ALL PRODUCTS
+            </button>
+         </Link>
 
          <ModalContent
             showModal={showModal}
