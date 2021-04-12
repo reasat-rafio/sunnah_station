@@ -23,6 +23,8 @@ interface CardProps {
    short_description: string;
    slug: string;
    main_categories: any[];
+   multiple_quantity: boolean;
+   quantity_and_price: any;
 }
 
 const easing = [0.6, -0.05, 0.01, 0.99];
@@ -62,7 +64,16 @@ export const Card: React.FC<CardProps> = ({
    in_stock,
    slug,
    main_categories,
+   multiple_quantity,
+   quantity_and_price,
 }) => {
+   // global store
+   const {
+      domDispatch,
+      cartState: { inCartProducts },
+      cartDispatch,
+   } = useCtx();
+
    // selected  product qunatity
    const [productQuantity, setProductQuantity] = useState<number>(1);
 
@@ -114,33 +125,68 @@ export const Card: React.FC<CardProps> = ({
       };
    }, []);
 
-   // global store
-   const {
-      domDispatch,
-      cartState: { inCartProducts },
-      cartDispatch,
-   } = useCtx();
+   // Different quantity price
+   const [quanity, setQuantity] = useState<number>(0);
+
+   // State of Prices for diffrent quanity
+   const [defQunatityRegularPrice, setDefQuantityRegularPrice] = useState();
+   const [
+      defQunatityRegularPriceQuantity,
+      setDefQuantityRegularPriceQuantity,
+   ] = useState();
+   const [defQunatityOfferPrice, setDefQuantityOfferPrice] = useState();
+   const [
+      defQunatityOfferPriceQuantity,
+      setDefQuantityOfferPriceQuantity,
+   ] = useState();
+
+   useEffect(() => {
+      setDefQuantityRegularPrice(quantity_and_price[quanity].regular_price);
+      setDefQuantityRegularPriceQuantity(quantity_and_price[quanity].quantity);
+      setDefQuantityOfferPrice(quantity_and_price[quanity].offer_price);
+      setDefQuantityOfferPriceQuantity(quantity_and_price[quanity].quantity);
+   }, [quanity]);
 
    // Adding product to the cart
-   const addToTheCartAction = (name, price, quantity, id, img, slug) => {
+   const addToTheCartAction = (
+      name: string,
+      price,
+      quantity,
+      id: string,
+      img,
+      slug: string,
+      multiple_quantity: boolean
+   ) => {
+      const _price = !multiple_quantity
+         ? price
+         : quantity_and_price[0].offer_price
+         ? defQunatityOfferPrice
+         : defQunatityRegularPrice;
+
       const item = {
          name,
-         price,
+         price: _price,
          quantity,
          id,
          img,
          slug,
-         subtotal: parseInt(price.replace(/,/g, ""), 10),
+         product_quantity: quantity_and_price[0].offer_price
+            ? defQunatityOfferPriceQuantity
+            : defQunatityRegularPriceQuantity,
+         subtotal: parseInt(_price.replace(/,/g, ""), 10),
       };
 
       const _itemToTheCart = {
          name,
-         price,
+         price: _price,
          quantity,
          id,
          img,
          slug,
-         subtotal: parseInt(price.replace(/,/g, ""), 10) * quantity,
+         product_quantity: quantity_and_price[0].offer_price
+            ? defQunatityOfferPriceQuantity
+            : defQunatityRegularPriceQuantity,
+         subtotal: parseInt(_price.replace(/,/g, ""), 10) * quantity,
       };
 
       if (inCartProducts && inCartProducts.length > 0) {
@@ -234,84 +280,143 @@ export const Card: React.FC<CardProps> = ({
                   </section>
                </div>
             )}
-            <motion.div variants={fadeIn} className=" flex gap-2">
-               <div className="flex justify-center items-center">
+            <motion.div variants={fadeIn} className="">
+               {multiple_quantity && (
+                  <div className=" my-3 ">
+                     <div className=" flex-1">
+                        <div className="flex  gap-2 text-base items-center ">
+                           <span className="font-semibold text-black text-lg">
+                              Quantity:{" "}
+                           </span>
+                           {quantity_and_price.map(
+                              (
+                                 { offer_price, quantity, regular_price },
+                                 i: number
+                              ) => (
+                                 <button
+                                    key={i}
+                                    className={`hover:bg-lightBlue rounded  hover:text-white px-3 py-1 ${
+                                       i === quanity &&
+                                       "bg-lightBlue text-white"
+                                    }`}
+                                    onClick={() => setQuantity(i)}
+                                 >
+                                    {quantity}
+                                 </button>
+                              )
+                           )}{" "}
+                           {/* <button className="flex justify-center items-center">
+                              <span>
+                                 <SmCross />
+                              </span>
+                              Clear
+                           </button> */}
+                        </div>
+                     </div>
+                     <div className="flex gap-2 text-lg mt-4">
+                        {quantity_and_price[0].offer_price ? (
+                           <>
+                              <p className="line-through text-gray-500">
+                                 ৳{defQunatityRegularPrice}
+                              </p>
+                              <p className="text-lightBlue text-xl font-semibold">
+                                 ৳{defQunatityOfferPrice}
+                              </p>{" "}
+                           </>
+                        ) : (
+                           <p className="text-lightBlue text-xl font-semibold">
+                              ৳{quantity_and_price[quanity].offer_price}
+                           </p>
+                        )}
+                     </div>
+                  </div>
+               )}
+
+               <div className=" flex gap-2">
+                  <div className="flex justify-center items-center">
+                     <button
+                        className="py-3 px-2 border rounded-l-md transition-all duration-150 hover:bg-lightBlue outline-none"
+                        onClick={() => {
+                           setProductQuantity((prevQuanity) =>
+                              prevQuanity > 1 ? prevQuanity - 1 : 1
+                           );
+                        }}
+                     >
+                        -
+                     </button>
+                     <span className="py-3 px-2 border-t border-b">
+                        {productQuantity}
+                     </span>
+                     <button
+                        className="py-3 px-2 border rounded-r-md hover:bg-lightBlue transition-all duration-150 outline-none"
+                        onClick={() =>
+                           setProductQuantity(
+                              (prevQuanitiy) => prevQuanitiy + 1
+                           )
+                        }
+                     >
+                        +
+                     </button>
+                  </div>
                   <button
-                     className="py-3 px-2 border rounded-l-md transition-all duration-150 hover:bg-lightBlue outline-none"
+                     className=" productBtn bg-gray-500 hover:bg-gray-600 "
                      onClick={() => {
-                        setProductQuantity((prevQuanity) =>
-                           prevQuanity > 1 ? prevQuanity - 1 : 1
-                        );
+                        offer_price
+                           ? // If offer avilable
+                             addToTheCartAction(
+                                name,
+                                offer_price,
+                                productQuantity,
+                                id,
+                                img,
+                                slug,
+                                multiple_quantity
+                             )
+                           : // If no offer avilable
+                             addToTheCartAction(
+                                name,
+                                regular_price,
+                                productQuantity,
+                                id,
+                                img,
+                                slug,
+                                multiple_quantity
+                             );
+                        domDispatch(showCart());
                      }}
                   >
-                     -
+                     ADD TO CART
                   </button>
-                  <span className="py-3 px-2 border-t border-b">
-                     {productQuantity}
-                  </span>
                   <button
-                     className="py-3 px-2 border rounded-r-md hover:bg-lightBlue transition-all duration-150 outline-none"
-                     onClick={() =>
-                        setProductQuantity((prevQuanitiy) => prevQuanitiy + 1)
-                     }
+                     className=" productBtn bg-lightBlue"
+                     onClick={() => {
+                        offer_price
+                           ? // If offer avilable
+                             addToTheCartAction(
+                                name,
+                                offer_price,
+                                productQuantity,
+                                id,
+                                img,
+                                slug,
+                                multiple_quantity
+                             )
+                           : // If no offer avilable
+                             addToTheCartAction(
+                                name,
+                                regular_price,
+                                productQuantity,
+                                id,
+                                img,
+                                slug,
+                                multiple_quantity
+                             );
+                        router.push("/checkout");
+                     }}
                   >
-                     +
+                     BUY NOW
                   </button>
                </div>
-               <button
-                  className=" productBtn bg-gray-500 hover:bg-gray-600 "
-                  onClick={() => {
-                     offer_price
-                        ? // If offer avilable
-                          addToTheCartAction(
-                             name,
-                             offer_price,
-                             productQuantity,
-                             id,
-                             img,
-                             slug
-                          )
-                        : // If no offer avilable
-                          addToTheCartAction(
-                             name,
-                             regular_price,
-                             productQuantity,
-                             id,
-                             img,
-                             slug
-                          );
-                     domDispatch(showCart());
-                  }}
-               >
-                  ADD TO CART
-               </button>
-               <button
-                  className=" productBtn bg-lightBlue"
-                  onClick={() => {
-                     offer_price
-                        ? // If offer avilable
-                          addToTheCartAction(
-                             name,
-                             offer_price,
-                             productQuantity,
-                             id,
-                             img,
-                             slug
-                          )
-                        : // If no offer avilable
-                          addToTheCartAction(
-                             name,
-                             regular_price,
-                             productQuantity,
-                             id,
-                             img,
-                             slug
-                          );
-                     router.push("/checkout");
-                  }}
-               >
-                  BUY NOW
-               </button>
             </motion.div>
          </motion.div>
          <motion.div variants={fadeIn} className="py-4 ">
@@ -325,6 +430,7 @@ export const Card: React.FC<CardProps> = ({
                   categories &&
                   main_categories.map(({ name }, i) => (
                      <span className="text-sm text-gray-500" key={i}>
+                        {" "}
                         {name} {"> "}
                      </span>
                   ))}

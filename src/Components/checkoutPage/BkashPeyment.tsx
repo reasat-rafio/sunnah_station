@@ -11,7 +11,7 @@ export const BkashPeyment: React.FC<BkashPeymentProps> = ({
    setTransactionId,
 }) => {
    const [showNumber, setShowBikashNumber] = useState<boolean>(false);
-   const [number, setNumber] = useState<string>("017000000");
+   const [number, setNumber] = useState<string>("01720333596");
 
    const allNumner = ["01720333596"];
 

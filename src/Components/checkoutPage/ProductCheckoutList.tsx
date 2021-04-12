@@ -99,7 +99,6 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
          transaction_id,
       } = orderInfo;
       // Submitin the order
-      console.log("asd");
 
       domDispatch(loadingstart());
       const { data } = await axios.post(
@@ -117,8 +116,8 @@ export const ProductCheckoutList: React.FC<CartProductListProps> = ({
                   : ___subTotal + 100,
             additional_info,
             ordered_products: inCartProducts.map(
-               ({ name, price, quantity, id, subtotal }) => [
-                  { name, price, quantity, id, subtotal },
+               ({ name, price, quantity, id, subtotal, product_quantity }) => [
+                  { name, price, quantity, id, subtotal, product_quantity },
                ]
             ),
             peyment_method,

@@ -5,11 +5,11 @@ import { InitialLayout } from "../../Components/Layouts/InitialLayout";
 import { Card } from "../../Components/ItemsPage/Card";
 import { ProductImages } from "../../Components/ItemsPage/ProductImages/ProductImages";
 import { Tabs } from "../../Components/ItemsPage/Tabs/Tabs";
+import { Head } from "next/document";
 
 interface itemProps {
    //    flash_deals: any;
    new_arrivals: any;
-
    speical_deals: any;
 }
 
@@ -49,6 +49,9 @@ const item: React.FC<itemProps> = ({
    }, [speical_deals]);
    return (
       <InitialLayout>
+         {/* <Head>
+            <title>- Sunnah Station</title>
+         </Head> */}
          <section className=" w-full pt-16 md:pt-32">
             {product &&
                product.map(
@@ -66,6 +69,8 @@ const item: React.FC<itemProps> = ({
                      in_stock,
                      slug,
                      main_categories,
+                     multiple_quantity,
+                     quantity_and_price,
                   }) => (
                      <React.Fragment key={id}>
                         <section className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
@@ -88,6 +93,8 @@ const item: React.FC<itemProps> = ({
                                  short_description={short_description}
                                  slug={slug}
                                  main_categories={main_categories}
+                                 quantity_and_price={quantity_and_price}
+                                 multiple_quantity={multiple_quantity}
                               />
                            </div>
                         </section>
@@ -117,7 +124,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
    const data = [
       //   ...flash_deals.data,
       ...new_arrivals.data,
-      //   ...gaming_accessories.data,
       ...speical_deals.data,
    ];
 
