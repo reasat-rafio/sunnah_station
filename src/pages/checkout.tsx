@@ -16,6 +16,10 @@ const checkout = () => {
       cartState: { inCartProducts },
    } = useCtx();
 
+   if (!isLoggedIn) {
+      Notify("info", "Please signin to access cheeckout");
+      return <Redirect to="/authentication/signin" />;
+   }
    const [adressStepComplete, setAdressStepComplete] = useState<boolean>(false);
    const [
       orderPaymentStepComplete,
