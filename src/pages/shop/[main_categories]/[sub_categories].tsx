@@ -61,8 +61,6 @@ const product = ({ products, ctg }) => {
                   ) : (
                      <>
                         <FilterProductSection
-                           gridCount={gridCount}
-                           setGridCount={setGridCount}
                            showMoreFilter={showMoreFilter}
                            setShowMoreFilter={setShowMoreFilter}
                            selectedFilter={selectedFilter}
