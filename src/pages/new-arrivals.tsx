@@ -2,12 +2,16 @@ import { GetStaticProps } from "next";
 import axios from "axios";
 import { InitialLayout } from "../Components/Layouts/InitialLayout";
 import { Products } from "../Components/Products/Products";
+import { FilterProductSection } from "../Components/ShopPage/FilterProductSection";
+import { useState } from "react";
 
 const New_Arrival = ({ new_arrival }) => {
    return (
       <InitialLayout>
-         <div className=" pt-16 md:pt-32">
-            <Products products={new_arrival} />
+         <div className="w-full pt-16 md:pt-32 ">
+            <div className="container mx-auto">
+               <Products products={new_arrival} />
+            </div>
          </div>
       </InitialLayout>
    );

@@ -16,6 +16,7 @@ import { CardImage } from "../Deals/CardImage";
 import { ModalContent } from "../../../utils/_components/ModalContent";
 import { loadingEnd, loadingstart } from "../../../store/actions/domAction";
 import { ShopLayout } from "../../Layouts/ShopLayout";
+import Link from "next/link";
 
 interface NewArrivalsProps {
    newArrivals: any[];
@@ -249,7 +250,7 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
                )}
          </div>
 
-         {loading ? (
+         {/* {loading ? (
             <button
                className="mx-auto flex my-2 rounded-sm  p-3 border-nevyBlue text-nevyBlue border   font-semibold transition-all duration-300 mb-16 cursor-not-allowed"
                disabled={true}
@@ -271,7 +272,11 @@ export const NewArrivals: React.FC<NewArrivalsProps> = ({ newArrivals }) => {
             >
                SHOW ALL PRODUCTS
             </button>
-         )}
+         )} */}
+         <Link href="/new-arrivals"></Link>
+         <button className="mx-auto flex my-2 rounded-sm  p-3 border-nevyBlue text-nevyBlue border hover:bg-black hover:text-white font-semibold hover:border-black transition-all duration-300 mb-16">
+            SHOW ALL PRODUCTS
+         </button>
 
          <ModalContent
             showModal={showModal}

@@ -17,6 +17,7 @@ import { LgCardActionBtns, SmCardActionBtns } from "../Home/_helper";
 import { CardImage } from "../Home/Deals/CardImage";
 import { ModalContent } from "../../utils/_components/ModalContent";
 import { ShopLayout } from "../Layouts/ShopLayout";
+import { FilterProductSection } from "../ShopPage/FilterProductSection";
 
 interface N_Deals_PageProps {
    products: any[];
@@ -140,108 +141,147 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
       setProductQuantity(1);
    };
 
-   const displayProrducts = allProducts
-      .sort((a, b) => (a.highlight === b.highlight ? 0 : a.highlight ? -1 : 1))
-      .slice(PagesVisited, PagesVisited + productPerPage)
-      .map(
-         (
-            {
-               name,
-               image,
-               offer_price,
-               regular_price,
-               id,
-               slug,
-               short_description,
-            },
-            i
-         ) => {
-            return (
-               <motion.div
-                  key={id}
-                  whileHover={{ scale: 1.1 }}
-                  className={`rounded-xl md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative col-span-10 md:col-span-5 xl:col-span-4 ${
-                     pgWidth == "sm" && "h-smCard"
-                  } ${pgWidth == "xs" && "h-smCard"}`}
-                  onClick={() => router.push(`/items/${slug}`)}
-                  onMouseEnter={(e) => handleMouseEnter(i)}
-                  onMouseLeave={(e) => handleMouseleave(i)}
-               >
-                  {/* Card action section */}
-                  <div
-                     className={`absolute ${
-                        pageWidth < 720
-                           ? "top-1/2 right-5 flex-row"
-                           : "top-1/2  right-4 flex-col"
-                     } z-20  flex  gap-1`}
-                  >
-                     {pageWidth < 720 ? (
-                        <SmCardActionBtns
-                           offer_price={offer_price}
-                           addToTheCartAction={addToTheCartAction}
-                           name={name}
-                           productQuantity={productQuantity}
-                           id={id}
-                           image={image}
-                           regular_price={regular_price}
-                           showActions={showActions}
-                           i={i}
-                           pageWidth={pageWidth}
-                           setShowModal={setShowModal}
-                           setModalContent={setModalContent}
-                           slug={slug}
-                           description={short_description}
-                        />
-                     ) : (
-                        <LgCardActionBtns
-                           offer_price={offer_price}
-                           addToTheCartAction={addToTheCartAction}
-                           name={name}
-                           productQuantity={productQuantity}
-                           id={id}
-                           image={image}
-                           regular_price={regular_price}
-                           showActions={showActions}
-                           i={i}
-                           pageWidth={pageWidth}
-                           setShowModal={setShowModal}
-                           setModalContent={setModalContent}
-                           slug={slug}
-                           description={short_description}
-                        />
-                     )}
-                  </div>
+   const [showMoreFilter, setShowMoreFilter] = useState<boolean>(false);
+   const [selectedFilter, setSelectedFilter] = useState<string>(
+      "Sort by popularity"
+   );
 
-                  {/* Image section */}
-                  <div className="flex-1">
-                     <CardImage image={image} name={name} />
-                  </div>
-                  {/* Name and price section */}
-                  <div className="p-3 ">
-                     <p className="text-sm font-medium text-center font-nav">
-                        {name}
-                     </p>
-                     {offer_price ? (
-                        <div className="my-2 flex gap-2 items-center justify-center">
-                           <span className="line-through  text-sm text-gray-400 font-text">
-                              ৳{regular_price}
-                           </span>
-                           <span className="text-lightBlue font-semibold font-text">
-                              ৳{offer_price}
-                           </span>
-                        </div>
-                     ) : (
-                        <div className="my-2 flex gap-2 items-center justify-center">
-                           <span className="text-lightBlue font-semibold font-text">
-                              ৳{regular_price}
-                           </span>
-                        </div>
-                     )}
-                  </div>
-               </motion.div>
-            );
-         }
-      );
+   const displayProrducts =
+      allProducts &&
+      allProducts.length > 0 &&
+      allProducts
+         .sort((a, b) => {
+            if (selectedFilter === "Sort by popularity") {
+               return a.highlight === b.highlight ? 0 : a.highlight ? -1 : 1;
+            }
+            if (selectedFilter === "Sort by latest") {
+               return a.createdAt > b.createdAt ? -1 : 1;
+            }
+            if (selectedFilter === "Sort by Price: low to high") {
+               if (a.offer_price && b.offer_price) {
+                  return parseInt(a.offer_price.replace(/,/g, ""), 10) <
+                     parseInt(b.offer_price.replace(/,/g, ""), 10)
+                     ? -1
+                     : 1;
+               } else {
+                  return parseInt(a.regular_price) < parseInt(b.regular_price)
+                     ? -1
+                     : 1;
+               }
+            }
+            if (selectedFilter === "Sort by Price: high to low") {
+               if (a.offer_price && b.offer_price) {
+                  return parseInt(a.offer_price.replace(/,/g, ""), 10) >
+                     parseInt(b.offer_price.replace(/,/g, ""), 10)
+                     ? -1
+                     : 1;
+               } else {
+                  return parseInt(a.regular_price) > parseInt(b.regular_price)
+                     ? -1
+                     : 1;
+               }
+            }
+         })
+         .slice(PagesVisited, PagesVisited + productPerPage)
+         .map(
+            (
+               {
+                  name,
+                  image,
+                  offer_price,
+                  regular_price,
+                  id,
+                  slug,
+                  short_description,
+               },
+               i: number
+            ) => {
+               return (
+                  <motion.div
+                     key={id}
+                     whileHover={{ scale: 1.1 }}
+                     className={`rounded-xl md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative col-span-10 md:col-span-5 xl:col-span-4 ${
+                        pgWidth == "sm" && "h-smCard"
+                     } ${pgWidth == "xs" && "h-smCard"}`}
+                     onClick={() => router.push(`/items/${slug}`)}
+                     onMouseEnter={(e) => handleMouseEnter(i)}
+                     onMouseLeave={(e) => handleMouseleave(i)}
+                  >
+                     {/* Card action section */}
+                     <div
+                        className={`absolute ${
+                           pageWidth < 720
+                              ? "top-1/2 right-5 flex-row"
+                              : "top-1/2  right-4 flex-col"
+                        } z-20  flex  gap-1`}
+                     >
+                        {pageWidth < 720 ? (
+                           <SmCardActionBtns
+                              offer_price={offer_price}
+                              addToTheCartAction={addToTheCartAction}
+                              name={name}
+                              productQuantity={productQuantity}
+                              id={id}
+                              image={image}
+                              regular_price={regular_price}
+                              showActions={showActions}
+                              i={i}
+                              pageWidth={pageWidth}
+                              setShowModal={setShowModal}
+                              setModalContent={setModalContent}
+                              slug={slug}
+                              description={short_description}
+                           />
+                        ) : (
+                           <LgCardActionBtns
+                              offer_price={offer_price}
+                              addToTheCartAction={addToTheCartAction}
+                              name={name}
+                              productQuantity={productQuantity}
+                              id={id}
+                              image={image}
+                              regular_price={regular_price}
+                              showActions={showActions}
+                              i={i}
+                              pageWidth={pageWidth}
+                              setShowModal={setShowModal}
+                              setModalContent={setModalContent}
+                              slug={slug}
+                              description={short_description}
+                           />
+                        )}
+                     </div>
+
+                     {/* Image section */}
+                     <div className="flex-1">
+                        <CardImage image={image} name={name} />
+                     </div>
+                     {/* Name and price section */}
+                     <div className="p-3 ">
+                        <p className="text-sm font-medium text-center font-nav">
+                           {name}
+                        </p>
+                        {offer_price ? (
+                           <div className="my-2 flex gap-2 items-center justify-center">
+                              <span className="line-through  text-sm text-gray-400 font-text">
+                                 ৳{regular_price}
+                              </span>
+                              <span className="text-lightBlue font-semibold font-text">
+                                 ৳{offer_price}
+                              </span>
+                           </div>
+                        ) : (
+                           <div className="my-2 flex gap-2 items-center justify-center">
+                              <span className="text-lightBlue font-semibold font-text">
+                                 ৳{regular_price}
+                              </span>
+                           </div>
+                        )}
+                     </div>
+                  </motion.div>
+               );
+            }
+         );
 
    const pageCount = Math.ceil(allProducts.length / productPerPage);
 
@@ -251,40 +291,41 @@ export const Products: React.FC<N_Deals_PageProps> = ({ products }) => {
 
    return (
       <ShopLayout>
-         <div className="w-full">
-            <div className="container mx-auto">
-               <div className="my-4 grid grid-cols-20 gap-2 ">
-                  {displayProrducts}
-               </div>
+         <FilterProductSection
+            showMoreFilter={showMoreFilter}
+            setShowMoreFilter={setShowMoreFilter}
+            selectedFilter={selectedFilter}
+            setSelectedFilter={setSelectedFilter}
+         />
+         <div className="my-4 grid grid-cols-20 gap-2 ">{displayProrducts}</div>
 
-               <span className="mx-auto flex">
-                  <ReactPaginate
-                     previousLabel={"← Prev"}
-                     nextLabel={"Next →"}
-                     breakLabel={"..."}
-                     breakClassName={"break-me"}
-                     onPageChange={chnagePage}
-                     pageCount={pageCount}
-                     marginPagesDisplayed={2}
-                     pageRangeDisplayed={5}
-                     containerClassName={"pagination"}
-                     previousLinkClassName={"pagination__link"}
-                     nextLinkClassName={"pagination__link"}
-                     disabledClassName={"pagination__link--disabled"}
-                     activeClassName={"pagination__link--active"}
-                  />
-               </span>
-            </div>
-            <ModalContent
-               showModal={showModal}
-               setShowModal={setShowModal}
-               setModalContent={setModalContent}
-               modalContent={modalContent}
-               setProductQuantity={setProductQuantity}
-               addToTheCartAction={addToTheCartAction}
-               productQuantity={productQuantity}
+         <span className="mx-auto flex">
+            <ReactPaginate
+               previousLabel={"← Prev"}
+               nextLabel={"Next →"}
+               breakLabel={"..."}
+               breakClassName={"break-me"}
+               onPageChange={chnagePage}
+               pageCount={pageCount}
+               marginPagesDisplayed={2}
+               pageRangeDisplayed={5}
+               containerClassName={"pagination"}
+               previousLinkClassName={"pagination__link"}
+               nextLinkClassName={"pagination__link"}
+               disabledClassName={"pagination__link--disabled"}
+               activeClassName={"pagination__link--active"}
             />
-         </div>
+         </span>
+
+         <ModalContent
+            showModal={showModal}
+            setShowModal={setShowModal}
+            setModalContent={setModalContent}
+            modalContent={modalContent}
+            setProductQuantity={setProductQuantity}
+            addToTheCartAction={addToTheCartAction}
+            productQuantity={productQuantity}
+         />
       </ShopLayout>
    );
 };

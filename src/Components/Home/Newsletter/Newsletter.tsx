@@ -24,7 +24,12 @@ export const Newsletter: React.FC<NewsletterProps> = ({}) => {
             email: email,
          });
          Notify("info", "Thank you for subscribe");
-      } catch (error) {}
+      } catch (error) {
+         Notify(
+            "error",
+            `${error.response.data.message[0].messages[0].message}`
+         );
+      }
    };
 
    return (

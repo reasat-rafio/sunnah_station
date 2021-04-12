@@ -4,8 +4,6 @@ import { FourGrid, SmMenu, ThreeGrid } from "../../utils/svgs/Svg";
 import { ShopShortDropDown } from "./ShopShortDropDown";
 
 interface filerSectionProps {
-   setGridCount: any;
-   gridCount: number;
    showMoreFilter: boolean;
    setShowMoreFilter: any;
    selectedFilter: string;
@@ -13,8 +11,6 @@ interface filerSectionProps {
 }
 
 export const FilterProductSection: React.FC<filerSectionProps> = ({
-   setGridCount,
-   gridCount,
    selectedFilter,
    setSelectedFilter,
    setShowMoreFilter,
@@ -35,9 +31,8 @@ export const FilterProductSection: React.FC<filerSectionProps> = ({
          </span>
 
          <>
-            <span className="hidden xl:flex gap-2">
+            {/* <span className="hidden xl:flex gap-2">
                <span
-                  onClick={() => setGridCount(4)}
                   className={`cursor-pointer hover:text-darkBlue hidden xl:block  ${
                      gridCount == 4 && "text-darkBlue"
                   }`}
@@ -45,14 +40,13 @@ export const FilterProductSection: React.FC<filerSectionProps> = ({
                   <ThreeGrid />
                </span>
                <span
-                  onClick={() => setGridCount(3)}
                   className={`cursor-pointer hover:text-darkBlue  hidden xl:block ${
                      gridCount == 3 && "text-darkBlue "
                   }`}
                >
                   <FourGrid />
                </span>
-            </span>
+            </span> */}
 
             <ShopShortDropDown
                showMoreFilter={showMoreFilter}
