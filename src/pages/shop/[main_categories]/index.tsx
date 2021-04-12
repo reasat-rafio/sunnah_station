@@ -76,8 +76,6 @@ const main_categories = ({ products }) => {
                   ) : (
                      <>
                         <FilterProductSection
-                           gridCount={gridCount}
-                           setGridCount={setGridCount}
                            showMoreFilter={showMoreFilter}
                            setShowMoreFilter={setShowMoreFilter}
                            selectedFilter={selectedFilter}
