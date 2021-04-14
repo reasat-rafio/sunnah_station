@@ -13,6 +13,7 @@ interface ProductCategoriesProps {}
 export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
    // router
    const router = useRouter();
+
    const { main_categories, sub_categories } = router.query;
 
    const [showMoreFood, setShowMoreFood] = useState<boolean>(false);
@@ -185,13 +186,21 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({}) => {
                DEALS & MORE
             </h3>
             <ul className="flex flex-col gap-3 ">
-               <li className="hover:no-underline">
+               <li
+                  className={`hover:no-underline ${
+                     router.pathname === "/special-deals" && "text-lightBlue"
+                  }`}
+               >
                   <Link href="/special-deals">
                      <a className="hover:no-underline">Ramadan seals</a>
                   </Link>
                </li>
 
-               <li>
+               <li
+                  className={`${
+                     router.pathname === "/new-arrivals" && "text-lightBlue"
+                  }`}
+               >
                   <Link href="/new-arrivals">
                      <li className="hover:no-underline">
                         <a className="hover:no-underline">New arrivals</a>
