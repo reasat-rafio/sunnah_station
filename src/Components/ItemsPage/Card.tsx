@@ -141,10 +141,14 @@ export const Card: React.FC<CardProps> = ({
    ] = useState();
 
    useEffect(() => {
-      setDefQuantityRegularPrice(quantity_and_price[quanity].regular_price);
-      setDefQuantityRegularPriceQuantity(quantity_and_price[quanity].quantity);
-      setDefQuantityOfferPrice(quantity_and_price[quanity].offer_price);
-      setDefQuantityOfferPriceQuantity(quantity_and_price[quanity].quantity);
+      if (multiple_quantity && quantity_and_price) {
+         setDefQuantityRegularPrice(quantity_and_price[quanity].regular_price);
+         setDefQuantityRegularPriceQuantity(
+            quantity_and_price[quanity].quantity
+         );
+         setDefQuantityOfferPrice(quantity_and_price[quanity].offer_price);
+         setDefQuantityOfferPriceQuantity(quantity_and_price[quanity].quantity);
+      }
    }, [quanity]);
 
    // Adding product to the cart
