@@ -27,7 +27,7 @@ export default function Home({ coverImg, speicalDeals, newArrivals }) {
          <Seo
             title="Home - Sunnah Station"
             description={
-               "Online grocery shop in Bangladesh - Sunnah Station. Order groceries online with cash on delivery in Dhaka, Chittagong. Order food online in BD, get home delivery"
+               "This is an Islamic e-commerce site where we set out to take all Islamic and halal products on one platform."
             }
             url={`${process.env.NEXTAUTH_URL}`}
             shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"

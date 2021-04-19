@@ -20,7 +20,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
             </div>
          </div>
          <Poster
-            src="https://res.cloudinary.com/dapjxqk64/image/upload/v1618055534/sunnah%20statoin/bar1_qscutf.jpg"
+            src="https://res.cloudinary.com/dapjxqk64/image/upload/v1618802229/sunnah%20statoin/bar1_d8cjot.jpg"
             to="/"
             alt="special deals"
          />
@@ -29,7 +29,7 @@ export const SpeicalDeals: React.FC<SpeicalDealsProps> = ({ speicalDeals }) => {
             <Deals
                deals={speicalDeals}
                to="/special-deals"
-               name="RAMADAN SEAL"
+               name="RAMADAN SALE"
             />
          </div>
       </section>

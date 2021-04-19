@@ -273,10 +273,6 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                >
                   VIEW ALL
                </div>
-
-               {/* <div className="grid  md:grid-cols-3 grid-cols-1 md:gap-4"></div>
-            <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Computer-Accessories-v2.png" />
-            <Poster src="https://b2b-pickaboocdn.azureedge.net/media/wysiwyg/cmsp/Mobile-Accessories-v2.png" /> */}
             </div>
          )}
          <>
