@@ -64,6 +64,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
          speicalDeals: speical_deals.data,
          newArrivals: new_arrivals.data,
       },
-      revalidate: 1,
+      revalidate: 10,
    };
 };

@@ -8,7 +8,6 @@ import { Tabs } from "../../Components/ItemsPage/Tabs/Tabs";
 import { Head } from "next/document";
 
 interface itemProps {
-   //    flash_deals: any;
    new_arrivals: any;
    speical_deals: any;
 }
@@ -33,8 +32,6 @@ const item: React.FC<itemProps> = ({
       }
    });
 
-   console.log(product);
-
    useEffect(() => {
       //   if (flash_deals && flash_deals[0]) {
       //      setProduct(flash_deals);
@@ -49,9 +46,6 @@ const item: React.FC<itemProps> = ({
    }, [speical_deals]);
    return (
       <InitialLayout>
-         {/* <Head>
-            <title>- Sunnah Station</title>
-         </Head> */}
          <section className=" w-full pt-16 md:pt-32">
             {product &&
                product.map(
@@ -163,6 +157,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
          new_arrivals: new_arrivals.data,
          //  gaming_accessories: gaming_accessories.data,
       },
-      revalidate: 1,
+      revalidate: 10,
    };
 };
