@@ -5,20 +5,17 @@ import { InitialLayout } from "../../Components/Layouts/InitialLayout";
 import { Card } from "../../Components/ItemsPage/Card";
 import { ProductImages } from "../../Components/ItemsPage/ProductImages/ProductImages";
 import { Tabs } from "../../Components/ItemsPage/Tabs/Tabs";
-import { Head } from "next/document";
+import { useCtx } from "../../store";
+import { loadingEnd, loadingstart } from "../../store/actions/domAction";
+import { useRouter } from "next/router";
 
 interface itemProps {
    new_arrivals: any;
    speical_deals: any;
 }
 
-const item: React.FC<itemProps> = ({
-   //    flash_deals,
-   new_arrivals,
-
-   speical_deals,
-}) => {
-   // product state
+const item: React.FC<itemProps> = ({ new_arrivals, speical_deals }) => {
+   const router = useRouter();
    const [product, setProduct] = useState<any>(() => {
       //   if (flash_deals && flash_deals[0]) {
       //      return flash_deals;
@@ -32,6 +29,19 @@ const item: React.FC<itemProps> = ({
       }
    });
 
+   const {
+      domDispatch,
+      domState: { isLoading },
+   } = useCtx();
+
+   useEffect(() => {
+      if (router.isFallback) {
+         domDispatch(loadingstart());
+      } else {
+         domDispatch(loadingEnd());
+      }
+   }, [router.isFallback]);
+
    useEffect(() => {
       //   if (flash_deals && flash_deals[0]) {
       //      setProduct(flash_deals);
@@ -43,7 +53,7 @@ const item: React.FC<itemProps> = ({
       if (speical_deals && speical_deals[0]) {
          return speical_deals;
       }
-   }, [speical_deals]);
+   }, [speical_deals, new_arrivals]);
    return (
       <InitialLayout>
          <section className=" w-full pt-16 md:pt-32">
@@ -126,8 +136,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
    }));
 
    return {
-      paths,
-      fallback: false,
+      paths: [],
+      fallback: true,
    };
 };
 

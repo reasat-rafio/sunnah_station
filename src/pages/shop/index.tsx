@@ -1,5 +1,6 @@
 import axios from "axios";
 import { GetStaticProps } from "next";
+import { Head } from "next/document";
 import { useState } from "react";
 import { InitialLayout } from "../../Components/Layouts/InitialLayout";
 import { ShopLayout } from "../../Components/Layouts/ShopLayout";
@@ -17,6 +18,7 @@ const Shop = ({ products }) => {
 
    return (
       <InitialLayout>
+         <Head>Shop - Sunnah Station</Head>
          <div className=" pt-28 md:pt-32">
             <ShopLayout>
                <ShopProducts
