@@ -76,7 +76,7 @@ const item: React.FC<itemProps> = ({ new_arrivals, speical_deals }) => {
                      multiple_quantity,
                      quantity_and_price,
                   }) => (
-                     <sectiont key={id} className="min-h-screen">
+                     <section key={id} className="min-h-screen">
                         <div className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
                            {/* Image preview */}
                            <div className=" col-span-6 lg:col-span-2">
@@ -101,9 +101,9 @@ const item: React.FC<itemProps> = ({ new_arrivals, speical_deals }) => {
                                  multiple_quantity={multiple_quantity}
                               />
                            </div>
-                        </section>
+                        </div>
                         <Tabs name={name} description={description} />
-                     </React.Fragment>
+                     </section>
                   )
                )}
          </section>
