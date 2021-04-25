@@ -37,8 +37,7 @@ export const Footer = () => {
 
                   <div className="mt-4 lg:max-w-sm">
                      <p className="text-sm text-gray-400">
-                        This is an Islamic e-commerce site where we set out to
-                        take all Islamic and halal products on one platform.
+                      This is an Islamic e-commerce site where we set out to bring all Islamic and halal products on one platform
                      </p>
                   </div>
                </div>

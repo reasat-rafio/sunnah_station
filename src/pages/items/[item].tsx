@@ -76,8 +76,8 @@ const item: React.FC<itemProps> = ({ new_arrivals, speical_deals }) => {
                      multiple_quantity,
                      quantity_and_price,
                   }) => (
-                     <React.Fragment key={id}>
-                        <section className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
+                     <sectiont key={id} className="min-h-screen">
+                        <div className="container m-auto grid gap-0 lg:gap-3  grid-cols-6 p-8 font-text ">
                            {/* Image preview */}
                            <div className=" col-span-6 lg:col-span-2">
                               <ProductImages img={image} />
