@@ -17,67 +17,67 @@ import { useSession } from "next-auth/client";
 import Image from "next/image";
 
 export default function Home({ coverImg, speicalDeals, newArrivals }) {
-   // const { productsDispatch } = useCtx();
-   // useEffect(() => {
-   //    const allProducts = [...speicalDeals, ...newArrivals];
-   //    productsDispatch(getAllTheProducts(allProducts));
-   // }, []);
+  const { productsDispatch } = useCtx();
+  useEffect(() => {
+    const allProducts = [...speicalDeals, ...newArrivals];
+    productsDispatch(getAllTheProducts(allProducts));
+  }, []);
 
-   return (
-      <div className="h-screen flex flex-col justify-center items-center">
-         <Image
-            src="/svg/undraw_under_construction_46pa.svg"
-            alt="Under Construction"
-            layout="intrinsic"
-            height="600"
-            width="900"
-         />
-         <h1 className="lg:text-5xl font-bold text-blue-500 text-center text-xl">
-            Site Under Construction!
-         </h1>
-      </div>
+  return (
+    // <div className="h-screen flex flex-col justify-center items-center">
+    //    <Image
+    //       src="/svg/undraw_under_construction_46pa.svg"
+    //       alt="Under Construction"
+    //       layout="intrinsic"
+    //       height="600"
+    //       width="900"
+    //    />
+    //    <h1 className="lg:text-5xl font-bold text-blue-500 text-center text-xl">
+    //       Site Under Construction!
+    //    </h1>
+    // </div>
 
-      // <InitialLayout>
-      //    <Seo
-      //       title="Home - Sunnah Station"
-      //       description={
-      //          "This is an Islamic e-commerce site where we set out to take all Islamic and halal products on one platform."
-      //       }
-      //       url={`${process.env.NEXTAUTH_URL}`}
-      //       shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
-      //       preventIndexing={false}
-      //    />
+    <InitialLayout>
+      <Seo
+        title="Home - Sunnah Station"
+        description={
+          "This is an Islamic e-commerce site where we set out to take all Islamic and halal products on one platform."
+        }
+        url={`${process.env.NEXTAUTH_URL}`}
+        shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
+        preventIndexing={false}
+      />
 
-      //    <main className="w-full">
-      //       <HomePoster coverImg={coverImg} />
-      //       <BrowseByCategory />
-      //       <SpeicalDeals speicalDeals={speicalDeals} />
-      //       <NewArrivals newArrivals={newArrivals} />
-      //       <Newsletter />
-      //       <BackToTheTop />
-      //    </main>
-      // </InitialLayout>
-   );
+      <main className="w-full">
+        <HomePoster coverImg={coverImg} />
+        <BrowseByCategory />
+        <SpeicalDeals speicalDeals={speicalDeals} />
+        <NewArrivals newArrivals={newArrivals} />
+        <Newsletter />
+        <BackToTheTop />
+      </main>
+    </InitialLayout>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
-   const cover_images = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/main-cover-images`
-   );
-   const speical_deals = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/special-deals?_limit=10`
-   );
+  const cover_images = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/main-cover-images`
+  );
+  const speical_deals = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/special-deals?_limit=10`
+  );
 
-   const new_arrivals = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals?_limit=10`
-   );
+  const new_arrivals = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals?_limit=10`
+  );
 
-   return {
-      props: {
-         coverImg: cover_images.data[0].img,
-         speicalDeals: speical_deals.data,
-         newArrivals: new_arrivals.data,
-      },
-      revalidate: 10,
-   };
+  return {
+    props: {
+      coverImg: cover_images.data[0].img,
+      speicalDeals: speical_deals.data,
+      newArrivals: new_arrivals.data,
+    },
+    revalidate: 10,
+  };
 };
