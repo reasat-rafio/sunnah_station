@@ -15,10 +15,6 @@ import productVariant from "./productVariant";
 
 import deal from "./document/deal";
 
-import localeString from "./locale/String";
-import localeText from "./locale/Text";
-import localeBlockContent from "./locale/BlockContent";
-
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -33,13 +29,11 @@ export default createSchema({
 
     product,
     deal,
+
     category,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
-    localeText,
-    localeBlockContent,
-    localeString,
     productVariant,
   ]),
 });

@@ -25,5 +25,17 @@ export default {
         maxLength: 96,
       },
     },
+
+    {
+      name: "appliesTo",
+      title: "Applies To",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "product" }],
+        },
+      ],
+    },
   ],
 };

@@ -19,6 +19,25 @@ export default {
         maxLength: 96,
       },
     },
+
+    {
+      title: "Offer Available",
+      name: "offerAvailable",
+      type: "boolean",
+    },
+
+    {
+      title: "Offer Starts At",
+      name: "offerStartsAt",
+      type: "datetime",
+    },
+
+    {
+      title: "Offer Ends At",
+      name: "offerEndsAt",
+      type: "datetime",
+    },
+
     {
       title: "Default variant",
       name: "defaultProductVariant",

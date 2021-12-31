@@ -8,6 +8,12 @@ export default {
       name: "title",
       type: "string",
     },
+
+    {
+      title: "Produc tId",
+      name: "productId",
+      type: "string",
+    },
     {
       title: "Weight in grams",
       name: "grams",
