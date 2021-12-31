@@ -4,7 +4,7 @@ import { createContext, useEffect } from "react";
 import NProgress from "nprogress";
 import { GlobalState } from "../store";
 import { GlobalLayout } from "../components/Layouts/GlobalLayout";
-import { Provider, getSession } from "next-auth/client";
+// import { Provider, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { imageUrlBuilder } from "@utils/sanity";
 import { NextSeo } from "next-seo";
@@ -49,21 +49,21 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <Provider session={pageProps.session}>
-        <GlobalState>
-          <GlobalLayout>
-            <NextSeo
-            // title={pageProps.data?.page.seo.title}
-            // description={pageProps.data?.page.seo.description}
-            // canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
-            // openGraph={{
-            //   images: openGraphImages,
-            // }}
-            />
-            <Component {...pageProps} />
-          </GlobalLayout>
-        </GlobalState>
-      </Provider>
+      {/* <Provider session={pageProps.session}> */}
+      <GlobalState>
+        <GlobalLayout>
+          <NextSeo
+          // title={pageProps.data?.page.seo.title}
+          // description={pageProps.data?.page.seo.description}
+          // canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
+          // openGraph={{
+          //   images: openGraphImages,
+          // }}
+          />
+          <Component {...pageProps} />
+        </GlobalLayout>
+      </GlobalState>
+      {/* </Provider> */}
     </>
   );
 }

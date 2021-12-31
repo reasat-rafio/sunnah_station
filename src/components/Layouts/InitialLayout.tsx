@@ -11,34 +11,35 @@ import { NavSideBars } from "../Sidebars/NavSideBars";
 import { ShoppingCartSideBar } from "../Sidebars/ShoppingCartSidebar";
 
 interface InitialLayoutProps {
-   children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
-   const router = useRouter();
-   const {
-      domDispatch,
-      domState: { isLoading },
-   } = useCtx();
+  const router = useRouter();
+  const {
+    domDispatch,
+    domState: { isLoading },
+  } = useCtx();
 
-   useEffect(() => {
-      if (router.isFallback) {
-         domDispatch(loadingstart());
-      } else {
-         domDispatch(loadingEnd());
-      }
-   }, [router.isFallback]);
+  useEffect(() => {
+    if (router.isFallback) {
+      domDispatch(loadingstart());
+    } else {
+      domDispatch(loadingEnd());
+    }
+  }, [router.isFallback]);
 
-   return (
-      <div id="top">
-         <Navs />
-         <NavSideBars />
-         <ShoppingCartSideBar />
-         <SmSearchPage />
-         <Loading />
-         {children}
-         {/* <SmBottomNav /> */}
-         <Footer />
-      </div>
-   );
+  return (
+    <div id="top">
+      <Navs />
+
+      <NavSideBars />
+      <ShoppingCartSideBar />
+      <SmSearchPage />
+      <Loading />
+      {children}
+      {/* <SmBottomNav /> */}
+      <Footer />
+    </div>
+  );
 };

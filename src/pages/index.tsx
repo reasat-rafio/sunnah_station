@@ -3,7 +3,7 @@ import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import { InitialLayout } from "../components/Layouts/InitialLayout";
 import axios from "axios";
-import { HomePoster } from "../components/Home/HomePoster";
+import { Banner } from "@components/landingPage/banner";
 import { BrowseByCategory } from "../components/Home/BrowsByCategory/BrowseByCategory";
 import { SpeicalDeals } from "../components/Home/OurProducts/SpeicalDeals";
 import { Newsletter } from "../components/Home/Newsletter/Newsletter";
@@ -13,7 +13,6 @@ import { useEffect } from "react";
 import { useCtx } from "../store";
 import { getAllTheProducts } from "../store/actions/ProductsAction";
 import { Seo } from "../components/SEO/SEO";
-import { useSession } from "next-auth/client";
 import Image from "next/image";
 import groq from "groq";
 import { renderObjectArray, withDimensions } from "sanity-react-extra";
@@ -57,9 +56,6 @@ export const getStaticProps: GetStaticProps = async (context) => ({
 
 export default function Home(props: SanityProps) {
   const { page } = useSanityQuery(query, props).data;
-  console.log("====================================");
-  console.log(page);
-  console.log("====================================");
 
   const { productsDispatch } = useCtx();
 
@@ -81,7 +77,7 @@ export default function Home(props: SanityProps) {
       /> */}
 
       {renderObjectArray(page.sections, {
-        landingHero: HomePoster,
+        landingHero: Banner,
       })}
 
       <main className="w-full">

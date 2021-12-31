@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { RegisterAction } from "../../components/Authentication/Register/RegisterAction";
 import { RegisterSvg } from "../../components/Authentication/Register/RegisterSvg";
-import { getSession } from "next-auth/client";
+import { getSession } from "next-auth/react";
 
 const register = () => {
   return (

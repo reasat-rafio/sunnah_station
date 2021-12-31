@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 import { SignInAction } from "../../components/Authentication/Signin/SignInAction";
 import { SigninSvg } from "../../components/Authentication/Signin/SignInSvg";
 
