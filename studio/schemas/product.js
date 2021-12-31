@@ -1,7 +1,9 @@
+import { CgShoppingCart } from "react-icons/cg";
 export default {
   name: "product",
   title: "Product",
   type: "document",
+  icon: CgShoppingCart,
   fields: [
     {
       name: "title",
@@ -48,11 +50,6 @@ export default {
     },
 
     {
-      name: "blurb",
-      title: "Blurb",
-      type: "localeString",
-    },
-    {
       name: "categories",
       title: "Categories",
       type: "array",
@@ -63,10 +60,12 @@ export default {
         },
       ],
     },
+
     {
       name: "body",
       title: "Body",
-      type: "localeBlockContent",
+      type: "array",
+      of: [{ type: "block" }],
     },
   ],
 

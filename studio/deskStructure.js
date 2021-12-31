@@ -1,7 +1,8 @@
 import S from "@sanity/desk-tool/structure-builder";
 import { GrEdit, GrView, GrWorkshop, GrContact } from "react-icons/gr";
 import * as React from "react";
-import { FaSitemap, FaHome, FaCreativeCommonsShare } from "react-icons/fa";
+import { FcHome, FcFlowChart } from "react-icons/fc";
+import { FaHome, FaCreativeCommonsShare } from "react-icons/fa";
 import { MdLocalDrink } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
 import { GrContactInfo, GrServices } from "react-icons/gr";
@@ -58,7 +59,7 @@ export default () =>
         schemaType: "siteConfig",
         id: "siteConfig",
         title: "Site Config",
-        icon: FaSitemap,
+        icon: FcFlowChart,
       }),
 
       S.divider(),
@@ -70,7 +71,7 @@ export default () =>
             .title("Product")
             .items([
               S.documentTypeListItem("product").title("Products"),
-              //   S.documentTypeListItem("deal").title("Deal"),
+              S.documentTypeListItem("deal").title("Deal"),
               //   S.documentTypeListItem("brand").title("Brands"),
               //   S.documentTypeListItem("tags").title("Product Tags"),
               S.documentTypeListItem("category").title("Category"),

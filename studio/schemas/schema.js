@@ -13,6 +13,8 @@ import category from "./category";
 import product from "./product";
 import productVariant from "./productVariant";
 
+import deal from "./document/deal";
+
 import localeString from "./locale/String";
 import localeText from "./locale/Text";
 import localeBlockContent from "./locale/BlockContent";
@@ -30,7 +32,7 @@ export default createSchema({
     menuItem,
 
     product,
-
+    deal,
     category,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
