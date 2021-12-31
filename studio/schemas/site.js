@@ -1,15 +1,30 @@
+import { FaSitemap } from "react-icons/fa";
+
 export default {
   name: "siteConfig",
-  title: "Site",
   type: "document",
+  title: "Site",
+  icon: FaSitemap,
   fields: [
     {
       name: "logo",
-      title: "Logo",
       type: "image",
+      title: "Logo",
     },
 
-    { name: "ogImage", type: "image", title: "Default SEO Image" },
+    {
+      name: "siteUrl",
+      type: "url",
+      title: "Site Url",
+    },
+    {
+      name: "ogImage",
+      type: "image",
+      title: "Default SEO Image",
+      options: {
+        accept: "image/png, image/jpeg, image/webp",
+      },
+    },
     {
       name: "menu",
       title: "Menu",
@@ -17,9 +32,4 @@ export default {
       of: [{ type: "menuItem" }],
     },
   ],
-  preview: {
-    select: {
-      media: "logo",
-    },
-  },
 };

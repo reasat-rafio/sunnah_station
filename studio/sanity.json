@@ -1,7 +1,7 @@
 {
   "root": true,
   "project": {
-    "name": "Sunnah Station Dashboard",
+    "name": "Sunnah Station Studio",
     "basePath": "/studio"
   },
   "api": {
@@ -18,9 +18,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [

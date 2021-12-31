@@ -99,35 +99,40 @@ export default () =>
       //   S.documentTypeListItem("order").title("Orders"),
       //   S.documentTypeListItem("users").title("Users"),
       S.divider(),
-      S.listItem().title("Pages").icon(CgWebsite).child(
-        S.list().title("Pages").items([
-          //   pageItem({
-          //     schemaType: "landingPage",
-          //     id: "landingPage",
-          //     title: "Landing",
-          //     icon: FaHome,
-          //     slug: "",
-          //   }),
-          //   singleItem({
-          //     schemaType: "contact",
-          //     id: "contact",
-          //     title: "Contact",
-          //     icon: GrContactInfo,
-          //   }),
-          //   singleItem({
-          //     schemaType: "termsAndServices",
-          //     id: "termsAndServices",
-          //     title: "Terms And Services",
-          //     icon: GrServices,
-          //   }),
-          //   singleItem({
-          //     schemaType: "privacyPolicy",
-          //     id: "privacyPolicy",
-          //     title: "Privacy Policy",
-          //     icon: SiGnuprivacyguard,
-          //   }),
-        ])
-      ),
+      S.listItem()
+        .title("Pages")
+        .icon(CgWebsite)
+        .child(
+          S.list()
+            .title("Pages")
+            .items([
+              pageItem({
+                schemaType: "landingPage",
+                id: "landingPage",
+                title: "Landing",
+                icon: FcHome,
+                slug: "",
+              }),
+              //   singleItem({
+              //     schemaType: "contact",
+              //     id: "contact",
+              //     title: "Contact",
+              //     icon: GrContactInfo,
+              //   }),
+              //   singleItem({
+              //     schemaType: "termsAndServices",
+              //     id: "termsAndServices",
+              //     title: "Terms And Services",
+              //     icon: GrServices,
+              //   }),
+              //   singleItem({
+              //     schemaType: "privacyPolicy",
+              //     id: "privacyPolicy",
+              //     title: "Privacy Policy",
+              //     icon: SiGnuprivacyguard,
+              //   }),
+            ])
+        ),
 
       S.divider(),
       ...S.documentTypeListItems().filter(

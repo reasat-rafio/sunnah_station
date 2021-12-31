@@ -1,42 +1,41 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPropsContext } from "next";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
-import { InitialLayout } from "../Components/Layouts/InitialLayout";
+import { InitialLayout } from "../components/Layouts/InitialLayout";
 import axios from "axios";
-import { HomePoster } from "../Components/Home/HomePoster";
-import { BrowseByCategory } from "../Components/Home/BrowsByCategory/BrowseByCategory";
-import { SpeicalDeals } from "../Components/Home/OurProducts/SpeicalDeals";
-import { Newsletter } from "../Components/Home/Newsletter/Newsletter";
-import { NewArrivals } from "../Components/Home/NewArrivals/NewArrivals";
-import { BackToTheTop } from "../Components/BackToTop/BackToTop";
+import { HomePoster } from "../components/Home/HomePoster";
+import { BrowseByCategory } from "../components/Home/BrowsByCategory/BrowseByCategory";
+import { SpeicalDeals } from "../components/Home/OurProducts/SpeicalDeals";
+import { Newsletter } from "../components/Home/Newsletter/Newsletter";
+import { NewArrivals } from "../components/Home/NewArrivals/NewArrivals";
+import { BackToTheTop } from "../components/BackToTop/BackToTop";
 import { useEffect } from "react";
 import { useCtx } from "../store";
 import { getAllTheProducts } from "../store/actions/ProductsAction";
-import { Seo } from "../Components/SEO/SEO";
+import { Seo } from "../components/SEO/SEO";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
+import groq from "groq";
+import { withDimensions } from "sanity-react-extra";
+import { pageQuery } from "@libs/query";
+import { sanityStaticProps } from "@utils/sanity";
+import { SanityProps } from "next-sanity-extra";
 
-export default function Home({ coverImg, speicalDeals, newArrivals }) {
+const query = pageQuery();
+
+export const getStaticProps: GetStaticProps = async (context) => ({
+  props: await sanityStaticProps({ query: query, context }),
+  revalidate: 5,
+});
+
+export default function Home(props: SanityProps) {
   const { productsDispatch } = useCtx();
   useEffect(() => {
-    const allProducts = [...speicalDeals, ...newArrivals];
-    productsDispatch(getAllTheProducts(allProducts));
+    // const allProducts = [...speicalDeals, ...newArrivals];
+    // productsDispatch(getAllTheProducts(allProducts));
   }, []);
 
   return (
-    // <div className="h-screen flex flex-col justify-center items-center">
-    //    <Image
-    //       src="/svg/undraw_under_construction_46pa.svg"
-    //       alt="Under Construction"
-    //       layout="intrinsic"
-    //       height="600"
-    //       width="900"
-    //    />
-    //    <h1 className="lg:text-5xl font-bold text-blue-500 text-center text-xl">
-    //       Site Under Construction!
-    //    </h1>
-    // </div>
-
     <InitialLayout>
       <Seo
         title="Home - Sunnah Station"
@@ -49,35 +48,13 @@ export default function Home({ coverImg, speicalDeals, newArrivals }) {
       />
 
       <main className="w-full">
-        <HomePoster coverImg={coverImg} />
-        <BrowseByCategory />
-        <SpeicalDeals speicalDeals={speicalDeals} />
-        <NewArrivals newArrivals={newArrivals} />
-        <Newsletter />
-        <BackToTheTop />
+        {/* <HomePoster coverImg={coverImg} /> */}
+        {/* <BrowseByCategory /> */}
+        {/* <SpeicalDeals speicalDeals={speicalDeals} /> */}
+        {/* <NewArrivals newArrivals={newArrivals} /> */}
+        {/* <Newsletter />
+        <BackToTheTop /> */}
       </main>
     </InitialLayout>
   );
 }
-
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const cover_images = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/main-cover-images`
-  );
-  const speical_deals = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/special-deals?_limit=10`
-  );
-
-  const new_arrivals = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/new-arrivals?_limit=10`
-  );
-
-  return {
-    props: {
-      coverImg: cover_images.data[0].img,
-      speicalDeals: speical_deals.data,
-      newArrivals: new_arrivals.data,
-    },
-    revalidate: 10,
-  };
-};

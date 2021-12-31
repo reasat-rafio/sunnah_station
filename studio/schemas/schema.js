@@ -6,14 +6,19 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 //COMMON OBJECTS
 import site from "./site";
 import menuItem from "./objects/menuItem";
+import seo from "./objects/seo";
 
 // We import object and document schemas
 import blockContent from "./blockContent";
 import category from "./category";
 import product from "./product";
 import productVariant from "./productVariant";
-
 import deal from "./document/deal";
+
+// PAGES
+import landingPage from "./pages/landingPage";
+import landingHero from "./objects/landing/hero";
+import landingCategory from "./objects/landing/category";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -26,6 +31,7 @@ export default createSchema({
     // in the studio.
     site,
     menuItem,
+    seo,
 
     product,
     deal,
@@ -35,5 +41,9 @@ export default createSchema({
     // { type: 'typename' } in other document schemas
     blockContent,
     productVariant,
+
+    landingPage,
+    landingHero,
+    landingCategory,
   ]),
 });

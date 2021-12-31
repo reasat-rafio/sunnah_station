@@ -1,6 +1,6 @@
 import { BiCategoryAlt } from "react-icons/bi";
 export default {
-  name: "category",
+  name: "landingCategory",
   title: "Category",
   type: "document",
   icon: BiCategoryAlt,
@@ -10,25 +10,15 @@ export default {
       title: "Title",
       type: "string",
     },
+
     {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
-    },
-    { name: "image", title: "Image", type: "image" },
-    {
-      name: "description",
-      title: "Description",
+      name: "tagline",
+      title: "Tagline",
       type: "text",
     },
-    { name: "image", title: "Image", type: "image" },
     {
-      name: "parents",
-      title: "Parent categories",
+      name: "browseByCategory",
+      title: "Browse by Category",
       type: "array",
       of: [
         {

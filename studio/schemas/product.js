@@ -6,6 +6,11 @@ export default {
   icon: CgShoppingCart,
   fields: [
     {
+      name: "seo",
+      title: "Seo",
+      type: "seo",
+    },
+    {
       name: "title",
       title: "Title",
       type: "string",
