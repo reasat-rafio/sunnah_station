@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { InitialLayout } from "../components/Layouts/InitialLayout";
 import axios from "axios";
 import { Banner } from "@components/landingPage/banner";
-import { BrowseByCategory } from "../components/Home/BrowsByCategory/BrowseByCategory";
+import { BrowseByCategory } from "../components/landingPage/browse-by-category";
 import { SpeicalDeals } from "../components/Home/OurProducts/SpeicalDeals";
 import { Newsletter } from "../components/Home/Newsletter/Newsletter";
 import { NewArrivals } from "../components/Home/NewArrivals/NewArrivals";
@@ -30,7 +30,7 @@ const query = pageQuery(groq`
         ...,
       "image": ${withDimensions("image")},
       },
-      browseByCategory->{
+      browseByCategory[]->{
         ...,
       "image": ${withDimensions("image")},
       },
@@ -78,10 +78,10 @@ export default function Home(props: SanityProps) {
 
       {renderObjectArray(page.sections, {
         landingHero: Banner,
+        landingCategory: BrowseByCategory,
       })}
 
       <main className="w-full">
-        {/* <HomePoster coverImg={coverImg} /> */}
         {/* <BrowseByCategory /> */}
         {/* <SpeicalDeals speicalDeals={speicalDeals} /> */}
         {/* <NewArrivals newArrivals={newArrivals} /> */}

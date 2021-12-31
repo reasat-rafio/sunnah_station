@@ -1,0 +1,42 @@
+ <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Purchase Order</title>
+
+         <path
+            data-name="layer2"
+            d="M16 48V8a6 6 0 0 1 6-6h34"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer2"
+            d="M50 12h12V8a6 6 0 0 0-6-6 6 6 0 0 0-6 6v44a10 10 0 0 1-10 10 10 10 0 0 1-10-10v-4H2v4a10 10 0 0 0 10 10h28"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer1"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            d="M24 12h16M24 28h16m-16-8h12M24 36h12"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>

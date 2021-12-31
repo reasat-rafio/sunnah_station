@@ -1,0 +1,41 @@
+      <svg
+         width="37"
+         height="37"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 64 64"
+         aria-labelledby="title"
+         aria-describedby="desc"
+         role="img"
+      >
+         <title>Retail Bag</title>
+         <path
+            data-name="layer2"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            d="M4 14h56v48H4zm2 0V2h52v12"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer2"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            d="M6.2 2.1L16 8 6 14M57.8 2.1L48 8l10 6"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+         <path
+            data-name="layer1"
+            d="M42 24a10 10 0 0 1-20 0"
+            fill="none"
+            stroke="#00c0fa"
+            strokeMiterlimit="10"
+            strokeWidth="4"
+            strokeLinejoin="round"
+            strokeLinecap="round"
+         ></path>
+      </svg>
