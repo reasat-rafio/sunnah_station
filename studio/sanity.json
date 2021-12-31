@@ -8,27 +8,25 @@
     "projectId": "PULLED_FROM_ENV",
     "dataset": "PULLED_FROM_ENV"
   },
-
   "plugins": [
     "@sanity/base",
     "@sanity/default-layout",
     "@sanity/default-login",
     "@sanity/desk-tool",
-    "barcode-input"
+    "barcode-input",
+    "@sanity/vision"
   ],
   "env": {
     "development": {
-      "plugins": ["@sanity/vision"]
+      "plugins": [
+        "@sanity/vision"
+      ]
     }
   },
   "parts": [
     {
       "name": "part:@sanity/base/schema",
       "path": "./schemas/schema"
-    },
-    {
-      "implements": "part:@sanity/base/theme/variables/override-style",
-      "path": "./styles/variables.css"
     },
     {
       "name": "part:@sanity/desk-tool/structure",
