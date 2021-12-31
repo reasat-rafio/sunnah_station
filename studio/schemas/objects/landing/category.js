@@ -2,7 +2,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 export default {
   name: "landingCategory",
   title: "Category",
-  type: "document",
+  type: "object",
   icon: BiCategoryAlt,
   fields: [
     {

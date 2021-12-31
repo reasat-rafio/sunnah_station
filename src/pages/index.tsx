@@ -16,7 +16,7 @@ import { Seo } from "../components/SEO/SEO";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
 import groq from "groq";
-import { withDimensions } from "sanity-react-extra";
+import { renderObjectArray, withDimensions } from "sanity-react-extra";
 import { pageQuery } from "@libs/query";
 import { sanityStaticProps, useSanityQuery } from "@utils/sanity";
 import { SanityProps } from "next-sanity-extra";
@@ -57,12 +57,12 @@ export const getStaticProps: GetStaticProps = async (context) => ({
 
 export default function Home(props: SanityProps) {
   const { page } = useSanityQuery(query, props).data;
-
   console.log("====================================");
   console.log(page);
   console.log("====================================");
 
   const { productsDispatch } = useCtx();
+
   useEffect(() => {
     // const allProducts = [...speicalDeals, ...newArrivals];
     // productsDispatch(getAllTheProducts(allProducts));
@@ -70,7 +70,7 @@ export default function Home(props: SanityProps) {
 
   return (
     <InitialLayout>
-      <Seo
+      {/* <Seo
         title="Home - Sunnah Station"
         description={
           "This is an Islamic e-commerce site where we set out to take all Islamic and halal products on one platform."
@@ -78,7 +78,11 @@ export default function Home(props: SanityProps) {
         url={`${process.env.NEXTAUTH_URL}`}
         shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
         preventIndexing={false}
-      />
+      /> */}
+
+      {renderObjectArray(page.sections, {
+        landingHero: HomePoster,
+      })}
 
       <main className="w-full">
         {/* <HomePoster coverImg={coverImg} /> */}

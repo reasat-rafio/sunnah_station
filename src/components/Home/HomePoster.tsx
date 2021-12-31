@@ -6,23 +6,28 @@
 //    EffectFade,
 // } from "swiper";
 // import "swiper/swiper-bundle.css";
-import Image from "next/image";
+import { imageUrlBuilder } from "@utils/sanity";
+import { SanityImage, SanityImg } from "sanity-react-extra";
 
 interface HomePosterProps {
-  coverImg: any[];
-}
-
-interface singleImg {
-  _id: string;
-  url: string;
+  type: string;
+  images: SanityImage[];
 }
 
 // SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade]);
 
-export const HomePoster: React.FC<HomePosterProps> = ({ coverImg }) => {
+export const HomePoster: React.FC<HomePosterProps> = ({ images }) => {
   return (
     <section className="pt-36 md:pt-0">
-      <div className="img_container">
+      <div className="h-screen w-screen">
+        <SanityImg
+          className="h-full w-full object-cover"
+          builder={imageUrlBuilder}
+          image={images[0]}
+          alt="HERO IMAGE"
+          width={2500}
+        />
+
         {/* <Image
                src={"url"}
                height="3"

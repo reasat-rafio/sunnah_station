@@ -13,11 +13,6 @@ export default {
     },
 
     {
-      name: "image",
-      title: "Image",
-      type: "image",
-    },
-    {
       name: "banner",
       title: "Banner",
       type: "image",
@@ -49,4 +44,7 @@ export default {
       ],
     },
   ],
+  preview: {
+    select: { title: "title", subtitle: "description", media: "banner" },
+  },
 };

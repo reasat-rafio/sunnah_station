@@ -2,7 +2,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 export default {
   name: "landingProduct",
   title: "Our Product",
-  type: "document",
+  type: "object",
   icon: AiOutlineShoppingCart,
   fields: [
     {
