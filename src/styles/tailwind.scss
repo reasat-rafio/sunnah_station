@@ -6,122 +6,122 @@
 @tailwind utilities;
 
 html {
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 // Sidebar stylings
-@import "../Components/Sidebars/sidebarnav";
+@import "../components/Sidebars/sidebarnav";
 
 // navbar stylings
-@import "../Components/Navs/_navStyle";
+@import "../components/Navs/_navStyle";
 
 // input
 .input {
-   @apply border rounded-sm py-3 px-2 outline-none;
+  @apply border rounded-sm py-3 px-2 outline-none;
 }
 .inputBtn {
-   @apply py-3 outline-none bg-nevyBlue text-white;
+  @apply py-3 outline-none bg-nevyBlue text-white;
 }
 .socialIcons {
-   @apply border rounded-md p-1 hover:bg-gray-100 transition-all duration-150;
+  @apply border rounded-md p-1 hover:bg-gray-100 transition-all duration-150;
 }
 
 // bottom sm nav
 .btmNavLi {
-   @apply cursor-pointer flex flex-col justify-center items-center text-xs;
+  @apply cursor-pointer flex flex-col justify-center items-center text-xs;
 }
 
 // Home page offers posters stylings
 .posterImg {
-   backface-visibility: hidden;
-   transition: all 400ms ease;
-   content: "";
-   position: absolute;
-   width: 0;
-   height: 100%;
-   left: 50%;
-   top: 0;
-   opacity: 0;
-   background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
+  backface-visibility: hidden;
+  transition: all 400ms ease;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.3) none repeat scroll 0 0;
 }
 
 .posterDiv:hover {
-   .posterImg {
-      content: "";
-      height: 100%;
-      opacity: 1;
-      left: 0;
-      backface-visibility: visible;
-      width: 100%;
-   }
+  .posterImg {
+    content: "";
+    height: 100%;
+    opacity: 1;
+    left: 0;
+    backface-visibility: visible;
+    width: 100%;
+  }
 }
 
 .ReactModal__Overlay {
-   transition: transform 300ms ease-in-out;
-   transition-delay: 100ms;
-   transform: scale(0);
-   /* transform: translateY(-150%); */
+  transition: transform 300ms ease-in-out;
+  transition-delay: 100ms;
+  transform: scale(0);
+  /* transform: translateY(-150%); */
 }
 
 .ReactModal__Overlay--after-open {
-   transform: scale(1);
-   /* transform: translateY(0%); */
+  transform: scale(1);
+  /* transform: translateY(0%); */
 }
 
 .ReactModal__Overlay--before-close {
-   transform: scale(0);
-   /* transform: translateY(-150%); */
+  transform: scale(0);
+  /* transform: translateY(-150%); */
 }
 
 // single product page
 .productBtn {
-   @apply text-white font-semibold  p-3 rounded-md transition-colors duration-200;
+  @apply text-white font-semibold  p-3 rounded-md transition-colors duration-200;
 }
 
 .pagination {
-   display: flex;
-   justify-content: space-between;
-   list-style: none;
-   cursor: pointer;
-   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  cursor: pointer;
+  margin: auto;
 }
 
 .pagination a {
-   padding: 10px;
-   border-radius: 5px;
-   border: 1px solid #00c0fa;
-   color: #00c0fa;
-   text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #00c0fa;
+  color: #00c0fa;
+  text-decoration: none;
 }
 
 .pagination__link {
-   font-weight: bold;
-   margin: 0 2px;
-   border: #00c0fa;
+  font-weight: bold;
+  margin: 0 2px;
+  border: #00c0fa;
 }
 
 .pagination__link--active a {
-   color: #fff;
-   background: #00c0fa;
-   border: #00c0fa;
+  color: #fff;
+  background: #00c0fa;
+  border: #00c0fa;
 }
 
 .pagination__link--disabled a {
-   cursor: not-allowed;
-   color: rgb(198, 197, 202);
+  cursor: not-allowed;
+  color: rgb(198, 197, 202);
 }
 
 hiding the search scrollbar .disable-scrollbars::-webkit-scrollbar {
-   display: none;
+  display: none;
 }
 
 .disable-scrollbars {
-   -ms-overflow-style: none; /* IE and Edge */
-   scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 .img_container {
-   // background: url("../img/ramadan-cover-website.jpg");
-   background-size: cover;
-   background-repeat: no-repeat;
+  // background: url("../img/ramadan-cover-website.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }

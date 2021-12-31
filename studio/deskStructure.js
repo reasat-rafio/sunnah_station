@@ -1,12 +1,8 @@
 import S from "@sanity/desk-tool/structure-builder";
-import { GrEdit, GrView, GrWorkshop, GrContact } from "react-icons/gr";
+import { GrEdit, GrView } from "react-icons/gr";
 import * as React from "react";
 import { FcHome, FcFlowChart } from "react-icons/fc";
-import { FaHome, FaCreativeCommonsShare } from "react-icons/fa";
-import { MdLocalDrink } from "react-icons/md";
 import { CgWebsite } from "react-icons/cg";
-import { GrContactInfo, GrServices } from "react-icons/gr";
-import { SiGnuprivacyguard } from "react-icons/si";
 
 function SitePreview({ document, options }) {
   if (!process.env.SANITY_STUDIO_PREVIEW_URL) {
@@ -64,42 +60,6 @@ export default () =>
 
       S.divider(),
       S.listItem()
-        .title("Product")
-        .icon(MdLocalDrink)
-        .child(
-          S.list()
-            .title("Product")
-            .items([
-              S.documentTypeListItem("product").title("Products"),
-              S.documentTypeListItem("deal").title("Deal"),
-              //   S.documentTypeListItem("brand").title("Brands"),
-              //   S.documentTypeListItem("tags").title("Product Tags"),
-              S.documentTypeListItem("category").title("Category"),
-            ])
-        ),
-      //   S.documentTypeListItem('positions').title('Opening Positions'),
-      S.divider(),
-      //   S.listItem()
-      //     .title("Shared")
-      //     .icon(FaCreativeCommonsShare)
-      //     .child(
-      //       S.list()
-      //         .title("Shared")
-      //         .items([
-      //           pageItem({
-      //             schemaType: "newslatter",
-      //             id: "newslatter",
-      //             title: "Newslatter",
-      //             icon: FaHome,
-      //             slug: "",
-      //           }),
-      //         ])
-      //     ),
-      S.divider(),
-      //   S.documentTypeListItem("order").title("Orders"),
-      //   S.documentTypeListItem("users").title("Users"),
-      S.divider(),
-      S.listItem()
         .title("Pages")
         .icon(CgWebsite)
         .child(
@@ -113,45 +73,22 @@ export default () =>
                 icon: FcHome,
                 slug: "",
               }),
-              //   singleItem({
-              //     schemaType: "contact",
-              //     id: "contact",
-              //     title: "Contact",
-              //     icon: GrContactInfo,
-              //   }),
-              //   singleItem({
-              //     schemaType: "termsAndServices",
-              //     id: "termsAndServices",
-              //     title: "Terms And Services",
-              //     icon: GrServices,
-              //   }),
-              //   singleItem({
-              //     schemaType: "privacyPolicy",
-              //     id: "privacyPolicy",
-              //     title: "Privacy Policy",
-              //     icon: SiGnuprivacyguard,
-              //   }),
             ])
         ),
-
       S.divider(),
+
+      S.documentTypeListItem("product").title("Products"),
+      S.documentTypeListItem("deal").title("Deal"),
+      S.documentTypeListItem("category").title("Category"),
+
       ...S.documentTypeListItems().filter(
         (item) =>
           ![
             "siteConfig",
             "product",
+            "deal",
             "category",
-            // "deal",
-            // "brand",
-            // "social",
-            // "landingPage",
-            // "tags",
-            // "contact",
-            // "termsAndServices",
-            // "privacyPolicy",
-            // "newslatter",
-            // "order",
-            // "users",
+            "landingPage",
           ].includes(item.getId())
       ),
     ]);

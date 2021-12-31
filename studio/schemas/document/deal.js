@@ -18,6 +18,11 @@ export default {
       type: "image",
     },
     {
+      name: "banner",
+      title: "Banner",
+      type: "image",
+    },
+    {
       name: "description",
       title: "Description",
       type: "text",

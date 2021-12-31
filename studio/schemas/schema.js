@@ -19,6 +19,7 @@ import deal from "./document/deal";
 import landingPage from "./pages/landingPage";
 import landingHero from "./objects/landing/hero";
 import landingCategory from "./objects/landing/category";
+import landingProduct from "./objects/landing/ourProduct";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -45,5 +46,6 @@ export default createSchema({
     landingPage,
     landingHero,
     landingCategory,
+    landingProduct,
   ]),
 });

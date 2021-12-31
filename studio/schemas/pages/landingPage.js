@@ -14,7 +14,7 @@ export default {
       of: [
         { type: "landingHero" },
         { type: "landingCategory" },
-        // { type: "landingService" },
+        { type: "landingProduct" },
         // { type: "landingPortfolio" },
         // { type: "landingAwards" },
         // { type: "landingContact" },

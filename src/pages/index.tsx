@@ -18,10 +18,37 @@ import Image from "next/image";
 import groq from "groq";
 import { withDimensions } from "sanity-react-extra";
 import { pageQuery } from "@libs/query";
-import { sanityStaticProps } from "@utils/sanity";
+import { sanityStaticProps, useSanityQuery } from "@utils/sanity";
 import { SanityProps } from "next-sanity-extra";
 
-const query = pageQuery();
+const query = pageQuery(groq`
+  *[_id == "landingPage"][0] {
+     ...,
+      sections[]{
+      ...,
+      "image": ${withDimensions("image")},
+      images[]{
+        ...,
+      "image": ${withDimensions("image")},
+      },
+      browseByCategory->{
+        ...,
+      "image": ${withDimensions("image")},
+      },
+      highlightDeals-> [0..7]{
+        ...,
+      "banner": ${withDimensions("banner")}, 
+      },
+    },
+    "latestPosts": *[_type == 'deal' && slug.current != "winter-seals"] | order(date desc) [0..29]{
+      ...,
+      appliesTo[]->{
+        ...,
+        categories[]->
+      }
+    }
+  }
+`);
 
 export const getStaticProps: GetStaticProps = async (context) => ({
   props: await sanityStaticProps({ query: query, context }),
@@ -29,6 +56,12 @@ export const getStaticProps: GetStaticProps = async (context) => ({
 });
 
 export default function Home(props: SanityProps) {
+  const { page } = useSanityQuery(query, props).data;
+
+  console.log("====================================");
+  console.log(page);
+  console.log("====================================");
+
   const { productsDispatch } = useCtx();
   useEffect(() => {
     // const allProducts = [...speicalDeals, ...newArrivals];

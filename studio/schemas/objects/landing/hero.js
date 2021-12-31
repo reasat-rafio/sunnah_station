@@ -7,10 +7,20 @@ export default {
   icon: FiStar,
   fields: [
     {
-      name: "image",
+      name: "images",
       title: "Images",
       type: "array",
       of: [{ type: "image" }],
     },
   ],
+  preview: {
+    select: {
+      title: "title",
+    },
+    prepare(selection) {
+      return {
+        title: "Hero Section",
+      };
+    },
+  },
 };
