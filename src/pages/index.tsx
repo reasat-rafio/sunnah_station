@@ -5,14 +5,13 @@ import { InitialLayout } from "../components/Layouts/InitialLayout";
 import axios from "axios";
 import { Banner } from "@components/landingPage/banner";
 import { BrowseByCategory } from "../components/landingPage/browse-by-category";
-import { SpeicalDeals } from "../components/Home/OurProducts/SpeicalDeals";
+import { HighlightedDeal } from "../components/landingPage/highlighted-deal";
 import { Newsletter } from "../components/Home/Newsletter/Newsletter";
 import { NewArrivals } from "../components/Home/NewArrivals/NewArrivals";
 import { BackToTheTop } from "../components/BackToTop/BackToTop";
 import { useEffect } from "react";
 import { useCtx } from "../store";
 import { getAllTheProducts } from "../store/actions/ProductsAction";
-import { Seo } from "../components/SEO/SEO";
 import Image from "next/image";
 import groq from "groq";
 import { renderObjectArray, withDimensions } from "sanity-react-extra";
@@ -34,8 +33,9 @@ const query = pageQuery(groq`
         ...,
       "image": ${withDimensions("image")},
       },
-      highlightDeals-> [0..7]{
+      highlightDeals -> {
         ...,
+      appliesTo[]->,
       "banner": ${withDimensions("banner")}, 
       },
     },
@@ -79,10 +79,10 @@ export default function Home(props: SanityProps) {
       {renderObjectArray(page.sections, {
         landingHero: Banner,
         landingCategory: BrowseByCategory,
+        landingProduct: HighlightedDeal,
       })}
 
       <main className="w-full">
-        {/* <BrowseByCategory /> */}
         {/* <SpeicalDeals speicalDeals={speicalDeals} /> */}
         {/* <NewArrivals newArrivals={newArrivals} /> */}
         {/* <Newsletter />

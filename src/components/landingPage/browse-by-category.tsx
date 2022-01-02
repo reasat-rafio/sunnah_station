@@ -18,7 +18,6 @@ interface BrowseByCategoryProps {
   title: string;
 }
 
-// configring swiper
 SwiperCore.use([Autoplay]);
 
 export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
