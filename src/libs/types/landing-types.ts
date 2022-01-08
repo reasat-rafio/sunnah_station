@@ -18,11 +18,21 @@ export interface Product {
   _rev: string;
   _type: string;
   _updatedAt: Date;
+  body: Body[];
   categories: Category[];
-  defaultProductVariant: DefaultProductVariant;
+  colors?: string[];
+  images: SanityImage[];
+  offderPrice?: number;
+  offerAvailable?: boolean;
+  offerEndsAt?: Date;
+  offerStartsAt?: Date;
+  price: number;
+  productId: string;
+  seo: SEO;
   slug: Slug;
   tags: string[];
   title: string;
+  grams?: number;
   showAction?: boolean;
 }
 

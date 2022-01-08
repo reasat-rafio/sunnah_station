@@ -13,9 +13,9 @@ interface HighlightedDealsProps {
 }
 
 export const HighlightedDeal: React.FC<HighlightedDealsProps> = ({
-  highlightDeals,
-  tagline,
   title,
+  tagline,
+  highlightDeals,
 }) => {
   return (
     <section className="container  mx-auto px-2 font-title">
