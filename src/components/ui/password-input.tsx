@@ -2,7 +2,6 @@ import cn from "classnames";
 import React, { InputHTMLAttributes, useState } from "react";
 import { Eye } from "@components/icons/eye-icon";
 import { EyeOff } from "@components/icons/eye-off-icon";
-import { useTranslation } from "next-i18next";
 
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -31,7 +30,6 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
     const [show, setShow] = useState(false);
 
     const rootClassName = cn(classes.root, inputClassName);
-    const { t } = useTranslation();
     return (
       <div className={className}>
         {labelKey && (
@@ -39,7 +37,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             htmlFor={name}
             className="block text-gray-600 font-semibold text-sm leading-none mb-3 cursor-pointer"
           >
-            {t(labelKey)}
+            {labelKey}
           </label>
         )}
         <div className="relative">
@@ -66,7 +64,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             )}
           </label>
         </div>
-        {errorKey && <p className="my-2 text-xs text-red-500">{t(errorKey)}</p>}
+        {errorKey && <p className="my-2 text-xs text-red-500">{errorKey}</p>}
       </div>
     );
   }

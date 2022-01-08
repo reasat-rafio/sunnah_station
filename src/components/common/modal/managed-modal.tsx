@@ -1,13 +1,13 @@
 import Modal from "./modal";
 import dynamic from "next/dynamic";
-import Newsletter from "../newsletter";
 import { useUI } from "src/contexts/ui.context";
+import Newsletter from "../newsletter";
+import ProductPopup from "@components/product/product-popup";
 const LoginForm = dynamic(() => import("@components/auth/login-form"));
 const SignUpForm = dynamic(() => import("@components/auth/sign-up-form"));
 const ForgetPasswordForm = dynamic(
   () => import("@components/auth/forget-password-form")
 );
-const ProductPopup = dynamic(() => import("@components/product/product-popup"));
 const ManagedModal: React.FC = () => {
   const { displayModal, closeModal, modalView } = useUI();
   return (
