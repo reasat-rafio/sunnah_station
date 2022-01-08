@@ -44,9 +44,9 @@ const BannerCard: FC<BannerProps> = ({
           alt={alt}
         />
 
-        {effectActive && (
-          <div className="absolute top-0 -start-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
-        )}
+ 				{effectActive && (
+					<div className="absolute top-0 -start-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
+				)}
       </Link>
     </div>
   );

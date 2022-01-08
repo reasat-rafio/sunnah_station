@@ -102,7 +102,14 @@ module.exports = {
         20: "repeat(20, minmax(0, 1fr))",
       },
     },
-
+		animation: {
+				shine: "shine 1s",
+			},
+			keyframes: {
+				shine: {
+					"100%": { left: "125%" },
+				},
+			},
     screens: {
       sm: "600px",
       md: "720px",
