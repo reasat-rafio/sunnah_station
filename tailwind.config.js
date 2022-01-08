@@ -67,14 +67,6 @@ module.exports = {
         300: "3",
         400: "4",
       },
-      animation: {
-        shine: "shine 1s",
-      },
-      keyframes: {
-        shine: {
-          "100%": { left: "125%" },
-        },
-      },
 
       fontSize: {
         smTitle: "2.25rem",
@@ -101,16 +93,17 @@ module.exports = {
       gridTemplateColumns: {
         20: "repeat(20, minmax(0, 1fr))",
       },
+
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+      },
     },
-		animation: {
-				shine: "shine 1s",
-			},
-			keyframes: {
-				shine: {
-					"100%": { left: "125%" },
-				},
-    },
-      
+
     screens: {
       sm: "600px",
       md: "720px",
