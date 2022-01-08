@@ -17,7 +17,7 @@ export default {
     select: {
       title: "title",
     },
-    prepare(selection) {
+    prepare() {
       return {
         title: "Hero Section",
       };

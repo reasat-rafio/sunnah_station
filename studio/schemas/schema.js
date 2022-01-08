@@ -7,6 +7,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type";
 import site from "./site";
 import menuItem from "./objects/menuItem";
 import seo from "./objects/seo";
+import newsletter from "./objects/newsletter";
 
 // We import object and document schemas
 import blockContent from "./blockContent";
@@ -33,6 +34,7 @@ export default createSchema({
     site,
     menuItem,
     seo,
+    newsletter,
 
     product,
     deal,

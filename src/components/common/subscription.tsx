@@ -1,16 +1,12 @@
 import Text from "@components/ui/text";
 import Input from "@components/ui/input";
-import Button from "@components/ui/button";
 import { useForm } from "react-hook-form";
-
-const data = {
-  title: "common:text-subscribe-heading",
-  description: "common:text-subscribe-description",
-  buttonText: "common:button-subscribe",
-};
+import Button from "@components/ui/button";
 
 interface Props {
   className?: string;
+  title: string;
+  description: string;
 }
 
 type FormValues = {
@@ -23,6 +19,8 @@ const defaultValues = {
 
 const Subscription: React.FC<Props> = ({
   className = "px-5 sm:px-8 md:px-16 2xl:px-24",
+  title,
+  description,
 }) => {
   const {
     register,
@@ -31,8 +29,6 @@ const Subscription: React.FC<Props> = ({
   } = useForm<FormValues>({
     defaultValues,
   });
-  const { t } = useTranslation();
-  const { title, description, buttonText } = data;
   async function onSubmit(input: FormValues) {
     console.log(input, "data");
   }
@@ -45,10 +41,10 @@ const Subscription: React.FC<Props> = ({
           variant="mediumHeading"
           className="mb-2 md:mb-2.5 lg:mb-3 xl:mb-3.5"
         >
-          {t(`${title}`)}
+          {title}
         </Text>
         <p className="text-body text-xs md:text-sm leading-6 md:leading-7">
-          {t(`${description}`)}
+          {description}
         </p>
       </div>
       <form
@@ -58,7 +54,7 @@ const Subscription: React.FC<Props> = ({
       >
         <div className="flex flex-col sm:flex-row items-start justify-end">
           <Input
-            placeholderKey="forms:placeholder-email-subscribe"
+            placeholderKey="Write your email here"
             type="email"
             variant="solid"
             className="w-full"
@@ -74,7 +70,7 @@ const Subscription: React.FC<Props> = ({
             errorKey={errors.subscription_email?.message}
           />
           <Button className="mt-3 sm:mt-0 w-full sm:w-auto sm:ms-2 md:h-full flex-shrink-0">
-            <span className="lg:py-0.5">{t(`${buttonText}`)}</span>
+            <span className="lg:py-0.5">Subscribe</span>
           </Button>
         </div>
       </form>

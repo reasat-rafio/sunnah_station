@@ -10,6 +10,7 @@ import { sanityStaticProps, useSanityQuery } from "@utils/sanity";
 import { SanityProps } from "next-sanity-extra";
 import Container from "@components/ui/container";
 import { NewArrivalsProductFeed } from "@components/product/feeds/new-arrivals-product-feed";
+import Subscription from "@components/common/subscription";
 
 const query = pageQuery(groq`
   *[_id == "landingPage"][0] {
@@ -60,6 +61,9 @@ export default function Home(props: SanityProps) {
           landingProduct: HighlightedDeal,
         })}
         <NewArrivalsProductFeed data={page.latestProduct} />
+        {renderObjectArray(page.sections, {
+          newsletter: Subscription,
+        })}
       </Container>
     </InitialLayout>
   );
