@@ -30,7 +30,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
   const navigationNextRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="container  mx-auto px-2 font-title">
+    <section className="font-title">
       <div className="my-10 flex md:block justify-center items-center flex-col">
         <Title>{title}</Title>
         <div className="flex  flex-col md:flex-row">
@@ -71,16 +71,16 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
             spaceBetween: 2,
           },
           800: {
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 3,
           },
 
           1280: {
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 30,
           },
           1536: {
-            slidesPerView: 5,
+            slidesPerView: 6,
             spaceBetween: 40,
           },
         }}

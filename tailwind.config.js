@@ -109,7 +109,8 @@ module.exports = {
 				shine: {
 					"100%": { left: "125%" },
 				},
-			},
+    },
+      
     screens: {
       sm: "600px",
       md: "720px",

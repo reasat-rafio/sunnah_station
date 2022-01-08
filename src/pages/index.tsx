@@ -18,6 +18,7 @@ import { renderObjectArray, withDimensions } from "sanity-react-extra";
 import { pageQuery } from "@libs/query";
 import { sanityStaticProps, useSanityQuery } from "@utils/sanity";
 import { SanityProps } from "next-sanity-extra";
+import Container from "@components/ui/container";
 
 const query = pageQuery(groq`
   *[_id == "landingPage"][0] {
@@ -78,9 +79,14 @@ export default function Home(props: SanityProps) {
 
       {renderObjectArray(page.sections, {
         landingHero: Banner,
-        landingCategory: BrowseByCategory,
-        landingProduct: HighlightedDeal,
       })}
+
+      <Container>
+        {renderObjectArray(page.sections, {
+          landingCategory: BrowseByCategory,
+          landingProduct: HighlightedDeal,
+        })}
+      </Container>
 
       <main className="w-full">
         {/* <SpeicalDeals speicalDeals={speicalDeals} /> */}
