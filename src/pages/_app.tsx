@@ -9,6 +9,9 @@ import { useRouter } from "next/router";
 import { imageUrlBuilder } from "@utils/sanity";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
+import { AnimatePresence } from "framer-motion";
+import { ToastContainer } from "react-toastify";
+import { ManagedUIContext } from "src/contexts/ui.context";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -47,23 +50,44 @@ function MyApp({ Component, pageProps }: AppProps) {
   //     }))
   //   : [];
 
+  function handleExitComplete() {
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0 });
+    }
+  }
+
+  const Noop: React.FC = ({ children }) => <>{children}</>;
+
+  const Layout = (Component as any).Layout || Noop;
   return (
     <>
       {/* <Provider session={pageProps.session}> */}
       <GlobalState>
         <GlobalLayout>
-          <NextSeo
-          // title={pageProps.data?.page.seo.title}
-          // description={pageProps.data?.page.seo.description}
-          // canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
-          // openGraph={{
-          //   images: openGraphImages,
-          // }}
-          />
           <Component {...pageProps} />
         </GlobalLayout>
       </GlobalState>
       {/* </Provider> */}
+
+      <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
+        <ManagedUIContext>
+          <Layout pageProps={pageProps}>
+            <NextSeo
+            // title={pageProps.data?.page.seo.title}
+            // description={pageProps.data?.page.seo.description}
+            // canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
+            // openGraph={{
+            //   images: openGraphImages,
+            // }}
+            />
+            <Component {...pageProps} key={router.route} />
+            <ToastContainer />
+          </Layout>
+          <ManagedModal />
+          <ManagedDrawer />
+        </ManagedUIContext>
+        {/* <ReactQueryDevtools /> */}
+      </AnimatePresence>
     </>
   );
 }

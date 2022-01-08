@@ -102,7 +102,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
           <SwiperSlide key={_id}>
             <Link href={`/shop/${slug.current}`}>
               <motion.div
-                whileHover={{ y: -10 }}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
                 className={`cursor-pointer  text-center hover:shadow-md rounded-3xl flex flex-col justify-center items-center h-32  py-3  my-3 bg-lightest_gray hover:bg-nevyBlue hover:text-gray-50 transition-none duration-300 text-nevyBlue`}
               >
                 <span className="text-lightBlue py-3">
