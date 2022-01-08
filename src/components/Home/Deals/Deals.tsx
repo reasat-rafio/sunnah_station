@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay, EffectFade } from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
 import "swiper/css";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/router";
@@ -15,10 +15,11 @@ import {
 } from "../../../store/actions/CartAction";
 import { showCart } from "../../../store/actions/domActions";
 import { ModalContent } from "../../../utils/_components/ModalContent";
-import { CardImage } from "./CardImage";
 import { Product } from "@libs/types/landing-types";
 import { SecondarySubtitle } from "@components/ui/secondary-subtitle";
 import { useWindowSize } from "@libs/hooks";
+import { ProductImages } from "../../common/card/product-images";
+import { ProductCard } from "@components/common/card/product-card";
 
 SwiperCore.use([Autoplay]);
 
@@ -29,10 +30,7 @@ interface DealsProps {
 }
 
 export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
-  // configring swiper
-  // router
   const router = useRouter();
-  // global state
   const {
     domDispatch,
     cartState: { inCartProducts },
@@ -112,18 +110,12 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
   return (
     <section className="px-3 md:px-0">
       <div className="flex border-b  font-nav text-xl font-semibold ">
-        <div className="py-2 border-b-4 border-nevyBlue  flex gap-1">
-          <h6></h6>
-        </div>
-
         <SecondarySubtitle>{name}</SecondarySubtitle>
       </div>
-      {/* card section */}
 
-      {showActions && !loading && (
+      {showActions && (
         <div className="">
           <Swiper
-            className="my-1 "
             breakpoints={{
               300: {
                 slidesPerView: 2,
@@ -151,79 +143,18 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
                 spaceBetween: 40,
               },
             }}
-            autoplay={{
-              disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //   disableOnInteraction: true,
+            // }}
             spaceBetween={10}
           >
             {deals.map((deal, idx) => {
               return (
-                <SwiperSlide key={deal._id}>
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className={`rounded-xl  md:h-80  text-center hover:shadow-2xl  transition-all duration-150  my-6 flex flex-col  relative `} //?sm:h-smCard
+                <SwiperSlide className="py-7" key={deal._id}>
+                  <ProductCard
+                    {...deal}
                     onClick={() => router.push(`/items/${deal.slug.current}`)}
-                    onMouseEnter={() => handleMouseEnter(idx)}
-                    onMouseLeave={() => handleMouseleave(idx)}
-                  >
-                    {/* Card action section */}
-                    <div
-                    //  className={`absolute ${
-                    //    pageWidth < 720
-                    //      ? "top-1/2 right-5 flex-row"
-                    //      : "top-1/2  right-4 flex-col"
-                    //  } z-40  flex  gap-1`}
-                    >
-                      {windowWidth < 720 ? (
-                        <></>
-                      ) : (
-                        // <SmCardActionBtns
-                        //   addToTheCartAction={addToTheCartAction}
-                        //   productQuantity={productQuantity}
-                        //   showActions={showActions}
-                        //   setShowModal={setShowModal}
-                        //   setModalContent={setModalContent}
-                        //   {...deal}
-                        // />
-                        // <LgCardActionBtns
-                        //   addToTheCartAction={addToTheCartAction}
-                        //   productQuantity={productQuantity}
-                        //   showActions={showActions}
-                        //   setShowModal={setShowModal}
-                        //   setModalContent={setModalContent}
-                        //   deal={deal}
-                        // />
-                        <></>
-                      )}
-                    </div>
-
-                    {/* Image section */}
-                    <div className="flex-1">
-                      {/* <CardImage image={deal.images[0]} name={name} /> */}
-                    </div>
-                    {/* Name and price section */}
-                    <div className="p-3 ">
-                      <p className="text-sm font-medium text-center font-nav">
-                        {name}
-                      </p>
-                      {deal.offderPrice ? (
-                        <div className="my-2 flex gap-2 items-center justify-center">
-                          <span className="line-through  text-sm text-gray-400 font-text">
-                            ৳{deal.price}
-                          </span>
-                          <span className="text-lightBlue font-semibold font-text">
-                            ৳{deal.offderPrice}
-                          </span>
-                        </div>
-                      ) : (
-                        <div className="my-2 flex gap-2 items-center justify-center">
-                          <span className="text-lightBlue font-semibold font-text">
-                            ৳{deal.price}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  </motion.div>
+                  />
                 </SwiperSlide>
               );
             })}
@@ -251,3 +182,37 @@ export const Deals: React.FC<DealsProps> = ({ deals, to, name }) => {
     </section>
   );
 };
+
+//   <div
+//     className={`absolute ${
+//       windowWidth < 720
+//         ? "top-1/2 right-5 flex-row"
+//         : "top-1/2  right-4 flex-col"
+//     } z-40  flex  gap-1`}
+//   >
+//     {windowWidth < 720 ? (
+//       <>
+//         {/* <SmCardActionBtns
+//           addToTheCartAction={addToTheCartAction}
+//           productQuantity={productQuantity}
+//           showActions={showActions}
+//           setShowModal={setShowModal}
+//           setModalContent={setModalContent}
+//           {...deal}
+//         /> */}
+//       </>
+//     ) : (
+//       <>
+//         {/* <LgCardActionBtns
+//           addToTheCartAction={addToTheCartAction}
+//           productQuantity={productQuantity}
+//           showActions={showActions}
+//           setShowModal={setShowModal}
+//           setModalContent={setModalContent}
+//           deal={deal}
+//         /> */}
+//       </>
+//     )}
+//   </div>;
+//   onMouseEnter={() => handleMouseEnter(idx)}
+//                     onMouseLeave={() => handleMouseleave(idx)}

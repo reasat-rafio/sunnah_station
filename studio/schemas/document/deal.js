@@ -11,7 +11,15 @@ export default {
       title: "Title",
       type: "string",
     },
-
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+    },
     {
       name: "banner",
       title: "Banner",
@@ -22,16 +30,12 @@ export default {
       title: "Description",
       type: "text",
     },
-    {
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: {
-        source: "title",
-        maxLength: 96,
-      },
-    },
 
+    {
+      name: "endsAt",
+      title: "Ends At",
+      type: "datetime",
+    },
     {
       name: "appliesTo",
       title: "Applies To",
