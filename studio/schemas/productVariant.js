@@ -4,37 +4,10 @@ export default {
   type: "object",
   fields: [
     {
-      title: "Title",
-      name: "title",
-      type: "string",
-    },
-
-    {
-      title: "Produc tId",
-      name: "productId",
-      type: "string",
-    },
-    {
-      title: "Weight in grams",
-      name: "grams",
-      type: "number",
-    },
-    {
-      title: "Price",
-      name: "price",
-      type: "number",
-    },
-
-    {
-      title: "OfferPrice",
-      name: "offderPrice",
-      type: "number",
-    },
-
-    {
       name: "images",
       title: "Images",
       type: "array",
+      validation: (Rule) => Rule.required(),
       of: [
         {
           type: "image",
@@ -43,11 +16,6 @@ export default {
           },
         },
       ],
-    },
-    {
-      title: "Bar code",
-      name: "barcode",
-      type: "barcode",
     },
   ],
 };

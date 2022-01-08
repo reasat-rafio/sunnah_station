@@ -33,11 +33,11 @@ export const HighlightedDeal: React.FC<HighlightedDealsProps> = ({
       />
 
       <div>
-        {/* <Deals
-               deals={speicalDeals}
-               to="/special-deals"
-               name="RAMADAN SALE"
-            /> */}
+        <Deals
+          deals={highlightDeals.appliesTo}
+          to={highlightDeals.slug.current}
+          name={highlightDeals.title}
+        />
       </div>
     </section>
   );

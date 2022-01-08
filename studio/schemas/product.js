@@ -14,6 +14,7 @@ export default {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -23,14 +24,32 @@ export default {
         source: "title",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      title: "Product Id",
+      name: "productId",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "body",
+      title: "Body",
+      type: "array",
+      of: [{ type: "block" }],
+      validation: (Rule) => Rule.required(),
     },
 
+    {
+      title: "Weight in grams",
+      name: "grams",
+      type: "number",
+    },
     {
       title: "Offer Available",
       name: "offerAvailable",
       type: "boolean",
     },
-
     {
       title: "Offer Starts At",
       name: "offerStartsAt",
@@ -42,26 +61,70 @@ export default {
       name: "offerEndsAt",
       type: "datetime",
     },
+    {
+      title: "Price",
+      name: "price",
+      type: "number",
+      validation: (Rule) => Rule.required(),
+    },
 
     {
-      title: "Default variant",
-      name: "defaultProductVariant",
-      type: "productVariant",
+      title: "OfferPrice",
+      name: "offderPrice",
+      type: "number",
     },
+
     {
-      title: "Variants",
-      name: "variants",
+      name: "images",
+      title: "Images",
       type: "array",
+      validation: (Rule) => Rule.required(),
       of: [
         {
-          title: "Variant",
-          type: "productVariant",
+          type: "image",
+          options: {
+            hotspot: true,
+          },
         },
       ],
     },
+
+    // @TODO impliemnt is later
+    // {
+    //   title: "Default variant",
+    //   name: "defaultProductVariant",
+    //   type: "productVariant",
+    //   validation: (Rule) => Rule.required(),
+    // },
+    // {
+    //   title: "Variants",
+    //   name: "variants",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       title: "Variant",
+    //       type: "productVariant",
+    //     },
+    //   ],
+    // },
     {
       title: "Tags",
       name: "tags",
+      type: "array",
+      of: [
+        {
+          type: "string",
+        },
+      ],
+      options: {
+        layout: "tags",
+      },
+      validation: (Rule) => Rule.required(),
+    },
+
+    {
+      title: "Colors",
+      name: "colors",
       type: "array",
       of: [
         {
@@ -84,20 +147,13 @@ export default {
         },
       ],
     },
-
-    {
-      name: "body",
-      title: "Body",
-      type: "array",
-      of: [{ type: "block" }],
-    },
   ],
 
   preview: {
     select: {
       title: "title",
       manufactor: "manufactor.title",
-      media: "defaultProductVariant.images[0]",
+      media: "seo.seoImage",
     },
   },
 };

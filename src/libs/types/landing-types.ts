@@ -6,13 +6,13 @@ export interface HighlightDeals {
   _rev: string;
   _type: string;
   _updatedAt: Date;
-  appliesTo: AppliesTo[];
+  appliesTo: Product[];
   banner: SanityImage;
   slug: Slug;
   title: string;
 }
 
-export interface AppliesTo {
+export interface Product {
   _createdAt: Date;
   _id: string;
   _rev: string;
@@ -23,6 +23,7 @@ export interface AppliesTo {
   slug: Slug;
   tags: string[];
   title: string;
+  showAction?: boolean;
 }
 
 export interface ICategory {
