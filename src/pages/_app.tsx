@@ -1,5 +1,5 @@
 import Head from "next/head";
-import "../styles/tailwind.scss";
+import "../styles/tailwind.css";
 import { createContext, useEffect } from "react";
 import NProgress from "nprogress";
 import { GlobalState } from "../store";

@@ -19,7 +19,7 @@
       "@styles/*": ["src/styles/*"],
       "@libs/*": ["src/libs/*"],
       "@utils/*": ["utils/*"],
-      "@contexts/*": ["src/context/*"]
+      "@contexts/*": ["context/*"]
     },
     "incremental": true
   },

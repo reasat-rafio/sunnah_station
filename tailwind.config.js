@@ -7,37 +7,80 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {
-      fontSize: {
-        smTitle: "2.25rem",
-        lgTitle: "3rem",
-      },
       colors: {
+        body: "#5A5A5A",
+        heading: "#212121",
+        input: "#1D1E1F",
+        black: "#000",
+        white: "#fff",
+        linen: "#FBF1E9",
+        linenSecondary: "#ECE7E3",
+        olive: "#3D9970",
+        maroon: "#B03060",
+        brown: "#C7844B",
+        placeholder: "#707070",
+        borderBottom: "#f7f7f7",
+        facebook: "#4267B2",
+        facebookHover: "#395fad",
+        google: "#4285F4",
+        googleHover: "#307bf9",
         nevyBlue: "#011325",
         lightBlue: "#00c0fa",
         optional: "#016cec",
         lightest_gray: "#F6F7FB",
         light_gray: "#e2e8f0",
-
-        secondary: {
-          100: "#7c8ba1",
-          200: "#667892",
-          300: "#506582",
-          400: "#3a5173",
-          500: "#243E63",
-          600: "#203859",
-          700: "#1d324f",
-          800: "#192b45",
-          900: "#16253b",
+        gray: {
+          50: "#FBFBFB",
+          100: "#F1F1F1",
+          150: "#F4F4F4",
+          200: "#F9F9F9",
+          300: "#E6E6E6",
+          350: "#E9ECEF",
+          400: "#999999",
+          500: "#D8D8D8",
+          600: "#3A3A3A",
+          700: "#292929",
+          800: "#707070",
         },
       },
-      textColor: {
-        nevyBlue: "#011325",
-        title: "#ffed4a",
-        sub_title: "#ffed4a",
-        text: "#a0aec0",
-        light_gray: "#e2e8f0",
-        lightest_gray: "#F6F7FB",
+      fontSize: {
+        "10px": ".625rem",
       },
+      screens: {
+        sm: "480px",
+        lg: "1025px",
+        "2xl": "1500px",
+        "3xl": "1780px",
+      },
+      spacing: {
+        "430px": "430px",
+        "450px": "450px",
+        "500px": "500px",
+        "64vh": "64vh",
+      },
+      minHeight: {
+        "50px": "50px",
+      },
+      scale: {
+        80: "0.8",
+        85: "0.85",
+        300: "3",
+        400: "4",
+      },
+      animation: {
+        shine: "shine 1s",
+      },
+      keyframes: {
+        shine: {
+          "100%": { left: "125%" },
+        },
+      },
+
+      fontSize: {
+        smTitle: "2.25rem",
+        lgTitle: "3rem",
+      },
+
       borderColor: {
         nevyBlue: "#011325",
       },
@@ -48,7 +91,6 @@ module.exports = {
       height: {
         lgCard: "350px",
         smCard: "320px",
-        // xsCard:
       },
       maxHeight: {
         smCard: "400px",
@@ -58,10 +100,6 @@ module.exports = {
       },
       gridTemplateColumns: {
         20: "repeat(20, minmax(0, 1fr))",
-
-        // Complex site-specific column configuration
-
-        // footer: "200px minmax(900px, 1fr) 100px",
       },
     },
 
@@ -102,6 +140,10 @@ module.exports = {
       });
     },
 
+    require("@tailwindcss/forms")({
+      strategy: "class",
+    }),
+    require("tailwindcss-rtl"),
     require("@tailwindcss/typography"),
   ],
 };
