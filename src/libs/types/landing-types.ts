@@ -61,3 +61,11 @@ export interface Category {
   _ref: string;
   _type: string;
 }
+
+export interface ImageBanner {
+  _key: string;
+  _type: string;
+  href: string;
+  image: SanityImage;
+  name: string;
+}

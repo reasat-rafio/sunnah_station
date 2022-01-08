@@ -12,6 +12,8 @@ interface BannerProps {
   className?: string;
   classNameInner?: string;
   alt: string;
+  height?: number;
+  width?: number;
   href: string;
 }
 
@@ -23,6 +25,8 @@ const BannerCard: FC<BannerProps> = ({
   classNameInner,
   alt,
   href,
+  height,
+  width,
 }) => {
   return (
     <div className={cn("mx-auto", className)}>
@@ -38,8 +42,8 @@ const BannerCard: FC<BannerProps> = ({
             "rounded-md": variant === "rounded",
           })}
           builder={imageUrlBuilder}
-          width={430}
-          height={600}
+          width={width}
+          height={height}
           image={banner}
           alt={alt}
         />

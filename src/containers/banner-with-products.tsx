@@ -39,6 +39,8 @@ const BannerWithProducts: React.FC<ProductsProps> = ({
           alt={sectionHeading}
           effectActive={true}
           href={categorySlug as string}
+          height={600}
+          width={430}
         />
         <div
           className={`col-span-full 2xl:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5 xl:gap-7 ${

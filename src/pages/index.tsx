@@ -1,8 +1,8 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
 import { InitialLayout } from "../components/Layouts/InitialLayout";
-import { Banner } from "@components/landingPage/banner";
-import { BrowseByCategory } from "../components/landingPage/browse-by-category";
-import { HighlightedDeal } from "../components/landingPage/highlighted-deal";
+import { Banner } from "@components/home/banner";
+import { BrowseByCategory } from "../components/home/browse-by-category";
+import { HighlightedDeal } from "../components/home/highlighted-deal";
 import groq from "groq";
 import { renderObjectArray, withDimensions } from "sanity-react-extra";
 import { pageQuery } from "@libs/query";
@@ -11,6 +11,7 @@ import { SanityProps } from "next-sanity-extra";
 import Container from "@components/ui/container";
 import { NewArrivalsProductFeed } from "@components/product/feeds/new-arrivals-product-feed";
 import Subscription from "@components/common/subscription";
+import BannerSliderBlock from "@components/home/banner-slider-block";
 
 const query = pageQuery(groq`
   *[_id == "landingPage"][0] {
@@ -60,6 +61,11 @@ export default function Home(props: SanityProps) {
           landingCategory: BrowseByCategory,
           landingProduct: HighlightedDeal,
         })}
+      </Container>
+      {renderObjectArray(page.sections, {
+        landingBanners: BannerSliderBlock,
+      })}
+      <Container>
         <NewArrivalsProductFeed data={page.latestProduct} />
         {renderObjectArray(page.sections, {
           newsletter: Subscription,
