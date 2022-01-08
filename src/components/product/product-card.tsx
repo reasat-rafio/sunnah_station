@@ -55,7 +55,7 @@ const ProductCard: FC<ProductProps> = ({
     >
       <div
         className={cn(
-          "flex",
+          "flex w-full",
           {
             "mb-3 md:mb-3.5": variant === "grid",
             "mb-3 md:mb-3.5 pb-0": variant === "gridSlim",
@@ -65,13 +65,14 @@ const ProductCard: FC<ProductProps> = ({
           imageContentClassName
         )}
       >
+        {/* bg-gray-300 */}
         <SanityImg
           builder={imageUrlBuilder}
           image={product?.images[0]}
           width={imgWidth as number}
           height={imgHeight as number}
           alt={product?.title || "Product Image"}
-          className={cn("bg-gray-300 object-cover rounded-s-md", {
+          className={cn(" object-cover rounded-s-md bg-gray-300", {
             "w-full rounded-md transition duration-200 ease-in group-hover:rounded-b-none":
               variant === "grid",
             "rounded-md transition duration-150 ease-linear transform group-hover:scale-105":
@@ -105,7 +106,8 @@ const ProductCard: FC<ProductProps> = ({
           {product?.title}
         </h2>
         {product?.body && (
-          <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate text-ellipsis">
+          <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate ">
+            {product.seo.description}
             {/* <PortableText blocks={product?.body} /> */}
           </p>
         )}

@@ -1,4 +1,5 @@
 import Link from "@components/ui/link";
+import { SecondarySubtitle } from "@components/ui/secondary-subtitle";
 import Text from "@components/ui/text";
 
 interface Props {
@@ -16,7 +17,7 @@ const SectionHeader: React.FC<Props> = ({
     <div
       className={`flex items-center justify-between -mt-2 lg:-mt-2.5 ${className}`}
     >
-      <Text variant="mediumHeading">{sectionHeading}</Text>
+      <SecondarySubtitle>{sectionHeading}</SecondarySubtitle>
       {categorySlug && (
         <Link
           href={categorySlug}

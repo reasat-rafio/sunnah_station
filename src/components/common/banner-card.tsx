@@ -1,7 +1,5 @@
-import Image from "next/image";
 import type { FC } from "react";
 import cn from "classnames";
-import { LinkProps } from "next/link";
 import Link from "@components/ui/link";
 import { useWindowSize } from "@libs/hooks";
 import { SanityImage, SanityImg } from "sanity-react-extra";
@@ -26,7 +24,6 @@ const BannerCard: FC<BannerProps> = ({
   alt,
   href,
 }) => {
-  const windwoWidth = useWindowSize()?.width ?? 0;
   return (
     <div className={cn("mx-auto", className)}>
       <Link

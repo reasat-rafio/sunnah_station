@@ -46,11 +46,17 @@ module.exports = {
       fontSize: {
         "10px": ".625rem",
       },
-      screens: {
-        sm: "480px",
-        lg: "1025px",
-        "2xl": "1500px",
-        "3xl": "1780px",
+
+      boxShadow: {
+        cart: "0 3px 6px rgba(0,0,0,0.12)",
+        product: "0 6px 12px rgba(0,0,0,.08)",
+        listProduct: "0 2px 4px rgba(0,0,0,.08)",
+        navigation: "0 3px 6px rgba(0, 0, 0, 0.16)",
+        navigationReverse: "0 -3px 6px rgba(0, 0, 0, 0.16)",
+        header: "0 2px 3px rgba(0, 0, 0, 0.08)",
+        subMenu: "1px 2px 3px rgba(0, 0, 0, 0.08)",
+        bottomNavigation: "0 -2px 3px rgba(0, 0, 0, 0.06)",
+        cookies: "0 -2px 3px rgba(0, 0, 0, 0.04)",
       },
       spacing: {
         "430px": "430px",
@@ -103,44 +109,12 @@ module.exports = {
         },
       },
     },
-
-    screens: {
-      sm: "600px",
-      md: "720px",
-      lg: "920px",
-      xl: "1300px",
-      "2xl": "1536px",
-    },
   },
   variants: {
     extend: {},
   },
 
-  //  custome container with
-  corePlugins: {
-    container: false,
-  },
   plugins: [
-    function ({ addComponents }) {
-      addComponents({
-        ".container": {
-          maxWidth: "100%",
-          "@screen sm": {
-            maxWidth: "600px",
-          },
-          "@screen md": {
-            maxWidth: "720px",
-          },
-          "@screen lg": {
-            maxWidth: "920px",
-          },
-          "@screen xl": {
-            maxWidth: "1300px",
-          },
-        },
-      });
-    },
-
     require("@tailwindcss/forms")({
       strategy: "class",
     }),

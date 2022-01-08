@@ -1,10 +1,10 @@
+import { SanityImage } from "sanity-react-extra";
 import BannerCard from "@components/common/banner-card";
 import SectionHeader from "@components/common/section-header";
 import ProductCard from "@components/product/product-card";
 import ProductCardListSmallLoader from "@components/ui/loaders/product-card-small-list-loader";
 import { Product } from "@libs/types/landing-types";
 import { useState } from "react";
-import { SanityImage } from "sanity-react-extra";
 
 interface ProductsProps {
   sectionHeading: string;
@@ -33,25 +33,15 @@ const BannerWithProducts: React.FC<ProductsProps> = ({
       />
 
       <div className="grid grid-cols-4 gap-3 lg:gap-5 xl:gap-7">
-        {variant === "reverse" ? (
-          <BannerCard
-            banner={banner}
-            alt={sectionHeading}
-            className="hidden 3xl:block"
-            effectActive={true}
-            href={categorySlug as string}
-          />
-        ) : (
-          <BannerCard
-            banner={banner}
-            alt={sectionHeading}
-            className="hidden 3xl:block"
-            effectActive={true}
-            href={categorySlug as string}
-          />
-        )}
+        <BannerCard
+          banner={banner}
+          className="hidden 2xl:block"
+          alt={sectionHeading}
+          effectActive={true}
+          href={categorySlug as string}
+        />
         <div
-          className={`col-span-full 3xl:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5 xl:gap-7 ${
+          className={`col-span-full 2xl:col-span-3 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-5 xl:gap-7 ${
             variant === "reverse" ? "row-span-full" : ""
           }`}
         >

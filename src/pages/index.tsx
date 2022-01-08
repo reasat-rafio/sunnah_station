@@ -1,24 +1,15 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
-import Head from "next/head";
-import ReactMarkdown from "react-markdown";
 import { InitialLayout } from "../components/Layouts/InitialLayout";
-import axios from "axios";
 import { Banner } from "@components/landingPage/banner";
 import { BrowseByCategory } from "../components/landingPage/browse-by-category";
 import { HighlightedDeal } from "../components/landingPage/highlighted-deal";
-import { Newsletter } from "../components/Home/Newsletter/Newsletter";
-import { NewArrivals } from "../components/Home/NewArrivals/NewArrivals";
-import { BackToTheTop } from "../components/BackToTop/BackToTop";
-import { useEffect } from "react";
-import { useCtx } from "../store";
-import { getAllTheProducts } from "../store/actions/ProductsAction";
-import Image from "next/image";
 import groq from "groq";
 import { renderObjectArray, withDimensions } from "sanity-react-extra";
 import { pageQuery } from "@libs/query";
 import { sanityStaticProps, useSanityQuery } from "@utils/sanity";
 import { SanityProps } from "next-sanity-extra";
 import Container from "@components/ui/container";
+import { NewArrivalsProductFeed } from "@components/product/feeds/new-arrivals-product-feed";
 
 const query = pageQuery(groq`
   *[_id == "landingPage"][0] {
@@ -36,11 +27,11 @@ const query = pageQuery(groq`
       },
       highlightDeals -> {
         ...,
-      appliesTo[]->,
+      appliesTo[0...9]->,
       "banner": ${withDimensions("banner")}, 
       },
     },
-    "latestPosts": *[_type == 'deal' && slug.current != "winter-seals"] | order(date desc) [0..29]{
+    "latestProduct": *[_type == 'product'] | order(date desc) [0..10]{
       ...,
       appliesTo[]->{
         ...,
@@ -58,42 +49,18 @@ export const getStaticProps: GetStaticProps = async (context) => ({
 export default function Home(props: SanityProps) {
   const { page } = useSanityQuery(query, props).data;
 
-  const { productsDispatch } = useCtx();
-
-  useEffect(() => {
-    // const allProducts = [...speicalDeals, ...newArrivals];
-    // productsDispatch(getAllTheProducts(allProducts));
-  }, []);
-
   return (
     <InitialLayout>
-      {/* <Seo
-        title="Home - Sunnah Station"
-        description={
-          "This is an Islamic e-commerce site where we set out to take all Islamic and halal products on one platform."
-        }
-        url={`${process.env.NEXTAUTH_URL}`}
-        shareImage="https://res.cloudinary.com/dapjxqk64/image/upload/v1616398446/sunnah%20statoin/sunnah_station_png_hfs68x.png"
-        preventIndexing={false}
-      /> */}
-
       {renderObjectArray(page.sections, {
         landingHero: Banner,
       })}
-
       <Container>
         {renderObjectArray(page.sections, {
           landingCategory: BrowseByCategory,
           landingProduct: HighlightedDeal,
         })}
+        <NewArrivalsProductFeed data={page.latestProduct} />
       </Container>
-
-      <main className="w-full">
-        {/* <SpeicalDeals speicalDeals={speicalDeals} /> */}
-        {/* <NewArrivals newArrivals={newArrivals} /> */}
-        {/* <Newsletter />
-        <BackToTheTop /> */}
-      </main>
     </InitialLayout>
   );
 }
