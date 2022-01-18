@@ -62,14 +62,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const Layout = (Component as any).Layout || Noop;
   return (
     <>
-      {/* <Provider session={pageProps.session}> */}
-      <GlobalState>
-        <GlobalLayout>
-          <Component {...pageProps} />
-        </GlobalLayout>
-      </GlobalState>
-      {/* </Provider> */}
-
       <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
         <ManagedUIContext>
           <Layout pageProps={pageProps}>

@@ -107,7 +107,7 @@ const ProductCard: FC<ProductProps> = ({
         </h2>
         {product?.body && (
           <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate ">
-            {product.seo.description}
+            {product.shortDescription}
           </p>
         )}
         <div
@@ -117,10 +117,10 @@ const ProductCard: FC<ProductProps> = ({
               : "sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3"
           }`}
         >
-          <span className="inline-block">{product.price}</span>
+          <span className="inline-block"> ৳ {product.price}</span>
           {product.offerAvailable && (
             <del className="sm:text-base font-normal text-gray-800">
-              {product.price}
+              ৳ {product.price}
             </del>
           )}
         </div>

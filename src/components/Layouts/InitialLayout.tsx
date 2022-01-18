@@ -16,27 +16,27 @@ interface InitialLayoutProps {
 
 export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
   const router = useRouter();
-  const {
-    domDispatch,
-    domState: { isLoading },
-  } = useCtx();
+  // const {
+  //   domDispatch,
+  //   domState: { isLoading },
+  // } = useCtx();
 
-  useEffect(() => {
-    if (router.isFallback) {
-      domDispatch(loadingstart());
-    } else {
-      domDispatch(loadingEnd());
-    }
-  }, [router.isFallback]);
+  // useEffect(() => {
+  //   if (router.isFallback) {
+  //     domDispatch(loadingstart());
+  //   } else {
+  //     domDispatch(loadingEnd());
+  //   }
+  // }, [router.isFallback]);
 
   return (
     <div id="top">
-      <Navs />
+      {/* <Navs /> */}
 
-      <NavSideBars />
-      <ShoppingCartSideBar />
-      <SmSearchPage />
-      <Loading />
+      {/* <NavSideBars /> */}
+      {/* <ShoppingCartSideBar /> */}
+      {/* <SmSearchPage /> */}
+      {/* <Loading /> */}
       {children}
       {/* <SmBottomNav /> */}
       <Footer />

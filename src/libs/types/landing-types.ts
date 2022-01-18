@@ -34,6 +34,7 @@ export interface Product {
   title: string;
   grams?: number;
   showAction?: boolean;
+  shortDescription: string;
 }
 
 export interface ICategory {

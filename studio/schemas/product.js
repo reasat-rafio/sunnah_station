@@ -6,13 +6,8 @@ export default {
   icon: CgShoppingCart,
   fields: [
     {
-      name: "seo",
-      title: "Seo",
-      type: "seo",
-    },
-    {
-      name: "title",
-      title: "Title",
+      name: "name",
+      title: "Name",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
@@ -21,7 +16,7 @@ export default {
       title: "Slug",
       type: "slug",
       options: {
-        source: "title",
+        source: "name",
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
@@ -33,6 +28,11 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "shortDescription", //?description
+      title: "Short Description",
+      type: "text",
+    },
+    {
       name: "body",
       title: "Body",
       type: "array",
@@ -41,27 +41,6 @@ export default {
     },
 
     {
-      title: "Weight in grams",
-      name: "grams",
-      type: "number",
-    },
-    {
-      title: "Offer Available",
-      name: "offerAvailable",
-      type: "boolean",
-    },
-    {
-      title: "Offer Starts At",
-      name: "offerStartsAt",
-      type: "datetime",
-    },
-
-    {
-      title: "Offer Ends At",
-      name: "offerEndsAt",
-      type: "datetime",
-    },
-    {
       title: "Price",
       name: "price",
       type: "number",
@@ -69,14 +48,20 @@ export default {
     },
 
     {
-      title: "OfferPrice",
-      name: "offderPrice",
+      title: "Sale Price",
+      name: "sale_price",
       type: "number",
+      description:
+        "Keep this empty if there is no sale going on for this product",
     },
-
     {
-      name: "images",
-      title: "Images",
+      name: "image",
+      title: "Image",
+      type: "image",
+    },
+    {
+      name: "gallery",
+      title: "Gallery",
       type: "array",
       validation: (Rule) => Rule.required(),
       of: [
@@ -89,51 +74,50 @@ export default {
       ],
     },
 
-    // @TODO impliemnt is later
-    // {
-    //   title: "Default variant",
-    //   name: "defaultProductVariant",
-    //   type: "productVariant",
-    //   validation: (Rule) => Rule.required(),
-    // },
-    // {
-    //   title: "Variants",
-    //   name: "variants",
-    //   type: "array",
-    //   of: [
-    //     {
-    //       title: "Variant",
-    //       type: "productVariant",
-    //     },
-    //   ],
-    // },
     {
-      title: "Tags",
-      name: "tags",
+      title: "Variations",
+      name: "variations",
       type: "array",
       of: [
         {
-          type: "string",
-        },
-      ],
-      options: {
-        layout: "tags",
-      },
-      validation: (Rule) => Rule.required(),
-    },
+          name: "variation",
+          title: "Variation",
+          type: "object",
+          fields: [
+            {
+              name: "value",
+              title: "value",
+              type: "string",
+            },
+            {
+              name: "color",
+              title: "Color",
+              type: "colorPicker",
+              description: "select this only if the Attribute is set to color",
+            },
 
-    {
-      title: "Colors",
-      name: "colors",
-      type: "array",
-      of: [
-        {
-          type: "string",
+            {
+              name: "attribute",
+              title: "Attribute",
+              type: "object",
+              fields: [
+                {
+                  title: "Name",
+                  name: "name",
+                  type: "string",
+                  options: {
+                    list: [
+                      { title: "Color", value: "color" },
+                      { title: "Size", value: "size" },
+                      { title: "Weight", value: "weight" },
+                    ],
+                  },
+                },
+              ],
+            },
+          ],
         },
       ],
-      options: {
-        layout: "tags",
-      },
     },
 
     {
@@ -151,9 +135,9 @@ export default {
 
   preview: {
     select: {
-      title: "title",
-      manufactor: "manufactor.title",
-      media: "seo.seoImage",
+      title: "name",
+      subtitle: "shortDescription",
+      media: "image",
     },
   },
 };

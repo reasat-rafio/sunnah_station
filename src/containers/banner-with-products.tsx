@@ -48,7 +48,7 @@ const BannerWithProducts: React.FC<ProductsProps> = ({
           }`}
         >
           {isLoading
-            ? Array.from({ length: 9 }).map((_, idx) => (
+            ? Array.from({ length: 6 }).map((_, idx) => (
                 <ProductCardListSmallLoader
                   key={idx}
                   uniqueKey={`on-selling-${idx}`}

@@ -19,7 +19,8 @@
       "@styles/*": ["src/styles/*"],
       "@libs/*": ["src/libs/*"],
       "@utils/*": ["utils/*"],
-      "@contexts/*": ["context/*"]
+      "@contexts/*": ["src/contexts/*"],
+      "@framework/*": ["src/framework/basic-rest/*"]
     },
     "incremental": true
   },

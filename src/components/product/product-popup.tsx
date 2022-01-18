@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
-import { ROUTES } from "@utils/routes";
 import { useUI } from "@contexts/ui.context";
 import Button from "@components/ui/button";
 import Counter from "@components/common/counter";
@@ -10,10 +9,8 @@ import { ProductAttributes } from "@components/product/product-attributes";
 import { generateCartItem } from "@utils/generate-cart-item";
 import usePrice from "@framework/product/use-price";
 import { getVariations } from "@framework/utils/get-variations";
-import { useTranslation } from "next-i18next";
 
 export default function ProductPopup() {
-  const { t } = useTranslation("common");
   const {
     modalData: { data },
     closeModal,
@@ -28,7 +25,7 @@ export default function ProductPopup() {
   const { price, basePrice, discount } = usePrice({
     amount: data.sale_price ? data.sale_price : data.price,
     baseAmount: data.price,
-    currencyCode: "USD",
+    currencyCode: "BD",
   });
   const variations = getVariations(data.variations);
   const { slug, image, name, description } = data;
@@ -55,9 +52,9 @@ export default function ProductPopup() {
 
   function navigateToProductPage() {
     closeModal();
-    router.push(`${ROUTES.PRODUCT}/${slug}`, undefined, {
-      locale: router.locale,
-    });
+    // router.push(`${ROUTES.PRODUCT}/${slug}`, undefined, {
+    //   locale: router.locale,
+    // });
   }
 
   function handleAttribute(attribute: any) {
@@ -146,7 +143,7 @@ export default function ProductPopup() {
                 disabled={!isSelected}
                 loading={addToCartLoader}
               >
-                {t("text-add-to-cart")}
+                Add to Cart
               </Button>
             </div>
 
@@ -155,7 +152,7 @@ export default function ProductPopup() {
                 onClick={navigateToCartPage}
                 className="w-full mb-4 h-11 md:h-12 rounded bg-gray-100 text-heading focus:outline-none border border-gray-300 transition-colors hover:bg-gray-50 focus:bg-gray-50"
               >
-                {t("text-view-cart")}
+                View Cart
               </button>
             )}
 
@@ -164,7 +161,7 @@ export default function ProductPopup() {
               variant="flat"
               className="w-full h-11 md:h-12"
             >
-              {t("text-view-details")}
+              View Details
             </Button>
           </div>
         </div>
