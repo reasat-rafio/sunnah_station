@@ -28,8 +28,8 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      name: "shortDescription", //?description
-      title: "Short Description",
+      name: "description",
+      title: "Description",
       type: "text",
     },
     {
@@ -106,11 +106,7 @@ export default {
                   name: "name",
                   type: "string",
                   options: {
-                    list: [
-                      { title: "Color", value: "color" },
-                      { title: "Size", value: "size" },
-                      { title: "Weight", value: "weight" },
-                    ],
+                    list: ["Color", "Size", "Weight"],
                   },
                 },
               ],
@@ -118,6 +114,12 @@ export default {
           ],
         },
       ],
+    },
+
+    {
+      name: "tags",
+      title: "Tags",
+      type: "tags",
     },
 
     {

@@ -15,7 +15,8 @@
     "@sanity/desk-tool",
     "barcode-input",
     "@sanity/vision",
-    "color-picker"
+    "color-picker",
+    "autocomplete-tags"
   ],
   "env": {
     "development": {
