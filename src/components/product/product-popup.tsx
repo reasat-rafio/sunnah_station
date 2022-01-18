@@ -86,15 +86,8 @@ export default function ProductPopup() {
             image={image}
             builder={imageUrlBuilder}
             alt={`${name}'s image`}
+            height={400}
           />
-          {/* <img
-            src={
-              image?.original ??
-              "/assets/placeholder/products/product-thumbnail.svg"
-            }
-            alt={name}
-            className="lg:object-cover lg:w-full lg:h-full"
-          /> */}
         </div>
 
         <div className="flex flex-col p-5 md:p-8 w-full">

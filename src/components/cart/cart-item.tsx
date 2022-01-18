@@ -7,6 +7,8 @@ import Counter from "@components/common/counter";
 import { useCart } from "@contexts/cart/cart.context";
 import usePrice from "@framework/product/use-price";
 import { generateCartItemName } from "@utils/generate-cart-item-name";
+import { SanityImg } from "sanity-react-extra";
+import { imageUrlBuilder } from "@utils/sanity";
 
 type CartItemProps = {
   item: any;
@@ -34,13 +36,13 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       title={item?.name}
     >
       <div className="relative flex w-24 md:w-28 h-24 md:h-28 rounded-md overflow-hidden bg-gray-200 flex-shrink-0 cursor-pointer me-4">
-        <Image
-          src={item?.image ?? "/assets/placeholder/cart-item.svg"}
+        <SanityImg
+          className="bg-gray-300 object-cover"
           width={112}
           height={112}
-          loading="eager"
+          builder={imageUrlBuilder}
+          image={item?.image}
           alt={item.name || "Product Image"}
-          className="bg-gray-300 object-cover"
         />
         <div
           className="absolute top-0 start-0 h-full w-full bg-black bg-opacity-30 md:bg-opacity-0 flex justify-center items-center transition duration-200 ease-in-out md:group-hover:bg-opacity-30"
