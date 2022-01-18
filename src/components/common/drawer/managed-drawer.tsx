@@ -2,7 +2,7 @@ import { useUI } from "@contexts/ui.context";
 import { Drawer } from "@components/common/drawer/drawer";
 import { useRouter } from "next/router";
 import { getDirection } from "@utils/get-direction";
-import cart from "src/pages/cart";
+import Cart from "@components/cart/cart";
 
 const ManagedDrawer = () => {
   const { displayCart, closeCart } = useUI();
@@ -19,7 +19,7 @@ const ManagedDrawer = () => {
       level={null}
       contentWrapperStyle={contentWrapperCSS}
     >
-      <cart />
+      <Cart />
     </Drawer>
   );
 };
