@@ -1,9 +1,10 @@
-import { BiCategoryAlt } from "react-icons/bi";
+import { FcShare } from "react-icons/fc";
+
 export default {
   name: "landingCategory",
   title: "Category",
   type: "object",
-  icon: BiCategoryAlt,
+  icon: FcShare,
   fields: [
     {
       name: "title",

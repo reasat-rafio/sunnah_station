@@ -1,4 +1,6 @@
 import { CgShoppingCart } from "react-icons/cg";
+import { FcCheckmark } from "react-icons/fc";
+
 export default {
   name: "product",
   title: "Product",
@@ -83,6 +85,7 @@ export default {
           name: "variation",
           title: "Variation",
           type: "object",
+          icon: FcCheckmark,
           fields: [
             {
               name: "value",
@@ -112,6 +115,13 @@ export default {
               ],
             },
           ],
+
+          preview: {
+            select: {
+              title: "value",
+              subtitle: "attribute.name",
+            },
+          },
         },
       ],
     },
@@ -138,7 +148,7 @@ export default {
   preview: {
     select: {
       title: "name",
-      subtitle: "shortDescription",
+      subtitle: "description",
       media: "image",
     },
   },
