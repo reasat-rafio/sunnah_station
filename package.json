@@ -26,6 +26,7 @@
     "next-sanity-extra": "^0.2.3",
     "next-seo": "^4.28.1",
     "nprogress": "^0.2.0",
+    "overlayscrollbars-react": "^0.2.3",
     "pg": "^8.7.1",
     "postcss-nesting": "^10.1.0",
     "rc-drawer": "^4.4.3",
