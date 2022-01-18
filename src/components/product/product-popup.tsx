@@ -9,6 +9,9 @@ import { ProductAttributes } from "@components/product/product-attributes";
 import { generateCartItem } from "@utils/generate-cart-item";
 import usePrice from "@framework/product/use-price";
 import { getVariations } from "@framework/utils/get-variations";
+import { SanityImg } from "sanity-react-extra";
+import { imageUrlBuilder } from "@utils/sanity";
+import { Variation } from "@libs/types/landing-types";
 
 export default function ProductPopup() {
   const {
@@ -19,16 +22,20 @@ export default function ProductPopup() {
   const router = useRouter();
   const { addItemToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [attributes, setAttributes] = useState<{ [key: string]: string }>({});
+  const [attributes, setAttributes] = useState<{ [key: string]: Variation }>(
+    {}
+  );
   const [viewCartBtn, setViewCartBtn] = useState<boolean>(false);
   const [addToCartLoader, setAddToCartLoader] = useState<boolean>(false);
   const { price, basePrice, discount } = usePrice({
     amount: data.sale_price ? data.sale_price : data.price,
     baseAmount: data.price,
-    currencyCode: "BD",
+    currencyCode: "BDT",
   });
   const variations = getVariations(data.variations);
   const { slug, image, name, description } = data;
+
+  console.log(variations);
 
   const isSelected = !isEmpty(variations)
     ? !isEmpty(attributes) &&
@@ -75,14 +82,19 @@ export default function ProductPopup() {
     <div className="rounded-lg bg-white">
       <div className="flex flex-col lg:flex-row w-full md:w-[650px] lg:w-[960px] mx-auto overflow-hidden">
         <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-430px max-h-430px lg:max-h-full overflow-hidden bg-gray-300">
-          <img
+          <SanityImg
+            image={image}
+            builder={imageUrlBuilder}
+            alt={`${name}'s image`}
+          />
+          {/* <img
             src={
               image?.original ??
               "/assets/placeholder/products/product-thumbnail.svg"
             }
             alt={name}
             className="lg:object-cover lg:w-full lg:h-full"
-          />
+          /> */}
         </div>
 
         <div className="flex flex-col p-5 md:p-8 w-full">

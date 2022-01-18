@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import { ManagedUIContext } from "src/contexts/ui.context";
 import ManagedModal from "@components/common/modal/managed-modal";
+import ManagedDrawer from "@components/common/drawer/managed-drawer";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -77,7 +78,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ToastContainer />
           </Layout>
           <ManagedModal />
-          {/* <ManagedDrawer /> */}
+          <ManagedDrawer />
         </ManagedUIContext>
         {/* <ReactQueryDevtools /> */}
       </AnimatePresence>

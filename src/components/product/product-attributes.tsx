@@ -1,9 +1,10 @@
+import { Variation } from "@libs/types/landing-types";
 import cn from "classnames";
 interface Props {
   className?: string;
   title: string;
-  attributes: string[];
-  active: string;
+  attributes: Variation[];
+  active: Variation;
   onClick: any;
 }
 
@@ -26,18 +27,18 @@ export const ProductAttributes: React.FC<Props> = ({
             className={cn(
               "cursor-pointer rounded border border-gray-100 w-9 md:w-11 h-9 md:h-11 p-1 mb-2 md:mb-3 me-2 md:me-3 flex justify-center items-center text-heading text-xs md:text-sm uppercase font-semibold transition duration-200 ease-in-out hover:border-black",
               {
-                "border-black": atr === active,
+                "border-black": atr.value === active?.value,
               }
             )}
             onClick={() => onClick({ [title]: atr })}
           >
-            {title === "color" ? (
+            {title === "Color" ? (
               <span
                 className="h-full w-full rounded block"
-                style={{ backgroundColor: atr }}
+                style={{ backgroundColor: atr.color }}
               />
             ) : (
-              atr
+              atr.value
             )}
           </li>
         ))}

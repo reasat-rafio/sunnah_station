@@ -3,8 +3,8 @@ import { useUI } from "src/contexts/ui.context";
 import { Product } from "@libs/types/landing-types";
 import { imageUrlBuilder, PortableText } from "@utils/sanity";
 import { SanityImg } from "sanity-react-extra";
-import clsx from "clsx";
 import cn from "classnames";
+import usePrice from "@framework/product/use-price";
 
 interface ProductProps {
   product: Product;
@@ -29,6 +29,12 @@ const ProductCard: FC<ProductProps> = ({
 }) => {
   const { openModal, setModalView, setModalData } = useUI();
 
+  const { price, basePrice, discount } = usePrice({
+    amount: product.sale_price ? product.sale_price : product.price,
+    baseAmount: product.price,
+    currencyCode: "BDT",
+  });
+
   function handlePopupView() {
     setModalData({ data: product });
     setModalView("PRODUCT_VIEW");
@@ -51,7 +57,7 @@ const ProductCard: FC<ProductProps> = ({
       )}
       onClick={handlePopupView}
       role="button"
-      title={product?.title}
+      title={product?.name}
     >
       <div
         className={cn(
@@ -68,10 +74,10 @@ const ProductCard: FC<ProductProps> = ({
         {/* bg-gray-300 */}
         <SanityImg
           builder={imageUrlBuilder}
-          image={product?.images[0]}
+          image={product?.image}
           width={imgWidth as number}
           height={imgHeight as number}
-          alt={product?.title || "Product Image"}
+          alt={product?.name || "Product Image"}
           className={cn(" object-cover rounded-s-md bg-gray-300", {
             "w-full rounded-md transition duration-200 ease-in group-hover:rounded-b-none":
               variant === "grid",
@@ -103,11 +109,11 @@ const ProductCard: FC<ProductProps> = ({
               variant === "list",
           })}
         >
-          {product?.title}
+          {product?.name}
         </h2>
         {product?.body && (
           <p className="text-body text-xs lg:text-sm leading-normal xl:leading-relaxed max-w-[250px] truncate ">
-            {product.shortDescription}
+            {product.description}
           </p>
         )}
         <div
@@ -117,10 +123,10 @@ const ProductCard: FC<ProductProps> = ({
               : "sm:text-xl md:text-base lg:text-xl md:mt-2.5 2xl:mt-3"
           }`}
         >
-          <span className="inline-block"> ৳ {product.price}</span>
-          {product.offerAvailable && (
+          <span className="inline-block">{price}</span>
+          {discount && (
             <del className="sm:text-base font-normal text-gray-800">
-              ৳ {product.price}
+              {basePrice}
             </del>
           )}
         </div>

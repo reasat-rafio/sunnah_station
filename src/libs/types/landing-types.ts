@@ -12,29 +12,34 @@ export interface HighlightDeals {
   title: string;
 }
 
+export interface Variation {
+  _type: string;
+  _key: string;
+  value: string;
+  color?: string;
+  attribute: {
+    name: "Color" | "Size" | "Weight";
+  };
+}
+
 export interface Product {
   _createdAt: Date;
   _id: string;
   _rev: string;
   _type: string;
   _updatedAt: Date;
-  body: Body[];
-  categories: Category[];
-  colors?: string[];
-  images: SanityImage[];
-  offderPrice?: number;
-  offerAvailable?: boolean;
-  offerEndsAt?: Date;
-  offerStartsAt?: Date;
+  name: string;
   price: number;
-  productId: string;
-  seo: SEO;
+  sale_price: number;
   slug: Slug;
-  tags: string[];
-  title: string;
-  grams?: number;
-  showAction?: boolean;
-  shortDescription: string;
+  productId: string;
+  description: string;
+  body: Body[];
+  image: SanityImage;
+  gallery?: SanityImage[];
+  categories: Category[];
+  tags: { value: string; label: string }[];
+  variations: Variation[];
 }
 
 export interface ICategory {
