@@ -1,10 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Autoplay } from "swiper";
-import { useRef } from "react";
+import { Autoplay, A11y, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+import "swiper/css/a11y";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { GoLeft, GoRight } from "../Home/BrowsByCategory/_data";
 import Link from "next/link";
-import "swiper/css";
 import { ICategory } from "@libs/types/landing-types";
 import { Title } from "@components/ui/title";
 import { SubTitle } from "@components/ui/subtitle";
@@ -18,16 +21,14 @@ interface BrowseByCategoryProps {
   title: string;
 }
 
-SwiperCore.use([Autoplay]);
-
 export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
   browseByCategory,
   title,
   tagline,
 }) => {
   // custome navigation button ref
-  const navigationPrevRef = useRef<HTMLDivElement>(null);
-  const navigationNextRef = useRef<HTMLDivElement>(null);
+  const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
+  const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
 
   return (
     <section className="font-title">
@@ -39,13 +40,13 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
           <div className="flex justify-center items-center gap-3 md:gap-5 mt-6 md:mt-0">
             <span
               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
-              ref={navigationPrevRef}
+              ref={(node) => setPrevEl(node)}
             >
               <GoLeft />
             </span>
             <span
               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
-              ref={navigationNextRef}
+              ref={(node) => setNextEl(node)}
             >
               <GoRight />
             </span>
@@ -54,8 +55,9 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
       </div>
 
       <Swiper
-        modules={[Autoplay]}
         className="my-4"
+        modules={[Navigation, A11y, Autoplay]}
+        navigation={{ prevEl, nextEl }}
         autoplay={{ disableOnInteraction: false }}
         breakpoints={{
           300: {
@@ -83,19 +85,6 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
             slidesPerView: 6,
             spaceBetween: 40,
           },
-        }}
-        navigation={{
-          prevEl: navigationPrevRef.current
-            ? navigationPrevRef.current
-            : undefined,
-          nextEl: navigationNextRef.current
-            ? navigationNextRef.current
-            : undefined,
-        }}
-        onInit={(swiper: any) => {
-          swiper.params.navigation.prevEl = navigationPrevRef.current;
-          swiper.params.navigation.nextEl = navigationNextRef.current;
-          swiper.navigation?.update();
         }}
       >
         {browseByCategory.map(({ _id, image, title, slug }) => (

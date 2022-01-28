@@ -83,16 +83,6 @@ const Modal: FC<ModalProps> = ({
               rootClassName
             )}
           >
-            <button
-              onClick={onClose}
-              aria-label="Close panel"
-              className={cn(
-                "fixed z-10 inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow text-gray-600 transition duration-200 focus:outline-none focus:text-gray-800 focus:shadow-md hover:text-gray-800 hover:shadow-md",
-                closeBtnClasses[variant]
-              )}
-            >
-              <IoClose className="text-xl" />
-            </button>
             <motion.div
               initial="from"
               animate="to"
@@ -102,11 +92,22 @@ const Modal: FC<ModalProps> = ({
             >
               <div
                 className={cn(
-                  "w-full md:w-auto absolute left-1/2 transform -translate-x-1/2 shadow-xl",
+                  "w-full md:w-auto absolute left-1/2 transform -translate-x-1/2 shadow-xl ",
                   containerClasses[variant],
                   containerClassName
                 )}
               >
+                <button
+                  onClick={onClose}
+                  aria-label="Close panel"
+                  className={cn(
+                    " z-10 inline-flex items-center justify-center w-7 h-7 md:w-8 md:h-8 rounded-full bg-white shadow text-gray-600 transition duration-200 focus:outline-none focus:text-gray-800 focus:shadow-md hover:text-gray-800 hover:shadow-md absolute top-0 transform translate-x-full -translate-y-full",
+                    closeBtnClasses[variant]
+                  )}
+                >
+                  <IoClose className="text-xl" />
+                </button>
+
                 <div
                   ref={modalInnerRef}
                   className="overflow-y-auto h-full rounded-lg"
