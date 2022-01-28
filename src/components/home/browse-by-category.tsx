@@ -5,14 +5,15 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/a11y";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { GoLeft, GoRight } from "../Home/BrowsByCategory/_data";
 import Link from "next/link";
 import { ICategory } from "@libs/types/landing-types";
 import { Title } from "@components/ui/title";
 import { SubTitle } from "@components/ui/subtitle";
 import { SanityImg } from "sanity-react-extra";
 import { imageUrlBuilder } from "@utils/sanity";
+import { LeftArrow } from "@components/icons/left-arrow";
+import { RightArrow } from "@components/icons/right-arrow";
+import { motion } from "framer-motion";
 
 interface BrowseByCategoryProps {
   type: string;
@@ -42,13 +43,13 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
               ref={(node) => setPrevEl(node)}
             >
-              <GoLeft />
+              <LeftArrow />
             </span>
             <span
               className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
               ref={(node) => setNextEl(node)}
             >
-              <GoRight />
+              <RightArrow />
             </span>
           </div>
         </div>

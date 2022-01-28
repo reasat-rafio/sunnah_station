@@ -1,8 +1,8 @@
+import Footer from "@components/footer/footer";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useCtx } from "../../store";
 import { loadingEnd, loadingstart } from "../../store/actions/domAction";
-import { Footer } from "../Footer/Footer";
 import { Loading } from "../Loading/Loading";
 import { SmBottomNav } from "../Navs/BottomNav/BottomNav";
 import { Navs } from "../Navs/Navs";
@@ -39,6 +39,7 @@ export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
       {/* <Loading /> */}
       {children}
       {/* <SmBottomNav /> */}
+      {/* <Footer /> */}
       <Footer />
     </div>
   );
