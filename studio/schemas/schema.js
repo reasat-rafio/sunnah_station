@@ -8,6 +8,7 @@ import site from "./site";
 import menuItem from "./objects/menuItem";
 import seo from "./objects/seo";
 import newsletter from "./objects/newsletter";
+import footerItem from "./objects/footerItem";
 
 // We import object and document schemas
 import blockContent from "./blockContent";
@@ -34,6 +35,7 @@ export default createSchema({
     // in the studio.
     site,
     menuItem,
+    footerItem,
     seo,
     newsletter,
 
