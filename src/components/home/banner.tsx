@@ -14,7 +14,7 @@ interface Banner {
 export const Banner: React.FC<Banner> = ({ images }) => {
   return (
     <section className="pt-36 md:pt-0">
-      <div className="2xl:h-[80vh] lg:h-[90vh] h-[40vh] w-screen">
+      <div className="2xl:h-[80vh] lg:h-[90vh] h-[40vh] ">
         <Swiper
           className="h-full w-full"
           modules={[Pagination, Autoplay, EffectFade]}
@@ -22,7 +22,6 @@ export const Banner: React.FC<Banner> = ({ images }) => {
           slidesPerView={1}
           centeredSlides
           loop
-          navigation
           pagination={{ clickable: true }}
           loopedSlides={images.length}
           autoplay={{ delay: 5000 }}

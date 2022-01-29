@@ -14,6 +14,7 @@ import { ToastContainer } from "react-toastify";
 import { ManagedUIContext } from "src/contexts/ui.context";
 import ManagedModal from "@components/common/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
+import Footer from "@components/footer/footer";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -75,6 +76,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             // }}
             />
             <Component {...pageProps} key={router.route} />
+            <Footer widgets={pageProps.data?.site.footer} />
+
             <ToastContainer />
           </Layout>
           <ManagedModal />

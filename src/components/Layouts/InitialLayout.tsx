@@ -40,7 +40,6 @@ export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
       {children}
       {/* <SmBottomNav /> */}
       {/* <Footer /> */}
-      <Footer />
     </div>
   );
 };
