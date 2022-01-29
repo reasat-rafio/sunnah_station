@@ -16,6 +16,7 @@ import ManagedModal from "@components/common/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import Footer from "@components/footer/footer";
 import { Header } from "@components/header/header";
+import Search from "@components/common/search";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -37,22 +38,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     };
   }, []);
 
-  // const ogImage =
-  //   pageProps.data?.page.seo.seoImage ?? pageProps.data?.site.ogImage;
+  const ogImage =
+    pageProps.data?.page.seo.seoImage ?? pageProps.data?.site.ogImage;
 
-  // const openGraphImages = ogImage
-  //   ? [
-  //       { w: 800, h: 600 },
-  //       { w: 1200, h: 630 },
-  //       { w: 600, h: 600 },
-  //       { w: 256, h: 256 },
-  //     ].map(({ w, h }) => ({
-  //       url: `${imageUrlBuilder.image(ogImage).width(w).height(h).url()}`,
-  //       width: w,
-  //       height: h,
-  //       alt: `${pageProps.data?.page.seo.title}`,
-  //     }))
-  //   : [];
+  const openGraphImages = ogImage
+    ? [
+        { w: 800, h: 600 },
+        { w: 1200, h: 630 },
+        { w: 600, h: 600 },
+        { w: 256, h: 256 },
+      ].map(({ w, h }) => ({
+        url: `${imageUrlBuilder.image(ogImage).width(w).height(h).url()}`,
+        width: w,
+        height: h,
+        alt: `${pageProps.data?.page.seo.title}`,
+      }))
+    : [];
 
   function handleExitComplete() {
     if (typeof window !== "undefined") {
@@ -69,17 +70,19 @@ function MyApp({ Component, pageProps }: AppProps) {
         <ManagedUIContext>
           <Layout pageProps={pageProps}>
             <NextSeo
-            // title={pageProps.data?.page.seo.title}
-            // description={pageProps.data?.page.seo.description}
-            // canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
-            // openGraph={{
-            //   images: openGraphImages,
-            // }}
+              title={pageProps.data?.page.seo.title}
+              description={pageProps.data?.page.seo.description}
+              canonical={`${pageProps.data?.site.siteUrl}${router.asPath}`}
+              openGraph={{
+                images: openGraphImages,
+              }}
             />
             <Header
               navItems={pageProps.data?.site.menu}
               logo={pageProps.data?.site.logo}
             />
+            <Search />
+
             <Component {...pageProps} key={router.route} />
             <Footer widgets={pageProps.data?.site.footer} />
 
