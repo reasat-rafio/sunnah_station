@@ -56,7 +56,7 @@ const LoginForm: React.FC = () => {
       >
         <div className="flex flex-col space-y-3.5">
           <Input
-            labelKey="forms:label-email"
+            labelKey="Email"
             type="email"
             variant="solid"
             {...register("email", {
@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
             errorKey={errors.email?.message}
           />
           <PasswordInput
-            labelKey="forms:label-password"
+            labelKey="Password"
             errorKey={errors.password?.message}
             {...register("password", {
               required: `Password is required`,

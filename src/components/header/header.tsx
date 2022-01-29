@@ -1,14 +1,7 @@
 import { useWindowScroll } from "@libs/hooks";
-import { AnimatePresence, motion } from "framer-motion";
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import {
-  iconVariants,
-  searchbarVariants,
-} from "../../../utils/motion/animation";
-import { CartBag, Menu, SmMenu } from "../../utils/svgs/Svg";
 import Container from "@components/ui/container";
 import SearchIcon from "@components/icons/search-icon";
 import dynamic from "next/dynamic";
@@ -19,6 +12,7 @@ const CartButton = dynamic(() => import("@components/cart/cart-button"), {
 import { SanityImage, SanityImg } from "sanity-react-extra";
 import { imageUrlBuilder } from "@utils/sanity";
 import { useUI } from "@contexts/ui.context";
+import AuthMenu from "./auth-menu";
 
 interface HeaderProps {
   navItems: NavItem[];
@@ -38,12 +32,10 @@ export const Header: React.FC<HeaderProps> = ({ navItems, logo }) => {
   const router = useRouter();
   const scroll = useWindowScroll()?.y ?? 0;
 
-  // This state is for hiding and showing the search input section
-  const [showSearchBar, setShowSearchBar] = useState<boolean>(false);
-  const [showSmMenu, setShowSmMenu] = useState<boolean>(false);
-
-  // Search result state
-  const [searFilteredItems, setSearchFilterItems] = useState<any>([]);
+  function handleLogin() {
+    setModalView("LOGIN_VIEW");
+    return openModal();
+  }
 
   return (
     <nav
@@ -76,7 +68,21 @@ export const Header: React.FC<HeaderProps> = ({ navItems, logo }) => {
               >
                 <SearchIcon />
               </button>
-              <div className="-mt-0.5 flex-shrink-0"></div>
+              <div className="-mt-0.5 flex-shrink-0">
+                <AuthMenu
+                  isAuthorized={false}
+                  href="/my-account"
+                  className="text-sm xl:text-base text-heading font-semibold"
+                  btnProps={{
+                    className:
+                      "text-sm xl:text-base text-heading font-semibold focus:outline-none",
+                    children: "Sign In",
+                    onClick: handleLogin,
+                  }}
+                >
+                  Account
+                </AuthMenu>
+              </div>
               <CartButton />
             </div>
           </div>

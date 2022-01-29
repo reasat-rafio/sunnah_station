@@ -58,7 +58,7 @@ const SignUpForm: React.FC = () => {
       >
         <div className="flex flex-col space-y-4">
           <Input
-            labelKey="forms:label-name"
+            labelKey="Name"
             type="text"
             variant="solid"
             {...register("name", {
@@ -67,7 +67,7 @@ const SignUpForm: React.FC = () => {
             errorKey={errors.name?.message}
           />
           <Input
-            labelKey="forms:label-email"
+            labelKey="Email"
             type="email"
             variant="solid"
             {...register("email", {
@@ -81,7 +81,7 @@ const SignUpForm: React.FC = () => {
             errorKey={errors.email?.message}
           />
           <PasswordInput
-            labelKey="forms:label-password"
+            labelKey="Password"
             errorKey={errors.password?.message}
             {...register("password", {
               required: `password is required`,
