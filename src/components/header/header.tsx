@@ -48,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems, logo }) => {
   return (
     <nav
       className={clsx(
-        "fixed w-full transition-all duration-300 z-40",
+        "fixed w-full transition-all duration-300 z-20",
         scroll ? "top-0" : "top-4 md:top-8"
       )}
     >

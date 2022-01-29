@@ -1,5 +1,8 @@
 import Head from "next/head";
 import "../styles/tailwind.css";
+import "../styles/custom-plugins.css";
+import "../styles/scrollbar.css";
+import "../styles/swiper-carousel.css";
 import { createContext, useEffect } from "react";
 import NProgress from "nprogress";
 import { GlobalState } from "../store";
@@ -91,7 +94,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           <ManagedModal />
           <ManagedDrawer />
         </ManagedUIContext>
-        {/* <ReactQueryDevtools /> */}
       </AnimatePresence>
     </>
   );
