@@ -9,7 +9,7 @@ import {
   plusTheQuantityOfTheExistingItem,
 } from "../../store/actions/CartAction";
 import { showCart } from "../../store/actions/domActions";
-import { fadeIn, stagger } from "../../utils/animation";
+import { fadeIn, stagger } from "../../../utils/motion/animation";
 import { CardImage } from "../common/card/product-images";
 import { FilterProductSection } from "./FilterProductSection";
 

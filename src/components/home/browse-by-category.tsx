@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/a11y";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Link from "next/link";
 import { ICategory } from "@libs/types/landing-types";
 import { Title } from "@components/ui/title";
@@ -14,6 +14,8 @@ import { imageUrlBuilder } from "@utils/sanity";
 import { LeftArrow } from "@components/icons/left-arrow";
 import { RightArrow } from "@components/icons/right-arrow";
 import { motion } from "framer-motion";
+import { useWindowSize } from "@libs/hooks";
+import clsx from "clsx";
 
 interface BrowseByCategoryProps {
   type: string;
@@ -22,11 +24,49 @@ interface BrowseByCategoryProps {
   title: string;
 }
 
+type ElType = HTMLSpanElement | null;
+
+interface ControllerIconBlockProps {
+  className?: string;
+  setPrevEl: Dispatch<SetStateAction<ElType>>;
+  setNextEl: Dispatch<SetStateAction<ElType>>;
+}
+
+const ControllerIconBlock: React.FC<ControllerIconBlockProps> = ({
+  className,
+  setNextEl,
+  setPrevEl,
+}) => {
+  return (
+    <div
+      className={clsx(
+        className,
+        "flex justify-center items-center gap-3 md:gap-5 mt-6 md:mt-0"
+      )}
+    >
+      <span
+        className="p-2 text-nevyBlue rounded-full border border-nevyBlue cursor-pointer  transition-all duration-200 hover:scale-105 z-10"
+        ref={(node) => setPrevEl(node)}
+      >
+        <LeftArrow />
+      </span>
+      <span
+        className="p-2 text-nevyBlue rounded-full border border-nevyBlue cursor-pointer transition-all duration-200 hover:scale-105 z-10"
+        ref={(node) => setNextEl(node)}
+      >
+        <RightArrow />
+      </span>
+    </div>
+  );
+};
+
 export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
   browseByCategory,
   title,
   tagline,
 }) => {
+  const windowWidth = useWindowSize()?.width ?? 0;
+
   // custome navigation button ref
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
   const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
@@ -38,20 +78,9 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
         <div className="flex  flex-col md:flex-row">
           <SubTitle>{tagline}</SubTitle>
 
-          <div className="flex justify-center items-center gap-3 md:gap-5 mt-6 md:mt-0">
-            <span
-              className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer  transition-colors duration-200"
-              ref={(node) => setPrevEl(node)}
-            >
-              <LeftArrow />
-            </span>
-            <span
-              className="p-2 text-nevyBlue rounded-full border hover:border-nevyBlue cursor-pointer transition-colors duration-200"
-              ref={(node) => setNextEl(node)}
-            >
-              <RightArrow />
-            </span>
-          </div>
+          {windowWidth >= 768 && (
+            <ControllerIconBlock setNextEl={setNextEl} setPrevEl={setPrevEl} />
+          )}
         </div>
       </div>
 
@@ -63,19 +92,19 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
         breakpoints={{
           300: {
             slidesPerView: 2,
-            spaceBetween: 1,
+            spaceBetween: 10,
           },
           400: {
             slidesPerView: 3,
-            spaceBetween: 1,
+            spaceBetween: 10,
           },
           560: {
             slidesPerView: 3,
-            spaceBetween: 2,
+            spaceBetween: 20,
           },
           800: {
             slidesPerView: 6,
-            spaceBetween: 3,
+            spaceBetween: 30,
           },
 
           1280: {
@@ -109,6 +138,10 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {windowWidth < 768 && (
+        <ControllerIconBlock setNextEl={setNextEl} setPrevEl={setPrevEl} />
+      )}
     </section>
   );
 };

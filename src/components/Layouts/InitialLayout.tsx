@@ -5,7 +5,6 @@ import { useCtx } from "../../store";
 import { loadingEnd, loadingstart } from "../../store/actions/domAction";
 import { Loading } from "../Loading/Loading";
 import { SmBottomNav } from "../Navs/BottomNav/BottomNav";
-import { Navs } from "../Navs/Navs";
 import { SmSearchPage } from "../overLayComponents/SmSearchPage";
 import { NavSideBars } from "../Sidebars/NavSideBars";
 import { ShoppingCartSideBar } from "../Sidebars/ShoppingCartSidebar";
@@ -31,8 +30,6 @@ export const InitialLayout: React.FC<InitialLayoutProps> = ({ children }) => {
 
   return (
     <div id="top">
-      {/* <Navs /> */}
-
       {/* <NavSideBars /> */}
       {/* <ShoppingCartSideBar /> */}
       {/* <SmSearchPage /> */}

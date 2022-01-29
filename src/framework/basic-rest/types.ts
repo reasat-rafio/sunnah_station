@@ -1,5 +1,3 @@
-import { QueryKey } from "react-query";
-
 export type CollectionsQueryOptionsType = {
   text?: string;
   collection?: string;
@@ -28,7 +26,7 @@ export type QueryOptionsType = {
 };
 
 export type QueryParamsType = {
-  queryKey: QueryKey;
+  // queryKey: QueryKey;
   pageParam?: string;
 };
 export type Attachment = {

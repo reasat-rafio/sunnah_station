@@ -11,7 +11,10 @@ import Link from "next/link";
 import { useCtx } from "../../store";
 import { hideSideNavBar } from "../../store/actions/domActions";
 import { motion, AnimatePresence } from "framer-motion";
-import { sideBarVarients, sideBarMoreVarients } from "../../utils/animation";
+import {
+  sideBarVarients,
+  sideBarMoreVarients,
+} from "../../../utils/motion/animation";
 import { useRef, useState } from "react";
 import { useOutsideAlerter } from "../../utils/hooks/useOutSideClickAlerter";
 import { HIDE_SIDE_BAR } from "../../store/types";

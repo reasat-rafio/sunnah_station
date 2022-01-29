@@ -25,8 +25,6 @@ export const Banner: React.FC<Banner> = ({ images }) => {
           pagination={{ clickable: true }}
           loopedSlides={images.length}
           autoplay={{ delay: 5000 }}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
         >
           {images.map((img, index) => (
             <SwiperSlide key={index}>

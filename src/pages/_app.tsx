@@ -15,6 +15,7 @@ import { ManagedUIContext } from "src/contexts/ui.context";
 import ManagedModal from "@components/common/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import Footer from "@components/footer/footer";
+import { Header } from "@components/header/header";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
@@ -74,6 +75,10 @@ function MyApp({ Component, pageProps }: AppProps) {
             // openGraph={{
             //   images: openGraphImages,
             // }}
+            />
+            <Header
+              navItems={pageProps.data?.site.menu}
+              logo={pageProps.data?.site.logo}
             />
             <Component {...pageProps} key={router.route} />
             <Footer widgets={pageProps.data?.site.footer} />

@@ -7,7 +7,7 @@ import {
   linkVariants,
   menuVariants,
   sideBarMoreVarients,
-} from "../../../utils/animation";
+} from "../../../../utils/motion/animation";
 import { DownArrowSm } from "../../../utils/svgs/Svg";
 import { navs } from "../LgNavbar/_helper";
 import { getSession, signIn, signOut } from "next-auth/react";

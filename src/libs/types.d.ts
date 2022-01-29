@@ -24,3 +24,11 @@ interface FooterList {
   path?: string;
   title: string;
 }
+
+interface NavItem {
+  _key: string;
+  _type: string;
+  slug: Slug;
+  title: string;
+  submenu?: NavItem[];
+}
