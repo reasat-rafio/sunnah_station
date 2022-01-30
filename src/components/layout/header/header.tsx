@@ -14,6 +14,7 @@ import { imageUrlBuilder } from "@utils/sanity";
 import { useUI } from "@contexts/ui.context";
 import AuthMenu from "./auth-menu";
 import HeaderMenu from "./header-menu";
+import Logo from "@components/ui/logo";
 
 interface HeaderProps {
   navItems: NavItem[];
@@ -53,14 +54,7 @@ export const Header: React.FC<HeaderProps> = ({ navItems, logo }) => {
           )}
         >
           <div className="flex items-center relative">
-            <div onClick={() => router.push("/")}>
-              <SanityImg
-                image={logo}
-                builder={imageUrlBuilder}
-                width={120}
-                alt="Sunnah Station Logo"
-              />
-            </div>
+            <Logo image={logo} />
             <HeaderMenu
               data={navItems}
               className="hidden lg:flex md:ms-6 xl:ms-10"
