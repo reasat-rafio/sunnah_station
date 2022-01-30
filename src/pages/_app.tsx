@@ -5,9 +5,6 @@ import "../styles/scrollbar.css";
 import "../styles/swiper-carousel.css";
 import { createContext, useEffect } from "react";
 import NProgress from "nprogress";
-import { GlobalState } from "../store";
-import { GlobalLayout } from "../components/Layouts/GlobalLayout";
-// import { Provider, getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { imageUrlBuilder } from "@utils/sanity";
 import { NextSeo } from "next-seo";
@@ -19,7 +16,6 @@ import ManagedModal from "@components/common/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import { Header } from "@components/layout/header/header";
 import Search from "@components/common/search";
-import MobileMenu from "@components/layout/header/mobile-menu";
 import BottomNavigation from "@components/layout/mobile-navigation/mobile-navigation";
 import Footer from "@components/layout/footer/footer";
 

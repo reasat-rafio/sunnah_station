@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPropsContext } from "next";
-import { InitialLayout } from "../components/Layouts/InitialLayout";
 import { Banner } from "@components/home/banner";
 import { BrowseByCategory } from "../components/home/browse-by-category";
 import { HighlightedDeal } from "../components/home/highlighted-deal";
@@ -52,7 +51,7 @@ export default function Home(props: SanityProps) {
   const { page } = useSanityQuery(query, props).data;
 
   return (
-    <InitialLayout>
+    <main>
       {renderObjectArray(page.sections, {
         landingHero: Banner,
       })}
@@ -71,6 +70,6 @@ export default function Home(props: SanityProps) {
           newsletter: Subscription,
         })}
       </Container>
-    </InitialLayout>
+    </main>
   );
 }

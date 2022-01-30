@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { InitialLayout } from "../../../components/Layouts/InitialLayout";
 import { ShopLayout } from "../../../components/Layouts/ShopLayout";
-import { Loading } from "../../../components/Loading/Loading";
+import { Loading } from "../../../components/loading/Loading";
 import { FilterProductSection } from "../../../components/ShopPage/FilterProductSection";
 import { ShopProducts } from "../../../components/ShopPage/ShopProducts";
 import { useCtx } from "../../../store";
