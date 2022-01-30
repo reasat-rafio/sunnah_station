@@ -68,8 +68,10 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
   const windowWidth = useWindowSize()?.width ?? 0;
 
   // custome navigation button ref
-  const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
-  const [nextEl, setNextEl] = useState<HTMLElement | null>(null);
+  const [prevLgEl, setPrevLgEl] = useState<HTMLElement | null>(null);
+  const [nextLgEl, setNextLgEl] = useState<HTMLElement | null>(null);
+  const [prevSmEl, setPrevSmEl] = useState<HTMLElement | null>(null);
+  const [nextSmEl, setNextSmEl] = useState<HTMLElement | null>(null);
 
   return (
     <section className="font-title">
@@ -79,7 +81,10 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
           <SubTitle>{tagline}</SubTitle>
 
           {windowWidth >= 768 && (
-            <ControllerIconBlock setNextEl={setNextEl} setPrevEl={setPrevEl} />
+            <ControllerIconBlock
+              setNextEl={setNextLgEl}
+              setPrevEl={setPrevLgEl}
+            />
           )}
         </div>
       </div>
@@ -87,7 +92,10 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
       <Swiper
         className="my-4"
         modules={[Navigation, A11y, Autoplay]}
-        navigation={{ prevEl, nextEl }}
+        navigation={{
+          prevEl: windowWidth >= 760 ? prevLgEl : prevSmEl,
+          nextEl: windowWidth >= 760 ? nextLgEl : nextSmEl,
+        }}
         autoplay={{ disableOnInteraction: false }}
         breakpoints={{
           300: {
@@ -140,7 +148,7 @@ export const BrowseByCategory: React.FC<BrowseByCategoryProps> = ({
       </Swiper>
 
       {windowWidth < 768 && (
-        <ControllerIconBlock setNextEl={setNextEl} setPrevEl={setPrevEl} />
+        <ControllerIconBlock setNextEl={setNextSmEl} setPrevEl={setPrevSmEl} />
       )}
     </section>
   );
