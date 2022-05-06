@@ -37,6 +37,7 @@ const Carousel: React.FunctionComponent<CarouselPropsType> = ({
   const nextRef = useRef<HTMLButtonElement>(null);
   const { locale } = useRouter();
   const dir = getDirection(locale);
+
   return (
     <div
       className={`carouselWrapper relative ${className} ${

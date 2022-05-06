@@ -49,8 +49,8 @@ export const Header: React.FC<HeaderProps> = ({ navItems, logo }) => {
       <Container>
         <div
           className={clsx(
-            "mx-auto px-4 rounded-md bg-white",
-            scroll ? "py-1 md:py-2 shadow-lg" : "py-2 md:py-4"
+            "mx-auto pl-4 pr-8 rounded-md bg-white",
+            scroll ? "py-1 md:py-1 shadow-lg" : "py-2 md:py-2"
           )}
         >
           <div className="flex items-center relative">

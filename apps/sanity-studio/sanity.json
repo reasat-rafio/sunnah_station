@@ -1,12 +1,11 @@
 {
   "root": true,
   "project": {
-    "name": "Sunnah Station Studio",
-    "basePath": "/studio"
+    "name": "Sunnah Station Studio"
   },
   "api": {
-    "projectId": "PULLED_FROM_ENV",
-    "dataset": "PULLED_FROM_ENV"
+    "projectId": "kujh673o",
+    "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
@@ -20,9 +19,7 @@
   ],
   "env": {
     "development": {
-      "plugins": [
-        "@sanity/vision"
-      ]
+      "plugins": ["@sanity/vision"]
     }
   },
   "parts": [
