@@ -7,7 +7,7 @@
   "author": "reasat-rafio <rafioar96@gmail.com>",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "sanity start",
+    "dev": "sanity start",
     "build": "sanity build"
   },
   "keywords": [
@@ -28,5 +28,7 @@
     "sanity-plugin-color-picker": "^1.0.3",
     "styled-components": "^5.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "tsconfig": "*"
+  }
 }
