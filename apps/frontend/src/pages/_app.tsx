@@ -6,18 +6,18 @@ import "../styles/swiper-carousel.css";
 import { createContext, useEffect } from "react";
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
-import { imageUrlBuilder } from "@utils/sanity";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
-import { ManagedUIContext } from "src/contexts/ui.context";
+import { imageUrlBuilder } from "@utils/sanity";
 import ManagedModal from "@components/common/modal/managed-modal";
 import ManagedDrawer from "@components/common/drawer/managed-drawer";
 import { Header } from "@components/layout/header/header";
-import Search from "@components/common/search";
 import BottomNavigation from "@components/layout/mobile-navigation/mobile-navigation";
+import Search from "@components/common/search";
 import Footer from "@components/layout/footer/footer";
+import { ManagedUIContext } from "@contexts/ui.context";
 
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
